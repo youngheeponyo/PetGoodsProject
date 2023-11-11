@@ -20,7 +20,7 @@
                         
                         <button class="btn" type="submit">
                             <i class="far fa-user fa-2x"></i>
-                        </button>
+                        </button>>
                         
                         <button class="btn" type="submit">
                             <i class="bi-cart-fill me-1"></i>

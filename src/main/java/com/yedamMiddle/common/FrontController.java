@@ -1,6 +1,7 @@
 package com.yedamMiddle.common;
 
 import java.io.IOException;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,6 +9,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.yedamMiddle.login.web.AddUserControl;
+import com.yedamMiddle.login.web.AddUserFormControl;
+import com.yedamMiddle.login.web.DelUserControl;
+import com.yedamMiddle.login.web.LoginControl;
+import com.yedamMiddle.login.web.LoginFormControl;
+import com.yedamMiddle.login.web.LogoutControl;
+
 
 public class FrontController extends HttpServlet {
 
@@ -23,6 +32,16 @@ public class FrontController extends HttpServlet {
 		// 김준성
 		
 		// 서영희
+		//회원가입
+		commandByURL.put("/addUserForm.do", new AddUserFormControl());
+		commandByURL.put("/addUser.do", new AddUserControl());
+		//로그인
+		commandByURL.put("/loginForm.do", new LoginFormControl());
+		commandByURL.put("/login.do", new LoginControl());
+		//로그아웃
+		commandByURL.put("/logout.do", new LogoutControl());
+		//회원탈퇴
+		commandByURL.put("/delUser.do", new DelUserControl());
 		
 		// 전민교
 		commandByURL.put("/main.do", new MainPageControl());
