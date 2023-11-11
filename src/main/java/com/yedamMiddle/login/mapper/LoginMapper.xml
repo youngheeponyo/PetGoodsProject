@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper SYSTEM "mybatis-3-mapper.dtd">
-<mapper namespace="co.yedamMiddle.login.mapper.LoginMapper">
+<mapper namespace="com.yedamMiddle.login.mapper.LoginMapper">
 	<!-- 회원가입 -->
-	<insert id="addUser" parameterType="co.yedamMiddle.login.service.UserVO">
-		insert into user_tbl values(seq_user.nextval,${userId},${userPw},${nickName},${userBirth},${userMail},${userPhone},'u')
+	<insert id="addUser" parameterType="com.yedamMiddle.common.service.UserVO">
+		insert into user_tbl values(seq_user.nextval,#{userId},#{userPw},#{nickName},#{userBirth},#{userMail},#{userPhone},'u')
 	</insert>
 	<!-- 로그인 -->
-	<select id="userLogin" resultType="co.yedamMiddle.login.service.UserVO">
-		SELECT * FROM USER_TBL WHERE USER_ID=${userId} AND USER_PW=${userPw}
+	<select id="userLogin" resultType="com.yedamMiddle.common.service.UserVO">
+		SELECT * FROM USER_TBL WHERE USER_ID=#{userId} AND USER_PW=#{userPw}
 	</select>
 	<!-- 회원탈퇴 -->
 	<delete id="deleteUser">
-		DELETE FROM USER_TBL WHERE USER_ID=${userId} AND USER_PW=${userPw}
+		DELETE FROM USER_TBL WHERE USER_ID=#{userId} AND USER_PW=#{userPw}
 	</delete>
 </mapper>
