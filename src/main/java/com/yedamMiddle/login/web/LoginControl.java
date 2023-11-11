@@ -23,9 +23,8 @@ public class LoginControl implements Command {
 		UserVO vo = svc.loginUser(uid, upw);
 		if(svc.loginUser(uid, upw)!=null) {
 			HttpSession session = req.getSession();
-			session.setAttribute("uid", uid);
-			session.setAttribute("upw", upw);
-			session.setAttribute("permission", vo.getUserPermission());
+			session.setAttribute("uno", vo.getUserNo());	//로그인한 회원번호 기억 후 사용
+			session.setAttribute("permission", vo.getUserPermission());	//사용자 계정으로 로그인했는지 구분하기 위함
 			try {
 				resp.sendRedirect("main.do");
 			} catch (IOException e) {

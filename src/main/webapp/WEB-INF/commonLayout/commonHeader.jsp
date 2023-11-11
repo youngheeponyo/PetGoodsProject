@@ -18,9 +18,9 @@
                             <i class="fas fa-cat fa-2x"></i>	
                         </button>
                         
-                        <button class="btn" type="submit">
-                            <i class="far fa-user fa-2x"></i>
-                        </button>>
+                        <a class="btn" href="loginForm.do">
+                            <i class="far fa-user fa-2x">로그인</i>
+                        </a>
                         
                         <button class="btn" type="submit">
                             <i class="bi-cart-fill me-1"></i>
