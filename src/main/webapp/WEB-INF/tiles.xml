@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tiles-definitions>
+
+  <definition name="mainPage" template="/WEB-INF/commonLayout/commonTemplate.jsp">
+    <put-attribute name="title" value="MyDearPet" />
+    <put-attribute name="commonHeader" value="/WEB-INF/commonLayout/commonHeader.jsp" />
+    <put-attribute name="commonBanner" value="/WEB-INF/commonLayout/commonBanner.jsp" />
+    <put-attribute name="commonFooter" value="/WEB-INF/commonLayout/commonFooter.jsp" />
+    <put-attribute name="commonGridBody" value="/WEB-INF/commonLayout/commonGridBody.jsp" />
+  </definition>
+  
+  <!-- 추가적인 정보를 담고싶을 때 상속받을 수 있 -->
+  <!-- *(애스터리스크)하나당 n은 초기값:0 {n+1}  -->
+  <!-- 부모의 레이아웃을 유지하면서 확장하고싶은 부분의 영역만 바꾸어 수정이 가능. -->
+  <definition name="WILDCARD:main/*" extends="mainPage">
+  	<put-attribute name="commonGridBody" value="/WEB-INF/main/{1}.jsp" />
+  </definition>
+</tiles-definitions>

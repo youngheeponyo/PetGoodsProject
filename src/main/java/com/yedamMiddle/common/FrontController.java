@@ -25,6 +25,7 @@ public class FrontController extends HttpServlet {
 		// 서영희
 		
 		// 전민교
+		commandByURL.put("/main.do", new MainPageControl());
 	}
 	
 	//끼양
