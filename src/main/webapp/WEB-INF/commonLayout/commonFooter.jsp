@@ -4,6 +4,8 @@
  <footer class="container px-4 px-lg-5 d-flex"> <!-- bg-light -->
       <div class="container">
       	<h3>마이디어 펫</h3>
+      	<img src="commonResource/image/mainIcon/dogIcon.png" alt="dog" style="width:40px;height:40px;">
+      	<img src="commonResource/image/mainIcon/catIcon.png" alt="dog" style="width:40px;height:40px;">
       </div>
       <div class="container">
       	<p>서비스 제공 : 마이디어펫<br>

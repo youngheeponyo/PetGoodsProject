@@ -9,10 +9,10 @@
   		</ol>
   	<div class="text-center carousel-inner">
     	<div class="carousel-item active">
-      		<img src="commonResource/image/강아지.png" width="1230" height="500" alt="First slide">
+      		<img src="commonResource/image/bannerImage/강아지.png" width="1230" height="500" alt="First slide">
     	</div>
     	<div class="carousel-item">
-      		<img src="commonResource/image/배너2.jpg" width="1230" height="500" alt="Second slide">
+      		<img src="commonResource/image/bannerImage/배너2.jpg" width="1230" height="500" alt="Second slide">
     	</div>
   	</div>
   	<a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">

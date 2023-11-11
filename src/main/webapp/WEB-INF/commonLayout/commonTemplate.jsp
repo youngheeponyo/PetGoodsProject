@@ -33,7 +33,7 @@
         <!-- Core theme JS-->
         <!-- <script src="../commonResource/js/scripts.js"></script>  -->
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="../commonResource/css/styles.css" rel="stylesheet" /> 
+        <link href="commonResource/css/styles.css" rel="stylesheet" /> 
     </head>
     <body>
         <!-- header -->
