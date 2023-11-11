@@ -11,8 +11,9 @@ public class MainPageControl implements Command {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		// TODO Auto-generated method stub
 		try {
-			resp.sendRedirect("main/mainPage.tiles");
-		} catch (IOException e) {
+			req.setAttribute("main", 1);
+			req.getRequestDispatcher("main/mainPage.tiles").forward(req, resp);
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

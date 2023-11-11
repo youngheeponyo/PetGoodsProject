@@ -44,7 +44,7 @@ public class FrontController extends HttpServlet {
 		commandByURL.put("/delUser.do", new DelUserControl());
 		
 		// 전민교
-		commandByURL.put("/main.do", new MainPageControl());
+		commandByURL.put("/main.do", new MainPageControl()); // 메인페이지
 	}
 	
 	//끼양

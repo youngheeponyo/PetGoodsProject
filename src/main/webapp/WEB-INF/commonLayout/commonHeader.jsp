@@ -3,7 +3,7 @@
 <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light"> <!-- bg-light -->
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#!">마이디어 독</a>
+                <a class="navbar-brand" href="main.do">마이디어 독</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
                 	<div class="input-group w-50">
