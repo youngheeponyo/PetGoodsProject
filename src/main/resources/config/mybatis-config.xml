@@ -19,6 +19,6 @@
 			</environment>
 		</environments>
 	<mappers>
-		<mapper resource="co/yedamMiddle/login/mapper/LoginMapper.xml" />
+		<mapper resource="com/yedamMiddle/login/mapper/LoginMapper.xml" />
 	</mappers>
 </configuration>
