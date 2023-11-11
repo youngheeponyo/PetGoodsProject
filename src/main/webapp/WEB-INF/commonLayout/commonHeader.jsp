@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light"> <!-- bg-light -->
             <div class="container px-4 px-lg-5">
@@ -17,10 +18,23 @@
                     	<button class="btn" type="submit">
                             <i class="fas fa-cat fa-2x"></i>	
                         </button>
+                        <c:choose>
+                        	<c:when test="${empty uno }">
+		                        <a class="btn" href="loginForm.do">
+		                            <i class="far fa-user fa-2x">로그인</i>
+		                        </a>
+		                        <a class="btn" href="addUserForm.do">
+                           		 	<i class="far fa-user fa-2x">회원가입</i>
+                       			</a>
+                        	</c:when>
+                        	<c:otherwise>
+                        		<a class="btn" href="logout.do">
+		                            <i class="far fa-user fa-2x">로그아웃</i>
+		                        </a>
+                        	</c:otherwise>
+                        </c:choose>
                         
-                        <a class="btn" href="loginForm.do">
-                            <i class="far fa-user fa-2x">로그인</i>
-                        </a>
+                        
                         
                         <button class="btn" type="submit">
                             <i class="bi-cart-fill me-1"></i>

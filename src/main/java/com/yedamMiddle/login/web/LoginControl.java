@@ -33,6 +33,7 @@ public class LoginControl implements Command {
 		}else {
 			try {
 				resp.sendRedirect("loginForm.do");
+				System.out.println("로그인 실패");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

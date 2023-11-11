@@ -19,7 +19,7 @@
   
   
     <definition name="LoginPage" template="/WEB-INF/commonLayout/commonTemplate.jsp">
-    <put-attribute name="login" value="로그인이지" />
+    <put-attribute name="login" value="로그인페이지" />
     <put-attribute name="commonHeader" value="/WEB-INF/commonLayout/commonHeader.jsp" />
     <put-attribute name="commonBanner" value="/WEB-INF/commonLayout/commonBanner.jsp" />
     <put-attribute name="commonFooter" value="/WEB-INF/commonLayout/commonFooter.jsp" />
