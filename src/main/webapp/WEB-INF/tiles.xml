@@ -6,6 +6,7 @@
     <put-attribute name="title" value="MyDearPet" />
     <put-attribute name="commonHeader" value="/WEB-INF/commonLayout/commonHeader.jsp" />
     <put-attribute name="commonBanner" value="/WEB-INF/commonLayout/commonBanner.jsp" />
+    <put-attribute name="commonMenu" value="/WEB-INF/commonLayout/commonMenu.jsp" />
     <put-attribute name="commonFooter" value="/WEB-INF/commonLayout/commonFooter.jsp" />
     <put-attribute name="commonGridBody" value="/WEB-INF/commonLayout/commonGridBody.jsp" />
   </definition>
@@ -18,11 +19,25 @@
     <put-attribute name="login" value="로그인페이지" />
     <put-attribute name="commonHeader" value="/WEB-INF/commonLayout/commonHeader.jsp" />
     <put-attribute name="commonBanner" value="/WEB-INF/commonLayout/commonBanner.jsp" />
+    <put-attribute name="commonMenu" value="/WEB-INF/commonLayout/commonMenu.jsp" />
     <put-attribute name="commonFooter" value="/WEB-INF/commonLayout/commonFooter.jsp" />
     <put-attribute name="commonGridBody" value="/WEB-INF/commonLayout/commonGridBody.jsp" />
   </definition>
    <definition name="WILDCARD:login/*" extends="LoginPage">
   	<put-attribute name="commonGridBody" value="/WEB-INF/login/{1}.jsp" />
+  </definition>
+  
+  <definition name="searchPage" template="/WEB-INF/commonLayout/commonTemplate.jsp">
+    <put-attribute name="title" value="검색페이지" />
+    <put-attribute name="commonHeader" value="/WEB-INF/commonLayout/commonHeader.jsp" />
+    <put-attribute name="commonBanner" value="/WEB-INF/commonLayout/commonBanner.jsp" />
+    <put-attribute name="commonMenu" value="/WEB-INF/commonLayout/commonMenu.jsp" />
+    <put-attribute name="commonFooter" value="/WEB-INF/commonLayout/commonFooter.jsp" />
+    <put-attribute name="commonGridBody" value="/WEB-INF/commonLayout/commonGridBody.jsp" />
+  </definition>
+  
+  <definition name="WILDCARD:product/*" extends="searchPage">
+  	<put-attribute name="commonGridBody" value="/WEB-INF/product/{1}.jsp" />
   </definition>
 
 </tiles-definitions>

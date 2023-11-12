@@ -55,6 +55,9 @@
         <c:if test="${!empty main }"> <!-- 배너이미지는 메인페이지에서만 등장 -->
    			<tiles:insertAttribute name="commonBanner"></tiles:insertAttribute>
    		</c:if>
+   		<c:if test="${!empty searchPage }">
+   			 <tiles:insertAttribute name="commonMenu"></tiles:insertAttribute>
+   		</c:if>
    		<!-- body -->
    		<tiles:insertAttribute name="commonGridBody"></tiles:insertAttribute>
         <!-- Footer-->
