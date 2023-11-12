@@ -10,13 +10,9 @@
     <put-attribute name="commonGridBody" value="/WEB-INF/commonLayout/commonGridBody.jsp" />
   </definition>
   
-  <!-- 추가적인 정보를 담고싶을 때 상속받을 수 있 -->
-  <!-- *(애스터리스크)하나당 n은 초기값:0 {n+1}  -->
-  <!-- 부모의 레이아웃을 유지하면서 확장하고싶은 부분의 영역만 바꾸어 수정이 가능. -->
   <definition name="WILDCARD:main/*" extends="mainPage">
   	<put-attribute name="commonGridBody" value="/WEB-INF/main/{1}.jsp" />
   </definition>
-  
   
     <definition name="LoginPage" template="/WEB-INF/commonLayout/commonTemplate.jsp">
     <put-attribute name="login" value="로그인페이지" />

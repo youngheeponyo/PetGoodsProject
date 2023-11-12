@@ -43,7 +43,10 @@
         
         <!-- Core theme JS-->
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="commonResource/css/styles.css" rel="stylesheet" /> 
+        <link href="commonResource/css/styles.css" rel="stylesheet" />
+        <link href="commonResource/css/menubar.css" rel="stylesheet" />
+        <link href="commonResource/css/owl.carousel.min.css" rel="stylesheet" />  
+        <script src="commonResource/js/main.js"></script>
     </head>
     <body>
         <!-- header -->

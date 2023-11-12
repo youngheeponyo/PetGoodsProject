@@ -16,10 +16,11 @@ import com.yedamMiddle.login.web.DelUserControl;
 import com.yedamMiddle.login.web.LoginControl;
 import com.yedamMiddle.login.web.LoginFormControl;
 import com.yedamMiddle.login.web.LogoutControl;
+import com.yedamMiddlle.product.web.ProductSearchControl;
 
-
+// 0 -> 개 type
+// 1 -> 고양이 type
 public class FrontController extends HttpServlet {
-
 	private static final long serialVersionUID = 1L;
 	private Map<String, Command> commandByURL = new HashMap<>();
 	
@@ -45,6 +46,7 @@ public class FrontController extends HttpServlet {
 		
 		// 전민교
 		commandByURL.put("/main.do", new MainPageControl()); // 메인페이지
+		commandByURL.put("/productSearch.do", new ProductSearchControl());
 	}
 	
 	//끼양

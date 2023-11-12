@@ -1,20 +1,18 @@
 package com.yedamMiddle.common;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.yedamMiddle.common.service.CategoryJoinVO;
-import com.yedamMiddlle.product.service.ProductService;
+import com.yedamMiddle.product.service.ProductService;
 import com.yedamMiddlle.product.serviceImpl.ProductServiceImpl;
 
 public class MainPageControl implements Command {
-
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		// TODO Auto-generated method stub
@@ -23,7 +21,13 @@ public class MainPageControl implements Command {
 		
 		Map<Integer, List<CategoryJoinVO>> categoryMap = result.stream().collect(Collectors.groupingBy(CategoryJoinVO::getMainCateNo));
 		
-		req.getSession().setAttribute("categoryMap", categoryMap);
+		HttpSession session = req.getSession();
+		session.setAttribute("categoryMap", categoryMap);
+		
+		// 현재 강아지 상품/고양이 상품
+		if(req.getSession().getAttribute("curShowPetType") == null) {
+			session.setAttribute("curShowPetType", "0");
+		}
 		
 		try {
 			req.setAttribute("main", 1); // main페이지 구분용도(배너슬라이드)

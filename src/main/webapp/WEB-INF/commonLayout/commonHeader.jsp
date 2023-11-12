@@ -15,9 +15,9 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
                 	<div class="input-group w-50">
-  						<input type="text" class="form-control" placeholder="Search" aria-label="Username" aria-describedby="basic-addon1">
+  						<input type="text" class="form-control" placeholder="Search" aria-label="Username" aria-describedby="basic-addon1" id="searchBar">
   						<div class="input-group-append">
-    						<span class="input-group-text" id="basic-addon2"><i class="fa fa-search pt-2"></i></span>
+    						<button class="input-group-text" id="searchBtn"><i class="fa fa-search pt-2"></i></button>
   						</div>
 					</div>
 					
@@ -86,21 +86,54 @@
         </nav>
         
 <script>
-$(document).ready(function(){
-    $('.dropdown-submenu a.dropdown-item').on("click", function(e){
-        var $submenu = $(this).next('ul');
 
-        $('.dropdown-submenu ul.show').not($submenu).removeClass('show');
+<!-- 카테고리 Dropdown관련  -->
+	$(document).ready(function(){
+    	$('.dropdown-submenu a.dropdown-item').on("click", function(e){
+        	var $submenu = $(this).next('ul');
 
-        $submenu.toggleClass('show');
-        e.stopPropagation();
-        e.preventDefault();
-    });
+        	$('.dropdown-submenu ul.show').not($submenu).removeClass('show');
+
+        	$submenu.toggleClass('show');
+        	e.stopPropagation();
+        	e.preventDefault();
+    	});
     
-    $(document).on('click', function(e){
-        if(!$(e.target).closest('.dropdown-submenu').length){
-            $('.dropdown-submenu ul.show').removeClass('show');
-        }
-    });
-});
+    	$(document).on('click', function(e){
+        	if(!$(e.target).closest('.dropdown-submenu').length){
+            	$('.dropdown-submenu ul.show').removeClass('show');
+        	}
+    	});
+	});
+	
+	
+	let queryContent = "";
+	let queryURL = "productSearch.do?q=";
+	
+	<!-- 검색. page전환되므로 ajax는 x -->
+	const searchInput = document.getElementById('searchBar');
+	searchInput.addEventListener("keyup", (e) => {
+		if(e.keyCode === 13) {
+			const queryString = String(e.target.value);
+			if(queryString.length <= 0)
+				return;
+			
+			queryContent = queryString;
+			document.getElementById('searchBtn').click();
+		}
+	});
+	
+	const searchBtn = document.getElementById('searchBtn');
+	searchBtn.addEventListener("click", (e) => {
+		if(queryContent.length <= 0)
+			return;
+		
+		let petType = ${curShowPetType};
+		queryURL += queryContent + "&type=" + petType;
+		window.location.href = queryURL;
+		
+		queryContent = "";
+		queryURL = "productSearch.do?q=";
+	});
+	
 </script>
