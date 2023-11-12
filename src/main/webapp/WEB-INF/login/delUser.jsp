@@ -45,7 +45,7 @@
 
 
 <body>
-<form action="login.do" method="post">
+<form action="delUser.do" method="post">
   <div class="container">
     <div class="input-form-backgroud row">
       <div class="input-form col-md-12 mx-auto">
@@ -54,22 +54,20 @@
           <div class="row">
           
            <div class="mb-3">
-              <label for="name">아이디</label>
+              <label for="name">탈퇴할 아이디를 입력하세요</label>
               <input type="text" class="form-control" id="name" name="userId" placeholder="" value="" required>
               <div class="invalid-feedback">
-                이름을 입력해주세요.
               </div>
            </div>
            <div class="mb-3">
-              <label for="name">비밀번호</label>
+              <label for="name">비밀번호를 입력하세요</label>
               <input type="password" class="form-control" id="name" name="userPw" placeholder="" value="" required>
               <div class="invalid-feedback">
-                비밀번호를 입력해주세요.
               </div>
            </div>
 
           <div class="mb-4"></div>
-          <input class="btn btn-primary btn-lg btn-block" type="submit" value="로그인">
+          <input class="btn btn-primary btn-lg btn-block" type="submit" value="회원탈퇴">
         </form>
       </div>
     </div>

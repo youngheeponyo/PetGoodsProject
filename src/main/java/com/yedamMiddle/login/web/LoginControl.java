@@ -26,6 +26,7 @@ public class LoginControl implements Command {
 			session.setAttribute("uno", vo.getUserNo());	//로그인한 회원번호 기억 후 사용
 			session.setAttribute("permission", vo.getUserPermission());	//사용자 계정으로 로그인했는지 구분하기 위함
 			try {
+				resp.getWriter().print("<script>alert('로그인완료!')</script>");
 				resp.sendRedirect("main.do");
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -33,7 +34,6 @@ public class LoginControl implements Command {
 		}else {
 			try {
 				resp.sendRedirect("loginForm.do");
-				System.out.println("로그인 실패");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

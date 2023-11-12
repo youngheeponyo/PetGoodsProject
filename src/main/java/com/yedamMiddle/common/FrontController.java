@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedamMiddle.login.web.AddUserControl;
 import com.yedamMiddle.login.web.AddUserFormControl;
 import com.yedamMiddle.login.web.DelUserControl;
+import com.yedamMiddle.login.web.DelUserFormControl;
 import com.yedamMiddle.login.web.LoginControl;
 import com.yedamMiddle.login.web.LoginFormControl;
 import com.yedamMiddle.login.web.LogoutControl;
@@ -42,6 +43,7 @@ public class FrontController extends HttpServlet {
 		//로그아웃
 		commandByURL.put("/logout.do", new LogoutControl());
 		//회원탈퇴
+		commandByURL.put("/delUserForm.do", new DelUserFormControl());
 		commandByURL.put("/delUser.do", new DelUserControl());
 		
 		// 전민교

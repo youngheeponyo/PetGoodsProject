@@ -1,9 +1,9 @@
 package com.yedamMiddle.login.web;
 
 import java.io.IOException;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,7 +33,6 @@ public class AddUserControl implements Command {
 		String mail = req.getParameter("mail");
 		String phone = req.getParameter("phone");
 		
-		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		
 		vo.setUserId(uid);
 		vo.setUserPw(upw);
@@ -45,22 +44,23 @@ public class AddUserControl implements Command {
 		}
 		vo.setUserMail(mail);
 		vo.setUserPhone(phone);
-		Map<String,Object> map = new HashMap<>();
 		
 		if(svc.addUser(vo)) {
-				map.put("retCode", "OK");
-				map.put("vo", vo);
+				try {
+					resp.sendRedirect("login.do");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 		}else {
-			map.put("retCode", "NG");
+			System.out.println("회원가입 실패");
+			try {
+				resp.sendRedirect("addUser.do");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 		
-		resp.setContentType("text/json;charset=utf-8");
-		
-		try {
-			resp.getWriter().print(gson.toJson(map));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+
 	}
 
 }

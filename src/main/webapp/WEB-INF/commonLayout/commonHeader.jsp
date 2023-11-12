@@ -38,6 +38,9 @@
                         		<a class="btn" href="logout.do">
 		                            <i class="far fa-user fa-2x">로그아웃</i>
 		                        </a>
+		                        <a class="btn" href="delUserForm.do">
+		                            <i class="far fa-user fa-2x">회원탈퇴</i>
+		                        </a>
                         	</c:otherwise>
                         </c:choose>
                         
