@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+ 
+ <!-- 다른경로로 진입시 main에서 categoryList 다시 받아오게끔유도 -->
+<c:if test="${empty categoryMap }">
+	<jsp:forward page="/main.do"></jsp:forward>
+</c:if>
+
 <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light"> <!-- bg-light -->
             <div class="container px-4 px-lg-5">
@@ -52,12 +58,19 @@
             	<ul class="navbar-nav">
             			<li class="nav-item dropdown d-flex">
             				<i class="fas fa-bars custom-padding"></i>
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">카테고리</a>
+                            <a class="nav-link dropdown-toggle" id="multiDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">카테고리</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!"></a></li>
-                                <!-- <li><hr class="dropdown-divider" /></li> 선 -->
-                                <li><a class="dropdown-item" href="#!">Popular Items</a></li>
-                                <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
+                                <c:forEach items="${categoryMap }" var="category">
+                                	<c:set var="mainCategoryName" value="${category.value[0].mainCateName }" scope="request" />
+                                	<li class="dropdown-submenu dropend">
+                						<a class="dropdown-item dropdown-toggle" href="#">${mainCategoryName }</a>
+                						<ul class="dropdown-menu">
+                						<c:forEach items="${category.value }" var="sub">
+                    						<li><a class="dropdown-item" href="#">${sub.subCateName}</a></li>
+                						</c:forEach>
+                						</ul>
+            						</li>
+                                </c:forEach>
                             </ul>
                         </li>
                         <li class="nav-item"><a class="nav-link" aria-current="page" href="#!">신상품</a></li>
@@ -71,3 +84,23 @@
                 </ul>
             </div>
         </nav>
+        
+<script>
+$(document).ready(function(){
+    $('.dropdown-submenu a.dropdown-item').on("click", function(e){
+        var $submenu = $(this).next('ul');
+
+        $('.dropdown-submenu ul.show').not($submenu).removeClass('show');
+
+        $submenu.toggleClass('show');
+        e.stopPropagation();
+        e.preventDefault();
+    });
+    
+    $(document).on('click', function(e){
+        if(!$(e.target).closest('.dropdown-submenu').length){
+            $('.dropdown-submenu ul.show').removeClass('show');
+        }
+    });
+});
+</script>

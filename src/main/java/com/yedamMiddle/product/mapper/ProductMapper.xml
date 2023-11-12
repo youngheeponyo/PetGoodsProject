@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper SYSTEM "mybatis-3-mapper.dtd">
+<mapper namespace="com.yedamMiddle.product.mapper.ProductMapper">
+	<select id="getCategoryList" resultType="com.yedamMiddle.common.service.CategoryJoinVO">
+		SELECT A.CATEGORY_NO AS MAIN_CATE_NO, A.CATEGORY_NAME AS MAIN_CATE_NAME, B.CATEGORY_NO AS SUB_CATE_NO, B.CATEGORY_NAME AS SUB_CATE_NAME
+    		FROM CATEGORY A
+    		JOIN CATEGORY B ON A.CATEGORY_NO = B.CATEGORY_PRENO
+	</select>
+</mapper>

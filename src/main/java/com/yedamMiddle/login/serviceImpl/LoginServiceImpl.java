@@ -9,7 +9,6 @@ import com.yedamMiddle.login.service.LoginService;
 
 public class LoginServiceImpl implements LoginService{
 	SqlSession sql = Mybatis.getInstance().openSession(true);
-	
 	LoginMapper mapper = sql.getMapper(LoginMapper.class);
 
 	@Override
