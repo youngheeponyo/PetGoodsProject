@@ -30,7 +30,12 @@ public class FrontController extends HttpServlet {
 		// map에 command추가할 때 옆에 기능 주석적어주세요.
 		
 		// 김은별
-		
+//		commandByURL.put("/getUserQnaAllList", new GetQnaAllListControl());
+//		commandByURL.put("/getUserQnaList", new GetQnaListControl());
+//		commandByURL.put("/addUserQna", new AddUserQnaControl());
+//		commandByURL.put("/modifyUserQna", new ModifyUserQnaControl());
+//		commandByURL.put("/deleteUserQna", new DeleteUserQnaControl());
+//		commandByURL.put("/modifyAdminQna", new ModifyAdminQnaControl());
 		// 김준성
 		
 		// 서영희
