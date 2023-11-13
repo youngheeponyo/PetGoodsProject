@@ -23,5 +23,6 @@
 		<mapper resource="com/yedamMiddle/product/mapper/ProductMapper.xml" />
 		<mapper resource="com/yedamMiddle/userQna/mapper/UserQnaMapper.xml" />
 		<mapper resource="com/yedamMiddle/admin/mapper/AdminMapper.xml" />
+		<mapper resource="com/yedamMiddle/notice/mapper/NoticeMapper.xml" />
 	</mappers>
 </configuration>

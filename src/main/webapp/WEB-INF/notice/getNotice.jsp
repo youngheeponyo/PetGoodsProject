@@ -12,30 +12,30 @@
 				<table class="table">
 					<tr>
 						<th>글 번호</th>
-						<td class="noticeNo">nno.noticeNo</td>
+						<td class="noticeNo">${nno.noticeNo }</td>
 						<th>작성일자</th>
-						<td>sysdate</td>
+						<td>${nno.noticeDate}</td>
 					</tr>
 					<tr>
 						<th>제목</th>
-						<td colspan="3">nno.noticeTitle</td>
+						<td colspan="3">${nno.noticeTitle }</td>
 					</tr>
 					<tr>
 						<td colspan="4"><textarea rows="5" cols="40"
-								class="form-control">nno.noticeContent</textarea></td>
+								class="form-control">${nno.noticeContent }</textarea></td>
 					</tr>
 					<tr>
 						<th>작성자</th>
 						<td>관리자</td>
 						<th>조회수</th>
-						<td>nno.noticeView</td>
+						<td>${nno.noticeView }</td>
 					</tr>
 					<tr>
 						<td colspan="4" align="center"><c:choose>
-								<c:when test="${!empty logId && logId == bno.writer}">
+								<c:when test="${uno == 0 && permission == 0}">
 									<input type="submit" value="수정" class="btn btn-primary">
 									<input type="button" value="삭제"
-										onclick="location.href='removeBoard.do?bno=${bno.boardNo}'"
+										onclick="location.href='removeBoard.do?bno=${nno.noticeNo}'"
 										class="btn btn-warning">
 								</c:when>
 								<c:otherwise>
