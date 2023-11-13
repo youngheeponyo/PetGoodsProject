@@ -1,4 +1,4 @@
-package com.yedamMiddlle.product.serviceImpl;
+package com.yedamMiddle.product.serviceImpl;
 
 import java.util.List;
 

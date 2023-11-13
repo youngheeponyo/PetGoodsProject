@@ -17,7 +17,7 @@ import com.yedamMiddle.login.web.DelUserFormControl;
 import com.yedamMiddle.login.web.LoginControl;
 import com.yedamMiddle.login.web.LoginFormControl;
 import com.yedamMiddle.login.web.LogoutControl;
-import com.yedamMiddlle.product.web.ProductSearchControl;
+import com.yedamMiddle.product.web.ProductSearchControl;
 
 // 0 -> 개 type
 // 1 -> 고양이 type

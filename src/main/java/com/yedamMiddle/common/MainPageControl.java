@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import com.yedamMiddle.common.service.CategoryJoinVO;
 import com.yedamMiddle.product.service.ProductService;
-import com.yedamMiddlle.product.serviceImpl.ProductServiceImpl;
+import com.yedamMiddle.product.serviceImpl.ProductServiceImpl;
 
 public class MainPageControl implements Command {
 	@Override

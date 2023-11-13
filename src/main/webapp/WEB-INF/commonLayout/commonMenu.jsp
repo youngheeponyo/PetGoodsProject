@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<aside class="sidebar">
+
+<!-- 주의! menu Templete은 현재 searchPage만 쓰도록 해놓음. -->
+<!-- menu템플릿이 필요한경우 body jsp부분에 section 닫아줘야함 -->
+<section class="d-flex justify-content-between">
+<aside>
       <div class="toggle">
         <a href="#" class="burger js-menu-toggle" data-toggle="collapse" data-target="#main-navbar">
               <span></span>

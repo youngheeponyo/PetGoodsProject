@@ -7,8 +7,8 @@
     <put-attribute name="commonHeader" value="/WEB-INF/commonLayout/commonHeader.jsp" />
     <put-attribute name="commonBanner" value="/WEB-INF/commonLayout/commonBanner.jsp" />
     <put-attribute name="commonMenu" value="/WEB-INF/commonLayout/commonMenu.jsp" />
-    <put-attribute name="commonFooter" value="/WEB-INF/commonLayout/commonFooter.jsp" />
     <put-attribute name="commonGridBody" value="/WEB-INF/commonLayout/commonGridBody.jsp" />
+    <put-attribute name="commonFooter" value="/WEB-INF/commonLayout/commonFooter.jsp" />
   </definition>
   
   <definition name="WILDCARD:main/*" extends="mainPage">
@@ -20,8 +20,8 @@
     <put-attribute name="commonHeader" value="/WEB-INF/commonLayout/commonHeader.jsp" />
     <put-attribute name="commonBanner" value="/WEB-INF/commonLayout/commonBanner.jsp" />
     <put-attribute name="commonMenu" value="/WEB-INF/commonLayout/commonMenu.jsp" />
-    <put-attribute name="commonFooter" value="/WEB-INF/commonLayout/commonFooter.jsp" />
     <put-attribute name="commonGridBody" value="/WEB-INF/commonLayout/commonGridBody.jsp" />
+    <put-attribute name="commonFooter" value="/WEB-INF/commonLayout/commonFooter.jsp" />
   </definition>
    <definition name="WILDCARD:login/*" extends="LoginPage">
   	<put-attribute name="commonGridBody" value="/WEB-INF/login/{1}.jsp" />
@@ -32,8 +32,8 @@
     <put-attribute name="commonHeader" value="/WEB-INF/commonLayout/commonHeader.jsp" />
     <put-attribute name="commonBanner" value="/WEB-INF/commonLayout/commonBanner.jsp" />
     <put-attribute name="commonMenu" value="/WEB-INF/commonLayout/commonMenu.jsp" />
-    <put-attribute name="commonFooter" value="/WEB-INF/commonLayout/commonFooter.jsp" />
     <put-attribute name="commonGridBody" value="/WEB-INF/commonLayout/commonGridBody.jsp" />
+    <put-attribute name="commonFooter" value="/WEB-INF/commonLayout/commonFooter.jsp" />
   </definition>
   
   <definition name="WILDCARD:product/*" extends="searchPage">

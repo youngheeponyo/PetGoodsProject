@@ -1,4 +1,4 @@
-package com.yedamMiddlle.product.web;
+package com.yedamMiddle.product.web;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedamMiddle.common.Command;
 import com.yedamMiddle.product.service.ProductService;
 import com.yedamMiddle.product.service.ProductVO;
-import com.yedamMiddlle.product.serviceImpl.ProductServiceImpl;
+import com.yedamMiddle.product.serviceImpl.ProductServiceImpl;
 
 public class ProductSearchControl implements Command {
 
