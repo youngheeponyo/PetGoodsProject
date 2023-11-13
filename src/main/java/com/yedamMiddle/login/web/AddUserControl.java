@@ -32,7 +32,8 @@ public class AddUserControl implements Command {
 		String ubirth = req.getParameter("ubirth");
 		String mail = req.getParameter("mail");
 		String phone = req.getParameter("phone");
-		
+		String addr = req.getParameter("addr");
+		String detailAddr = req.getParameter("addr_detail");
 		
 		vo.setUserId(uid);
 		vo.setUserPw(upw);
@@ -44,6 +45,7 @@ public class AddUserControl implements Command {
 		}
 		vo.setUserMail(mail);
 		vo.setUserPhone(phone);
+		vo.setUserAddr(addr+" " +detailAddr);
 		
 		if(svc.addUser(vo)) {
 				try {

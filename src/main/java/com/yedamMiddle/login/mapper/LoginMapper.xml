@@ -3,7 +3,7 @@
 <mapper namespace="com.yedamMiddle.login.mapper.LoginMapper">
 	<!-- 회원가입 -->
 	<insert id="addUser" parameterType="com.yedamMiddle.common.service.UserVO">
-		insert into user_tbl values(seq_user.nextval,#{userId},#{userPw},#{nickName},#{userBirth},#{userMail},#{userPhone},'u')
+		insert into user_tbl values(seq_userno.nextval,#{userId},#{userPw},#{nickName},#{userBirth},#{userMail},#{userPhone},'1',sysdate,#{userAddr})
 	</insert>
 	<!-- 로그인 -->
 	<select id="userLogin" resultType="com.yedamMiddle.common.service.UserVO">

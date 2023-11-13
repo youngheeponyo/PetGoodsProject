@@ -24,5 +24,7 @@ public class GenCoupon {
 	// 데이터 넣을 쿠폰 초기화 구현
 	private static void initCouponList() {
 		welcomCouponList = new ArrayList<CouponVO>();
+		
+	
 	}
 }

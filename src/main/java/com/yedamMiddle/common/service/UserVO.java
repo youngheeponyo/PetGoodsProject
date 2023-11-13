@@ -14,6 +14,8 @@ public class UserVO {
 	private String userMail;
 	private String userPhone;
 	private String userPermission;
+	private Date userJoinDate;
+	private String userAddr;
 	public int getUserNo() {
 		return userNo;
 	}
@@ -62,7 +64,18 @@ public class UserVO {
 	public void setUserPermission(String userPermission) {
 		this.userPermission = userPermission;
 	}
-	
+	public Date getUserJoinDate() {
+		return userJoinDate;
+	}
+	public void setUserJoinDate(Date userJoinDate) {
+		this.userJoinDate = userJoinDate;
+	}
+	public String getUserAddr() {
+		return userAddr;
+	}
+	public void setUserAddr(String userAddr) {
+		this.userAddr = userAddr;
+	}
 	
 	
 }
