@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "mybatis-3-mapper.dtd">
+<mapper namespace="com.yedamMiddle.notice.mapper.NoticeMapper">
+
+	<select id="list" resultType="com.yedamMiddle.notice.service.NoticeVO">
+		SELECT * FROM NOTICE ORDER BY NOTICE_NO
+	</select>
+
+	<select id="select"
+		resultType="com.yedamMiddle.notice.service.NoticeVO" parameterType="int">
+		SELECT * FROM NOTICE WHERE NOTICE_NO = #{noticeNo}
+	</select>
+
+	<insert id="insert"
+		parameterType="com.yedamMiddle.notice.service.NoticeVO">
+		INSERT INTO NOTICE(NOTICE_NO, NOTICE_TITLE, NOTICE_DATE,
+		NOTICE_VIEW, NOTICE_CONTENT)
+		VALUES(SEQ_NOTICE.NEXTVAL, #{noticeTitle},
+		SYSDATE, 0, #{noticeContent})
+	</insert>
+
+	<update id="update"
+		parameterType="com.yedamMiddle.notice.service.NoticeVO">
+		update notice set notice_title=#{noticeTitle},
+		notice_content=#{noticeContent}
+		where notice_no=#{noticeNo}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		delete from notice where
+		notice_no=#{noticeNo}
+	</delete>
+
+	<update id="updateCnt" parameterType="int">
+		update notice set notice_view=notice_view+1 where notice_no=#{noticeNo}
+	</update>
+
+</mapper>
