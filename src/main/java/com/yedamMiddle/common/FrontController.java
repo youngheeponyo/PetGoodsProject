@@ -17,6 +17,9 @@ import com.yedamMiddle.login.web.DelUserFormControl;
 import com.yedamMiddle.login.web.LoginControl;
 import com.yedamMiddle.login.web.LoginFormControl;
 import com.yedamMiddle.login.web.LogoutControl;
+import com.yedamMiddle.notice.web.GetNoticeControl;
+import com.yedamMiddle.notice.web.NoticeFormControl;
+import com.yedamMiddle.notice.web.NoticeListControl;
 import com.yedamMiddle.product.web.ProductSearchControl;
 
 // 0 -> 개 type
@@ -32,6 +35,9 @@ public class FrontController extends HttpServlet {
 		// 김은별
 		
 		// 김준성
+		commandByURL.put("/noticeList.do", new NoticeListControl());
+		commandByURL.put("/noticeForm.do", new NoticeFormControl());
+		commandByURL.put("/getNotice.do", new GetNoticeControl());
 		
 		// 서영희
 		//회원가입
