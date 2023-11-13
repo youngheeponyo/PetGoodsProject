@@ -112,7 +112,7 @@
 	
 	let queryContent = "";
 	let queryURL = "productSearch.do?q=";
-	
+	let petType = ${curShowPetType};
 	<!-- 검색. page전환되므로 ajax는 x -->
 	const searchInput = document.getElementById('searchBar');
 	searchInput.addEventListener("keyup", (e) => {
@@ -132,8 +132,7 @@
 		if(queryContent.length <= 0)
 			return;
 		
-		let petType = ${curShowPetType};
-		queryURL += queryContent + "&type=" + petType;
+		queryURL += queryContent + "&type=" + petType + "&page=1";
 		window.location.href = queryURL;
 		
 		queryContent = "";
@@ -141,7 +140,7 @@
 	});
 	
 	function searchCategory(id) {
-		window.location.href = "categorySearch.do?categoryNo=" + id;
+		window.location.href = "categorySearch.do?categoryNo=" + id + "&type=" + petType + "&page=1";
 	}
 	
 </script>
