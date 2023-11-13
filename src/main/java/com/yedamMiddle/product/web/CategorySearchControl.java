@@ -17,15 +17,19 @@ public class CategorySearchControl implements Command {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		// TODO Auto-generated method stub
 		String category = req.getParameter("categoryNo");
+		String petType = req.getParameter("type");
+		String page = req.getParameter("page");
 		if(category == null || category.isEmpty())
 			return;
 		
+		page = "1";
 		int categoryNo = Integer.parseInt(category);
-		if(categoryNo <= 0)
+		int pageNo = Integer.parseInt(page);
+		if(categoryNo <= 0 || pageNo <= 0)
 			return;
 		
 		ProductService svc = new ProductServiceImpl();
-		List<ProductVO> productList = svc.searchCategory(categoryNo);
+		List<ProductVO> productList = svc.searchCategory(categoryNo, petType, pageNo);
 		
 		CategoryVO cateVO =  svc.getCategoryInfo(categoryNo);
 		if(cateVO == null) {

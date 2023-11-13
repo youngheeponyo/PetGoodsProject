@@ -19,14 +19,14 @@ public class ProductServiceImpl implements ProductService {
 		return mapper.getCategoryList();
 	}
 	@Override
-	public List<ProductVO> searchProductList(String query, String type) {
+	public List<ProductVO> searchProductList(String query, String type, int page) {
 		// TODO Auto-generated method stub
-		return mapper.searchProductList(query, type);
+		return mapper.searchProductList(query, type, page);
 	}
 	@Override
-	public List<ProductVO> searchCategory(int categoryNo) {
+	public List<ProductVO> searchCategory(int categoryNo, String type, int page) {
 		// TODO Auto-generated method stub
-		return mapper.searchCategory(categoryNo);
+		return mapper.searchCategory(categoryNo, type, page);
 	}
 	@Override
 	public CategoryVO getCategoryInfo(int categoryNo) {
@@ -42,5 +42,15 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<ProductVO> productList() {
 		return mapper.productList();
+	}
+	@Override
+	public int searchCategoryCount(int categoryNo) {
+		// TODO Auto-generated method stub
+		return mapper.searchCategoryCount(categoryNo);
+	}
+	@Override
+	public int searchProductListCount(int categoryNo, int page) {
+		// TODO Auto-generated method stub
+		return mapper.searchProductListCount(categoryNo, page);
 	}
 }

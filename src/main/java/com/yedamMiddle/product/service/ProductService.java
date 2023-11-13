@@ -8,8 +8,11 @@ import com.yedamMiddle.common.service.CategoryVO;
 public interface ProductService {
 	public CategoryVO getCategoryInfo(int categoryNo);
 	public List<CategoryJoinVO> getCategoryList();
-	public List<ProductVO> searchProductList(String query, String type);
+	public List<ProductVO> searchProductList(String query, String type, int page);
 	public ProductVO productDetail(int productNo);
 	public List<ProductVO> productList();
-	public List<ProductVO> searchCategory(int categoryNo);
+	public List<ProductVO> searchCategory(int categoryNo, String type, int page);
+	
+	public int searchCategoryCount(int categoryNo);
+	public int searchProductListCount(int categoryNo, int page); 
 }

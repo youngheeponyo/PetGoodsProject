@@ -17,9 +17,16 @@ public class ProductSearchControl implements Command {
 		// TODO Auto-generated method stub
 		String query = req.getParameter("q");
 		String petType = req.getParameter("type");
+		String page = req.getParameter("page");
+		page = "1";
+		if(query == null || petType == null || page == null)
+			return;
+		
+		
+		int pageNo = Integer.parseInt(page);
 		
 		ProductService svc = new ProductServiceImpl();
-		List<ProductVO> list = svc.searchProductList(query, petType);
+		List<ProductVO> list = svc.searchProductList(query, petType, pageNo);
 		
 		//req.setAttribute("searchPage", "1");
 		req.setAttribute("searchList", list);
