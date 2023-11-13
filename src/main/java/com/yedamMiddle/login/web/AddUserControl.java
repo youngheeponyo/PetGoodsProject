@@ -1,7 +1,7 @@
 package com.yedamMiddle.login.web;
 
 import java.io.IOException;
-
+import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
@@ -49,7 +49,9 @@ public class AddUserControl implements Command {
 		
 		if(svc.addUser(vo)) {
 				try {
-					resp.sendRedirect("login.do");
+					PrintWriter out = resp.getWriter();
+					out.print("<script>alert('회원가입 되었습니다!')</script>");
+					resp.sendRedirect("main.do");
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
