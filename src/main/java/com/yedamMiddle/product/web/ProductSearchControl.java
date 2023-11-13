@@ -21,8 +21,9 @@ public class ProductSearchControl implements Command {
 		ProductService svc = new ProductServiceImpl();
 		List<ProductVO> list = svc.searchProductList(query, petType);
 		
-		req.setAttribute("searchPage", "1");
+		//req.setAttribute("searchPage", "1");
 		req.setAttribute("searchList", list);
+		req.setAttribute("query", query);
 		try {
 			req.getRequestDispatcher("product/productSearchPage.tiles").forward(req, resp);
 		} catch (Exception e) {
