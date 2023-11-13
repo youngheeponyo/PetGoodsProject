@@ -25,7 +25,7 @@ ${list}
                     	<tbody>
                     		<c:forEach items="${list }" var="vo">
                     		<tr>
-                    			<td id="qnaNocheck">${vo.qnaNo}</td>
+                    			<td class="qnaNocheck">${vo.qnaNo}</td>
                     			<td class="passcheck">
                     			${vo.title }
                     			<input type="hidden" value="${vo.password }" />
@@ -80,6 +80,9 @@ ${list}
 	    	return;
 	    }else{
 	    	let promptObj = prompt('비밀번호를 입력하세요', '0000');
+	    	if(passwordValue == promptObj){
+	    		window.location.href="addUserQna.do?"
+	    	}
 	    }
 	    
 	    
