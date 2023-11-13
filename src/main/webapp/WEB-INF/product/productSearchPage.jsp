@@ -13,7 +13,6 @@
 	</c:otherwise>
 </c:choose>
 
-
 <div class="container mt-5">
 	<h2 class="text-center"><b>'${query }'</b>에 대한 검색결과</h1>
 	<h3 class="text-center"><b>${fn:length(searchList) }</b>개의 상품</h3>
@@ -54,7 +53,7 @@
 		<c:set var="requestString" value="categorySearch.do?categoryNo=${categoryNo }&type=${curShowPetType}&page=" />		
 	</c:when>
 	<c:otherwise>	
-		<c:set var="requestString" value="productSearch.do?q=" />
+		<c:set var="requestString" value="productSearch.do?q=${query }&type=${curShowPetType }&page=" />
 	</c:otherwise>
 </c:choose>
 
@@ -67,11 +66,8 @@
       </a>
     </li>
     <c:forEach var="idx" begin="${start }" end="${end }" step="1">
-		<li class="page-item"><a class="page-link" href="#">{idx}</a></li>
+		<li class="page-item"><a class="page-link" href="${requestString + idx}">{idx}</a></li>
 	</c:forEach>
-    
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
     <li class="page-item">
       <a class="page-link" href="#" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedamMiddle.common.Command;
+import com.yedamMiddle.common.PageDTO;
 import com.yedamMiddle.product.service.ProductService;
 import com.yedamMiddle.product.service.ProductVO;
 import com.yedamMiddle.product.serviceImpl.ProductServiceImpl;
@@ -28,10 +29,14 @@ public class ProductSearchControl implements Command {
 		ProductService svc = new ProductServiceImpl();
 		List<ProductVO> list = svc.searchProductList(query, petType, pageNo);
 		
+		int totalProductCnt = svc.searchProductListCount(query, petType);
+		PageDTO pageDto = new PageDTO(0, totalProductCnt, pageNo, 8);
 		//req.setAttribute("searchPage", "1");
 		req.setAttribute("searchList", list);
 		req.setAttribute("query", query);
 		req.setAttribute("curPage", page);
+		req.setAttribute("pagination", pageDto);
+		req.setAttribute("active", "search");
 		try {
 			req.getRequestDispatcher("product/productSearchPage.tiles").forward(req, resp);
 		} catch (Exception e) {
