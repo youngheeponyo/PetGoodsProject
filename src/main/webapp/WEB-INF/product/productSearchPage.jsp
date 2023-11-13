@@ -3,7 +3,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-
 <c:choose>
 	<c:when test="${curShowPetType eq 0}">
 		<c:set var="petType" value="dog" />
@@ -15,7 +14,7 @@
 
 <div class="container mt-5">
 	<h2 class="text-center"><b>'${query }'</b>에 대한 검색결과</h1>
-	<h3 class="text-center"><b>${fn:length(searchList) }</b>개의 상품</h3>
+	<h3 class="text-center"><b>${pagination.total }</b>개의 상품</h3>
 </div>
 <section class="py-3">
             <div class="container px-4 px-lg-5 mt-5">
@@ -24,7 +23,9 @@
 					<div class="col mb-5">
                         <div class="card h-100">
                             <!-- Product image-->
-                            <img class="card-img-top" src="productImage/${petType }/${product.productImage}" alt="..." />
+                            <div class="hoverImg">
+                            	<img class="card-img-top" src="productImage/${petType }/${product.productImage}" alt="..." />
+                            </div>
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
@@ -48,31 +49,62 @@
 <c:set var="curPage" value="${pagination.currentPage }" />
 <c:set var="start" value="${pagination.startPage }" />
 <c:set var="end" value="${pagination.endPage }" />
-<c:choose>
-	<c:when test="${active eq category}">
-		<c:set var="requestString" value="categorySearch.do?categoryNo=${categoryNo }&type=${curShowPetType}&page=" />		
-	</c:when>
-	<c:otherwise>	
-		<c:set var="requestString" value="productSearch.do?q=${query }&type=${curShowPetType }&page=" />
-	</c:otherwise>
-</c:choose>
 
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-        <span class="sr-only">Previous</span>
-      </a>
-    </li>
+  	<c:if test="${curPage != start }">
+    	<li class="page-item">
+    		<c:choose>
+    			<c:when test="${active eq 'category' }">
+    				<a class="page-link" href="categorySearch.do?categoryNo=${categoryNo }&type=${curShowPetType}&page=${curPage - 1}" aria-label="Next">
+    			</c:when>
+    			<c:otherwise>
+    				<a class="page-link" href="productSearch.do?q=${query }&type=${curShowPetType}&page=${curPage - 1}" aria-label="Next">
+    			</c:otherwise>
+    		</c:choose>
+        		<span aria-hidden="true">&laquo;</span>
+        		<span class="sr-only">Previous</span>
+      		</a>
+    	</li>
+    </c:if>
     <c:forEach var="idx" begin="${start }" end="${end }" step="1">
-		<li class="page-item"><a class="page-link" href="${requestString + idx}">{idx}</a></li>
+    	<c:choose>
+    		<c:when test="${active eq 'category' }">
+    			<c:choose>
+            		<c:when test="${idx == curPage}">
+            			<li class="page-item active"><a class="page-link" href="categorySearch.do?categoryNo=${categoryNo }&type=${curShowPetType}&page=${idx}">${idx}</a></li>		
+            		</c:when>
+            		<c:otherwise>
+            			<li class="page-item"><a class="page-link" href="categorySearch.do?categoryNo=${categoryNo }&type=${curShowPetType}&page=${idx}">${idx}</a></li>
+            		</c:otherwise>
+        		</c:choose>
+    		</c:when>
+			<c:otherwise>
+				<c:choose>
+            		<c:when test="${idx == curPage}">
+            			<li class="page-item active"><a class="page-link" href="productSearch.do?q=${query }&type=${curShowPetType}&page=${idx}">${idx}</a></li>		
+            		</c:when>
+            		<c:otherwise>
+            			<li class="page-item"><a class="page-link" href="productSearch.do?q=${query }&type=${curShowPetType}&page=${idx}">${idx}</a></li>
+            		</c:otherwise>
+        		</c:choose>
+			</c:otherwise>
+		</c:choose>
 	</c:forEach>
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-        <span class="sr-only">Next</span>
-      </a>
-    </li>
+	<c:if test="${curPage != end and end > 1}">
+    	<li class="page-item">
+    		<c:choose>
+    			<c:when test="${active eq 'category' }">
+    				<a class="page-link" href="categorySearch.do?categoryNo=${categoryNo }&type=${curShowPetType}&page=${curPage + 1}" aria-label="Next">
+    			</c:when>
+    			<c:otherwise>
+    				<a class="page-link" href="productSearch.do?q=${query }&type=${curShowPetType}&page=${curPage + 1}" aria-label="Next">
+    			</c:otherwise>
+    		</c:choose>
+        		<span aria-hidden="true">&raquo;</span>
+        		<span class="sr-only">Next</span>
+      		</a>
+    	</li>
+    </c:if>
   </ul>
 </nav>

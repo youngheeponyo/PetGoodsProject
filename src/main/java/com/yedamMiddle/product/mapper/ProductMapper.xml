@@ -43,15 +43,15 @@
   			]]>
 	</select>
 	
-	<select id="searchCategoryCount" resultType="int" parameterType="int">
+	<select id="searchCategoryCount" resultType="int">
 		SELECT COUNT(*) AS COUNT
     		FROM PRODUCT 
-    		WHERE CATEGORY_NO = #{categoryNo}
+    		WHERE CATEGORY_NO = #{categoryNo} AND PET_TYPE = #{type}
 	</select>
 	
-	<select id="searchProductListCount" resultType="com.yedamMiddle.product.service.ProductVO">
+	<select id="searchProductListCount" resultType="int">
 		SELECT COUNT(*) AS COUNT
-			FROM PRODUCT
+			FROM PRODUCT 
 			WHERE PET_TYPE = #{type} AND PRODUCT_NAME LIKE '%' || #{query} || '%'
 	</select>
 	

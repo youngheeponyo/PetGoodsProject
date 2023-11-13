@@ -32,6 +32,18 @@
             	margin-top: -6px;
             	margin-left: -1px;
         	}
+        	
+        	.hoverImg img {
+        		transition: all 0.2s linear;
+        	}
+        	
+			.hoverImg:hover img {
+				transform: scale(1.2);
+			}
+			.hoverImg {
+				overflow:hidden;
+			}
+			
     	</style>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />

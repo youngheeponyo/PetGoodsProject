@@ -18,15 +18,18 @@ public class MainPageControl implements Command {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		// TODO Auto-generated method stub
 		ProductService svc = new ProductServiceImpl();
-		List<CategoryJoinVO> result = svc.getCategoryList();
+		
 		//전체리스트
 		List<ProductVO> list = svc.productList();
 		req.setAttribute("list", list);
 		
-		Map<Integer, List<CategoryJoinVO>> categoryMap = result.stream().collect(Collectors.groupingBy(CategoryJoinVO::getMainCateNo));
-		
 		HttpSession session = req.getSession();
-		session.setAttribute("categoryMap", categoryMap);
+		if(session.getAttribute("categoryMap") == null) {
+			List<CategoryJoinVO> result = svc.getCategoryList();
+			Map<Integer, List<CategoryJoinVO>> categoryMap = result.stream().collect(Collectors.groupingBy(CategoryJoinVO::getMainCateNo));
+		
+			session.setAttribute("categoryMap", categoryMap);
+		}
 		
 		// 현재 강아지 상품/고양이 상품
 		if(req.getSession().getAttribute("curShowPetType") == null) {

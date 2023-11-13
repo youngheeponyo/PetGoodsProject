@@ -72,7 +72,7 @@ public class FrontController extends HttpServlet {
 		
 		// 전민교
 		commandByURL.put("/main.do", new MainPageControl()); // 메인페이지
-		commandByURL.put("/productSearch.do", new ProductSearchControl());
+		commandByURL.put("/productSearch.do", new ProductSearchControl()); // 상품검색(헤더 검색바)
 		commandByURL.put("/categorySearch.do", new CategorySearchControl()); // 카테고리검색(카테고리바)
 	}
 	
