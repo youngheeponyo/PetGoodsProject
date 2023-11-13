@@ -14,5 +14,5 @@ public interface ProductService {
 	public List<ProductVO> searchCategory(int categoryNo, String type, int page);
 	
 	public int searchCategoryCount(int categoryNo);
-	public int searchProductListCount(int categoryNo, int page); 
+	public int searchProductListCount(String query, String type); 
 }

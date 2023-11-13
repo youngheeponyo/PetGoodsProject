@@ -2,6 +2,7 @@ package com.yedamMiddle.product.serviceImpl;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 
 import com.yedamMiddle.common.Mybatis;
@@ -49,8 +50,8 @@ public class ProductServiceImpl implements ProductService {
 		return mapper.searchCategoryCount(categoryNo);
 	}
 	@Override
-	public int searchProductListCount(int categoryNo, int page) {
+	public int searchProductListCount(String query, String type) {
 		// TODO Auto-generated method stub
-		return mapper.searchProductListCount(categoryNo, page);
+		return mapper.searchProductListCount(query, type);
 	}
 }

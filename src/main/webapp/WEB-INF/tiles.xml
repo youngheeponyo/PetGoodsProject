@@ -53,6 +53,19 @@
   	<put-attribute name="commonGridBody" value="/WEB-INF/notice/{1}.jsp" />
   </definition>
   
+    <definition name="adminPage" template="/WEB-INF/commonLayout/commonTemplate.jsp">
+    <put-attribute name="title" value="MyDearPet" />
+    <put-attribute name="commonHeader" value="/WEB-INF/commonLayout/commonHeader.jsp" />
+    <put-attribute name="commonBanner" value="/WEB-INF/commonLayout/commonBanner.jsp" />
+    <put-attribute name="commonMenu" value="/WEB-INF/commonLayout/commonMenu.jsp" />
+    <put-attribute name="commonGridBody" value="/WEB-INF/commonLayout/commonGridBody.jsp" />
+    <put-attribute name="commonFooter" value="/WEB-INF/commonLayout/commonFooter.jsp" />
+  </definition>
+  
+  <definition name="WILDCARD:admin/*" extends="adminPage">
+  	<put-attribute name="commonGridBody" value="/WEB-INF/admin/{1}.jsp" />
+  </definition>  
+
   <definition name="productPage" template="/WEB-INF/commonLayout/commonTemplate.jsp">
     <put-attribute name="title" value="MyDearPet" />
     <put-attribute name="commonHeader" value="/WEB-INF/commonLayout/commonHeader.jsp" />
@@ -65,7 +78,7 @@
   <definition name="WILDCARD:product/*" extends="productPage">
   	<put-attribute name="commonGridBody" value="/WEB-INF/product/{1}.jsp" />
   </definition>
-  
+
   <definition name="QnaPage" template="/WEB-INF/commonLayout/commonTemplate.jsp">
     <put-attribute name="title" value="문의사항" />
     <put-attribute name="commonHeader" value="/WEB-INF/commonLayout/commonHeader.jsp" />

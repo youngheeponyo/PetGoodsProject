@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedamMiddle.common.Command;
+import com.yedamMiddle.common.PageDTO;
 import com.yedamMiddle.common.service.CategoryVO;
 import com.yedamMiddle.product.service.ProductService;
 import com.yedamMiddle.product.service.ProductVO;
@@ -36,9 +37,17 @@ public class CategorySearchControl implements Command {
 			return;
 		}
 		
+		int totalProductCnt =  svc.searchCategoryCount(categoryNo);
+		PageDTO pageDto = new PageDTO(0, totalProductCnt, pageNo, 8);
+		
 		String query = cateVO.getCategoryName() + " 카테고리";
+		String myActive = "category";
 		req.setAttribute("query", query);
 		req.setAttribute("searchList", productList);
+		req.setAttribute("pagination", pageDto);
+		req.setAttribute("active", myActive);
+		req.setAttribute("categoryNo", categoryNo);
+		req.setAttribute("curPage", page);
 		try {
 			req.getRequestDispatcher("product/productSearchPage.tiles").forward(req, resp);
 		} catch (Exception e) {
