@@ -54,4 +54,5 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		return mapper.searchProductListCount(query, type);
 	}
+	
 }

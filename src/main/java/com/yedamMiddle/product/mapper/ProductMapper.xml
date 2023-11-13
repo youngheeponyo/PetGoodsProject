@@ -30,6 +30,7 @@
 	<select id="productList" resultType="com.yedamMiddle.product.service.ProductVO">
 		SELECT * FROM PRODUCT
 	</select>
+
 	<select id="searchCategory" resultType="com.yedamMiddle.product.service.ProductVO">
 		<![CDATA[  
     		SELECT *
