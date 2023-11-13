@@ -14,7 +14,7 @@ public class GetQnaAllListControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		String path = "userQna/userQnaList.tiles";
+		String path = "userQna/userQnaAllList.tiles";
 		
 		UserQnaService svc = new UserQnaServiceImpl();
 		List<UserQnaVO> list = svc.userQnaAllList();

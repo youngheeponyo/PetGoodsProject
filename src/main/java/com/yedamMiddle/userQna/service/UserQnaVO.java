@@ -14,7 +14,6 @@ public class UserQnaVO {
 	private String qnaReply;
 	private char qnaState;
 	
-	
 	public int getQnaNo() {
 		return qnaNo;
 	}
@@ -74,5 +73,12 @@ public class UserQnaVO {
 	}
 	public void setQnaState(char qnaState) {
 		this.qnaState = qnaState;
+	}
+	
+	@Override
+	public String toString() {
+		return "UserQnaVO [qnaNo=" + qnaNo + ", userNo=" + userNo + ", productOrderNo=" + productOrderNo
+				+ ", productNo=" + productNo + ", title=" + title + ", contents=" + contents + ", registDate="
+				+ registDate + ", password=" + password + ", qnaReply=" + qnaReply + ", qnaState=" + qnaState + "]";
 	}
 }

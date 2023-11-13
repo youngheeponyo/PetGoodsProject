@@ -6,6 +6,7 @@
 
 <body>
  <!-- Page content-->
+${list}
  <section class="py-5" >
 		<div class="container px-4 px-lg-5 mt-5">
                 <div class="container-fluid">
@@ -25,7 +26,10 @@
                     		<c:forEach items="${list }" var="vo">
                     		<tr>
                     			<td id="qnaNocheck">${vo.qnaNo}</td>
-                    			<td id="passcheck">${vo.title }</td>
+                    			<td class="passcheck">
+                    			${vo.title }
+                    			<input type="hidden" value="${vo.password }" />
+                    			</td>
                     			<!-- 클릭이벤트 : 제목을 클릭하면 비밀번호를 비교하고 만약 맞다면 getUserQnaList.do?이 주소로 넘겨줌 -->
                     			
                     			
@@ -57,20 +61,28 @@
 </body>
 
 
-<!-- <script> -->
+<script>
 
-<!-- // 	// 고쳐야 함(list에 담긴 내용을 어떻게 넣어서 비교할지.. 또 비번은 post방식으로 해야 하는데..) -->
-<!-- // 	document.querySelector('#passcheck').addEventListener('click', function (e){ -->
-<!-- // 		int insertPassword = prompt("비밀번호를 입력해주세요"); -->
-<!-- // 		int qnaNo = document.querySelector('#qnaNocheck').value; -->
-		
-<%-- // 		if(password == ${vo.password} && qnaNo == ${vo.qnaNo}) { --%>
-<!-- // 			req.getRequestDispatcher("getUserQnaList.do?vo=${vo.qnaNo}") -->
-			
-<!-- // 		} else { -->
-<!-- // 			document.write("비밀번호가 다릅니다. 다시 선택하시기 바랍니다."); -->
-<!-- // 			resp.sendRedirect("getUserQnaAllList.do");//리스트 페이지로 -->
-<!-- // 		} -->
-<!-- // 	}) -->
+
+	document.querySelector(".passcheck").addEventListener("click", passCheck);
 	
-<!-- </script> -->
+	function passCheck(){
+		// 클릭된 요소(this)에서 가장 가까운 부모 <td>를 찾음
+	    let tdElement = this.closest('td');
+
+	    // <td> 안에서 이름이 'password'인 <input> 엘리먼트를 찾음
+	    let inputElement = tdElement.querySelector('input');
+
+	    // <input> 엘리먼트의 값을 가져와서 출력
+	    let passwordValue = inputElement.value;
+	    
+	    if(passwordValue == null){
+	    	return;
+	    }else{
+	    	let promptObj = prompt('비밀번호를 입력하세요', '0000');
+	    }
+	    
+	    
+
+	}
+</script>
