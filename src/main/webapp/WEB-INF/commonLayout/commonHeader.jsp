@@ -128,6 +128,7 @@
 	
 	const searchBtn = document.getElementById('searchBtn');
 	searchBtn.addEventListener("click", (e) => {
+		queryContent = document.getElementById('searchBar').value;
 		if(queryContent.length <= 0)
 			return;
 		
