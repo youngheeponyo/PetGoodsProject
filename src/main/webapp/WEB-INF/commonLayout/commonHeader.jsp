@@ -69,7 +69,7 @@
                 						<a class="dropdown-item dropdown-toggle" href="#">${mainCategoryName }</a>
                 						<ul class="dropdown-menu">
                 						<c:forEach items="${category.value }" var="sub">
-                    						<li><a class="dropdown-item" href="#">${sub.subCateName}</a></li>
+                    						<li><a class="dropdown-item" id="${sub.subCateNo }" href="#" onclick="searchCategory(this.id);">${sub.subCateName}</a></li>
                 						</c:forEach>
                 						</ul>
             						</li>
@@ -83,7 +83,7 @@
                 
                 <ul class="navbar-nav">
                 	<li class="nav-item"><a class="nav-link" aria-current="page" href="noticeList.do">공지사항</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">고객센터</a></li>
+                    <li class="nav-item"><a class="nav-link" href="getUserQnaAllList.do">고객센터</a></li>
                 </ul>
             </div>
         </nav>
@@ -128,6 +128,7 @@
 	
 	const searchBtn = document.getElementById('searchBtn');
 	searchBtn.addEventListener("click", (e) => {
+		queryContent = document.getElementById('searchBar').value;
 		if(queryContent.length <= 0)
 			return;
 		
@@ -138,5 +139,9 @@
 		queryContent = "";
 		queryURL = "productSearch.do?q=";
 	});
+	
+	function searchCategory(id) {
+		window.location.href = "categorySearch.do?categoryNo=" + id;
+	}
 	
 </script>

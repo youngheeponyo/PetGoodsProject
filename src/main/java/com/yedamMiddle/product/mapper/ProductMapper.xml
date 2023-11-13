@@ -6,6 +6,11 @@
     		FROM CATEGORY A
     		JOIN CATEGORY B ON A.CATEGORY_NO = B.CATEGORY_PRENO
 	</select>
+	<select id="getCategoryInfo" resultType="com.yedamMiddle.common.service.CategoryVO" parameterType="int">
+		SELECT *
+			FROM CATEGORY
+			WHERE CATEGORY_NO = #{categoryNo}
+	</select>
 	<select id="searchProductList" resultType="com.yedamMiddle.product.service.ProductVO">
 		SELECT * FROM PRODUCT WHERE PET_TYPE = #{type} AND PRODUCT_NAME LIKE '%' || #{query} || '%'
 	</select>
@@ -16,4 +21,10 @@
 	<select id="productList" resultType="com.yedamMiddle.product.service.ProductVO">
 		SELECT * FROM PRODUCT
 	</select>
+	<select id="searchCategory" resultType="com.yedamMiddle.product.service.ProductVO" parameterType="int">
+		SELECT *
+			FROM PRODUCT
+			WHERE CATEGORY_NO = #{categoryNo}
+	</select>
+	
 </mapper>
