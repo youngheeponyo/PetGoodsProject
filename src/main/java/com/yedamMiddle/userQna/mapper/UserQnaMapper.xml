@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "mybatis-3-mapper.dtd">
+<mapper namespace="com.yedamMiddle.userQna.mapper.UserQnaMapper">
+
+	<!-- 전체목록조회 -->
+	<select id="userQnaAllList" resultType ="com.yedamMiddle.userQna.service.UserQnaVO">
+		SELECT * FROM USERQNA ORDER BY QNA_NO
+	</select>
+	
+	
+	<!-- 상세문의조회 -->
+	<select id="userQnaSelect" resultType="com.yedamMiddle.userQna.service.UserQnaVO"
+						parameterType="com.yedamMiddle.userQna.service.UserQnaVO">
+		SELECT * FROM USERQNA WHERE QNA_NO =#{qnaNo}
+	</select>
+	
+	
+	<!-- 유저 문의글 등록 -->
+	<insert id="userQnaInsert" parameterType="com.yedamMiddle.userQna.service.UserQnaVO"> 
+		INSERT INTO USERQNA VALUES(SEQ_USERQNA.NEXTVAL,#{userNo}
+		#{productOrderNo}, #{productNo}, #{title}, #{contents}, #{SYSDATE},
+		#{password}, #{qnaReply}, #{qnaState})
+	</insert>
+	
+	
+	<!-- 유저 문의글 수정 -->
+	<update id="userQnaUpdate" parameterType="com.yedamMiddle.userQna.service.UserQnaVO">
+		UPDATE USERQNA SET TITLE =#{title},
+						   CONTENTS =#{contents},
+						   REGIST_DATE =#{SYSDATE}
+				WHERE QNA_NO =#{qnaNo}	AND PASSWORD= #{password}				   
+	</update>
+	
+	
+	<!-- 유저 문의글 삭제 -->
+	<delete id="userQnaDelete" parameterType="com.yedamMiddle.userQna.service.UserQnaVO">
+		DELETE FROM USERQNA WHERE QNA_NO =#{qnaNo}
+	</delete>
+	
+	
+	<!-- 관리자 문의답변 수정(등록) -->
+	<update id="adminQnaUpdate" parameterType="com.yedamMiddle.userQna.service.UserQnaVO">
+		UPDATE USERQNA SET QNA_REPLY =#{qnaReply},
+						   QNA_STATE =#{qnaState}
+				WHERE QNA_NO =#{qnaNo}						   
+	</update>
+	
+	
+
+				
+				
+	
+</mapper>
