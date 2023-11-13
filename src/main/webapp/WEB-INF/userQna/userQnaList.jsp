@@ -33,7 +33,6 @@
                     					<c:when test="${vo.qnaState==1 }">
                     						답변완료
                     					</c:when>
-                    					
                     					<c:otherwise>
                     						문의대기중
                     					</c:otherwise>

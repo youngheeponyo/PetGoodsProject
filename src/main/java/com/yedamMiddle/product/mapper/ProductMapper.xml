@@ -12,14 +12,47 @@
 			WHERE CATEGORY_NO = #{categoryNo}
 	</select>
 	<select id="searchProductList" resultType="com.yedamMiddle.product.service.ProductVO">
-		SELECT *
+		<![CDATA[  
+    		SELECT *
+    			FROM (
+        			SELECT /*+ INDEX(P PK_PRODUCTNO) */ rownum rn, P.*
+        			FROM PRODUCT P
+        			WHERE PET_TYPE = #{type} AND PRODUCT_NAME LIKE '%' || #{query} || '%'
+    			) a
+    			WHERE a.rn > (#{page} - 1) * 8 
+    			AND a.rn <= (#{page}) * 8
+  			]]>
+	</select>
+	
+	<select id="productDetail" resultType="com.yedamMiddle.product.service.ProductVO">
+		SELECT * FROM PRODUCT WHERE PRODUCT_NO = #{productNo}
+	</select>
+	<select id="productList" resultType="com.yedamMiddle.product.service.ProductVO">
+		SELECT * FROM PRODUCT
+	</select>
+	<select id="searchCategory" resultType="com.yedamMiddle.product.service.ProductVO">
+		<![CDATA[  
+    		SELECT *
+    			FROM (
+        			SELECT /*+ INDEX(P PK_PRODUCTNO) */ rownum rn, P.*
+        			FROM PRODUCT P
+        			WHERE P.CATEGORY_NO = #{categoryNo} AND PET_TYPE = #{type}
+    			) a
+    			WHERE a.rn > (#{page} - 1) * 8 
+    			AND a.rn <= (#{page}) * 8
+  			]]>
+	</select>
+	
+	<select id="searchCategoryCount" resultType="int" parameterType="int">
+		SELECT COUNT(*) AS COUNT
+    		FROM PRODUCT 
+    		WHERE CATEGORY_NO = #{categoryNo}
+	</select>
+	
+	<select id="searchProductListCount" resultType="com.yedamMiddle.product.service.ProductVO">
+		SELECT COUNT(*) AS COUNT
 			FROM PRODUCT
 			WHERE PET_TYPE = #{type} AND PRODUCT_NAME LIKE '%' || #{query} || '%'
-	</select>
-	<select id="searchCategory" resultType="com.yedamMiddle.product.service.ProductVO" parameterType="int">
-		SELECT *
-			FROM PRODUCT
-			WHERE CATEGORY_NO = #{categoryNo}
 	</select>
 	
 </mapper>

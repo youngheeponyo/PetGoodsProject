@@ -11,6 +11,11 @@ import com.yedamMiddle.product.service.ProductVO;
 public interface ProductMapper {
 	public CategoryVO getCategoryInfo(int categoryNo);
 	public List<CategoryJoinVO> getCategoryList();
-	public List<ProductVO> searchProductList(@Param("query") String query, @Param("type") String type);
-	public List<ProductVO> searchCategory(int categoryNo);
+	public ProductVO productDetail(@Param("productNo") int productNo);
+	public List<ProductVO> productList();
+	
+	public List<ProductVO> searchProductList(@Param("query") String query, @Param("type") String type, @Param("page") int page);
+	public List<ProductVO> searchCategory(@Param("categoryNo") int categoryNo,@Param("type") String type,  @Param("page") int page);
+	public int searchCategoryCount(int categoryNo);
+	public int searchProductListCount(@Param("categoryNo") int categoryNo, @Param("page") int page); 
 }

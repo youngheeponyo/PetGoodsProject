@@ -37,7 +37,7 @@
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">상세보기</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="detailProduct.do?pno=${product.productNo }">상세보기</a></div>
                             </div>
                         </div>
                     </div>
@@ -45,3 +45,38 @@
                 </div>
             </div>
         </section>
+
+<c:set var="curPage" value="${pagination.currentPage }" />
+<c:set var="start" value="${pagination.startPage }" />
+<c:set var="end" value="${pagination.endPage }" />
+<c:choose>
+	<c:when test="${active eq category}">
+		<c:set var="requestString" value="categorySearch.do?categoryNo=${categoryNo }&type=${curShowPetType}&page=" />		
+	</c:when>
+	<c:otherwise>	
+		<c:set var="requestString" value="productSearch.do?q=" />
+	</c:otherwise>
+</c:choose>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+    <c:forEach var="idx" begin="${start }" end="${end }" step="1">
+		<li class="page-item"><a class="page-link" href="#">{idx}</a></li>
+	</c:forEach>
+    
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+  </ul>
+</nav>
