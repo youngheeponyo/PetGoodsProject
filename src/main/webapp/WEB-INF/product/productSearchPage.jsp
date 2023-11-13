@@ -45,7 +45,19 @@
                 </div>
             </div>
         </section>
-        
+
+<c:set var="curPage" value="${pagination.currentPage }" />
+<c:set var="start" value="${pagination.startPage }" />
+<c:set var="end" value="${pagination.endPage }" />
+<c:choose>
+	<c:when test="${active eq category}">
+		<c:set var="requestString" value="categorySearch.do?categoryNo=${categoryNo }&type=${curShowPetType}&page=" />		
+	</c:when>
+	<c:otherwise>	
+		<c:set var="requestString" value="productSearch.do?q=" />
+	</c:otherwise>
+</c:choose>
+
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
     <li class="page-item">
@@ -54,7 +66,10 @@
         <span class="sr-only">Previous</span>
       </a>
     </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <c:forEach var="idx" begin="${start }" end="${end }" step="1">
+		<li class="page-item"><a class="page-link" href="#">{idx}</a></li>
+	</c:forEach>
+    
     <li class="page-item"><a class="page-link" href="#">2</a></li>
     <li class="page-item"><a class="page-link" href="#">3</a></li>
     <li class="page-item">

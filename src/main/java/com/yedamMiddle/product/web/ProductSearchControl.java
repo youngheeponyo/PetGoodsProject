@@ -18,7 +18,7 @@ public class ProductSearchControl implements Command {
 		String query = req.getParameter("q");
 		String petType = req.getParameter("type");
 		String page = req.getParameter("page");
-		page = "1";
+
 		if(query == null || petType == null || page == null)
 			return;
 		
@@ -31,6 +31,7 @@ public class ProductSearchControl implements Command {
 		//req.setAttribute("searchPage", "1");
 		req.setAttribute("searchList", list);
 		req.setAttribute("query", query);
+		req.setAttribute("curPage", page);
 		try {
 			req.getRequestDispatcher("product/productSearchPage.tiles").forward(req, resp);
 		} catch (Exception e) {
