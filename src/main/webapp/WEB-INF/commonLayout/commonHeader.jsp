@@ -69,7 +69,7 @@
                 						<a class="dropdown-item dropdown-toggle" href="#">${mainCategoryName }</a>
                 						<ul class="dropdown-menu">
                 						<c:forEach items="${category.value }" var="sub">
-                    						<li><a class="dropdown-item" href="#">${sub.subCateName}</a></li>
+                    						<li><a class="dropdown-item" id="${sub.subCateNo }" href="#" onclick="searchCategory(this.id);">${sub.subCateName}</a></li>
                 						</c:forEach>
                 						</ul>
             						</li>
@@ -138,5 +138,9 @@
 		queryContent = "";
 		queryURL = "productSearch.do?q=";
 	});
+	
+	function searchCategory(id) {
+		window.location.href = "categorySearch.do?categoryNo=" + id;
+	}
 	
 </script>

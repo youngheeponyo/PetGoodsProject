@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.yedamMiddle.common.Mybatis;
 import com.yedamMiddle.common.service.CategoryJoinVO;
+import com.yedamMiddle.common.service.CategoryVO;
 import com.yedamMiddle.product.mapper.ProductMapper;
 import com.yedamMiddle.product.service.ProductService;
 import com.yedamMiddle.product.service.ProductVO;
@@ -21,6 +22,16 @@ public class ProductServiceImpl implements ProductService {
 	public List<ProductVO> searchProductList(String query, String type) {
 		// TODO Auto-generated method stub
 		return mapper.searchProductList(query, type);
+	}
+	@Override
+	public List<ProductVO> searchCategory(int categoryNo) {
+		// TODO Auto-generated method stub
+		return mapper.searchCategory(categoryNo);
+	}
+	@Override
+	public CategoryVO getCategoryInfo(int categoryNo) {
+		// TODO Auto-generated method stub
+		return mapper.getCategoryInfo(categoryNo);
 	}
 	
 }
