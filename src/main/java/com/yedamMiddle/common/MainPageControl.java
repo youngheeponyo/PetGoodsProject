@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import com.yedamMiddle.common.service.CategoryJoinVO;
 import com.yedamMiddle.product.service.ProductService;
+import com.yedamMiddle.product.service.ProductVO;
 import com.yedamMiddle.product.serviceImpl.ProductServiceImpl;
 
 public class MainPageControl implements Command {
@@ -18,6 +19,9 @@ public class MainPageControl implements Command {
 		// TODO Auto-generated method stub
 		ProductService svc = new ProductServiceImpl();
 		List<CategoryJoinVO> result = svc.getCategoryList();
+		//전체리스트
+		List<ProductVO> list = svc.productList();
+		req.setAttribute("list", list);
 		
 		Map<Integer, List<CategoryJoinVO>> categoryMap = result.stream().collect(Collectors.groupingBy(CategoryJoinVO::getMainCateNo));
 		

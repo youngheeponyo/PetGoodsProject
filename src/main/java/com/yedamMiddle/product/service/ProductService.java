@@ -9,4 +9,6 @@ import com.yedamMiddle.common.service.CategoryJoinVO;
 public interface ProductService {
 	public List<CategoryJoinVO> getCategoryList();
 	public List<ProductVO> searchProductList(String query, String type);
+	public ProductVO productDetail(int productNo);
+	public List<ProductVO> productList();
 }

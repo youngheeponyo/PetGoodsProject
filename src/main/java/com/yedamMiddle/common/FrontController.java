@@ -2,6 +2,8 @@ package com.yedamMiddle.common;
 
 import java.io.IOException;
 
+
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,6 +23,7 @@ import com.yedamMiddle.notice.web.GetNoticeControl;
 import com.yedamMiddle.notice.web.NoticeFormControl;
 import com.yedamMiddle.notice.web.NoticeListControl;
 import com.yedamMiddle.product.web.CategorySearchControl;
+import com.yedamMiddle.product.web.ProductDetailControl;
 import com.yedamMiddle.product.web.ProductSearchControl;
 
 // 0 -> 개 type
@@ -57,6 +60,8 @@ public class FrontController extends HttpServlet {
 		//회원탈퇴
 		commandByURL.put("/delUserForm.do", new DelUserFormControl());
 		commandByURL.put("/delUser.do", new DelUserControl());
+		//상세페이지 보기
+		commandByURL.put("/detailProduct.do", new ProductDetailControl());
 		
 		// 전민교
 		commandByURL.put("/main.do", new MainPageControl()); // 메인페이지

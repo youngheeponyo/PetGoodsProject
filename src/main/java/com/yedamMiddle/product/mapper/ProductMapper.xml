@@ -7,8 +7,13 @@
     		JOIN CATEGORY B ON A.CATEGORY_NO = B.CATEGORY_PRENO
 	</select>
 	<select id="searchProductList" resultType="com.yedamMiddle.product.service.ProductVO">
-		SELECT *
-			FROM PRODUCT
-			WHERE PET_TYPE = #{type} AND PRODUCT_NAME LIKE '%' || #{query} || '%'
+		SELECT * FROM PRODUCT WHERE PET_TYPE = #{type} AND PRODUCT_NAME LIKE '%' || #{query} || '%'
+	</select>
+	
+	<select id="productDetail" resultType="com.yedamMiddle.product.service.ProductVO">
+		SELECT * FROM PRODUCT WHERE PRODUCT_NO = #{productNo}
+	</select>
+	<select id="productList" resultType="com.yedamMiddle.product.service.ProductVO">
+		SELECT * FROM PRODUCT
 	</select>
 </mapper>

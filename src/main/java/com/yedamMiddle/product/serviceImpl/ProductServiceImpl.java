@@ -23,4 +23,13 @@ public class ProductServiceImpl implements ProductService {
 		return mapper.searchProductList(query, type);
 	}
 	
+	 @Override
+	public ProductVO productDetail(int productNo) {
+		return mapper.productDetail(productNo);
+	}
+	 
+	@Override
+	public List<ProductVO> productList() {
+		return mapper.productList();
+	}
 }
