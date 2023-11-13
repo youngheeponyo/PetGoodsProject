@@ -16,6 +16,6 @@ public interface ProductMapper {
 	
 	public List<ProductVO> searchProductList(@Param("query") String query, @Param("type") String type, @Param("page") int page);
 	public List<ProductVO> searchCategory(@Param("categoryNo") int categoryNo,@Param("type") String type,  @Param("page") int page);
-	public int searchCategoryCount(int categoryNo);
+	public int searchCategoryCount(@Param("categoryNo") int categoryNo, @Param("type") String type);
 	public int searchProductListCount(@Param("query") String query, @Param("type") String type); 
 }

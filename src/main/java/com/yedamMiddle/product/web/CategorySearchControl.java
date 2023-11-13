@@ -23,7 +23,6 @@ public class CategorySearchControl implements Command {
 		if(category == null || category.isEmpty())
 			return;
 		
-		page = "1";
 		int categoryNo = Integer.parseInt(category);
 		int pageNo = Integer.parseInt(page);
 		if(categoryNo <= 0 || pageNo <= 0)
@@ -37,7 +36,7 @@ public class CategorySearchControl implements Command {
 			return;
 		}
 		
-		int totalProductCnt =  svc.searchCategoryCount(categoryNo);
+		int totalProductCnt =  svc.searchCategoryCount(categoryNo, petType);
 		PageDTO pageDto = new PageDTO(0, totalProductCnt, pageNo, 8);
 		
 		String query = cateVO.getCategoryName() + " 카테고리";
@@ -47,7 +46,6 @@ public class CategorySearchControl implements Command {
 		req.setAttribute("pagination", pageDto);
 		req.setAttribute("active", myActive);
 		req.setAttribute("categoryNo", categoryNo);
-		req.setAttribute("curPage", page);
 		try {
 			req.getRequestDispatcher("product/productSearchPage.tiles").forward(req, resp);
 		} catch (Exception e) {

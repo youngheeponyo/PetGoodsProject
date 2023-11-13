@@ -45,9 +45,9 @@ public class ProductServiceImpl implements ProductService {
 		return mapper.productList();
 	}
 	@Override
-	public int searchCategoryCount(int categoryNo) {
+	public int searchCategoryCount(int categoryNo, String type) {
 		// TODO Auto-generated method stub
-		return mapper.searchCategoryCount(categoryNo);
+		return mapper.searchCategoryCount(categoryNo, type);
 	}
 	@Override
 	public int searchProductListCount(String query, String type) {
