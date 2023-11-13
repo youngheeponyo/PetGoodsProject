@@ -29,9 +29,10 @@ public class ProductDetailControl implements Command {
 		ProductVO vo = svc.productDetail(Integer.parseInt(pno));
 		req.setAttribute("pno", vo);
 		
+		
 		UserQnaService usc = new UserQnaServiceImpl();
-		UserQnaVO uvo = usc.userQnaSelect(Integer.parseInt(pno));
-		req.setAttribute("qno", uvo);
+		List<UserQnaVO> qlist = usc.userQnaAllList();
+		req.setAttribute("qlist", qlist);
 		
 		List<ProductVO> list = svc.productList();
 		req.setAttribute("list", list);

@@ -62,18 +62,18 @@
                     		</tr>
                     	</thead>
                     	<tbody>
+                    	<c:forEach items="${qlist }" var="qvo">
                     		<tr>
-                    			<td>${qno.qnaNo}</td>
-                    			<td><a href ="getUserQnaList.do?vo=${qno.qnaNo}">${qno.title }</a></td>
-                    			<td>${qno.userNo }</td>
+                    			<td>${qvo.qnaNo}</td>
+                    			<td><a href ="getUserQnaList.do?vo=${qvo.qnaNo}">${qvo.title }</a></td>
+                    			<td>${qvo.userNo }</td>
                     			<td>
                     			<c:choose>
-                    			<c:when test="${!empty qno.qnaNo }">
+                    			<c:when test="${!empty qvo.qnaNo }">
                     				<c:choose>
-                    					<c:when test="${qno.qnaState==1 }">
+                    					<c:when test="${qvo.qnaState==1 }">
                     						답변완료
                     					</c:when>
-                    					
                     					<c:otherwise>
                     						문의대기중
                     					</c:otherwise>
@@ -84,6 +84,7 @@
                     			
                     			</td>
                     		</tr>
+                    		</c:forEach>
                     	</tbody>
                     </table>
 				</div>
