@@ -11,7 +11,7 @@
 	<!-- 상세문의조회 -->
 	<select id="userQnaSelect" resultType="com.yedamMiddle.userQna.service.UserQnaVO"
 						parameterType="com.yedamMiddle.userQna.service.UserQnaVO">
-		SELECT * FROM USERQNA WHERE QNA_NO =#{qnaNo}
+		SELECT * FROM USERQNA WHERE QNA_NO =#{qnaNo} AND PASSWORD=#{password}
 	</select>
 	
 	
@@ -24,7 +24,7 @@
 	
 	
 	<!-- 유저 문의글 수정 -->
-	<update id="userQnaUpdate" parameterType="com.yedamMiddle.userQna.service.UserQnaVO">
+	<update id="userQnaUpdate" parameterType="int">
 		UPDATE USERQNA SET TITLE =#{title},
 						   CONTENTS =#{contents},
 						   REGIST_DATE =#{SYSDATE}
