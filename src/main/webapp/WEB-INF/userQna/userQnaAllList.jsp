@@ -63,7 +63,7 @@ ${list}
 
 <script>
 
-
+//
 	document.querySelector(".passcheck").addEventListener("click", passCheck);
 	
 	function passCheck(){
