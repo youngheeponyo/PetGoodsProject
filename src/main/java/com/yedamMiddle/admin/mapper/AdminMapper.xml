@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "mybatis-3-mapper.dtd">
+<mapper namespace="com.yedamMiddle.admin.mapper.AdminMapper">
+	
+	<select id="userList" resultType="com.yedamMiddle.common.service.UserVO">
+		SELECT * FROM USER_TBL ORDER BY USER_NO
+	</select>
+	
+</mapper>

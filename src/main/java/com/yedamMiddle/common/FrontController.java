@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yedamMiddle.admin.web.adminPageControl;
+import com.yedamMiddle.admin.web.memberListControl;
 import com.yedamMiddle.login.web.AddUserControl;
 import com.yedamMiddle.login.web.AddUserFormControl;
 import com.yedamMiddle.login.web.DelUserControl;
@@ -41,9 +43,16 @@ public class FrontController extends HttpServlet {
 //		commandByURL.put("/deleteUserQna", new DeleteUserQnaControl());
 //		commandByURL.put("/modifyAdminQna", new ModifyAdminQnaControl());
 		// 김준성
+		//공지사항 게시판
 		commandByURL.put("/noticeList.do", new NoticeListControl());
 		commandByURL.put("/noticeForm.do", new NoticeFormControl());
 		commandByURL.put("/getNotice.do", new GetNoticeControl());
+		
+		//관리자페이지
+		commandByURL.put("/adminPage.do", new adminPageControl());
+		//회원목록
+		commandByURL.put("/memberList.do", new memberListControl());
+		
 		
 		// 서영희
 		//회원가입
