@@ -10,6 +10,7 @@ public interface ProductService {
 	public List<CategoryJoinVO> getCategoryList();
 	public List<ProductVO> searchProductList(String query, String type, int page);
 	public ProductVO productDetail(int productNo);
+	
 	public List<ProductVO> productList();
 	public List<ProductVO> searchCategory(int categoryNo, String type, int page);
 	

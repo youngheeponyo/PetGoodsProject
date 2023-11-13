@@ -1,6 +1,7 @@
 package com.yedamMiddle.product.web;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -21,14 +22,21 @@ public class ProductDetailControl implements Command {
 		String path = "product/productDetail.tiles";
 		
 		String pno = req.getParameter("pno");
+		String cno = req.getParameter("cno");
+		String type = req.getParameter("type");
 		
 		ProductService svc = new ProductServiceImpl();
 		ProductVO vo = svc.productDetail(Integer.parseInt(pno));
 		req.setAttribute("pno", vo);
 		
+		
 		UserQnaService usc = new UserQnaServiceImpl();
-		UserQnaVO uvo = usc.userQnaSelect(Integer.parseInt(pno));
-		req.setAttribute("qno", uvo);
+		List<UserQnaVO> qlist = usc.userQnaAllList();
+		req.setAttribute("qlist", qlist);
+		
+		List<ProductVO> list = svc.productList();
+		req.setAttribute("list", list);
+		
 		
 		try {
 			req.getRequestDispatcher(path).forward(req, resp);

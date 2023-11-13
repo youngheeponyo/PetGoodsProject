@@ -25,7 +25,7 @@
                                     <!-- Product name-->
                                     <h5 class="fw-bolder">${vo.productName }</h5>
                                     <!-- Product price-->
-                                    ${vo.productPrice }
+                                   ₩ ${vo.productPrice }
                                 </div>
                             </div>
                             <!-- Product actions-->
