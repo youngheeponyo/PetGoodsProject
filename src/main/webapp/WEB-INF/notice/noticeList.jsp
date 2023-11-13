@@ -7,7 +7,7 @@
 	<section class="py-5">
 		<div class="container px-4 px-lg-5 mt-5">
 			<h3>공지사항</h3>
-			<form action="addBoard.do" method="post">
+			<form action="addNotice.do" method="post">
 				<table class="table">
 					<thead>
 						<tr>
@@ -18,17 +18,21 @@
 						</tr>
 					</thead>
 					<tbody>
+						<c:forEach items="${list }" var="vo">
 							<tr>
-								<td>vo.boardNo</td>
-								<td><a href="getNotice.do?nno=vo.noticeNo">vo.noticeTitle</a></td>
+								<td>${vo.noticeNo}</td>
+								<td><a href="getNotice.do?nno=${vo.noticeNo}">${vo.noticeTitle}</a></td>
 								<td>관리자</td>
-								<td>vo.date</td>
+								<td>${vo.noticeDate}</td>
 							</tr>
+						</c:forEach>	
 					</tbody>
 				</table>
-				
-				<p><a href="noticeForm.do">새글작성</a></p>
-				
+				 <c:choose>
+					<c:when test="${uno == 0 && permission == 0}">
+						<p><a href="noticeForm.do">새글작성</a></p>
+					</c:when>
+				</c:choose>
 			</form>
 		</div>
 	</section>

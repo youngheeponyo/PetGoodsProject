@@ -24,7 +24,10 @@ import com.yedamMiddle.notice.web.NoticeListControl;
 import com.yedamMiddle.product.web.CategorySearchControl;
 import com.yedamMiddle.product.web.ProductDetailControl;
 import com.yedamMiddle.product.web.ProductSearchControl;
+import com.yedamMiddle.userQna.web.AddQnaControl;
+import com.yedamMiddle.userQna.web.AddQnaFormControl;
 import com.yedamMiddle.userQna.web.GetQnaAllListControl;
+import com.yedamMiddle.userQna.web.GetQnaListControl;
 
 // 0 -> 개 type
 // 1 -> 고양이 type
@@ -37,12 +40,14 @@ public class FrontController extends HttpServlet {
 		// map에 command추가할 때 옆에 기능 주석적어주세요.
 		
 		// 김은별
-		commandByURL.put("/getUserQnaAllList.do", new GetQnaAllListControl());
-//		commandByURL.put("/getUserQnaList", new GetQnaListControl());
-//		commandByURL.put("/addUserQna", new AddUserQnaControl());
-//		commandByURL.put("/modifyUserQna", new ModifyUserQnaControl());
-//		commandByURL.put("/deleteUserQna", new DeleteUserQnaControl());
-//		commandByURL.put("/modifyAdminQna", new ModifyAdminQnaControl());
+		commandByURL.put("/getUserQnaAllList.do", new GetQnaAllListControl());//조회
+		commandByURL.put("/getUserQnaList.do", new GetQnaListControl()); //수정예정
+		
+		commandByURL.put("/addUserQnaFrom.do", new AddQnaFormControl());
+		commandByURL.put("/addUserQna.do", new AddQnaControl());//등록	
+//		commandByURL.put("/modifyUserQna.do", new ModifyUserQnaControl());
+//		commandByURL.put("/deleteUserQna.do", new DeleteUserQnaControl());
+//		commandByURL.put("/modifyAdminQna.do", new ModifyAdminQnaControl());
 		// 김준성
 		//공지사항 게시판
 		commandByURL.put("/noticeList.do", new NoticeListControl());
@@ -74,6 +79,8 @@ public class FrontController extends HttpServlet {
 		commandByURL.put("/main.do", new MainPageControl()); // 메인페이지
 		commandByURL.put("/productSearch.do", new ProductSearchControl()); // 상품검색(헤더 검색바)
 		commandByURL.put("/categorySearch.do", new CategorySearchControl()); // 카테고리검색(카테고리바)
+		commandByURL.put("/fileUploadTestForm.do", new TestUploadFormControl()); // 테스트 파일업로드
+		commandByURL.put("/fileUpload.do", new TestFileUpload());
 	}
 	
 	//끼양

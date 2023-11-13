@@ -91,7 +91,7 @@
 			</c:otherwise>
 		</c:choose>
 	</c:forEach>
-	<c:if test="${curPage != end }">
+	<c:if test="${curPage != end and end > 1}">
     	<li class="page-item">
     		<c:choose>
     			<c:when test="${active eq 'category' }">
