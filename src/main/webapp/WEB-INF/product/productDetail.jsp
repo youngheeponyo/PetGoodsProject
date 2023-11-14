@@ -29,10 +29,10 @@
 					<input id="inputQuantity" type="number" pattern="[0-9]*"
 						style="margin: 5px; padding: 5px; border-radius: 5px;"
 						data-hook="number-input-spinner-input" aria-label="Quantity"
-						max="99999" min="1" value="1">
-					<button class="btn btn-outline-dark flex-shrink-0" type="button">
-						<i class="bi-cart-fill me-1"></i> Add to cart
-					</button>
+						max="99" min="1" value="1" name="cnt">
+					
+					<button class="btn btn-outline-dark flex-shrink-0" onclick="functionCart()">
+					<i class="bi-cart-fill me-1"></i> Add to cart</button>
 				</div>
 			</div>
 		</div>
@@ -155,4 +155,24 @@
 	</div>
 </section>
 
-
+<script>
+	function functionCart() {
+		let pno = ${pno.productNo};
+		let uno = ${uno};
+		let count = document.getElementById('inputQuantity').value;
+		
+		// ajax써서 AddCartControl(addCart.do?productNo=)
+		fetch('addCart.do?pno='+pno+'&uno='+uno+'&cnt='+count)
+		.then(resolve=>resolve.json())
+		.then(result=>{
+			console.log(result)
+			if(result.retCode=='OK'){
+				alert("장바구니에 추가되었습니다");
+				window.location.href = "myCart.do?uno=" + uno;
+			}else{
+				alert("추가 실패");
+			}
+		})
+		
+	}
+</script>

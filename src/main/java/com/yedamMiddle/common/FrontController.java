@@ -1,6 +1,8 @@
 package com.yedamMiddle.common;
 
 import java.io.IOException;
+
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedamMiddle.admin.web.adminPageControl;
 import com.yedamMiddle.admin.web.memberListControl;
+import com.yedamMiddle.cart.web.AddCartControl;
+import com.yedamMiddle.cart.web.MyCartControl;
 import com.yedamMiddle.login.web.AddUserControl;
 import com.yedamMiddle.login.web.AddUserFormControl;
 import com.yedamMiddle.login.web.DelUserControl;
@@ -78,6 +82,10 @@ public class FrontController extends HttpServlet {
 		commandByURL.put("/delUser.do", new DelUserControl());
 		//상세페이지 보기
 		commandByURL.put("/detailProduct.do", new ProductDetailControl());
+		//장바구니 추가
+		commandByURL.put("/addCart.do", new AddCartControl());
+		//장바구니
+		commandByURL.put("/myCart.do", new MyCartControl());
 		
 		// 전민교
 		commandByURL.put("/main.do", new MainPageControl()); // 메인페이지

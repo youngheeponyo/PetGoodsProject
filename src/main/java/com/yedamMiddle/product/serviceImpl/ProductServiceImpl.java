@@ -2,7 +2,9 @@ package com.yedamMiddle.product.serviceImpl;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
+
+
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.yedamMiddle.common.Mybatis;
@@ -54,5 +56,5 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		return mapper.searchProductListCount(query, type);
 	}
-	
+
 }
