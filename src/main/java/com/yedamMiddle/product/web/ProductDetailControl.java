@@ -22,8 +22,6 @@ public class ProductDetailControl implements Command {
 		String path = "product/productDetail.tiles";
 		
 		String pno = req.getParameter("pno");
-		String cno = req.getParameter("cno");
-		String type = req.getParameter("type");
 		
 		ProductService svc = new ProductServiceImpl();
 		ProductVO vo = svc.productDetail(Integer.parseInt(pno));

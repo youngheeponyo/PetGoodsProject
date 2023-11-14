@@ -6,4 +6,12 @@
 		SELECT * FROM USER_TBL ORDER BY USER_NO
 	</select>
 	
+	<select id = "prodList" resultType="com.yedamMiddle.product.service.ProductVO">
+		SELECT * FROM PRODUCT ORDER BY CATEGORY_NO DESC
+	</select>
+	
+	<insert id = "insert" parameterType="com.yedamMiddle.product.service.ProductVO">
+		INSERT INTO PRODUCT VALUES(productno.nextVAL, #{petType}, #{categoryNo}, #{productName},
+		#{productPrice}, #{productDesc}, #{productImage}, SYSDATE, #{productStock})
+	</insert>
 </mapper>

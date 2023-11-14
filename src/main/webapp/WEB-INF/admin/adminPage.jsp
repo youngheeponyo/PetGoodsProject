@@ -27,7 +27,7 @@
 								<div class="card-body">상품관리</div>
 								<div
 									class="card-footer d-flex align-items-center justify-content-between">
-									<a class="small text-white stretched-link" href="#">View
+									<a class="small text-white stretched-link" href="productList.do">View
 										Details</a>
 									<div class="small text-white">
 										<i class="fas fa-angle-right"></i>

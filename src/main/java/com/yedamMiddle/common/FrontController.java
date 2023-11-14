@@ -1,6 +1,8 @@
 package com.yedamMiddle.common;
 
 import java.io.IOException;
+
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,8 +11,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yedamMiddle.admin.web.AddProductControl;
+import com.yedamMiddle.admin.web.ProductFormControl;
+import com.yedamMiddle.admin.web.ProductListControl;
 import com.yedamMiddle.admin.web.adminPageControl;
 import com.yedamMiddle.admin.web.memberListControl;
+import com.yedamMiddle.cart.web.AddCartControl;
+import com.yedamMiddle.cart.web.MyCartControl;
 import com.yedamMiddle.login.web.AddUserControl;
 import com.yedamMiddle.login.web.AddUserFormControl;
 import com.yedamMiddle.login.web.DelUserControl;
@@ -63,6 +70,11 @@ public class FrontController extends HttpServlet {
 		commandByURL.put("/adminPage.do", new adminPageControl());
 		//회원목록
 		commandByURL.put("/memberList.do", new memberListControl());
+		//상품
+		commandByURL.put("/productList.do", new ProductListControl());
+		commandByURL.put("/productForm.do", new ProductFormControl());
+		//상품추가 작업중!
+		commandByURL.put("/addProduct.do", new AddProductControl());
 		
 		
 		// 서영희
@@ -79,6 +91,10 @@ public class FrontController extends HttpServlet {
 		commandByURL.put("/delUser.do", new DelUserControl());
 		//상세페이지 보기
 		commandByURL.put("/detailProduct.do", new ProductDetailControl());
+		//장바구니 추가
+		commandByURL.put("/addCart.do", new AddCartControl());
+		//장바구니
+		commandByURL.put("/myCart.do", new MyCartControl());
 		
 		// 전민교
 		commandByURL.put("/main.do", new MainPageControl()); // 메인페이지

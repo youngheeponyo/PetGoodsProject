@@ -50,7 +50,7 @@ public class AddUserControl implements Command {
 		if(svc.addUser(vo)) {
 				try {
 					PrintWriter out = resp.getWriter();
-					out.print("<script>alert('회원가입 되었습니다!')</script>");
+					out.print("<script type='text/javascript'>alert('회원가입 되었습니다!')</script>");
 					resp.sendRedirect("main.do");
 				} catch (IOException e) {
 					e.printStackTrace();
