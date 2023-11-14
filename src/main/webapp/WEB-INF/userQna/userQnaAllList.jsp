@@ -15,6 +15,7 @@ ${list}
                     <table class = "table" style= text-align:center>
                     	<thead>
                     		<tr>
+                    			<th>비밀글여부<th>
 	                    		<th>글번호</th>
 	                    		<th>제목</th>
 	                    		<th>작성자번호</th>
@@ -25,6 +26,18 @@ ${list}
                     	<tbody>
                     		<c:forEach items="${list }" var="vo">
                     		<tr>
+                    			<td> 
+                    				<c:choose>
+	                    				<c:when test="${vo.password==null }">
+	                    					전체공개
+	                    				</c:when>
+	                    				<c:otherwise>
+	                    					비밀글
+	                    				</c:otherwise>
+                    				</c:choose>
+                    			
+                    			</td>
+                    					
                     			<td class="qnaNocheck">${vo.qnaNo}</td>
                     			<td class="passcheck" onclick="passCheck('${vo.password}', '${vo.qnaNo }')">
                     				<a href=#>${vo.title }</a>
@@ -40,7 +53,6 @@ ${list}
 	                    					<c:when test="${vo.qnaState==1 }">
 	                    						답변완료
 	                    					</c:when>
-	                    					
 	                    					<c:otherwise>
 	                    						문의대기중
 	                    					</c:otherwise>
@@ -61,27 +73,23 @@ ${list}
 
 
 <script>
+
+
+
+
 	function passCheck(password, qnaNo){
 		console.log("password :", password,"   id: ", qnaNo)
 	}
 	    if(password == "null"){
-			window.location.href="getUserQnaList.do?qanNo="+qnaNo;
+	    	
+	    	window.location.href="getUserQnaList.do?qanNo="+qnaNo+"&password="+password;
 	    	return;
 	    	
 	    }else{
 	    	let inputPassword = prompt('비밀번호를 입력하세요', '0000');
 	    	if(password == intputPassword){
 	    		
-	    		
-	    		window.location.href="getUserQnaList.do?qanNo="+qnaNo+"$password="+password;
-	    		
-	    		fetch('getUserQnaList.do', {
-					method: 'post',
-					body: 'qanNo=' + qnaNo + '$password=' + password
-				})
-				.then(resolve => resolve.json())
-				.then(result => {
-	    		
+	    		window.location.href="getUserQnaList.do?qanNo="+qnaNo+"&password="+password;
 	    		
 	    		return;
 	    	}

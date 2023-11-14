@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fm"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <style>
 #list span {
@@ -38,17 +38,17 @@
 				<table class="table" border="1">
 					<tr>
 						<th>글번호</th>
-						<td>1</td>
+						<td>${vo.title }</td>
 						<th>작성일시</th>
-						<td>2023:11:23</td>
+						<td><fmt:formatDate value ="${vo.registDate }" pattern="yyyy-MM-dd hh:mm"></fmt:formatDate></td>
 					</tr>
 
 
 					<tr>
 						<th>글제목</th>
-						<td>문의합니다!</td>
+						<td>${vo.title }</td>
 						<th>상품명</th>
-						<td>다람쥐 도토리 옷</td>
+						<td></td>
 					</tr>
 
 

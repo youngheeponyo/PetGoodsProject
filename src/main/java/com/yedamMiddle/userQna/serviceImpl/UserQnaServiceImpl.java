@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.yedamMiddle.common.Mybatis;
+import com.yedamMiddle.common.service.UserVO;
 import com.yedamMiddle.userQna.mapper.UserQnaMapper;
 import com.yedamMiddle.userQna.service.UserQnaService;
 import com.yedamMiddle.userQna.service.UserQnaVO;
@@ -45,6 +46,11 @@ public class UserQnaServiceImpl implements UserQnaService {
 	public int adminQnaUpdate(UserQnaVO vo) {
 		// TODO Auto-generated method stub
 		return mapper.adminQnaUpdate(vo);
+	}
+
+	@Override
+	public UserVO qnaToSelectUser(UserQnaVO vo) {
+		return mapper.qnaToSelectUser(vo);
 	}
 
 

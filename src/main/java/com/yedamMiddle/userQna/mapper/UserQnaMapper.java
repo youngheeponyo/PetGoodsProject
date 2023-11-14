@@ -4,12 +4,16 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.yedamMiddle.common.service.UserVO;
 import com.yedamMiddle.userQna.service.UserQnaVO;
 
 
 public interface UserQnaMapper {
 	public List<UserQnaVO> userQnaAllList();
 	public UserQnaVO userQnaSelect(@Param("qnaNo") int qnaNo , @Param("password")int password);
+	//글 번호로 작성유저 찾기
+	public UserVO qnaToSelectUser(UserQnaVO vo);
+	
 	
 	//게시글 등록, 수정, 삭제
 	public int userQnaInsert(UserQnaVO vo);
