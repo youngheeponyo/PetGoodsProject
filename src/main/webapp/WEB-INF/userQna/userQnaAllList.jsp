@@ -71,7 +71,18 @@ ${list}
 	    }else{
 	    	let inputPassword = prompt('비밀번호를 입력하세요', '0000');
 	    	if(password == intputPassword){
+	    		
+	    		
 	    		window.location.href="getUserQnaList.do?qanNo="+qnaNo+"$password="+password;
+	    		
+	    		fetch('getUserQnaList.do', {
+					method: 'post',
+					body: 'qanNo=' + qnaNo + '$password=' + password
+				})
+				.then(resolve => resolve.json())
+				.then(result => {
+	    		
+	    		
 	    		return;
 	    	}
 	    }
