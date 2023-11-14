@@ -22,7 +22,7 @@
 					</div>
 					
                     <form class="d-flex gap-3">
-                    	<button class="btn" type="submit">
+                    	<button class="btn" type="submit" onclick="changePetType">
                             <i class="fas fa-cat fa-2x"></i>	
                         </button>
                         <c:choose>
@@ -146,6 +146,10 @@
 	
 	function searchCategory(id) {
 		window.location.href = "categorySearch.do?categoryNo=" + id + "&type=" + petType + "&page=1";
+	}
+	
+	function changePetType() {
+		
 	}
 	
 </script>

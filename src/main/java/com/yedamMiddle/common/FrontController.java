@@ -81,6 +81,8 @@ public class FrontController extends HttpServlet {
 		commandByURL.put("/categorySearch.do", new CategorySearchControl()); // 카테고리검색(카테고리바)
 		commandByURL.put("/fileUploadTestForm.do", new TestUploadFormControl()); // 테스트 파일업로드
 		commandByURL.put("/fileUpload.do", new TestFileUpload());
+		
+		commandByURL.put("/changePetType.do", new ChangePetControl());
 	}
 	
 	//끼양
