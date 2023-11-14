@@ -1,6 +1,8 @@
 package com.yedamMiddle.common;
 
 import java.io.IOException;
+
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,6 +16,8 @@ import com.yedamMiddle.admin.web.ProductFormControl;
 import com.yedamMiddle.admin.web.ProductListControl;
 import com.yedamMiddle.admin.web.adminPageControl;
 import com.yedamMiddle.admin.web.memberListControl;
+import com.yedamMiddle.cart.web.AddCartControl;
+import com.yedamMiddle.cart.web.MyCartControl;
 import com.yedamMiddle.login.web.AddUserControl;
 import com.yedamMiddle.login.web.AddUserFormControl;
 import com.yedamMiddle.login.web.DelUserControl;
@@ -27,6 +31,7 @@ import com.yedamMiddle.notice.web.NoticeFormControl;
 import com.yedamMiddle.notice.web.NoticeListControl;
 import com.yedamMiddle.notice.web.removeNoticeControl;
 import com.yedamMiddle.product.web.CategorySearchControl;
+import com.yedamMiddle.product.web.PaymentFormControl;
 import com.yedamMiddle.product.web.ProductDetailControl;
 import com.yedamMiddle.product.web.ProductSearchControl;
 import com.yedamMiddle.userQna.web.AddQnaControl;
@@ -86,6 +91,10 @@ public class FrontController extends HttpServlet {
 		commandByURL.put("/delUser.do", new DelUserControl());
 		//상세페이지 보기
 		commandByURL.put("/detailProduct.do", new ProductDetailControl());
+		//장바구니 추가
+		commandByURL.put("/addCart.do", new AddCartControl());
+		//장바구니
+		commandByURL.put("/myCart.do", new MyCartControl());
 		
 		// 전민교
 		commandByURL.put("/main.do", new MainPageControl()); // 메인페이지
@@ -93,6 +102,10 @@ public class FrontController extends HttpServlet {
 		commandByURL.put("/categorySearch.do", new CategorySearchControl()); // 카테고리검색(카테고리바)
 		commandByURL.put("/fileUploadTestForm.do", new TestUploadFormControl()); // 테스트 파일업로드
 		commandByURL.put("/fileUpload.do", new TestFileUpload());
+		
+		commandByURL.put("/changePetType.do", new ChangePetControl()); // 고양이/강아지 상품 전환
+		commandByURL.put("/testCartForm.do", new TestCartFormControl()); // 결제창 구현을 위한 테스트화면
+		commandByURL.put("/paymentForm.do", new PaymentFormControl());
 	}
 	
 	//끼양

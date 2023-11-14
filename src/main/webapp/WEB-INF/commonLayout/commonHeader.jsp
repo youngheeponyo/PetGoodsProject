@@ -22,8 +22,15 @@
 					</div>
 					
                     <form class="d-flex gap-3">
-                    	<button class="btn" type="submit">
-                            <i class="fas fa-cat fa-2x"></i>	
+                    	<button class="btn" type="submit" onclick="changePetType()">
+                    	<c:choose>
+                    		<c:when test="${curShowPetType == '0' }">
+                            	<i class="fas fa-cat fa-2x"></i>
+                            </c:when>
+                            <c:otherwise>
+                            	<i class="fas fa-dog fa-2x"></i>
+                            </c:otherwise>
+                        </c:choose>	
                         </button>
                         <c:choose>
                         	<c:when test="${empty uno }">
@@ -77,7 +84,7 @@
                             </ul>
                         </li>
                         <li class="nav-item"><a class="nav-link" aria-current="page" href="fileUploadTestForm.do">신상품</a></li>
-	                        <li class="nav-item"><a class="nav-link" href="#!">베스트상품</a></li>
+	                        <li class="nav-item"><a class="nav-link" href="testCartForm.do">베스트상품</a></li>
 	                        <li class="nav-item"><a class="nav-link" href="#!">추천상품</a></li>
                     </ul>
                 
@@ -146,6 +153,18 @@
 	
 	function searchCategory(id) {
 		window.location.href = "categorySearch.do?categoryNo=" + id + "&type=" + petType + "&page=1";
+	}
+	
+	function changePetType() {
+		let curPetType = ${curShowPetType};
+		if(curPetType == "0") {
+			curPetType = "1";	
+		}
+		else {
+			curPetType = "0";
+		}
+		console.log(curPetType);
+		window.location.href = "changePetType.do?changeType=" + curPetType;
 	}
 	
 </script>

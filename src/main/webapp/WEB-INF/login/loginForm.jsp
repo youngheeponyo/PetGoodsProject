@@ -81,19 +81,21 @@ body {
 						$("#kakao-login-btn").on("click", function(){
 						    //1. 로그인 시도
 						    Kakao.Auth.login({
+						    	scope:'profile_nickname',
 						        success: function(authObj) {
 						          //2. 로그인 성공시, API 호출
 						          Kakao.API.request({
 						            url: '/v2/user/me',
 						            success: function(res) {
 						              console.log(res);
-						              var id = res.id;
+						          console.log(authObj);
+						              const kakaoId = res.id;
+						              const nick = res.nickname;
 									  scope : 'account_email';
-									alert('로그인성공');
-						              location.href="main.do";
+									  alert('로그인성공');
+						              location.href="addUserForm.do?uid="+kakaoId+"&nick="+nick;
 						        }
 						          })
-						          console.log(authObj);
 						          var token = authObj.access_token;
 						        },
 						        fail: function(err) {
@@ -103,26 +105,25 @@ body {
 						        
 						})
 					</script>
+
 	            	<a id="kakao-login-btn"></a>
-							<button class="api-btn" onclick="unlinkApp()">앱 탈퇴하기</button>
-							
-							
-							<div id="result"></div>
-							<script type="text/javascript">
-								function unlinkApp() {
-									Kakao.API.request({
-										url : '/v1/user/unlink',
-										success : function(res) {
-											alert('success: '
-													+ JSON.stringify(res))
-										},
-										fail : function(err) {
-											alert('fail: '
-													+ JSON.stringify(err))
-										},
-									})
-								}
-							</script>
+					<button class="api-btn" onclick="unlinkApp()">앱 탈퇴하기</button>
+					<div id="result"></div>
+					<script type="text/javascript">
+						function unlinkApp() {
+							Kakao.API.request({
+								url : '/v1/user/unlink',
+								success : function(res) {
+								alert('success: '
+										+ JSON.stringify(res))
+								},
+								fail : function(err) {
+									alert('fail: '
+											+ JSON.stringify(err))
+								},
+							})
+						}
+					</script>
 	            	
 				</div>
 				<footer class="my-3 text-center text-small"> </footer>

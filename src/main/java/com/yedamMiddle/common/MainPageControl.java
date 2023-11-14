@@ -1,6 +1,7 @@
 package com.yedamMiddle.common;
 
 import java.util.List;
+
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -31,7 +32,7 @@ public class MainPageControl implements Command {
 			session.setAttribute("categoryMap", categoryMap);
 		}
 		
-		// 현재 강아지 상품/고양이 상품
+		// 현재 강아지 상품/고양이 상품 없으면 default로 0으로 설정한다(강아지)
 		if(req.getSession().getAttribute("curShowPetType") == null) {
 			session.setAttribute("curShowPetType", "0");
 		}
