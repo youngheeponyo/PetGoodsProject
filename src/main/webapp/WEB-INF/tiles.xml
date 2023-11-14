@@ -92,7 +92,7 @@
   	<put-attribute name="commonGridBody" value="/WEB-INF/userQna/{1}.jsp" />
   </definition>
   
-    <definition name="cartPage" template="/WEB-INF/commonLayout/commonTemplate.jsp">
+   <definition name="cartPage" template="/WEB-INF/commonLayout/commonTemplate.jsp">
     <put-attribute name="title" value="장바구니" />
     <put-attribute name="commonHeader" value="/WEB-INF/commonLayout/commonHeader.jsp" />
     <put-attribute name="commonBanner" value="/WEB-INF/commonLayout/commonBanner.jsp" />
@@ -103,6 +103,20 @@
   
   <definition name="WILDCARD:cart/*" extends="cartPage">
   	<put-attribute name="commonGridBody" value="/WEB-INF/cart/{1}.jsp" />
+  	</definition>
+  	
+  <definition name="paymentPage" template="/WEB-INF/commonLayout/commonTemplate.jsp">
+    <put-attribute name="title" value="결제페이지" />
+    <put-attribute name="commonHeader" value="/WEB-INF/commonLayout/commonHeader.jsp" />
+    <put-attribute name="commonBanner" value="/WEB-INF/commonLayout/commonBanner.jsp" />
+    <put-attribute name="commonMenu" value="/WEB-INF/commonLayout/commonMenu.jsp" />
+    <put-attribute name="commonGridBody" value="/WEB-INF/commonLayout/commonGridBody.jsp" />
+    <put-attribute name="commonFooter" value="/WEB-INF/commonLayout/commonFooter.jsp" />
+  </definition>
+  
+  <definition name="WILDCARD:payment/*" extends="paymentPage">
+  	<put-attribute name="commonGridBody" value="/WEB-INF/payment/{1}.jsp" />
+>>>>>>> branch 'master' of https://github.com/dev-min2/PetGoodsProject.git
   </definition>
 
 </tiles-definitions>

@@ -11,4 +11,5 @@ public interface LoginMapper {
 	public UserVO userLogin(@Param("userId") String userId, @Param("userPw")String userPw);
 	public int deleteUser(@Param("userId") String userId, @Param("userPw")String userPw);
 	public List<UserVO> list();
+	public UserVO getUser(int userNo);
 }

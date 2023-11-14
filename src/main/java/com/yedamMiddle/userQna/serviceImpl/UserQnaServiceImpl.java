@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.yedamMiddle.common.Mybatis;
 import com.yedamMiddle.common.service.UserVO;
+import com.yedamMiddle.product.service.ProductVO;
 import com.yedamMiddle.userQna.mapper.UserQnaMapper;
 import com.yedamMiddle.userQna.service.UserQnaService;
 import com.yedamMiddle.userQna.service.UserQnaVO;
@@ -23,8 +24,8 @@ public class UserQnaServiceImpl implements UserQnaService {
 	}
 
 	@Override
-	public UserQnaVO userQnaSelect(int qnaNo, int password) {
-		return mapper.userQnaSelect(qnaNo, password);
+	public UserQnaVO userQnaSelect(int qnaNo) {
+		return mapper.userQnaSelect(qnaNo);
 	}
 
 	@Override
@@ -51,6 +52,11 @@ public class UserQnaServiceImpl implements UserQnaService {
 	@Override
 	public UserVO qnaToSelectUser(UserQnaVO vo) {
 		return mapper.qnaToSelectUser(vo);
+	}
+
+	@Override
+	public ProductVO productNoToSelectProduct(UserQnaVO vo) {
+		return mapper.productNoToSelectProduct(vo);
 	}
 
 

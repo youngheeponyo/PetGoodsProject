@@ -17,4 +17,7 @@
 	<select id="userList" resultType="com.yedamMiddle.common.service.UserVO">
 		SELECT user_id FROM USER_TBL
 	</select>
+	<select id="getUser" resultType="com.yedamMiddle.common.service.UserVO" parameterType="int">
+		SELECT * FROM USER_TBL WHERE USER_NO=#{userNo}
+	</select>
 </mapper>

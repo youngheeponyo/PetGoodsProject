@@ -9,4 +9,5 @@ public interface LoginService {
 	public boolean deleteUser(String userId,String userPW);
 	public UserVO loginUser(String userId,String userPw);
 	public List<UserVO> list();
+	public UserVO getUserInfo(int userNo);
 }

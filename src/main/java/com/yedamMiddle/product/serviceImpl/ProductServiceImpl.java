@@ -8,6 +8,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.yedamMiddle.common.Mybatis;
+import com.yedamMiddle.common.service.CartJoinVO;
 import com.yedamMiddle.common.service.CategoryJoinVO;
 import com.yedamMiddle.common.service.CategoryVO;
 import com.yedamMiddle.product.mapper.ProductMapper;
@@ -57,4 +58,10 @@ public class ProductServiceImpl implements ProductService {
 		return mapper.searchProductListCount(query, type);
 	}
 
+	@Override
+	public List<CartJoinVO> getCartList(int userNo) {
+		// TODO Auto-generated method stub
+		return mapper.selectCartList(userNo);
+	}
+	
 }
