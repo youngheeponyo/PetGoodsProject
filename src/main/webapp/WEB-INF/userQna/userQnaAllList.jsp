@@ -15,7 +15,7 @@ ${list}
                     <table class = "table" style= text-align:center>
                     	<thead>
                     		<tr>
-                    			<th>비밀글여부<th>
+                    			<th>공개여부<th>
 	                    		<th>글번호</th>
 	                    		<th>제목</th>
 	                    		<th>작성자번호</th>
@@ -28,14 +28,13 @@ ${list}
                     		<tr>
                     			<td> 
                     				<c:choose>
-	                    				<c:when test="${vo.password==null }">
+	                    				<c:when test="${vo.password==0 }">
 	                    					전체공개
 	                    				</c:when>
 	                    				<c:otherwise>
 	                    					비밀글
 	                    				</c:otherwise>
                     				</c:choose>
-                    			
                     			</td>
                     					
                     			<td class="qnaNocheck">${vo.qnaNo}</td>
@@ -53,9 +52,9 @@ ${list}
 	                    					<c:when test="${vo.qnaState==1 }">
 	                    						답변완료
 	                    					</c:when>
-	                    					<c:otherwise>
+	                    					<c:when test="${vo.qnaState==0 }">
 	                    						문의대기중
-	                    					</c:otherwise>
+	                    					</c:when>
 	                    				</c:choose>
                     				</c:if>
                     			</td>
