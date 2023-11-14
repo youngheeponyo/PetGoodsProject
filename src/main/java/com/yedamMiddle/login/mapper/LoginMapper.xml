@@ -13,4 +13,8 @@
 	<delete id="deleteUser">
 		DELETE FROM USER_TBL WHERE USER_ID=#{userId} AND USER_PW=#{userPw}
 	</delete>
+	
+	<select id="userList" resultType="com.yedamMiddle.common.service.UserVO">
+		SELECT user_id FROM USER_TBL
+	</select>
 </mapper>
