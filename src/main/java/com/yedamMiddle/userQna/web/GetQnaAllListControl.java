@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedamMiddle.common.Command;
+import com.yedamMiddle.common.service.UserVO;
 import com.yedamMiddle.userQna.service.UserQnaService;
 import com.yedamMiddle.userQna.service.UserQnaVO;
 import com.yedamMiddle.userQna.serviceImpl.UserQnaServiceImpl;
@@ -18,9 +19,6 @@ public class GetQnaAllListControl implements Command {
 		
 		UserQnaService svc = new UserQnaServiceImpl();
 		List<UserQnaVO> list = svc.userQnaAllList();
-		
-		System.out.println("list=" + list);
-		
 		req.setAttribute("list", list);
 		
 		try {

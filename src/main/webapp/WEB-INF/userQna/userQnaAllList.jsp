@@ -15,7 +15,7 @@ ${list}
                     <table class = "table" style= text-align:center>
                     	<thead>
                     		<tr>
-                    			<th>공개여부<th>
+                    			<th>공개여부</th>
 	                    		<th>글번호</th>
 	                    		<th>제목</th>
 	                    		<th>작성자번호</th>
@@ -49,12 +49,13 @@ ${list}
                     			<td>
                     				<c:if test="${not empty vo.qnaNo}">
 	                    				<c:choose>
-	                    					<c:when test="${vo.qnaState==1 }">
-	                    						답변완료
+	                    				
+	                    					<c:when test="${vo.qnaState=='1' }">
+	                    						답변완료console.log(${vo.qnaState })
 	                    					</c:when>
-	                    					<c:when test="${vo.qnaState==0 }">
-	                    						문의대기중
-	                    					</c:when>
+	                    					<c:otherwise>
+	                    						문의대기중console.log(${vo.qnaState })
+	                    					</c:otherwise>
 	                    				</c:choose>
                     				</c:if>
                     			</td>
@@ -73,13 +74,10 @@ ${list}
 
 <script>
 
-
-
-
 	function passCheck(password, qnaNo){
 		console.log("password :", password,"   id: ", qnaNo)
 	}
-	    if(password == "null"){
+	    if(password == 0){
 	    	
 	    	window.location.href="getUserQnaList.do?qanNo="+qnaNo+"&password="+password;
 	    	return;
@@ -89,7 +87,6 @@ ${list}
 	    	if(password == intputPassword){
 	    		
 	    		window.location.href="getUserQnaList.do?qanNo="+qnaNo+"&password="+password;
-	    		
 	    		return;
 	    	}
 	    }
