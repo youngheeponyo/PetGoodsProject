@@ -130,4 +130,34 @@
 	     })
 	 })()
 	 
+	 const tIMP = window.IMP;
+	 tIMP.init("imp46368323");
+	 
+	 function requestPay() {
+		 IMP.request_pay({ // param
+	          pg: "html5_inicis",
+	          pay_method: "card",
+	          merchant_uid: "ORD20180131-0000011",
+	          name: "노르웨이 회전 의자",
+	          amount: 64900,
+	          buyer_email: "gildong@gmail.com",
+	          buyer_name: "홍길동",
+	          buyer_tel: "010-4242-4242",
+	          buyer_addr: "서울특별시 강남구 신사동",
+	          buyer_postcode: "01181"
+	      }, function (response) { // callback
+	          if (response.success) {
+	              // 성공시 response.imp_uid에 정상적인값이 들어감.
+	              
+	              // 결제 성공 시 로직,
+	              
+	          } else {
+	              alert(response.err_msg);
+	              
+	              // 결제 실패 시 로직,
+	              
+	          }
+	      });
+	 }
+   
    </script>
