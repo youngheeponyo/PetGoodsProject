@@ -1,12 +1,12 @@
-package com.yedamMiddle.admin.mapper;
+package com.yedamMiddle.admin.service;
 
 import java.util.List;
 
 import com.yedamMiddle.common.service.UserVO;
 import com.yedamMiddle.product.service.ProductVO;
 
-public interface AdminMapper {
+public interface AdminService {
 	List<UserVO> userList();
 	List<ProductVO> prodList();
-	public int insert(ProductVO vo);
+	public boolean addProduct(ProductVO vo);
 }

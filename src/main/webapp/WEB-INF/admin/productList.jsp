@@ -61,42 +61,45 @@
 			</div>
 			<div class="card mb-4">
 				<div class="card-header">
-					<i class="fas fa-table me-1"></i> 회원목록
+					<i class="fas fa-table me-1"></i> 상품목록
 				</div>
 				<div class="card-body">
 					<table id="datatablesSimple">
 						<thead>
 							<tr>
-								<th>회원번호</th>
-								<th>ID</th>
-								<th>닉네임</th>
-								<th>연락처</th>
-								<th>배송지</th>
+								<th>상품번호</th>
+								<th>펫타입</th>
+								<th>카테고리번호</th>
+								<th>상품명</th>
+								<th>재고</th>
 							</tr>
 						</thead>
 						<tfoot>
 							<tr>
-								<th>회원번호</th>
-								<th>ID</th>
-								<th>닉네임</th>
-								<th>연락처</th>
-								<th>배송지</th>
+								<th>상품번호</th>
+								<th>펫타입</th>
+								<th>카테고리번호</th>
+								<th>상품명</th>
+								<th>재고</th>
 							</tr>
 						</tfoot>
 						<tbody>
-							<c:forEach items="${userlist }" var="user">
+							<c:forEach items="${prodlist}" var="prod">
 								<tr>
-									<td>${user.userNo }</td>
-									<td>${user.userId }</td>
-									<td>${user.nickName }</td>
-									<td>${user.userPhone }</td>
-									<td>${user.userAddr }</td>
+									<td>${prod.productNo }</td>
+									<td>${prod.petType }</td>
+									<td>${prod.categoryNo }</td>
+									<td>${prod.productName }</td>
+									<td>${prod.productStock }</td>
 								</tr>
 							</c:forEach>
 						</tbody>
 					</table>
 				</div>
 			</div>
+			<p>
+				<button type="button" onclick="location.href='productForm.do'">상품추가</button>
+			</p>
 		</div>
 	</section>
 </body>

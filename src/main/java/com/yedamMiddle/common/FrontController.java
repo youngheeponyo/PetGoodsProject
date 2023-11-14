@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yedamMiddle.admin.web.AddProductControl;
+import com.yedamMiddle.admin.web.ProductFormControl;
+import com.yedamMiddle.admin.web.ProductListControl;
 import com.yedamMiddle.admin.web.adminPageControl;
 import com.yedamMiddle.admin.web.memberListControl;
 import com.yedamMiddle.login.web.AddUserControl;
@@ -62,6 +65,11 @@ public class FrontController extends HttpServlet {
 		commandByURL.put("/adminPage.do", new adminPageControl());
 		//회원목록
 		commandByURL.put("/memberList.do", new memberListControl());
+		//상품
+		commandByURL.put("/productList.do", new ProductListControl());
+		commandByURL.put("/productForm.do", new ProductFormControl());
+		//상품추가 작업중!
+		commandByURL.put("/addProduct.do", new AddProductControl());
 		
 		
 		// 서영희

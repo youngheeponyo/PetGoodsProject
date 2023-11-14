@@ -11,13 +11,11 @@ public class NoticeFormControl implements Command {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		
-		
 			try {
 				req.getRequestDispatcher("/notice/noticeForm.tiles").forward(req, resp);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		
 		
 	}
 

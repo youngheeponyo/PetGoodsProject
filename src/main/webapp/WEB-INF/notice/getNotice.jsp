@@ -50,7 +50,6 @@
 			</form>
 				<p>
 					<button type="button" onclick="location.href='noticeList.do'">목록</button>
-					
 				</p>
 		</div>
 	</section>
