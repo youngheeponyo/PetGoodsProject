@@ -1,6 +1,5 @@
 package com.yedamMiddle.notice.web;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -22,7 +21,6 @@ public class GetNoticeControl implements Command {
 		try {
 			req.getRequestDispatcher("notice/getNotice.tiles").forward(req, resp);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
