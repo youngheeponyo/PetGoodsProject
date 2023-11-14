@@ -19,7 +19,7 @@ public class GetQnaListControl implements Command {
 		String path ="userQna/userQnaDetail.tiles";
 		String qnaNo = req.getParameter("qnaNo");
 		
-	
+		
 		//문의번호랑 패스워드 넣으면 해당 상세정보 열어줌
 		UserQnaService svc = new UserQnaServiceImpl();
 		UserQnaVO vo = svc.userQnaSelect(Integer.parseInt(qnaNo));
@@ -39,8 +39,6 @@ public class GetQnaListControl implements Command {
 		
 		if(vo != null) {
 			try {
-				List<UserQnaVO> list = svc.userQnaAllList();
-				req.setAttribute("list", list);
 				req.getRequestDispatcher(path).forward(req, resp);
 			} catch (Exception e) {
 				e.printStackTrace();

@@ -43,4 +43,5 @@ public class CartJoinVO {
 	public void setProductPrice(int productPrice) {
 		this.productPrice = productPrice;
 	}
+	
 }

@@ -116,7 +116,6 @@
   
   <definition name="WILDCARD:payment/*" extends="paymentPage">
   	<put-attribute name="commonGridBody" value="/WEB-INF/payment/{1}.jsp" />
->>>>>>> branch 'master' of https://github.com/dev-min2/PetGoodsProject.git
   </definition>
 
 </tiles-definitions>

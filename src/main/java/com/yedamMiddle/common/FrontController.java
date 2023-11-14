@@ -39,6 +39,7 @@ import com.yedamMiddle.userQna.web.AddQnaControl;
 import com.yedamMiddle.userQna.web.AddQnaFormControl;
 import com.yedamMiddle.userQna.web.GetQnaAllListControl;
 import com.yedamMiddle.userQna.web.GetQnaListControl;
+import com.yedamMiddle.userQna.web.QnaReplyControl;
 
 // 0 -> 개 type
 // 1 -> 고양이 type
@@ -53,6 +54,7 @@ public class FrontController extends HttpServlet {
 		// 김은별
 		commandByURL.put("/getUserQnaAllList.do", new GetQnaAllListControl());//조회
 		commandByURL.put("/getUserQnaList.do", new GetQnaListControl()); //수정예정
+		commandByURL.put("/qnaReply.do", new QnaReplyControl());
 		
 		commandByURL.put("/addUserQnaFrom.do", new AddQnaFormControl());
 		commandByURL.put("/addUserQna.do", new AddQnaControl());//등록	
