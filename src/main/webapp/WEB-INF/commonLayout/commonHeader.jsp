@@ -23,7 +23,14 @@
 					
                     <form class="d-flex gap-3">
                     	<button class="btn" type="submit" onclick="changePetType()">
-                            <i class="fas fa-cat fa-2x"></i>	
+                    	<c:choose>
+                    		<c:when test="${curShowPetType == '0' }">
+                            	<i class="fas fa-cat fa-2x"></i>
+                            </c:when>
+                            <c:otherwise>
+                            	<i class="fas fa-dog fa-2x"></i>
+                            </c:otherwise>
+                        </c:choose>	
                         </button>
                         <c:choose>
                         	<c:when test="${empty uno }">
