@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <body>
-	<section class="py-5">
-		<div class="container px-4 px-lg-5 mt-5">
+	<section class="pt-2 pb-4">
+		<div class="container px-4 px-lg-5 mt-3">
 			<form action="modifyForm.do" name="myForm">
 				<h3>상세 화면</h3>
 				<input type="hidden" name="nno" value="nno.noticeNo"
@@ -14,7 +15,7 @@
 						<th>글 번호</th>
 						<td class="noticeNo">${nno.noticeNo }</td>
 						<th>작성일자</th>
-						<td>${nno.noticeDate}</td>
+						<td><fmt:formatDate value="${nno.noticeDate}" pattern="yyyy-MM-dd HH:mm"></fmt:formatDate></td>
 					</tr>
 					<tr>
 						<th>제목</th>
@@ -35,20 +36,22 @@
 								<c:when test="${uno == 0 && permission == 0}">
 									<input type="submit" value="수정" class="btn btn-primary">
 									<input type="button" value="삭제"
-										onclick="location.href='removeBoard.do?bno=${nno.noticeNo}'"
+										onclick="location.href='removeNotice.do?nno=${nno.noticeNo}'"
 										class="btn btn-warning">
 								</c:when>
 								<c:otherwise>
 									<input type="submit" value="수정" disabled>
 									<input type="button" value="삭제" disabled>
 								</c:otherwise>
-							</c:choose></td>
+							</c:choose>
+						</td>
 					</tr>
 				</table>
-				<p>
-					<a href="noticeList.do">목록으로</a>
-				</p>
 			</form>
+				<p>
+					<button type="button" onclick="location.href='noticeList.do'">목록</button>
+					
+				</p>
 		</div>
 	</section>
 </body>
