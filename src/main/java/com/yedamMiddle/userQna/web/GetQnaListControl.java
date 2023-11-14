@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedamMiddle.common.Command;
 import com.yedamMiddle.common.service.UserVO;
+import com.yedamMiddle.product.service.ProductVO;
 import com.yedamMiddle.userQna.service.UserQnaService;
 import com.yedamMiddle.userQna.service.UserQnaVO;
 import com.yedamMiddle.userQna.serviceImpl.UserQnaServiceImpl;
@@ -22,13 +23,18 @@ public class GetQnaListControl implements Command {
 		//문의번호랑 패스워드 넣으면 해당 상세정보 열어줌
 		UserQnaService svc = new UserQnaServiceImpl();
 		UserQnaVO vo = svc.userQnaSelect(Integer.parseInt(qnaNo));
+		req.setAttribute("vo", vo);
+		
 		//유저 전체 정보
 		UserVO userVo = svc.qnaToSelectUser(vo);
 		System.out.println("vo ="+ vo);
-		System.out.println("userVo ="+ userVo);
-		
-		req.setAttribute("vo", vo);
+//		System.out.println("userVo ="+ userVo);
 		req.setAttribute("userVo", userVo);
+		
+		//상품페이지의 상품정보
+		ProductVO productVo = svc.productNoToSelectProduct(vo);
+//		System.out.println("productVo =" + productVo);
+		req.setAttribute("productVo", productVo);
 		
 		
 		if(vo != null) {

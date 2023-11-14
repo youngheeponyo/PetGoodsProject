@@ -45,17 +45,16 @@ ${list}
                     			<!-- 클릭이벤트 : 제목을 클릭하면 비밀번호를 비교하고 만약 맞다면 getUserQnaList.do?이 주소로 넘겨줌 -->
                     			
                     			
-                    			<td>${vo.userNo }</td>
+                    			<td>${vo.nickName }</td>
                     			<td><fmt:formatDate value ="${vo.registDate }" pattern="yyyy-MM-dd"></fmt:formatDate></td>
                     			<td>
-                    				<c:if test="${not empty vo.qnaNo}">
+                    			<c:if test="${not empty vo.qnaNo}">
 	                    				<c:choose>
-	                    				
-	                    					<c:when test="${vo.qnaState==49 }">
-	                    						답변완료 = (${vo.qnaState })
+	                    					<c:when test="${vo.qnaState==1 }" >
+	                    						<p style="color: blue;"><b>답변완료 = (${vo.qnaState })</b></p>
 	                    					</c:when>
 	                    					<c:otherwise>
-	                    						문의대기중 = (${vo.qnaState })
+	                    						<p style="color: red;"><b>문의대기중 = (${vo.qnaState })</b></p>
 	                    					</c:otherwise>
 	                    				</c:choose>
                     				</c:if>

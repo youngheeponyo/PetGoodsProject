@@ -4,7 +4,8 @@
 
 	<!-- 전체목록조회 -->
 	<select id="userQnaAllList" resultType ="com.yedamMiddle.userQna.service.UserQnaVO">
-		SELECT * FROM USERQNA ORDER BY QNA_NO
+		SELECT U.NICKNAME, Q.QNA_NO, Q.USER_NO, Q.PRODUCT_ORDER_NO, Q.PRODUCT_NO, Q.TITLE, Q.CONTENTS, Q.REGIST_DATE, Q.PASSWORD, Q.QNA_REPLY, Q.QNA_STATE
+        FROM USER_TBL U RIGHT JOIN USERQNA Q ON U.USER_NO=Q.USER_NO ORDER BY Q.QNA_NO
 	</select>
 	
 	
@@ -51,6 +52,10 @@
 		SELECT * FROM USER_TBL WHERE USER_NO =#{userNo}
 	</select>
 				
-				
+	<!-- 상품 경로를 타고 들어와서 문의를 남길때 해당 상품 select해줌 -->
+	<select id="productNoToSelectProduct" parameterType="com.yedamMiddle.userQna.service.UserQnaVO"
+										resultType="com.yedamMiddle.product.service.ProductVO">
+		SELECT * FROM PRODUCT WHERE PRODUCT_NO=#{productNo}		
+	</select>
 	
 </mapper>

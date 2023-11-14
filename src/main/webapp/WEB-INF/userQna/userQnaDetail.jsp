@@ -46,17 +46,17 @@
 						<th>작성일시</th>
 							<td>
 								<fmt:formatDate value="${vo.registDate }"
-								pattern="yyyy-MM-dd hh:mm"></fmt:formatDate>
+								pattern="yyyy-MM-dd  hh:mm분"></fmt:formatDate>
 							</td>
 						<th>문의상태</th>
 							<td>
 								<c:if test="${not empty vo.qnaNo}">
 	                    				<c:choose>
-	                    					<c:when test="${vo.qnaState==49 }">
-	                    						답변완료
+	                    					<c:when test="${vo.qnaState==1 }" >
+	                    						<p style="color: blue;"><b>답변완료</b></p>
 	                    					</c:when>
 	                    					<c:otherwise>
-	                    						문의대기중
+	                    						<p style="color: red;"><b>문의대기중</b></p>
 	                    					</c:otherwise>
 	                    				</c:choose>
                     				</c:if>
@@ -68,11 +68,11 @@
 						<th colspan="3">글제목</th>
 						<td>${vo.title }</td>
 						<th>상품명</th>
-						<td>
+						<td>${productVo.productName }<td>
 							
 <%-- 							<c:choose> --%>
 <%-- 								<c:when test="상품페이지에서 넘어왔을때"><!-- 상품이랑 사람 조인 후 구매내역이 있을때 --> --%>
-<%-- 											<option value="">${상품페이지의 상품}</option> --%>
+<%-- 											${productVo.productNo } --%>
 <%-- 								</c:when> --%>
 <%-- 								<c:otherwise> --%>
 <!-- 									<select name="product"> -->
@@ -96,8 +96,20 @@
 					</tr>
 
 					<tr>
-						<td colspan="8" align="center"><input type="submit"
-							value="수정"> <input type="button" value="삭제"></td>
+						<td colspan="8" align="center" >
+						<c:choose>
+							<c:when test="${not empty uno && uno ==userVo.userNo }">
+								<input type="submit" value="수정">
+								<input type="button" value="삭제">
+							</c:when>
+							<c:otherwise>
+								<input disabled type="submit" value="수정">
+								<input disabled type="button" value="삭제">
+							</c:otherwise>
+						</c:choose>
+						
+						
+						</td>
 					</tr>
 				</table>
 			</form>
@@ -107,7 +119,7 @@
 			<br><br>
 			
 			
-			<form style=text-align:center style=visibility:hidden;>
+			<form style=text-align:center>
 				<h3>문의답변</h3>
 				<br><hr>
 				<table class="table">
