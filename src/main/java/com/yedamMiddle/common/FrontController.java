@@ -24,6 +24,7 @@ import com.yedamMiddle.notice.web.NoticeFormControl;
 import com.yedamMiddle.notice.web.NoticeListControl;
 import com.yedamMiddle.notice.web.removeNoticeControl;
 import com.yedamMiddle.product.web.CategorySearchControl;
+import com.yedamMiddle.product.web.PaymentFormControl;
 import com.yedamMiddle.product.web.ProductDetailControl;
 import com.yedamMiddle.product.web.ProductSearchControl;
 import com.yedamMiddle.userQna.web.AddQnaControl;
@@ -86,7 +87,9 @@ public class FrontController extends HttpServlet {
 		commandByURL.put("/fileUploadTestForm.do", new TestUploadFormControl()); // 테스트 파일업로드
 		commandByURL.put("/fileUpload.do", new TestFileUpload());
 		
-		commandByURL.put("/changePetType.do", new ChangePetControl());
+		commandByURL.put("/changePetType.do", new ChangePetControl()); // 고양이/강아지 상품 전환
+		commandByURL.put("/testCartForm.do", new TestCartFormControl()); // 결제창 구현을 위한 테스트화면
+		commandByURL.put("/paymentForm.do", new PaymentFormControl());
 	}
 	
 	//끼양
