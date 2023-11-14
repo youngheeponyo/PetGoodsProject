@@ -22,7 +22,7 @@
 					</div>
 					
                     <form class="d-flex gap-3">
-                    	<button class="btn" type="submit" onclick="changePetType">
+                    	<button class="btn" type="submit" onclick="changePetType()">
                             <i class="fas fa-cat fa-2x"></i>	
                         </button>
                         <c:choose>
@@ -149,7 +149,15 @@
 	}
 	
 	function changePetType() {
-		
+		let curPetType = ${curShowPetType};
+		if(curPetType == "0") {
+			curPetType = "1";	
+		}
+		else {
+			curPetType = "0";
+		}
+		console.log(curPetType);
+		window.location.href = "changePetType.do?changeType=" + curPetType;
 	}
 	
 </script>
