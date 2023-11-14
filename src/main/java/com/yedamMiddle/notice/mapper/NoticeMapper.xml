@@ -3,7 +3,7 @@
 <mapper namespace="com.yedamMiddle.notice.mapper.NoticeMapper">
 
 	<select id="list" resultType="com.yedamMiddle.notice.service.NoticeVO">
-		SELECT * FROM NOTICE ORDER BY NOTICE_NO
+		SELECT * FROM NOTICE ORDER BY NOTICE_NO DESC
 	</select>
 
 	<select id="select"

@@ -4,10 +4,10 @@
 
 
 <body>
-	<section class="py-5">
-		<div class="container px-4 px-lg-5 mt-5">
+	<section class="pt-2 pb-4">
+		<div class="container px-4 px-lg-5 mt-3">
 			<h3>공지사항 작성</h3>
-			<form action="addBoard.do" method="post">
+			<form action="addNotice.do" method="post">
 				<table class="table">
 					<tr>
 						<th>제목</th>

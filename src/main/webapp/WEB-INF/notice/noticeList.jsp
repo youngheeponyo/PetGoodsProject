@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <body>
-	<section class="py-5">
-		<div class="container px-4 px-lg-5 mt-5">
+	<section class="pt-2 pb-4">
+		<div class="container px-4 px-lg-5 mt-3">
 			<h3>공지사항</h3>
 			<form action="addNotice.do" method="post">
 				<table class="table">
@@ -23,14 +23,14 @@
 								<td>${vo.noticeNo}</td>
 								<td><a href="getNotice.do?nno=${vo.noticeNo}">${vo.noticeTitle}</a></td>
 								<td>관리자</td>
-								<td>${vo.noticeDate}</td>
+								<td><fmt:formatDate value="${vo.noticeDate}" pattern="yyyy-MM-dd"></fmt:formatDate></td>
 							</tr>
 						</c:forEach>	
 					</tbody>
 				</table>
 				 <c:choose>
 					<c:when test="${uno == 0 && permission == 0}">
-						<p><a href="noticeForm.do">새글작성</a></p>
+						<button type="button" onclick="location.href='noticeForm.do'">공지작성</button>
 					</c:when>
 				</c:choose>
 			</form>

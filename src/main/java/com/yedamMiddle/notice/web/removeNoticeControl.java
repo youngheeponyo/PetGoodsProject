@@ -1,27 +1,29 @@
 package com.yedamMiddle.notice.web;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedamMiddle.common.Command;
 import com.yedamMiddle.notice.service.NoticeService;
-import com.yedamMiddle.notice.service.NoticeVO;
 import com.yedamMiddle.notice.serviceImpl.NoticeServiceImpl;
 
-public class GetNoticeControl implements Command {
+public class removeNoticeControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		String nno = req.getParameter("nno");
-		NoticeService svc = new NoticeServiceImpl();
-		NoticeVO vo = svc.getNotice(Integer.parseInt(nno));
-		System.out.println(nno);
-		req.setAttribute("nno", vo);
+		int no = Integer.parseInt(nno);
 		
-		try {
-			req.getRequestDispatcher("notice/getNotice.tiles").forward(req, resp);
-		} catch (Exception e) {
-			e.printStackTrace();
+		NoticeService svc = new NoticeServiceImpl();
+		
+		if(svc.removeNotice(no)) {
+			try {
+				resp.sendRedirect("noticeList.do");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

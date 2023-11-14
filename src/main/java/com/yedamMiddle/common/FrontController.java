@@ -18,9 +18,11 @@ import com.yedamMiddle.login.web.DelUserFormControl;
 import com.yedamMiddle.login.web.LoginControl;
 import com.yedamMiddle.login.web.LoginFormControl;
 import com.yedamMiddle.login.web.LogoutControl;
+import com.yedamMiddle.notice.web.AddNoticeControl;
 import com.yedamMiddle.notice.web.GetNoticeControl;
 import com.yedamMiddle.notice.web.NoticeFormControl;
 import com.yedamMiddle.notice.web.NoticeListControl;
+import com.yedamMiddle.notice.web.removeNoticeControl;
 import com.yedamMiddle.product.web.CategorySearchControl;
 import com.yedamMiddle.product.web.ProductDetailControl;
 import com.yedamMiddle.product.web.ProductSearchControl;
@@ -53,6 +55,8 @@ public class FrontController extends HttpServlet {
 		commandByURL.put("/noticeList.do", new NoticeListControl());
 		commandByURL.put("/noticeForm.do", new NoticeFormControl());
 		commandByURL.put("/getNotice.do", new GetNoticeControl());
+		commandByURL.put("/addNotice.do", new AddNoticeControl());
+		commandByURL.put("/removeNotice.do", new removeNoticeControl());
 		
 		//관리자페이지
 		commandByURL.put("/adminPage.do", new adminPageControl());
@@ -81,6 +85,8 @@ public class FrontController extends HttpServlet {
 		commandByURL.put("/categorySearch.do", new CategorySearchControl()); // 카테고리검색(카테고리바)
 		commandByURL.put("/fileUploadTestForm.do", new TestUploadFormControl()); // 테스트 파일업로드
 		commandByURL.put("/fileUpload.do", new TestFileUpload());
+		
+		commandByURL.put("/changePetType.do", new ChangePetControl());
 	}
 	
 	//끼양
