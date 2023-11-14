@@ -4,8 +4,8 @@
 
 <body>
 	<main>
-		<section class="py-5">
-			<div class="container px-4 px-lg-5 mt-5">
+		<section class="pt-2 pb-4">
+			<div class="container px-4 px-lg-5 mt-3">
 				<div class="container-fluid px-4">
 
 					<div class="row">
