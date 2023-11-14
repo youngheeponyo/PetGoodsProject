@@ -3,9 +3,10 @@ package com.yedamMiddle.cart.mapper;
 
 
 import com.yedamMiddle.cart.service.MyCartVO;
+import com.yedamMiddle.common.service.CartJoinVO;
 
 public interface MyCartMapper {
-	public MyCartVO myCartList(int memberNo);
+	public CartJoinVO myCartList(int memberNo);
 	public int insert(MyCartVO vo);
 	
 }

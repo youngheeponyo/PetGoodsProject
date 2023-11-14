@@ -6,6 +6,7 @@ public class CartJoinVO {
 	private String productName;
 	private int productPrice;
 	private int selCnt;
+	
 	public int getSelCnt() {
 		return selCnt;
 	}
@@ -34,4 +35,5 @@ public class CartJoinVO {
 	public void setProductPrice(int productPrice) {
 		this.productPrice = productPrice;
 	}
+	
 }

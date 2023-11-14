@@ -1,7 +1,8 @@
 package com.yedamMiddle.cart.service;
 
+import com.yedamMiddle.common.service.CartJoinVO;
 
 public interface MyCartService {
 	public boolean addCart(MyCartVO vo);
-	public MyCartVO myCartList(int memberNo);
+	public CartJoinVO myCartList(int memberNo);
 }
