@@ -6,6 +6,13 @@ public class CartJoinVO {
 	private String productName;
 	private int productPrice;
 	private int selCnt;
+	private int productNo;
+	public int getProductNo() {
+		return productNo;
+	}
+	public void setProductNo(int productNo) {
+		this.productNo = productNo;
+	}
 	public int getSelCnt() {
 		return selCnt;
 	}
@@ -24,9 +31,11 @@ public class CartJoinVO {
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
+
 	@Override
 	public String toString() {
-		return "CartJoinVO [cartNo=" + cartNo + ", productName=" + productName + ", productPrice=" + productPrice + "]";
+		return "CartJoinVO [cartNo=" + cartNo + ", productName=" + productName + ", productPrice=" + productPrice
+				+ ", selCnt=" + selCnt + ", productNo=" + productNo + "]";
 	}
 	public int getProductPrice() {
 		return productPrice;

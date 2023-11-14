@@ -58,11 +58,20 @@
 	
 	<!-- MyCart불러오기. (테스트위해서 임시추가 삭제예정!) -->
 	<select id="selectCartList" resultType="com.yedamMiddle.common.service.CartJoinVO" parameterType="int">
-		SELECT A.CART_NO AS CART_NO, C.PRODUCT_NAME AS PRODUCT_NAME, C.PRODUCT_PRICE AS PRODUCT_PRICE, A.SELECT_CNT AS SEL_CNT
+		SELECT A.CART_NO AS CART_NO, C.PRODUCT_NAME AS PRODUCT_NAME, C.PRODUCT_PRICE AS PRODUCT_PRICE, A.SELECT_CNT AS SEL_CNT, A.PRODUCT_NO AS PRODUCT_NO
     		FROM MY_CART A
     		JOIN USER_TBL B ON A.MEMBER_NO = B.USER_NO
     		JOIN PRODUCT C ON A.PRODUCT_NO = C.PRODUCT_NO
     		WHERE B.USER_NO = #{userNo}
 	</select>
 	
+	<select id="selectApiInfo" resultType="com.yedamMiddle.common.ApiInfoVO" parameterType="String">
+		SELECT *
+			FROM APIINFO
+			WHERE API_NAME = #{apiName}
+	</select>
+	
+	<insert id="insertProductOrder" parameterType="com.yedamMiddle.product.service.ProductOrderVO">
+		INSERT INTO PRODUCT_ORDER VALUES(seq_productorderno.NEXTVAL,#{productNo},#{userNo},#{couponNo},sysdate,#{impUid},#{merUid})
+	</insert>
 </mapper>

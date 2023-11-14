@@ -14,6 +14,7 @@
           <c:forEach items="${cartList }" var="cart">
           	<li class="list-group-item d-flex justify-content-between lh-sm">
             	<div>
+            		<input type="hidden" value="${cart.productNo }" class="prInfo">  <!-- productNo캐싱용 -->
               		<h6 class="my-0">${cart.productName }</h6>
               		<small class="text-muted">${cart.selCnt }개</small>
             	</div>
@@ -94,17 +95,15 @@
           </div>
 
           <hr class="my-4">
-          
-          <hr class="my-4">
 
           <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="same-address">
-            <label class="form-check-label" for="same-address">위 주문 내용을 확인하였으며 결제에 동의합니다.</label>
+            <input type="checkbox" class="form-check-input" id="confirmPayment">
+            <label class="form-check-label" for="confirmPayment">위 주문 내용을 확인하였으며 결제에 동의합니다.</label>
           </div>
 
           <hr class="my-4">
 
-          <button class="w-100 btn btn-primary btn-lg" type="submit" onclick="requestPay()">결제하기</button>
+          <button class="w-100 btn btn-primary btn-lg" id="paymentBtn">결제하기</button>
         </form>
       </div>
     </div>
@@ -130,34 +129,84 @@
 	     })
 	 })()
 	 
-	 const tIMP = window.IMP;
-	 tIMP.init("imp46368323");
-	 
-	 function requestPay() {
-		 IMP.request_pay({ // param
+	 // submit이면 새로고침되기에 addEventListener방식으로 처리
+	 document.getElementById('paymentBtn').addEventListener('click', (e) => {
+	   e.preventDefault();
+	   let confirm = document.getElementById('confirmPayment').checked;
+	   if(!confirm) {
+			alert('결제 동의란 체크');
+			return;
+	   }
+	   // 고유한 주문번호/거래번호 id
+	   let merchantUID = String(new Date().getTime()) + ${uno};
+	   let productCnt = ${fn:length(cartList)};
+	   let productName = "";
+	   let productNoList = document.querySelectorAll('.prInfo');
+
+	   if(productCnt > 1) {
+		   productName = '${cartList[0].productName}' + '외 ' + (productCnt - 1) + '개'
+	   }
+	   else {
+		   productName = '${cartList[0].productName}';
+	   }
+	   let allPrice = ${sumPrice};
+	   
+	   // amount allPrice로 변경하자.
+	   IMP.request_pay({ // param
 	          pg: "html5_inicis",
 	          pay_method: "card",
-	          merchant_uid: "ORD20180131-0000011",
-	          name: "노르웨이 회전 의자",
-	          amount: 64900,
-	          buyer_email: "gildong@gmail.com",
-	          buyer_name: "홍길동",
-	          buyer_tel: "010-4242-4242",
-	          buyer_addr: "서울특별시 강남구 신사동",
-	          buyer_postcode: "01181"
+	          merchant_uid: merchantUID,
+	          name: productName,
+	          amount: 10, // 나중에 변경
+	          buyer_email: "TEST@gmail.com",
+	          buyer_name: "TEST",
+	          buyer_tel: "010-1111-1111",
+	          buyer_addr: "테스트"
 	      }, function (response) { // callback
 	          if (response.success) {
 	              // 성공시 response.imp_uid에 정상적인값이 들어감.
+	              // response.imp_uid(아임포트가 부여한 uid)
+	              // response.merchant_uid(가맹점(나)이 지정한 uid)
+	              console.log(response);
 	              
-	              // 결제 성공 시 로직,
+	              const dataArray = [];
+	              productNoList.forEach((obj) => {
+	            	  dataArray.push({name : 'productNo', value: obj.value });
+	              })
 	              
+	              dataArray.push({name : 'impUid', value: response.imp_uid});
+	              dataArray.push({name : 'merUid', value: response.merchant_uid});
+	              dataArray.push({name : 'payAmount', value: response.paid_amount});
+	              
+	              // URLSearchParams 객체 생성
+	              const formData = new URLSearchParams();
+
+	              // 배열의 데이터를 URLSearchParams에 추가
+	              dataArray.forEach(({ name, value }) => {
+	            	formData.append(name, value);
+	              });
+	              console.log(dataArray);
+	              // 서버에서 가격검증
+	              fetch('paymentComplete.do', {
+	            	  method: "POST",
+	            	  headers: {
+	            		  "Content-Type":"application/x-www-form-urlencoded"
+	            	  },
+	              	  body: formData
+	              })
+	              .then(resolve => {
+	            	  return resolve.json();
+	              })
+	              .then(result => {
+	            	  console.log(result);
+	              })
 	          } else {
-	              alert(response.err_msg);
-	              
-	              // 결제 실패 시 로직,
-	              
+	              alert(response.error_msg);
 	          }
 	      });
-	 }
+   })
+	 
+	 IMP.init("imp46368323");
+	 console.log(new Date().getTime());
    
    </script>

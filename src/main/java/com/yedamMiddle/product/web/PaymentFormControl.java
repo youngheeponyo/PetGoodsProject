@@ -38,6 +38,15 @@ public class PaymentFormControl implements Command {
 		UserVO userVO = lsvc.getUserInfo(userNo);
 		
 		List<CartJoinVO> list = svc.getCartList(userNo);
+		if(list == null || list.size() <= 0) {
+			try {
+				resp.sendRedirect("main.do");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return;
+		}
 		
 		int sumPrice = 0;
 		for(CartJoinVO vo : list) {

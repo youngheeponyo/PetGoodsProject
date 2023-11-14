@@ -2,16 +2,16 @@ package com.yedamMiddle.product.serviceImpl;
 
 import java.util.List;
 
-
-
-
+import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
 
+import com.yedamMiddle.common.ApiInfoVO;
 import com.yedamMiddle.common.Mybatis;
 import com.yedamMiddle.common.service.CartJoinVO;
 import com.yedamMiddle.common.service.CategoryJoinVO;
 import com.yedamMiddle.common.service.CategoryVO;
 import com.yedamMiddle.product.mapper.ProductMapper;
+import com.yedamMiddle.product.service.ProductOrderVO;
 import com.yedamMiddle.product.service.ProductService;
 import com.yedamMiddle.product.service.ProductVO;
 
@@ -62,6 +62,28 @@ public class ProductServiceImpl implements ProductService {
 	public List<CartJoinVO> getCartList(int userNo) {
 		// TODO Auto-generated method stub
 		return mapper.selectCartList(userNo);
+	}
+	@Override
+	public ApiInfoVO getApiInfo(String apiName) {
+		// TODO Auto-generated method stub
+		return mapper.selectApiInfo(apiName);
+	}
+	@Override
+	public boolean addPaymentInfo(List<ProductOrderVO> vo) {
+		// TODO Auto-generated method stub
+		sql.close();
+		
+		// insertMany를 효율적으로 처리하기위해.
+		sql = Mybatis.getInstance().openSession(ExecutorType.BATCH);
+		mapper = sql.getMapper(ProductMapper.class);
+		 
+		vo.forEach((obj) -> {
+			mapper.insertProductOrder(obj);
+		});
+		
+		sql.flushStatements();
+		sql.commit();
+		return true;
 	}
 	
 }
