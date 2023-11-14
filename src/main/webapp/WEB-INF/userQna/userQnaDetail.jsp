@@ -40,36 +40,48 @@
 						<th>글번호</th>
 						<td>${vo.title }</td>
 						<th>작성일시</th>
-						<td><fmt:formatDate value ="${vo.registDate }" pattern="yyyy-MM-dd hh:mm"></fmt:formatDate></td>
+						<td><fmt:formatDate value="${vo.registDate }"
+								pattern="yyyy-MM-dd hh:mm"></fmt:formatDate></td>
 					</tr>
 
 
 					<tr>
 						<th>글제목</th>
-						<td>${vo.title }</td>
+						<td><input type="text" name="title" class="form-control">${vo.title }</td>
 						<th>상품명</th>
-						<td></td>
+						<td>
+							
+							<c:choose>
+								<c:when test="상품페이지에서 넘어왔을때"><!-- 상품이랑 사람 조인 후 구매내역이 있을때 -->
+											<option value="">${상품페이지의 상품}</option>
+								</c:when>
+								<c:otherwise>
+									<select name="product">
+											<c:forEach items="${상품목록}" var="product"><!-- 상품개수만큼 -->
+											<option value="">${product.해당상품의 이름 }</option>
+											</c:forEach>
+									</select>
+								</c:otherwise>
+							</c:choose>
+						<td>
 					</tr>
 
 
 					<tr>
-						<td colspan="4">
-							<textarea rows="5" cols="40" class="form-control" disabled>언제 입고 되나요?</textarea>
-						</td>
+						<td colspan="4"><textarea rows="5" cols="40"
+								class="form-control" disabled>언제 입고 되나요?</textarea></td>
 					</tr>
-					
+
 					<tr>
 						<th>작성자</th>
-						<td>김은별</td>
+						<td>${uservo.nickName }</td>
 						<th></th>
 						<td></td>
 					</tr>
 
 					<tr>
-						<td colspan="4" align="center">
-							<input type="submit" value="수정">
-							<input type="button" value="삭제">
-						</td>
+						<td colspan="4" align="center"><input type="submit"
+							value="수정"> <input type="button" value="삭제"></td>
 					</tr>
 				</table>
 			</form>
@@ -87,7 +99,8 @@
 			<h3>문의답변</h3>
 			<table class="table">
 				<tr>
-					<td><textarea rows="5" cols="40" class="form-control" disabled="disabled">답변입니다. 다음주 중 입고 됩니다.</textarea></td>
+					<td><textarea rows="5" cols="40" class="form-control"
+							disabled="disabled">답변입니다. 다음주 중 입고 됩니다.</textarea></td>
 				</tr>
 			</table>
 		</div>

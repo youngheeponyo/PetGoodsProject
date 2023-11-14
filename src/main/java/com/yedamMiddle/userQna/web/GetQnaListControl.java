@@ -24,7 +24,7 @@ public class GetQnaListControl implements Command {
 		UserQnaVO vo = svc.userQnaSelect(Integer.parseInt(qnaNo), Integer.parseInt(pw));
 		
 		//유저 전체 정보
-		UserVO userVo = svc.qnaToSelectUser(vo);
+		UserVO userVo = svc.qnaToSelectUser(vo);//아마 게시글 전체 정보 중 유저번호만 따와서 넣을 예정인듯
 		System.out.println(vo);
 		
 		req.setAttribute("vo", vo);

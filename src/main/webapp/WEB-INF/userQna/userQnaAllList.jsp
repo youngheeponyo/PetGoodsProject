@@ -39,7 +39,7 @@ ${list}
                     					
                     			<td class="qnaNocheck">${vo.qnaNo}</td>
                     			<td class="passcheck" onclick="passCheck('${vo.password}', '${vo.qnaNo }')">
-                    				<a href=#>${vo.title }</a>
+                    				<a href=#>${vo.title }</a> pw:${vo.password }
                     			</td>
                     			<!-- 클릭이벤트 : 제목을 클릭하면 비밀번호를 비교하고 만약 맞다면 getUserQnaList.do?이 주소로 넘겨줌 -->
                     			
@@ -50,11 +50,11 @@ ${list}
                     				<c:if test="${not empty vo.qnaNo}">
 	                    				<c:choose>
 	                    				
-	                    					<c:when test="${vo.qnaState=='1' }">
-	                    						답변완료console.log(${vo.qnaState })
+	                    					<c:when test="${vo.qnaState==49 }">
+	                    						답변완료 = (${vo.qnaState })
 	                    					</c:when>
 	                    					<c:otherwise>
-	                    						문의대기중console.log(${vo.qnaState })
+	                    						문의대기중 = (${vo.qnaState })
 	                    					</c:otherwise>
 	                    				</c:choose>
                     				</c:if>
@@ -76,15 +76,14 @@ ${list}
 
 	function passCheck(password, qnaNo){
 		console.log("password :", password,"   id: ", qnaNo)
-	}
-	    if(password == 0){
+	    if(password == "0"){
 	    	
-	    	window.location.href="getUserQnaList.do?qanNo="+qnaNo+"&password="+password;
+	    	window.location.href="getUserQnaList.do?qanNo="+qnaNo;
 	    	return;
 	    	
 	    }else{
 	    	let inputPassword = prompt('비밀번호를 입력하세요', '0000');
-	    	if(password == intputPassword){
+	    	if(password == inputPassword){
 	    		
 	    		window.location.href="getUserQnaList.do?qanNo="+qnaNo+"&password="+password;
 	    		return;

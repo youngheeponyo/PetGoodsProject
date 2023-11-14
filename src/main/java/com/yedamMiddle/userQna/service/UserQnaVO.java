@@ -12,7 +12,7 @@ public class UserQnaVO {
 	private Date registDate;
 	private int password;
 	private String qnaReply;
-	private char qnaState;
+	private int qnaState;
 	
 	public int getQnaNo() {
 		return qnaNo;
@@ -68,7 +68,7 @@ public class UserQnaVO {
 	public void setQnaReply(String qnaReply) {
 		this.qnaReply = qnaReply;
 	}
-	public char getQnaState() {
+	public int getQnaState() {
 		return qnaState;
 	}
 	public void setQnaState(char qnaState) {
