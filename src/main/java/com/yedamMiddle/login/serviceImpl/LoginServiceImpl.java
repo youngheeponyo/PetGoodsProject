@@ -1,5 +1,7 @@
 package com.yedamMiddle.login.serviceImpl;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.yedamMiddle.common.Mybatis;
@@ -32,5 +34,8 @@ public class LoginServiceImpl implements LoginService{
 		return mapper.getUser(userNo);
 	}
 	
-	
+	@Override
+	public List<UserVO> list() {
+		return mapper.list();
+	}
 }

@@ -10,6 +10,7 @@ public class CategoryJoinVO {
 	private String mainCateName;
 	private int subCateNo;
 	private String subCateName;
+	
 	public int getMainCateNo() {
 		return mainCateNo;
 	}

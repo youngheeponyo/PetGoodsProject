@@ -77,4 +77,5 @@ body {
 		</div>
 	</form>
 </body>
+
 	<footer class="my-3 text-center text-small"> </footer>

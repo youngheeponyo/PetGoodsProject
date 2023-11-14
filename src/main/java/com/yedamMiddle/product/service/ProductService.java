@@ -16,7 +16,8 @@ public interface ProductService {
 	public List<ProductVO> searchCategory(int categoryNo, String type, int page);
 	
 	public int searchCategoryCount(int categoryNo, String type);
-	public int searchProductListCount(String query, String type); 
+	public int searchProductListCount(String query, String type);
+	
 	
 	// 장바구니 테스트위해서 추가. 제거예정
 	public List<CartJoinVO> getCartList(int userNo);
