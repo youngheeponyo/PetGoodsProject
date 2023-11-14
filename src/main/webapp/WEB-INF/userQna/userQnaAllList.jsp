@@ -12,6 +12,7 @@ ${list}
                 <div class="container-fluid">
                     <h3 class="mt-4" style= text-align:center>문의사항</h3>
                     <br>
+                    <hr>
                     <table class = "table" style= text-align:center>
                     	<thead>
                     		<tr>
@@ -64,6 +65,7 @@ ${list}
                     	</tbody>
                     </table>
                     <div style= text-ailgn:right>
+                    <hr>
                      	 <p><a href="addUserQnaFrom.do">문의글 작성</a></p>
                     </div>
                 </div>
