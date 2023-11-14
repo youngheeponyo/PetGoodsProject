@@ -7,6 +7,7 @@
 <body>
  <!-- Page content-->
 ${list}
+${uno }
  <section class="py-5" >
 		<div class="container px-4 px-lg-5 mt-5">
                 <div class="container-fluid">
@@ -70,14 +71,24 @@ ${list}
                 </div>
          </div>
 </section>
+<input type="hidden" value="${uno }" id="userSessionNo">
+<input type="hidden" value="${permission }" id="permission">
 </body>
 
 
 <script>
 
 	function passCheck(password, qnaNo){
+		let userSessionNo = document.querySelector("#userSessionNo").value;
+		let permission = document.querySelector("#permission").value;
+		if(userSessionNo == ""){//console.log(typeof userSessionNo); 타입확인
+			alert("로그인을 먼저 해주시기 바랍니다.")
+			window.location.href="loginForm.do";
+			return;
+		}		
+
 		console.log("password :", password,"   qnaNo: ", qnaNo)
-	    if(password == "0"){
+	    if(password == "0" || permission == "0"){//패스워드가 없거나 관리자일때
 	    	
 	    	window.location.href="getUserQnaList.do?qnaNo="+qnaNo;
 	    	return;

@@ -34,8 +34,8 @@ public class UserQnaServiceImpl implements UserQnaService {
 	}
 
 	@Override
-	public int userQnaUpdate(int qnaNo, int password) {
-		return mapper.userQnaUpdate(qnaNo, password);
+	public int userQnaUpdate(UserQnaVO vo) {
+		return mapper.userQnaUpdate(vo);
 	}
 
 	@Override
@@ -57,6 +57,11 @@ public class UserQnaServiceImpl implements UserQnaService {
 	@Override
 	public ProductVO productNoToSelectProduct(UserQnaVO vo) {
 		return mapper.productNoToSelectProduct(vo);
+	}
+
+	@Override
+	public int replyUpdate(UserQnaVO vo) {
+		return mapper.replyUpdate(vo);
 	}
 
 

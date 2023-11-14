@@ -14,11 +14,13 @@ public interface UserQnaMapper {
 	public UserQnaVO userQnaSelect(int qnaNo);
 	//글 번호로 작성유저 찾기
 	public UserVO qnaToSelectUser(UserQnaVO vo);
+	//관리자가 문의답변 추가(내용수정)
+	public int replyUpdate(UserQnaVO vo);
 	
 	
 	//게시글 등록, 수정, 삭제
 	public int userQnaInsert(UserQnaVO vo);
-	public int userQnaUpdate(@Param("qnaNo") int qnaNo , @Param("password")int password);
+	public int userQnaUpdate(UserQnaVO vo);
 	public int userQnaDelete(UserQnaVO vo);
 	
 	//관리자 게시글 수정(답변 및 답변상태)

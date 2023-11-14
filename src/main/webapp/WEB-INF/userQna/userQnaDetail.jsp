@@ -46,7 +46,7 @@
 						<th>작성일시</th>
 							<td>
 								<fmt:formatDate value="${vo.registDate }"
-								pattern="yyyy-MM-dd  hh:mm분"></fmt:formatDate>
+								pattern="yyyy-MM-dd  hh:mm"></fmt:formatDate>
 							</td>
 						<th>문의상태</th>
 							<td>
@@ -116,17 +116,48 @@
 			<p>
 				<a href="getUserQnaAllList.do">목록으로</a>
 			</p>
+			
+			
 			<br><br>
-			
-			
-			<form style=text-align:center>
+			<form style=text-align:center action="qnaReply.do" method="post">
+				<input type="hidden" name="qnaNo" value="${vo.qnaNo }">
 				<h3>문의답변</h3>
 				<br><hr>
 				<table class="table">
-					<tr>
-						<td><textarea rows="5" cols="40" class="form-control"
-								disabled="disabled">${vo.qnaReply }</textarea></td>
-					</tr>
+					
+						<c:choose>
+							<c:when test="${vo.qnaState ==1 }">
+								<tr>
+									<td><textarea rows="10" cols="40" class="form-control" disabled>${vo.qnaReply }</textarea></td>
+								</tr>
+							</c:when>
+							<c:otherwise>
+							
+								<c:choose>
+								
+									<c:when test="${permission =='0'}"> <!-- 관리자일때 -->
+									<tr>
+										<td><textarea rows="10" cols="40" class="form-control" name="reply"></textarea></td>
+									</tr>
+									<tr>
+										<td><input type="submit" value="등록하기"></td>
+									</tr>
+									</c:when>
+									
+									<c:otherwise>
+										<td><textarea rows="" cols="40" class="form-control" disabled>*아직 답변이 달리지 않았습니다.*</textarea></td>
+									</c:otherwise>
+									
+								</c:choose>
+							
+							
+							</c:otherwise>
+						</c:choose>
+						
+						
+							
+							
+					
 				</table>
 			</form>
 			
