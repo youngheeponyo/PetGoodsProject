@@ -84,7 +84,7 @@
                             </ul>
                         </li>
                         <li class="nav-item"><a class="nav-link" aria-current="page" href="fileUploadTestForm.do">신상품</a></li>
-	                        <li class="nav-item"><a class="nav-link" href="#!">베스트상품</a></li>
+	                        <li class="nav-item"><a class="nav-link" href="testCartForm.do">베스트상품</a></li>
 	                        <li class="nav-item"><a class="nav-link" href="#!">추천상품</a></li>
                     </ul>
                 

@@ -25,6 +25,12 @@ public class LoginServiceImpl implements LoginService{
 	public UserVO loginUser(String userId, String userPw) {
 		return mapper.userLogin(userId, userPw);
 	}
+
+	@Override
+	public UserVO getUserInfo(int userNo) {
+		// TODO Auto-generated method stub
+		return mapper.getUser(userNo);
+	}
 	
 	
 }

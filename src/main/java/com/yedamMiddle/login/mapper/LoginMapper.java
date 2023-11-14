@@ -8,4 +8,5 @@ public interface LoginMapper {
 	public int addUser(UserVO vo);
 	public UserVO userLogin(@Param("userId") String userId, @Param("userPw")String userPw);
 	public int deleteUser(@Param("userId") String userId, @Param("userPw")String userPw);
+	public UserVO getUser(int userNo);
 }

@@ -6,5 +6,5 @@ public interface LoginService {
 	public boolean addUser(UserVO vo);
 	public boolean deleteUser(String userId,String userPW);
 	public UserVO loginUser(String userId,String userPw);
-	
+	public UserVO getUserInfo(int userNo);
 }
