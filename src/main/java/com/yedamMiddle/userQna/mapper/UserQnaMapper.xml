@@ -48,7 +48,7 @@
 	<!-- 상세문의 조회 시 글 번호로 작성자 이름 찾기 위해 user전체 내용 가져옴 -->
 	<select id="qnaToSelectUser" parameterType="com.yedamMiddle.userQna.service.UserQnaVO"
 								resultType="com.yedamMiddle.common.service.UserVO">
-		SELECT * FROM USER_TABLE WHERE USER_NO =#{userNo}
+		SELECT * FROM USER_TBL WHERE USER_NO =#{userNo}
 	</select>
 				
 				
