@@ -69,14 +69,14 @@
 
 					<tr>
 						<td colspan="4"><textarea rows="5" cols="40"
-								class="form-control" disabled>언제 입고 되나요?</textarea></td>
+								class="form-control" disabled>${vo.contents }</textarea></td>
 					</tr>
 
 					<tr>
 						<th>작성자</th>
 						<td>${uservo.nickName }</td>
-						<th></th>
-						<td></td>
+						<th>문의상태</th>
+						<td>${vo.qnaState}</td>
 					</tr>
 
 					<tr>
@@ -86,7 +86,7 @@
 				</table>
 			</form>
 
-			<h3>문의답변등록</h3>
+			<h3>문의답변</h3>
 			<table class="table">
 				<tr>
 					<td><textarea rows="5" cols="40" class="form-control"></textarea></td>
@@ -100,16 +100,13 @@
 			<table class="table">
 				<tr>
 					<td><textarea rows="5" cols="40" class="form-control"
-							disabled="disabled">답변입니다. 다음주 중 입고 됩니다.</textarea></td>
+							disabled="disabled">${vo.qnaReply }</textarea></td>
 				</tr>
 			</table>
 		</div>
 	</div>
 </section>
 
-<!-- 댓글 페이지-->
-<div class="pagination"></div>
-
 <p>
-	<a href="boardList.do">목록으로</a>
+	<a href="getUserQnaAllList.do">목록으로</a>
 </p>

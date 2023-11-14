@@ -23,8 +23,8 @@ public class UserQnaServiceImpl implements UserQnaService {
 	}
 
 	@Override
-	public UserQnaVO userQnaSelect(int qnaNo, int password) {
-		return mapper.userQnaSelect(qnaNo, password);
+	public UserQnaVO userQnaSelect(int qnaNo) {
+		return mapper.userQnaSelect(qnaNo);
 	}
 
 	@Override

@@ -10,8 +10,8 @@
 	
 	<!-- 상세문의조회 -->
 	<select id="userQnaSelect" resultType="com.yedamMiddle.userQna.service.UserQnaVO"
-						parameterType="com.yedamMiddle.userQna.service.UserQnaVO">
-		SELECT * FROM USERQNA WHERE QNA_NO =#{qnaNo} AND PASSWORD=#{password}
+						parameterType="int">
+		SELECT * FROM USERQNA WHERE QNA_NO =#{qnaNo}
 	</select>
 	
 	

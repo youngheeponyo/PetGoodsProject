@@ -8,7 +8,7 @@ public interface UserQnaService {
 	
 	//목록보기, 상세조회
 	public List<UserQnaVO> userQnaAllList();
-	public UserQnaVO userQnaSelect(int qnaNo, int pw);
+	public UserQnaVO userQnaSelect(int qnaNo);
 	//글 번호로 작성유저 찾기
 	public UserVO qnaToSelectUser(UserQnaVO vo);
 	

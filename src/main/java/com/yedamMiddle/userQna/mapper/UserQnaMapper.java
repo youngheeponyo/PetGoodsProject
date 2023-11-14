@@ -10,7 +10,7 @@ import com.yedamMiddle.userQna.service.UserQnaVO;
 
 public interface UserQnaMapper {
 	public List<UserQnaVO> userQnaAllList();
-	public UserQnaVO userQnaSelect(@Param("qnaNo") int qnaNo , @Param("password")int password);
+	public UserQnaVO userQnaSelect(int qnaNo);
 	//글 번호로 작성유저 찾기
 	public UserVO qnaToSelectUser(UserQnaVO vo);
 	

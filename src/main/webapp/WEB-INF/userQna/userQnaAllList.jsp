@@ -75,18 +75,20 @@ ${list}
 <script>
 
 	function passCheck(password, qnaNo){
-		console.log("password :", password,"   id: ", qnaNo)
+		console.log("password :", password,"   qnaNo: ", qnaNo)
 	    if(password == "0"){
 	    	
-	    	window.location.href="getUserQnaList.do?qanNo="+qnaNo;
+	    	window.location.href="getUserQnaList.do?qnaNo="+qnaNo;
 	    	return;
 	    	
 	    }else{
 	    	let inputPassword = prompt('비밀번호를 입력하세요', '0000');
 	    	if(password == inputPassword){
 	    		
-	    		window.location.href="getUserQnaList.do?qanNo="+qnaNo+"&password="+password;
+	    		window.location.href="getUserQnaList.do?qnaNo="+qnaNo+"&password="+password;
 	    		return;
+	    	}else{
+	    		alert("비밀번호가 다릅니다.");
 	    	}
 	    }
 	}
