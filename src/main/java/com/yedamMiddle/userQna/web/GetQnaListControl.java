@@ -14,10 +14,9 @@ public class GetQnaListControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		String path ="userQna/userQnaList.tiles";
-		String qnaNo = req.getParameter("pnaNo");
+		String path ="userQna/userQnaDetail.tiles";
+		String qnaNo = req.getParameter("qnaNo");
 		String pw = req.getParameter("password");
-		System.out.println("qnaNo=" + qnaNo +" pw="+ pw);
 		
 		UserQnaService svc = new UserQnaServiceImpl();
 		UserQnaVO vo = svc.userQnaSelect(Integer.parseInt(qnaNo), Integer.parseInt(pw));

@@ -26,9 +26,8 @@ ${list}
                     		<c:forEach items="${list }" var="vo">
                     		<tr>
                     			<td class="qnaNocheck">${vo.qnaNo}</td>
-                    			<td class="passcheck">
-                    			${vo.title }
-                    			<input type="hidden" value="${vo.password }" />
+                    			<td class="passcheck" onclick="passCheck('${vo.password}', '${vo.qnaNo }')">
+                    				<a href=#>${vo.title }</a>
                     			</td>
                     			<!-- 클릭이벤트 : 제목을 클릭하면 비밀번호를 비교하고 만약 맞다면 getUserQnaList.do?이 주소로 넘겨줌 -->
                     			
@@ -62,30 +61,19 @@ ${list}
 
 
 <script>
-
-//
-	document.querySelector(".passcheck").addEventListener("click", passCheck);
-	
-	function passCheck(){
-		// 클릭된 요소(this)에서 가장 가까운 부모 <td>를 찾음
-	    let tdElement = this.closest('td');
-
-	    // <td> 안에서 이름이 'password'인 <input> 엘리먼트를 찾음
-	    let inputElement = tdElement.querySelector('input');
-
-	    // <input> 엘리먼트의 값을 가져와서 출력
-	    let passwordValue = inputElement.value;
-	    
-	    if(passwordValue == null){
+	function passCheck(password, qnaNo){
+		console.log("password :", password,"   id: ", qnaNo)
+	}
+	    if(password == "null"){
+			window.location.href="getUserQnaList.do?qanNo="+qnaNo;
 	    	return;
+	    	
 	    }else{
-	    	let promptObj = prompt('비밀번호를 입력하세요', '0000');
-	    	if(passwordValue == promptObj){
-	    		window.location.href="addUserQna.do?"
+	    	let inputPassword = prompt('비밀번호를 입력하세요', '0000');
+	    	if(password == intputPassword){
+	    		window.location.href="getUserQnaList.do?qanNo="+qnaNo+"$password="+password;
+	    		return;
 	    	}
 	    }
-	    
-	    
-
 	}
 </script>
