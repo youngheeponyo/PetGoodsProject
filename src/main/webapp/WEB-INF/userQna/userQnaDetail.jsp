@@ -39,16 +39,16 @@
 				<br><hr>
 				<table class="table" border="1">
 					<tr>
-						<th>글번호</th>
+						<th colspan="2">글번호</th>
 							<td>${vo.qnaNo }</td>	
-						<th>작성자</th>
+						<th colspan="2">작성자</th>
 							<td>${userVo.nickName }</td>
-						<th>작성일시</th>
+						<th colspan="2">작성일시</th>
 							<td>
 								<fmt:formatDate value="${vo.registDate }"
 								pattern="yyyy-MM-dd  hh:mm"></fmt:formatDate>
 							</td>
-						<th>문의상태</th>
+						<th colspan="2">문의상태</th>
 							<td>
 								<c:if test="${not empty vo.qnaNo}">
 	                    				<c:choose>
@@ -65,11 +65,21 @@
 
 
 					<tr>
-						<th colspan="3">글제목</th>
+						<th colspan="2">글제목</th>
 						<td>${vo.title }</td>
-						<th>상품명</th>
-						<td>${productVo.productName }<td>
-							
+						<th colspan="1">문의종류<th>
+						<td>${vo.qnaType }<td>
+						
+						<c:if test="${vo.qnaType =='상품문의'}">
+							<th colspan="2">상품명</th>
+							<td>${productVo.productName }<td>
+						</c:if>
+						
+						
+						
+						
+						
+<!-- 						
 <%-- 							<c:choose> --%>
 <%-- 								<c:when test="상품페이지에서 넘어왔을때"><!-- 상품이랑 사람 조인 후 구매내역이 있을때 --> --%>
 <%-- 											${productVo.productNo } --%>
@@ -87,7 +97,7 @@
 
 
 					<tr>
-						<td colspan="8"><textarea rows="10" cols="40"
+						<td colspan="14"><textarea rows="10" cols="40"
 								class="form-control" disabled>${vo.contents }</textarea></td>
 					</tr>
 
@@ -96,7 +106,7 @@
 					</tr>
 
 					<tr>
-						<td colspan="8" align="center" >
+						<td colspan="14" align="center" >
 						<c:choose>
 							<c:when test="${not empty uno && uno ==userVo.userNo }">
 								<input type="submit" value="수정">
@@ -113,9 +123,6 @@
 					</tr>
 				</table>
 			</form>
-			<p>
-				<a href="getUserQnaAllList.do">목록으로</a>
-			</p>
 			
 			
 			<br><br>
@@ -131,8 +138,9 @@
 									<td><textarea rows="10" cols="40" class="form-control" disabled>${vo.qnaReply }</textarea></td>
 								</tr>
 							</c:when>
-							<c:otherwise>
 							
+							
+							<c:otherwise>
 								<c:choose>
 								
 									<c:when test="${permission =='0'}"> <!-- 관리자일때 -->
@@ -149,16 +157,12 @@
 									</c:otherwise>
 									
 								</c:choose>
-							
-							
 							</c:otherwise>
 						</c:choose>
-						
-						
-							
-							
-					
 				</table>
+				<p>
+					<a href="getUserQnaAllList.do">목록으로</a>
+				</p>
 			</form>
 			
 			

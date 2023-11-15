@@ -52,9 +52,9 @@ public class FrontController extends HttpServlet {
 		// map에 command추가할 때 옆에 기능 주석적어주세요.
 		
 		// 김은별
-		commandByURL.put("/getUserQnaAllList.do", new GetQnaAllListControl());//조회
-		commandByURL.put("/getUserQnaList.do", new GetQnaListControl()); //수정예정
-		commandByURL.put("/qnaReply.do", new QnaReplyControl());
+		commandByURL.put("/getUserQnaAllList.do", new GetQnaAllListControl());//목록
+		commandByURL.put("/getUserQnaList.do", new GetQnaListControl()); //조회
+		commandByURL.put("/qnaReply.do", new QnaReplyControl());//관리자 답글달기
 		
 		commandByURL.put("/addUserQnaFrom.do", new AddQnaFormControl());
 		commandByURL.put("/addUserQna.do", new AddQnaControl());//등록	
