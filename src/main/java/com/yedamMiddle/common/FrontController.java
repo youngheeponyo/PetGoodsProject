@@ -51,97 +51,97 @@ import com.yedamMiddle.userQna.web.QnaReplyControl;
 // 0 -> 개 type
 // 1 -> 고양이 type
 public class FrontController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	private Map<String, Command> commandByURL = new HashMap<>();
-	
-	@Override
-	public void init() throws ServletException {
-		// map에 command추가할 때 옆에 기능 주석적어주세요.
-		
-		// 김은별
-		commandByURL.put("/getUserQnaAllList.do", new GetQnaAllListControl());//Qna목록
-		commandByURL.put("/getUserQnaList.do", new GetQnaListControl()); //Qna조회
-		commandByURL.put("/qnaReply.do", new QnaReplyControl());//Qna관리자 답글달기(수정은 보류)
-		
-//		commandByURL.put("/addUserQnaForm.do", new AddQnaFormControl());
-//		commandByURL.put("/addUserQna.do", new AddQnaControl());//등록보류
-		
-		commandByURL.put("/modifyUserQnaForm.do", new ModifyUserQnaFormControl());//Qna수정
-		commandByURL.put("/modifyUserQna.do", new ModifyUserQnaControl());//Qna수정
-		commandByURL.put("/deleteUserQna.do", new DeleteUserQnaControl()); //Qna삭제		
-		
-		// 김준성
-		//공지사항 게시판
-		commandByURL.put("/noticeList.do", new NoticeListControl()); //공지사항 리스트
-		commandByURL.put("/getNotice.do", new GetNoticeControl()); //선택된 공지사항보기 
-		commandByURL.put("/noticeForm.do", new NoticeFormControl()); //새 공지사항 작성
-		commandByURL.put("/addNotice.do", new AddNoticeControl()); //공지사항 등록
-		commandByURL.put("/removeNotice.do", new RemoveNoticeControl()); //공지사항 삭제
-		
-		//관리자페이지
-		commandByURL.put("/adminPage.do", new AdminPageControl()); //관리자메인페이지
-		//회원목록
-		commandByURL.put("/memberList.do", new MemberListControl()); //회원목록
-		//상품
-		commandByURL.put("/productList.do", new ProductListControl()); //상품목록
-		//상품추가
-		commandByURL.put("/productForm.do", new ProductFormControl()); //새 상품 작성
-		commandByURL.put("/addProduct.do", new AddProductControl()); //상품등록 
-		//상품선택
-		commandByURL.put("/getProduct.do", new GetProductControl()); //상품조회
-		
-		
-		// 서영희
-		//회원가입
-		commandByURL.put("/addUserForm.do", new AddUserFormControl());
-		commandByURL.put("/addUser.do", new AddUserControl());
-		//로그인
-		commandByURL.put("/loginForm.do", new LoginFormControl());
-		commandByURL.put("/login.do", new LoginControl());
-		//로그아웃
-		commandByURL.put("/logout.do", new LogoutControl());
-		//회원탈퇴
-		commandByURL.put("/delUserForm.do", new DelUserFormControl());
-		commandByURL.put("/delUser.do", new DelUserControl());
-		//상세페이지 보기
-		commandByURL.put("/detailProduct.do", new ProductDetailControl());
-		//장바구니 추가
-		commandByURL.put("/addCart.do", new AddCartControl());
-		//장바구니
-		commandByURL.put("/myCart.do", new MyCartControl());
-		//장바구니 삭제.업데이트
-		commandByURL.put("/updateCart.do", new updateCartControl());
-		commandByURL.put("/deleteCart.do", new deleteCartControl());
-		
-		// 전민교
-		commandByURL.put("/main.do", new MainPageControl()); // 메인페이지
-		commandByURL.put("/productSearch.do", new ProductSearchControl()); // 상품검색(헤더 검색바)
-		commandByURL.put("/categorySearch.do", new CategorySearchControl()); // 카테고리검색(카테고리바)
-		commandByURL.put("/fileUploadTestForm.do", new TestUploadFormControl()); // 테스트 파일업로드
-		commandByURL.put("/fileUpload.do", new TestFileUpload());
-		
-		commandByURL.put("/changePetType.do", new ChangePetControl()); // 고양이/강아지 상품 전환
-		commandByURL.put("/testCartForm.do", new TestCartFormControl()); // 결제창 구현을 위한 테스트화면
-		commandByURL.put("/paymentForm.do", new PaymentFormControl()); // 결제화면 요청
-		commandByURL.put("/paymentComplete.do", new PaymentCompleteControl()); // 결제완료처리(검증 및 결제데이터 삽입)
-		commandByURL.put("/payCompleteForm.do", new PayCompleteFormControl()); // 결제완료화면 요청
-	}
-	
-	//끼양
-	@Override
-	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setCharacterEncoding("UTF-8");
-		
-		String uri = req.getRequestURI();
-		String contextPath = req.getContextPath();
-		String reqURL = uri.substring(contextPath.length());
-		Command cmd = commandByURL.get(reqURL);
-		if(cmd != null) {
-			cmd.execute(req, resp);
-		}
-		else {
-			// 에러
-			System.out.println("없음");
-		}
-	}
+   private static final long serialVersionUID = 1L;
+   private Map<String, Command> commandByURL = new HashMap<>();
+   
+   @Override
+   public void init() throws ServletException {
+      // map에 command추가할 때 옆에 기능 주석적어주세요.
+      
+      // 김은별
+      commandByURL.put("/getUserQnaAllList.do", new GetQnaAllListControl());//Qna목록
+      commandByURL.put("/getUserQnaList.do", new GetQnaListControl()); //Qna조회
+      commandByURL.put("/qnaReply.do", new QnaReplyControl());//Qna관리자 답글달기(수정은 보류)
+      
+      commandByURL.put("/addUserQnaForm.do", new AddQnaFormControl());
+//      commandByURL.put("/addUserQna.do", new AddQnaControl());//등록보류
+      
+      commandByURL.put("/modifyUserQnaForm.do", new ModifyUserQnaFormControl());//Qna수정
+      commandByURL.put("/modifyUserQna.do", new ModifyUserQnaControl());//Qna수정
+      commandByURL.put("/deleteUserQna.do", new DeleteUserQnaControl()); //Qna삭제      
+      
+      // 김준성
+      //공지사항 게시판
+      commandByURL.put("/noticeList.do", new NoticeListControl()); //공지사항 리스트
+      commandByURL.put("/getNotice.do", new GetNoticeControl()); //선택된 공지사항보기 
+      commandByURL.put("/noticeForm.do", new NoticeFormControl()); //새 공지사항 작성
+      commandByURL.put("/addNotice.do", new AddNoticeControl()); //공지사항 등록
+      commandByURL.put("/removeNotice.do", new RemoveNoticeControl()); //공지사항 삭제
+      
+      //관리자페이지
+      commandByURL.put("/adminPage.do", new AdminPageControl()); //관리자메인페이지
+      //회원목록
+      commandByURL.put("/memberList.do", new MemberListControl()); //회원목록
+      //상품
+      commandByURL.put("/productList.do", new ProductListControl()); //상품목록
+      //상품추가
+      commandByURL.put("/productForm.do", new ProductFormControl()); //새 상품 작성
+      commandByURL.put("/addProduct.do", new AddProductControl()); //상품등록 
+      //상품선택
+      commandByURL.put("/getProduct.do", new GetProductControl()); //상품조회
+      
+      
+      // 서영희
+      //회원가입
+      commandByURL.put("/addUserForm.do", new AddUserFormControl());
+      commandByURL.put("/addUser.do", new AddUserControl());
+      //로그인
+      commandByURL.put("/loginForm.do", new LoginFormControl());
+      commandByURL.put("/login.do", new LoginControl());
+      //로그아웃
+      commandByURL.put("/logout.do", new LogoutControl());
+      //회원탈퇴
+      commandByURL.put("/delUserForm.do", new DelUserFormControl());
+      commandByURL.put("/delUser.do", new DelUserControl());
+      //상세페이지 보기
+      commandByURL.put("/detailProduct.do", new ProductDetailControl());
+      //장바구니 추가
+      commandByURL.put("/addCart.do", new AddCartControl());
+      //장바구니
+      commandByURL.put("/myCart.do", new MyCartControl());
+      //장바구니 삭제.업데이트
+      commandByURL.put("/updateCart.do", new updateCartControl());
+      commandByURL.put("/deleteCart.do", new deleteCartControl());
+      
+      // 전민교
+      commandByURL.put("/main.do", new MainPageControl()); // 메인페이지
+      commandByURL.put("/productSearch.do", new ProductSearchControl()); // 상품검색(헤더 검색바)
+      commandByURL.put("/categorySearch.do", new CategorySearchControl()); // 카테고리검색(카테고리바)
+      commandByURL.put("/fileUploadTestForm.do", new TestUploadFormControl()); // 테스트 파일업로드
+      commandByURL.put("/fileUpload.do", new TestFileUpload());
+      
+      commandByURL.put("/changePetType.do", new ChangePetControl()); // 고양이/강아지 상품 전환
+      commandByURL.put("/testCartForm.do", new TestCartFormControl()); // 결제창 구현을 위한 테스트화면
+      commandByURL.put("/paymentForm.do", new PaymentFormControl()); // 결제화면 요청
+      commandByURL.put("/paymentComplete.do", new PaymentCompleteControl()); // 결제완료처리(검증 및 결제데이터 삽입)
+      commandByURL.put("/payCompleteForm.do", new PayCompleteFormControl()); // 결제완료화면 요청
+   }
+   
+   //끼양
+   @Override
+   protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+      req.setCharacterEncoding("UTF-8");
+      
+      String uri = req.getRequestURI();
+      String contextPath = req.getContextPath();
+      String reqURL = uri.substring(contextPath.length());
+      Command cmd = commandByURL.get(reqURL);
+      if(cmd != null) {
+         cmd.execute(req, resp);
+      }
+      else {
+         // 에러
+         System.out.println("없음");
+      }
+   }
 }
