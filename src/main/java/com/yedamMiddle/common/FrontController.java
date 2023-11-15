@@ -63,7 +63,7 @@ public class FrontController extends HttpServlet {
 		commandByURL.put("/getUserQnaList.do", new GetQnaListControl()); //Qna조회
 		commandByURL.put("/qnaReply.do", new QnaReplyControl());//Qna관리자 답글달기(수정은 보류)
 		
-//		commandByURL.put("/addUserQnaForm.do", new AddQnaFormControl());
+		commandByURL.put("/addUserQnaForm.do", new AddQnaFormControl());
 //		commandByURL.put("/addUserQna.do", new AddQnaControl());//등록보류
 		
 		commandByURL.put("/modifyUserQnaForm.do", new ModifyUserQnaFormControl());//Qna수정
@@ -76,12 +76,12 @@ public class FrontController extends HttpServlet {
 		commandByURL.put("/noticeForm.do", new NoticeFormControl());
 		commandByURL.put("/getNotice.do", new GetNoticeControl());
 		commandByURL.put("/addNotice.do", new AddNoticeControl());
-		commandByURL.put("/removeNotice.do", new RemoveNoticeControl());
+//		commandByURL.put("/removeNotice.do", new RemoveNoticeControl());
 		
 		//관리자페이지
-		commandByURL.put("/adminPage.do", new AdminPageControl());
-		//회원목록
-		commandByURL.put("/memberList.do", new MemberListControl());
+//		commandByURL.put("/adminPage.do", new AdminPageControl());
+//		//회원목록
+//		commandByURL.put("/memberList.do", new MemberListControl());
 		//상품
 		commandByURL.put("/productList.do", new ProductListControl());
 		//상품추가

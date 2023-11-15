@@ -1,16 +1,15 @@
 package com.yedamMiddle.userQna.web;
 
 
-import java.util.List;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.yedamMiddle.common.Command;
-import com.yedamMiddle.userQna.service.UserQnaService;
-import com.yedamMiddle.userQna.service.UserQnaVO;
-import com.yedamMiddle.userQna.serviceImpl.UserQnaServiceImpl;
 
 public class AddQnaFormControl implements Command {
 
@@ -18,6 +17,12 @@ public class AddQnaFormControl implements Command {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		
 		
+		
+		//AddQnaControl에서 등록할때 시간으로 넣어주기
+//		LocalDateTime now = LocalDateTime.now();
+//		String fomatedNow = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm"));
+//		System.out.println(fomatedNow);
+
 		
 		HttpSession session = req.getSession();
 		//로그인되어있는지 확인
