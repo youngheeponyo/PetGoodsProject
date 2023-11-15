@@ -18,11 +18,12 @@ public class GetQnaListControl implements Command {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		String path ="userQna/userQnaDetail.tiles";
 		String qnaNo = req.getParameter("qnaNo");
-		
+		UserQnaVO userQnaVo = new UserQnaVO();
+		userQnaVo.setQnaNo(Integer.parseInt(qnaNo));
 		
 		//문의번호랑 패스워드 넣으면 해당 상세정보 열어줌
 		UserQnaService svc = new UserQnaServiceImpl();
-		UserQnaVO vo = svc.userQnaSelect(Integer.parseInt(qnaNo));
+		UserQnaVO vo = svc.userQnaSelect(userQnaVo);
 		req.setAttribute("vo", vo);
 		
 		//유저 전체 정보

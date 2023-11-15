@@ -11,7 +11,7 @@ import com.yedamMiddle.userQna.service.UserQnaVO;
 
 public interface UserQnaMapper {
 	public List<UserQnaVO> userQnaAllList();
-	public UserQnaVO userQnaSelect(int qnaNo);
+	public UserQnaVO userQnaSelect(UserQnaVO vo);
 	//글 번호로 작성유저 찾기
 	public UserVO qnaToSelectUser(UserQnaVO vo);
 	//관리자가 문의답변 추가(내용수정)

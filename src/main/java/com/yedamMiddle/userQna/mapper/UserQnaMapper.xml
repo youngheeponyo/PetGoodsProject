@@ -11,7 +11,7 @@
 	
 	<!-- 상세문의조회 -->
 	<select id="userQnaSelect" resultType="com.yedamMiddle.userQna.service.UserQnaVO"
-						parameterType="int">
+						parameterType="com.yedamMiddle.userQna.service.UserQnaVO">
 		SELECT * FROM USERQNA WHERE QNA_NO =#{qnaNo}
 	</select>
 	
@@ -28,7 +28,7 @@
 	<update id="userQnaUpdate" parameterType="com.yedamMiddle.userQna.service.UserQnaVO">
 		UPDATE USERQNA SET TITLE =#{title},
 						   CONTENTS =#{contents},
-						   REGIST_DATE =#{SYSDATE}
+						   REGIST_DATE = SYSDATE
 				WHERE QNA_NO =#{qnaNo}			   
 	</update>
 	

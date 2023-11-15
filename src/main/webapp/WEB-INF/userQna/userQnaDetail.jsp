@@ -30,6 +30,7 @@
 }
 </style>
 
+${userQnaVo} ${userVo } ${productVo }
 <section class="py-5">
 	<div class="container px-4 px-lg-5 mt-5">
 		<div class="container-fluid">
@@ -109,8 +110,19 @@
 						<td colspan="14" align="center" >
 						<c:choose>
 							<c:when test="${not empty uno && uno ==userVo.userNo }">
-								<input type="submit" value="수정">
-								<input type="button" value="삭제">
+								<c:choose>
+									<c:when test="${vo.qnaState==1 }">
+										<input disabled type="submit" value="수정">
+										<input type="button" value="삭제">
+									</c:when>
+									<c:otherwise>
+										<input type="submit" value="수정">
+										<input type="button" value="삭제">
+									</c:otherwise>
+								</c:choose>
+							
+							
+								
 							</c:when>
 							<c:otherwise>
 								<input disabled type="submit" value="수정">
