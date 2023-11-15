@@ -159,7 +159,7 @@
 	          pay_method: "card",
 	          merchant_uid: merchantUID,
 	          name: productName,
-	          amount: 10, // 나중에 변경
+	          amount: allPrice, 
 	          buyer_email: "TEST@gmail.com",
 	          buyer_name: "TEST",
 	          buyer_tel: "010-1111-1111",
@@ -204,11 +204,11 @@
 	            	  return resolve.json();
 	              })
 	              .then(result => {
-	            	  if(result.invalidPrice) {
+	            	  if(result.retCode == 'invalidPrice') {
 	            		  alert('실제 상품가격과 결제한 금액이 일치하지 않음.');
 	            		  window.location.href="main.do";
 	            	  }
-	            	  else if(result.serverError) {
+	            	  else if(result.retCode == 'serverError') {
 						  alert('서버 에러.');
 						  window.location.href="main.do";
 	            	  }
