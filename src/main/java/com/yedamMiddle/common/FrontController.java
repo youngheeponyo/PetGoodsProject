@@ -37,6 +37,7 @@ import com.yedamMiddle.product.web.ProductDetailControl;
 import com.yedamMiddle.product.web.ProductSearchControl;
 import com.yedamMiddle.userQna.web.AddQnaControl;
 import com.yedamMiddle.userQna.web.AddQnaFormControl;
+import com.yedamMiddle.userQna.web.DeleteUserQnaControl;
 import com.yedamMiddle.userQna.web.GetQnaAllListControl;
 import com.yedamMiddle.userQna.web.GetQnaListControl;
 import com.yedamMiddle.userQna.web.ModifyUserQnaControl;
@@ -59,12 +60,12 @@ public class FrontController extends HttpServlet {
 		commandByURL.put("/qnaReply.do", new QnaReplyControl());//Qna관리자 답글달기
 		
 		commandByURL.put("/addUserQnaForm.do", new AddQnaFormControl());
-//		commandByURL.put("/addUserQna.do", new AddQnaControl());//등록
+//		commandByURL.put("/addUserQna.do", new AddQnaControl());//등록보류
 		
 		commandByURL.put("/modifyUserQnaForm.do", new ModifyUserQnaFormControl());//Qna수정
 		commandByURL.put("/modifyUserQna.do", new ModifyUserQnaControl());//Qna수정
 		
-//		commandByURL.put("/deleteUserQna.do", new DeleteUserQnaControl());
+		commandByURL.put("/deleteUserQna.do", new DeleteUserQnaControl()); //Qna삭제
 //		commandByURL.put("/modifyAdminQna.do", new ModifyAdminQnaControl());
 		
 		
