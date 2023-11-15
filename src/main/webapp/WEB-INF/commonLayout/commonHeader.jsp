@@ -10,8 +10,17 @@
 <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light"> <!-- bg-light -->
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand mr-0" href="main.do">마이디어 독</a>
-                <img class ="mr-3" src="commonResource/image/mainIcon/dogIcon.png" alt="dog" style="width:40px;height:40px;">
+                
+                <c:choose>
+                	<c:when test="${curShowPetType eq '0'}">
+                		<a class="navbar-brand mr-0" href="main.do">마이디어 독</a>
+                		<img class ="mr-3" src="commonResource/image/mainIcon/dogIcon.png" alt="dog" style="width:40px;height:40px;">
+                	</c:when>
+                	<c:otherwise>
+                		<a class="navbar-brand mr-0" href="main.do">마이디어 캣</a>
+                		<img class ="mr-3" src="commonResource/image/mainIcon/catIcon.png" alt="cat" style="width:40px;height:40px;">
+                	</c:otherwise>
+                </c:choose>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
                 	<div class="input-group w-50">
@@ -22,7 +31,7 @@
 					</div>
 					
                     <form class="d-flex gap-3">
-                    	<button class="btn" type="submit" onclick="changePetType()">
+                    	<button class="btn" id="changeBtn">
                     	<c:choose>
                     		<c:when test="${curShowPetType == '0' }">
                             	<i class="fas fa-cat fa-2x"></i>
@@ -155,7 +164,10 @@
 		window.location.href = "categorySearch.do?categoryNo=" + id + "&type=" + petType + "&page=1";
 	}
 	
-	function changePetType() {
+	document.getElementById('changeBtn').addEventListener('click', changePetType)
+	
+	function changePetType(e) {
+		e.preventDefault();
 		let curPetType = ${curShowPetType};
 		if(curPetType == "0") {
 			curPetType = "1";	
