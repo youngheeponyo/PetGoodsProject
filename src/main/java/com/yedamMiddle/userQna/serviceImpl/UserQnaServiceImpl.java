@@ -64,6 +64,11 @@ public class UserQnaServiceImpl implements UserQnaService {
 		return mapper.replyUpdate(vo);
 	}
 
+	@Override
+	public int getMaxQnaNo() {
+		return mapper.getMaxQnaNo();
+	}
+
 
 
 

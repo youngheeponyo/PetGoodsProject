@@ -14,6 +14,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.siot.IamportRestClient.response.IamportResponse;
 import com.siot.IamportRestClient.response.Payment;
+import com.yedamMiddle.cart.service.MyCartService;
+import com.yedamMiddle.cart.serviceImpl.MyCartServiceImpl;
 import com.yedamMiddle.common.Command;
 import com.yedamMiddle.common.IamPort;
 import com.yedamMiddle.product.service.ProductOrderVO;
@@ -66,8 +68,7 @@ public class PaymentCompleteControl implements Command {
 			}
 		}
 		
-		System.out.println(realAllProductPrice);
-		
+		// 실제상품과 사용자가 결제한 금액을 비교
 		if(portPrice != realAllProductPrice) {
 			retJson.put("retCode", "invalidPrice");
 			try {
@@ -80,6 +81,7 @@ public class PaymentCompleteControl implements Command {
 			return;
 		}
 		
+		// 상품결제 리스트 DB에삽입
 		List<ProductOrderVO> orderVOList = new ArrayList<ProductOrderVO>();
 		for(int productNo : realProductNo) {
 			ProductOrderVO vo = new ProductOrderVO();
@@ -102,6 +104,10 @@ public class PaymentCompleteControl implements Command {
 			}
 			return;
 		}
+		
+		// 선택한 장바구니 상품들이 결제완료시 삭제. (만약 삭제가 안되더라도 일단넘어감.)
+		MyCartService svc2 = new MyCartServiceImpl();
+		svc2.delCartFromPayment(userNo, productNos); 
 		
 		retJson.put("retCode", "OK");
 		try {

@@ -2,6 +2,7 @@ package com.yedamMiddle.product.web;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Stream;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -41,18 +42,15 @@ public class PaymentFormControl implements Command {
 			}
 			return;
 		}
+		int[] selProductNo = Stream.of(selectProductNo).mapToInt(Integer::parseInt).toArray();
+		
 		LoginService lsvc = new LoginServiceImpl();
 		MyCartService svc = new MyCartServiceImpl();
 		
 		int userNo = (Integer)req.getSession().getAttribute("uno");
-		//req.getParameterValues("productNo"); 우선 상품리스트를 모두받아서 처리하고있음. 나중에 보내준 상품만 보여줘야함.
 		UserVO userVO = lsvc.getUserInfo(userNo);
 		
-		List<CartJoinVO> list = svc.getCart(userNo);
-		int allAmount = 0;
-		for(CartJoinVO vo : list) {
-			allAmount += vo.getSelCnt();
-		}
+		List<CartJoinVO> list = svc.getCartFromPayment(userNo,selProductNo);
 		if(list == null || list.size() <= 0) {
 			try {
 				resp.sendRedirect("main.do");
@@ -63,11 +61,17 @@ public class PaymentFormControl implements Command {
 			return;
 		}
 		
+		int allAmount = 0;
+		for(CartJoinVO vo : list) {
+			allAmount += vo.getSelCnt();
+		}
+		
 		int sumPrice = 0;
 		for(CartJoinVO vo : list) {
 			int totalPrice = vo.getProductPrice() * vo.getSelCnt(); 
 			sumPrice += totalPrice;
 		}
+		
 		req.setAttribute("cartList", list);
 		req.setAttribute("sumPrice", sumPrice);
 		req.setAttribute("userInfo", userVO);

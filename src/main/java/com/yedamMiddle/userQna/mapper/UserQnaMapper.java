@@ -28,4 +28,7 @@ public interface UserQnaMapper {
 	
 	//Qna등록 시 입력한 상품번호로 상품명 찾기
 	public ProductVO productNoToSelectProduct(UserQnaVO vo);
+	
+	//다음 qnaNO가져오기(시퀀스)
+	public int getMaxQnaNo();
 }

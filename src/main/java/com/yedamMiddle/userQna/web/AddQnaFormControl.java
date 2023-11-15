@@ -1,7 +1,9 @@
 package com.yedamMiddle.userQna.web;
 
 
-import java.util.List;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +20,15 @@ public class AddQnaFormControl implements Command {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		
 		
+		
+		//AddQnaControl에서 등록할때 시간으로 넣어주기
+//		LocalDateTime now = LocalDateTime.now();
+//		String fomatedNow = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm"));
+//		System.out.println(fomatedNow);
+
+		UserQnaService svc = new UserQnaServiceImpl();
+		int maxQnaNO = svc.getMaxQnaNo();
+		req.setAttribute("maxQnaNO", maxQnaNO);
 		
 		HttpSession session = req.getSession();
 		//로그인되어있는지 확인

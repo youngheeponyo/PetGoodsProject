@@ -35,4 +35,28 @@ public class MyCartServiceImpl implements MyCartService {
 	public boolean modCart(MyCartVO vo) {
 		return mapper.updateCart(vo) == 1;
 	}
+
+	@Override
+	public boolean delCartFromPayment(int uno, int[] productNos) {
+		// TODO Auto-generated method stub
+		return mapper.deleteCartFromPayment(uno, productNos) > 0;
+	}
+
+	@Override
+	public List<CartJoinVO> getCartFromPayment(int uno, int[] productNos) {
+		// TODO Auto-generated method stub
+		return mapper.getCartFromPayment(uno, productNos);
+	}
+
+	@Override
+	public boolean delCart(int[] productNos, int memberNo) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean modCart(int productNo, int memberNo) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
