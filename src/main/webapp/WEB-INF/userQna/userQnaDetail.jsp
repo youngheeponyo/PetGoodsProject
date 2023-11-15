@@ -33,8 +33,8 @@
 <section class="py-5">
 	<div class="container px-4 px-lg-5 mt-5">
 		<div class="container-fluid">
-			<form action="modifyForm.do" name="myFrm" style=text-align:center;>
-				<input type="hidden" name="bno" value="">
+			<form action="modifyUserQnaForm.do" name="userQnaDetailFrom" method="post" style=text-align:center;>
+				<input type="hidden" name="qnaNo" value="${vo.qnaNo }">
 				<h3>문의글 작성</h3>
 				<br><hr>
 				<table class="table" border="1">

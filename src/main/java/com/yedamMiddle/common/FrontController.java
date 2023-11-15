@@ -39,6 +39,8 @@ import com.yedamMiddle.userQna.web.AddQnaControl;
 import com.yedamMiddle.userQna.web.AddQnaFormControl;
 import com.yedamMiddle.userQna.web.GetQnaAllListControl;
 import com.yedamMiddle.userQna.web.GetQnaListControl;
+import com.yedamMiddle.userQna.web.ModifyUserQnaControl;
+import com.yedamMiddle.userQna.web.ModifyUserQnaFormControl;
 import com.yedamMiddle.userQna.web.QnaReplyControl;
 
 // 0 -> 개 type
@@ -56,9 +58,11 @@ public class FrontController extends HttpServlet {
 		commandByURL.put("/getUserQnaList.do", new GetQnaListControl()); //조회
 		commandByURL.put("/qnaReply.do", new QnaReplyControl());//관리자 답글달기
 		
-		commandByURL.put("/addUserQnaFrom.do", new AddQnaFormControl());
-		commandByURL.put("/addUserQna.do", new AddQnaControl());//등록	
-//		commandByURL.put("/modifyUserQna.do", new ModifyUserQnaControl());
+		commandByURL.put("/addUserQnaForm.do", new AddQnaFormControl());
+//		commandByURL.put("/addUserQna.do", new AddQnaControl());//등록	
+		commandByURL.put("/modifyUserQnaForm.do", new ModifyUserQnaFormControl());
+		commandByURL.put("/modifyUserQna.do", new ModifyUserQnaControl());
+		
 //		commandByURL.put("/deleteUserQna.do", new DeleteUserQnaControl());
 //		commandByURL.put("/modifyAdminQna.do", new ModifyAdminQnaControl());
 		// 김준성

@@ -25,11 +25,11 @@
 	
 	
 	<!-- 유저 문의글 수정 -->
-	<update id="userQnaUpdate" parameterType="int">
+	<update id="userQnaUpdate" parameterType="com.yedamMiddle.userQna.service.UserQnaVO">
 		UPDATE USERQNA SET TITLE =#{title},
 						   CONTENTS =#{contents},
 						   REGIST_DATE =#{SYSDATE}
-				WHERE QNA_NO =#{qnaNo}	AND PASSWORD= #{password}				   
+				WHERE QNA_NO =#{qnaNo}			   
 	</update>
 	
 	

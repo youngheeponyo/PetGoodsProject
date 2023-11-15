@@ -69,7 +69,7 @@ ${uno }
                     </table>
                     <div style= text-ailgn:right>
                     <hr>
-                     	 <p><a href="addUserQnaFrom.do">문의글 작성</a></p>
+                     	 <p><a href="addUserQnaForm.do">문의글 작성</a></p>
                     </div>
                 </div>
          </div>
