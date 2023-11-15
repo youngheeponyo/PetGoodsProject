@@ -142,13 +142,14 @@
 	   let productCnt = ${fn:length(cartList)};
 	   let productName = "";
 	   let productNoList = document.querySelectorAll('.prInfo');
-
+	   let productCntByNo = new Map();
 	   if(productCnt > 1) {
 		   productName = '${cartList[0].productName}' + '외 ' + (productCnt - 1) + '개'
 	   }
 	   else {
 		   productName = '${cartList[0].productName}';
 	   }
+	   
 	   let allPrice = ${sumPrice};
 	   
 	   // amount allPrice로 변경하자.
@@ -174,6 +175,20 @@
 	            	  dataArray.push({name : 'productNo', value: obj.value });
 	              })
 	              
+	              dataArray.forEach((obj) => {
+	            	  if(productCntByNo.has(obj)) {
+	            		let value = productCnt.get(obj.value);
+	            		value += 1;
+	            		
+	            		productCntByNo.delete(obj.value);
+	            		productCntByNo.set(obj.value, value);
+	            	  }
+	            	  else {
+	            		productCntByNo.set(obj.value, 1);
+	            	  }
+	              })
+	              
+	              console.log(productCntByNo);
 	              dataArray.push({name : 'impUid', value: response.imp_uid});
 	              dataArray.push({name : 'merUid', value: response.merchant_uid});
 	              dataArray.push({name : 'payAmount', value: response.paid_amount});
@@ -185,7 +200,9 @@
 	              dataArray.forEach(({ name, value }) => {
 	            	formData.append(name, value);
 	              });
-	              console.log(dataArray);
+	              
+	              
+	              
 	              // 서버에서 가격검증
 	              fetch('paymentComplete.do', {
 	            	  method: "POST",
@@ -198,7 +215,9 @@
 	            	  return resolve.json();
 	              })
 	              .then(result => {
-	            	  console.log(result);
+	            	  if(result.invalidPrice) {
+	            		  alert('실제 상품가격과 결제한 금액이 일치하지 않음.');
+	            	  }
 	              })
 	          } else {
 	              alert(response.error_msg);
