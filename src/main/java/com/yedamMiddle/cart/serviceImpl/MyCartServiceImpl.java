@@ -1,5 +1,7 @@
 package com.yedamMiddle.cart.serviceImpl;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.yedamMiddle.cart.mapper.MyCartMapper;
@@ -20,7 +22,7 @@ public class MyCartServiceImpl implements MyCartService {
 	}
 	
 	@Override
-	public CartJoinVO myCartList(int memberNo) {
-		return mapper.myCartList(memberNo);
+	public List<CartJoinVO> getCart(int memberNo) {
+		return  mapper.getCart(memberNo);
 	}
 }

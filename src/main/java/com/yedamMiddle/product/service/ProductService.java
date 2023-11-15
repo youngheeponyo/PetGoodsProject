@@ -21,6 +21,8 @@ public interface ProductService {
 	public ApiInfoVO getApiInfo(String apiName);
 	public boolean addPaymentInfo(List<ProductOrderVO> vo);
 	
+	public List<Integer> getProductPrice(int[] productNos);
+	
 	// 장바구니 테스트위해서 추가. 제거예정
 	public List<CartJoinVO> getCartList(int userNo);
 }

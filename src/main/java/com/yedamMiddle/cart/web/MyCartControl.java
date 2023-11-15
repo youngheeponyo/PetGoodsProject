@@ -1,8 +1,7 @@
 package com.yedamMiddle.cart.web;
 
-import java.io.Console;
+
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -19,18 +18,17 @@ public class MyCartControl implements Command {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		String uno = req.getParameter("uno");
-		
 		MyCartService svc = new MyCartServiceImpl();
-		CartJoinVO vo = svc.myCartList(Integer.parseInt(uno));
-		req.setAttribute("uno",vo);
+		List<CartJoinVO> list = svc.getCart(Integer.parseInt(uno));
+		
+		req.setAttribute("list", list);
+		
 		
 		try {
 			req.getRequestDispatcher("cart/myCart.tiles").forward(req, resp);
 		} catch (ServletException | IOException e) {
 			e.printStackTrace();
 		}
-		
-		
 		
 		
 	}

@@ -7,7 +7,7 @@
 		insert into my_cart values(seq_cart.nextval,#{memberNo},#{productNo},#{selectCnt})
 	</insert>
 	
-	<select id="myCartList" resultType="com.yedamMiddle.common.service.CartJoinVO" parameterType="int">
+	<select id="getCart" resultType="com.yedamMiddle.common.service.CartJoinVO" parameterType="int">
 		SELECT C.PRODUCT_NAME AS PRODUCT_NAME, C.PRODUCT_PRICE AS PRODUCT_PRICE, sum(A.SELECT_CNT) AS SEL_CNT
 		FROM MY_CART A
 		JOIN PRODUCT C ON A.PRODUCT_NO = C.PRODUCT_NO

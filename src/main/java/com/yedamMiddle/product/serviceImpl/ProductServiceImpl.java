@@ -85,5 +85,10 @@ public class ProductServiceImpl implements ProductService {
 		sql.commit();
 		return true;
 	}
+	@Override
+	public List<Integer> getProductPrice(int[] productNos) {
+		// TODO Auto-generated method stub
+		return mapper.selectProductPrice(productNos);
+	}
 	
 }
