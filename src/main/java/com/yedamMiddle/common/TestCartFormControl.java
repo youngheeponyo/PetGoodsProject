@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.yedamMiddle.cart.service.MyCartService;
+import com.yedamMiddle.cart.serviceImpl.MyCartServiceImpl;
 import com.yedamMiddle.common.service.CartJoinVO;
-import com.yedamMiddle.product.service.ProductService;
-import com.yedamMiddle.product.serviceImpl.ProductServiceImpl;
 
 public class TestCartFormControl implements Command {
 
@@ -28,10 +28,10 @@ public class TestCartFormControl implements Command {
 			return;
 		}
 		
-		ProductService svc = new ProductServiceImpl();
+		MyCartService svc = new MyCartServiceImpl();
 		int userNo = (Integer)req.getSession().getAttribute("uno");
 		
-		List<CartJoinVO> list = svc.getCartList(userNo);
+		List<CartJoinVO> list = svc.getCart(userNo);
 		req.setAttribute("cartList", list);
 		
 		String path = "payment/testCartForm.tiles";

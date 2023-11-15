@@ -3,6 +3,12 @@ package com.yedamMiddle.product.service;
 import java.util.Date;
 
 public class ProductOrderVO {
+	@Override
+	public String toString() {
+		return "ProductOrderVO [productOrderNo=" + productOrderNo + ", productNo=" + productNo + ", userNo=" + userNo
+				+ ", couponNo=" + couponNo + ", orderDate=" + orderDate + ", impUid=" + impUid + ", merUid=" + merUid
+				+ "]";
+	}
 	private int productOrderNo;
 	private int productNo;
 	private int userNo;

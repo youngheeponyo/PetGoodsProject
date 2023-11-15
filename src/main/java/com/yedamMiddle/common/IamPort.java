@@ -1,9 +1,7 @@
 package com.yedamMiddle.common;
 
-import java.io.IOException;
-
 import com.siot.IamportRestClient.IamportClient;
-import com.siot.IamportRestClient.exception.IamportResponseException;
+import com.siot.IamportRestClient.request.CancelData;
 import com.siot.IamportRestClient.response.IamportResponse;
 import com.siot.IamportRestClient.response.Payment;
 import com.yedamMiddle.product.service.ProductService;
@@ -37,6 +35,21 @@ public class IamPort {
 			e.printStackTrace();
 		}
 		return ret;
+	}
+	
+	public static void paymentCancle(String impUid) {
+		if(api == null) {
+			init();
+		}
+
+        CancelData cancelData = new CancelData(impUid, true); //imp_uid를 통한 전액취소
+        try {
+            IamportResponse<Payment> payment_response = api.cancelPaymentByImpUid(cancelData);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+		
+        return;
 	}
 	
 	
