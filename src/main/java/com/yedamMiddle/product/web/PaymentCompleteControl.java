@@ -14,6 +14,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.siot.IamportRestClient.response.IamportResponse;
 import com.siot.IamportRestClient.response.Payment;
+import com.yedamMiddle.cart.service.MyCartService;
+import com.yedamMiddle.cart.serviceImpl.MyCartServiceImpl;
 import com.yedamMiddle.common.Command;
 import com.yedamMiddle.common.IamPort;
 import com.yedamMiddle.product.service.ProductOrderVO;
@@ -102,6 +104,9 @@ public class PaymentCompleteControl implements Command {
 			}
 			return;
 		}
+		
+		MyCartService svc2 = new MyCartServiceImpl();
+		svc2.delCartFromPayment(userNo, productNos); // 선택한 장바구니 상품들이 결제완료시 삭제. (만약 삭제가 안되더라도 일단넘어감.)
 		
 		retJson.put("retCode", "OK");
 		try {
