@@ -72,23 +72,23 @@ public class FrontController extends HttpServlet {
 		
 		// 김준성
 		//공지사항 게시판
-		commandByURL.put("/noticeList.do", new NoticeListControl());
-		commandByURL.put("/noticeForm.do", new NoticeFormControl());
-		commandByURL.put("/getNotice.do", new GetNoticeControl());
-		commandByURL.put("/addNotice.do", new AddNoticeControl());
-		commandByURL.put("/removeNotice.do", new RemoveNoticeControl());
+		commandByURL.put("/noticeList.do", new NoticeListControl()); //공지사항 리스트
+		commandByURL.put("/getNotice.do", new GetNoticeControl()); //선택된 공지사항보기 
+		commandByURL.put("/noticeForm.do", new NoticeFormControl()); //새 공지사항 작성
+		commandByURL.put("/addNotice.do", new AddNoticeControl()); //공지사항 등록
+		commandByURL.put("/removeNotice.do", new RemoveNoticeControl()); //공지사항 삭제
 		
 		//관리자페이지
-		commandByURL.put("/adminPage.do", new AdminPageControl());
+		commandByURL.put("/adminPage.do", new AdminPageControl()); //관리자메인페이지
 		//회원목록
-		commandByURL.put("/memberList.do", new MemberListControl());
+		commandByURL.put("/memberList.do", new MemberListControl()); //회원목록
 		//상품
-		commandByURL.put("/productList.do", new ProductListControl());
+		commandByURL.put("/productList.do", new ProductListControl()); //상품목록
 		//상품추가
-		commandByURL.put("/productForm.do", new ProductFormControl());
-		commandByURL.put("/addProduct.do", new AddProductControl());
+		commandByURL.put("/productForm.do", new ProductFormControl()); //새 상품 작성
+		commandByURL.put("/addProduct.do", new AddProductControl()); //상품등록 
 		//상품선택
-		commandByURL.put("/getProduct.do", new GetProductControl());
+		commandByURL.put("/getProduct.do", new GetProductControl()); //상품조회
 		
 		
 		// 서영희
