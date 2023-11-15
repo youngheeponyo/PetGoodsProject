@@ -17,13 +17,24 @@ public class QnaReplyControl implements Command {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		String path="getUserQnaList.do";
 		String qnaNo= req.getParameter("qnaNo");
-		String reply= req.getParameter("reply");
+		String reply= req.getParameter("reply");//기존답변 있을수도 없을수도 있음
+//		String updateReply= req.getParameter("updateReply");//새로 바꾼 답변
 		System.out.println("qnaNo = "+qnaNo+"   reply = "+ reply);
+		
+		
+		
 		
 		UserQnaService svc = new UserQnaServiceImpl();
 		UserQnaVO vo = new UserQnaVO();
 		vo.setQnaNo(Integer.parseInt(qnaNo));
-		vo.setQnaReply(reply);
+		
+//		if(updateReply =="") {
+//			vo.setQnaReply(reply);
+//		}else {
+//			vo.setQnaReply(updateReply);
+//			req.getRequestDispatcher("getUserQnaAllList.do").forward(req, resp);
+//		}
+		
 		int check = svc.replyUpdate(vo);
 		if(check==0 ) {
 			System.out.println("실패");
