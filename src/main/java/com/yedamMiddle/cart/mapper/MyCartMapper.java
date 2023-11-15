@@ -10,5 +10,6 @@ import com.yedamMiddle.common.service.CartJoinVO;
 public interface MyCartMapper {
 	public List<CartJoinVO> getCart(int memberNo);
 	public int insert(MyCartVO vo);
-	
+	public int deleteCart(int[] productNos,int memberNo);
+	public int updateCart(int productNo,int memberNo);
 }

@@ -15,6 +15,11 @@
 		group by C.product_name, C.product_price, A.product_no
 	</select>
 	
+
+	<delete id="deleteCart" parameterType="int">
+		delete from my_cart where product_no=#{productNo} and member_no=#{memberNo}
+	</delete>
+
 	<select id="getCartFromPayment" resultType="com.yedamMiddle.common.service.CartJoinVO" parameterType="int">
 		SELECT A.CART_NO AS CART_NO, A.MEMBER_NO AS MEMBER_NO, B.PRODUCT_PRICE AS PRODUCT_PRICE
     FROM MY_CART A
@@ -25,4 +30,10 @@
 	</foreach>
 	</select>
 	
+	<update id="updateCart" parameterType="int">
+		update my_cart set select_cnt=#{selectCnt} where member_no=#{memberNo} and product_no= in
+		<foreach collection="array" item="arr" open="(" close=")" separator=",">
+ 			#{arr}
+		</foreach>
+	</update>
 	</mapper>
