@@ -64,5 +64,10 @@
 	
 	</update>
 	
+	<!-- 다음 qnaNO가져오기(시퀀스) -->
+	<select id="getMaxQnaNo" resultType="int">
+		SELECT MAX(QNA_NO) +1 FROM USERQNA
+	</select>
+	
 	
 </mapper>

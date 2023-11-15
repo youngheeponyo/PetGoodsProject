@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.yedamMiddle.common.Command;
+import com.yedamMiddle.userQna.service.UserQnaService;
+import com.yedamMiddle.userQna.service.UserQnaVO;
+import com.yedamMiddle.userQna.serviceImpl.UserQnaServiceImpl;
 
 public class AddQnaFormControl implements Command {
 
@@ -23,6 +26,9 @@ public class AddQnaFormControl implements Command {
 //		String fomatedNow = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm"));
 //		System.out.println(fomatedNow);
 
+		UserQnaService svc = new UserQnaServiceImpl();
+		int maxQnaNO = svc.getMaxQnaNo();
+		req.setAttribute("maxQnaNO", maxQnaNO);
 		
 		HttpSession session = req.getSession();
 		//로그인되어있는지 확인
