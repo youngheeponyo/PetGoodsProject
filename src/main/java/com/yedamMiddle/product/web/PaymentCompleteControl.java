@@ -40,6 +40,7 @@ public class PaymentCompleteControl implements Command {
 		String imp = req.getParameter("impUid");
 		String merUid = req.getParameter("merUid");
 		String[] proNos = req.getParameterValues("productNo");
+		String[] proSel = req.getParameterValues("productSelCnt");
 		String payAmount = req.getParameter("payAmount"); // 클라이언트가 보낸 결제금액
 		
 		int[] productNos = Arrays.stream(proNos).mapToInt(Integer::parseInt).toArray();
@@ -55,14 +56,22 @@ public class PaymentCompleteControl implements Command {
 		
 		int realAllProductPrice = 0;
 		List<Integer> priceResult = svc.getProductPrice(productNos);
-		for(int price : priceResult) {
-			realAllProductPrice += price;
+		List<Integer> realProductNo = new ArrayList<>();
+		for(int i = 0; i < priceResult.size(); ++i) {
+			int count = Integer.parseInt(proSel[i]);
+			realAllProductPrice += (priceResult.get(i) * count);
+			for(int j = 0; j < count; ++j) {
+				realProductNo.add(Integer.parseInt(proNos[i]));
+			}
 		}
+		
+		System.out.println(realAllProductPrice);
 		
 		if(portPrice != realAllProductPrice) {
 			retJson.put("retCode", "invalidPrice");
 			try {
 				resp.getWriter().print(gson.toJson(retJson));
+				IamPort.paymentCancle(imp);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -70,24 +79,30 @@ public class PaymentCompleteControl implements Command {
 			return;
 		}
 		
-		
-		
 		List<ProductOrderVO> orderVOList = new ArrayList<ProductOrderVO>();
-		for(String productNo : proNos) {
+		for(int productNo : realProductNo) {
 			ProductOrderVO vo = new ProductOrderVO();
-			int pNo = Integer.parseInt(productNo);
-			vo.setProductNo(pNo);
+			vo.setProductNo(productNo);
 			vo.setUserNo(userNo);
 			vo.setImpUid(imp);
 			vo.setMerUid(Long.parseLong(merUid));
 			
 			orderVOList.add(vo);
 		}
-		
 
-		svc.addPaymentInfo(orderVOList);
-		retJson.put("retCode", "OK");
+		if(!svc.addPaymentInfo(orderVOList)) {
+			retJson.put("retCode", "serverError");
+			try {
+				resp.getWriter().print(gson.toJson(retJson));
+				IamPort.paymentCancle(imp);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return;
+		}
 		
+		retJson.put("retCode", "OK");
 		try {
 			resp.getWriter().print(gson.toJson(retJson));
 		} catch (IOException e) {

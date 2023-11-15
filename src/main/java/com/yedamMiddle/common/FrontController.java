@@ -31,6 +31,7 @@ import com.yedamMiddle.notice.web.NoticeFormControl;
 import com.yedamMiddle.notice.web.NoticeListControl;
 import com.yedamMiddle.notice.web.removeNoticeControl;
 import com.yedamMiddle.product.web.CategorySearchControl;
+import com.yedamMiddle.product.web.PayCompleteFormControl;
 import com.yedamMiddle.product.web.PaymentCompleteControl;
 import com.yedamMiddle.product.web.PaymentFormControl;
 import com.yedamMiddle.product.web.ProductDetailControl;
@@ -112,8 +113,9 @@ public class FrontController extends HttpServlet {
 		
 		commandByURL.put("/changePetType.do", new ChangePetControl()); // 고양이/강아지 상품 전환
 		commandByURL.put("/testCartForm.do", new TestCartFormControl()); // 결제창 구현을 위한 테스트화면
-		commandByURL.put("/paymentForm.do", new PaymentFormControl());
-		commandByURL.put("/paymentComplete.do", new PaymentCompleteControl());
+		commandByURL.put("/paymentForm.do", new PaymentFormControl()); // 결제화면 요청
+		commandByURL.put("/paymentComplete.do", new PaymentCompleteControl()); // 결제완료처리(검증 및 결제데이터 삽입)
+		commandByURL.put("/payCompleteForm.do", new PayCompleteFormControl()); // 결제완료화면 요청
 	}
 	
 	//끼양
