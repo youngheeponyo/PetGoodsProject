@@ -16,6 +16,9 @@ public class AddQnaFormControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
+		
+		
+		
 		HttpSession session = req.getSession();
 		//로그인되어있는지 확인
 		if(session.getAttribute("uno") == null) {
@@ -32,6 +35,10 @@ public class AddQnaFormControl implements Command {
 				e.printStackTrace();
 			}
 		}
+		
+		
+		
+		
 	}
 
 }

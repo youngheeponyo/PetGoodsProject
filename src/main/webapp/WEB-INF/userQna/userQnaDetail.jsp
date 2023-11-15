@@ -36,7 +36,7 @@ ${userQnaVo} ${userVo } ${productVo }
 		<div class="container-fluid">
 			<form action="modifyUserQnaForm.do" name="userQnaDetailForm" method="post" style=text-align:center;>
 				<input type="hidden" name="qnaNo" value="${vo.qnaNo }">
-				<h3>문의글 작성</h3>
+				<h3>문의글</h3>
 				<br><hr>
 				<table class="table" border="1">
 					<tr>
@@ -144,41 +144,70 @@ ${userQnaVo} ${userVo } ${productVo }
 				<br><hr>
 				<table class="table">
 				
-				
-				<c:choose>
-					<c:when test="${permission =='0'}"> <!-- 관리자일때 -->
 						<c:choose>
-							<c:when test="${vo.qnaState ==1 }"> <!-- 답글이 있음 -->
+							<c:when test="${vo.qnaState ==1 }">
 								<tr>
-									<td><textarea rows="10" cols="40" class="form-control" name="updateReply"></textarea></td>
-								</tr>
-								<tr>
-									<td><input type="submit" name="modify" value="수정하기"></td>
+									<td><textarea rows="10" cols="40" class="form-control" disabled>${vo.qnaReply }</textarea></td>
 								</tr>
 							</c:when>
 							
-							<c:otherwise><!-- 답글이 없음 -->
-								<tr>
-									<td><textarea rows="10" cols="40" class="form-control" name="updateReply"></textarea></td>
-								</tr>
-								<tr>
-									<td><input type="submit" value="등록하기"></td>
-								</tr>
+							
+							<c:otherwise>
+								<c:choose>
+								
+									<c:when test="${permission =='0'}"> <!-- 관리자일때 -->
+									<tr>
+										<td><textarea rows="10" cols="40" class="form-control" name="reply"></textarea></td>
+									</tr>
+									<tr>
+										<td><input type="submit" value="등록하기"></td>
+									</tr>
+									</c:when>
+									
+									<c:otherwise>
+										<td><textarea rows="" cols="40" class="form-control" disabled>*아직 답변이 달리지 않았습니다.*</textarea></td>
+									</c:otherwise>
+									
+								</c:choose>
 							</c:otherwise>
 						</c:choose>
-					</c:when>
-					
-					<c:otherwise> <!-- 유저일때 -->
-						<c:when test="${vo.qnaState ==1 }"><!-- 답글이 있음 -->
-								<td><textarea rows="10" cols="40" class="form-control" name="reply" disabled>${vo.qnaReply }</textarea></td>
-							</c:when>
+						
+			<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+<%-- 				<c:choose> --%>
+<%-- 					<c:when test="${permission =='0'}"> <!-- 관리자일때 --> --%>
+<%-- 						<c:choose> --%>
+<%-- 							<c:when test="${vo.qnaState ==1 }"> <!-- 답글이 있음 --> --%>
+<!-- 								<tr> -->
+<%-- 									<td><textarea rows="10" cols="40" class="form-control" name="reply">${vo.qnaReply }</textarea></td> --%>
+<!-- 								</tr> -->
+<!-- 								<tr> -->
+<!-- 									<td><input type="submit" name="modify" value="수정하기"></td> -->
+<!-- 								</tr> -->
+<%-- 							</c:when> --%>
 							
-							<c:otherwise><!-- 답글이 없음 -->
-								<td><textarea rows="" cols="40" class="form-control" disabled>*아직 답변이 달리지 않았습니다.*</textarea></td>
-							</c:otherwise>
-					</c:otherwise>
-				</c:choose>
-								
+<%-- 							<c:otherwise><!-- 답글이 없음 --> --%>
+<!-- 								<tr> -->
+<!-- 									<td><textarea rows="10" cols="40" class="form-control" name="reply"></textarea></td> -->
+<!-- 								</tr> -->
+<!-- 								<tr> -->
+<!-- 									<td><input type="submit" value="등록하기"></td> -->
+<!-- 								</tr> -->
+<%-- 							</c:otherwise> --%>
+<%-- 						</c:choose> --%>
+<%-- 					</c:when> --%>
+					
+<%-- 					<c:otherwise> <!-- 유저일때 --> --%>
+<%-- 						<c:when test="${vo.qnaState ==1 }"><!-- 답글이 있음 --> --%>
+<%-- 								<td><textarea rows="10" cols="40" class="form-control" name="reply" disabled>${vo.qnaReply }</textarea></td> --%>
+<%-- 							</c:when> --%>
+							
+<%-- 							<c:otherwise><!-- 답글이 없음 --> --%>
+<!-- 								<td><textarea rows="" cols="40" class="form-control" disabled>*아직 답변이 달리지 않았습니다.*</textarea></td> -->
+<%-- 							</c:otherwise> --%>
+<%-- 					</c:otherwise> --%>
+<%-- 				</c:choose> --%>
+			
+			
 				</table>
 				<p>
 					<a href="getUserQnaAllList.do">목록으로</a>
@@ -189,9 +218,6 @@ ${userQnaVo} ${userVo } ${productVo }
 		</div>
 	</div>
 </section>
-	
-				<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
-
 
 <script>//삭제버튼 이벤트
 	document.querySelector("input[type=button]").addEventListener('click', function(e){
@@ -204,10 +230,11 @@ ${userQnaVo} ${userVo } ${productVo }
 		
 	})
 	
+	
 	//수정버튼 이벤트(목록으로 돌아감)
-	document.querySelector("input[name=modify]").addEventListener('click', function(e){
-		alert("수정이 완료 되었습니다")
-	})
+// 	document.querySelector("input[name=modify]").addEventListener('click', function(e){
+// 		alert("수정이 완료 되었습니다")
+// 	})
 
 </script>
 

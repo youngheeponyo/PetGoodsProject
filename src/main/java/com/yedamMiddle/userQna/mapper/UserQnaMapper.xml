@@ -19,7 +19,7 @@
 	<!-- 유저 문의글 등록 -->
 	<insert id="userQnaInsert" parameterType="com.yedamMiddle.userQna.service.UserQnaVO"> 
 		INSERT INTO USERQNA VALUES(SEQ_USERQNA.NEXTVAL,#{userNo}
-		#{productOrderNo}, #{productNo}, #{title}, #{contents}, #{SYSDATE},
+		#{productOrderNo}, #{productNo}, #{title}, #{contents}, SYSDATE,
 		#{password}, #{qnaReply}, #{qnaState})
 	</insert>
 	
