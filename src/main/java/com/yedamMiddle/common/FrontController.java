@@ -14,10 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedamMiddle.admin.web.AddProductControl;
 import com.yedamMiddle.admin.web.ProductFormControl;
 import com.yedamMiddle.admin.web.ProductListControl;
-import com.yedamMiddle.admin.web.adminPageControl;
-import com.yedamMiddle.admin.web.memberListControl;
+import com.yedamMiddle.admin.web.AdminPageControl;
+import com.yedamMiddle.admin.web.GetProductControl;
+import com.yedamMiddle.admin.web.MemberListControl;
 import com.yedamMiddle.cart.web.AddCartControl;
 import com.yedamMiddle.cart.web.MyCartControl;
+import com.yedamMiddle.cart.web.deleteCartControl;
+import com.yedamMiddle.cart.web.updateCartControl;
 import com.yedamMiddle.login.web.AddUserControl;
 import com.yedamMiddle.login.web.AddUserFormControl;
 import com.yedamMiddle.login.web.DelUserControl;
@@ -29,8 +32,9 @@ import com.yedamMiddle.notice.web.AddNoticeControl;
 import com.yedamMiddle.notice.web.GetNoticeControl;
 import com.yedamMiddle.notice.web.NoticeFormControl;
 import com.yedamMiddle.notice.web.NoticeListControl;
-import com.yedamMiddle.notice.web.removeNoticeControl;
+import com.yedamMiddle.notice.web.RemoveNoticeControl;
 import com.yedamMiddle.product.web.CategorySearchControl;
+import com.yedamMiddle.product.web.PayCompleteFormControl;
 import com.yedamMiddle.product.web.PaymentCompleteControl;
 import com.yedamMiddle.product.web.PaymentFormControl;
 import com.yedamMiddle.product.web.ProductDetailControl;
@@ -72,17 +76,19 @@ public class FrontController extends HttpServlet {
 		commandByURL.put("/noticeForm.do", new NoticeFormControl());
 		commandByURL.put("/getNotice.do", new GetNoticeControl());
 		commandByURL.put("/addNotice.do", new AddNoticeControl());
-		commandByURL.put("/removeNotice.do", new removeNoticeControl());
+		commandByURL.put("/removeNotice.do", new RemoveNoticeControl());
 		
 		//관리자페이지
-		commandByURL.put("/adminPage.do", new adminPageControl());
+		commandByURL.put("/adminPage.do", new AdminPageControl());
 		//회원목록
-		commandByURL.put("/memberList.do", new memberListControl());
+		commandByURL.put("/memberList.do", new MemberListControl());
 		//상품
 		commandByURL.put("/productList.do", new ProductListControl());
+		//상품추가
 		commandByURL.put("/productForm.do", new ProductFormControl());
-		//상품추가 작업중!
 		commandByURL.put("/addProduct.do", new AddProductControl());
+		//상품선택
+		commandByURL.put("/getProduct.do", new GetProductControl());
 		
 		
 		// 서영희
@@ -103,6 +109,9 @@ public class FrontController extends HttpServlet {
 		commandByURL.put("/addCart.do", new AddCartControl());
 		//장바구니
 		commandByURL.put("/myCart.do", new MyCartControl());
+		//장바구니 삭제.업데이트
+		commandByURL.put("/updateCart.do", new updateCartControl());
+		commandByURL.put("/deleteCart.do", new deleteCartControl());
 		
 		// 전민교
 		commandByURL.put("/main.do", new MainPageControl()); // 메인페이지
@@ -113,8 +122,9 @@ public class FrontController extends HttpServlet {
 		
 		commandByURL.put("/changePetType.do", new ChangePetControl()); // 고양이/강아지 상품 전환
 		commandByURL.put("/testCartForm.do", new TestCartFormControl()); // 결제창 구현을 위한 테스트화면
-		commandByURL.put("/paymentForm.do", new PaymentFormControl());
-		commandByURL.put("/paymentComplete.do", new PaymentCompleteControl());
+		commandByURL.put("/paymentForm.do", new PaymentFormControl()); // 결제화면 요청
+		commandByURL.put("/paymentComplete.do", new PaymentCompleteControl()); // 결제완료처리(검증 및 결제데이터 삽입)
+		commandByURL.put("/payCompleteForm.do", new PayCompleteFormControl()); // 결제완료화면 요청
 	}
 	
 	//끼양

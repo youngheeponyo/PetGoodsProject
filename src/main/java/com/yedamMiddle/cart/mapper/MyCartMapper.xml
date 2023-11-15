@@ -8,11 +8,32 @@
 	</insert>
 	
 	<select id="getCart" resultType="com.yedamMiddle.common.service.CartJoinVO" parameterType="int">
-		SELECT C.PRODUCT_NAME AS PRODUCT_NAME, C.PRODUCT_PRICE AS PRODUCT_PRICE, sum(A.SELECT_CNT) AS SEL_CNT
+		SELECT C.PRODUCT_NAME AS PRODUCT_NAME, C.PRODUCT_PRICE AS PRODUCT_PRICE, sum(A.SELECT_CNT) AS SEL_CNT, A.PRODUCT_NO AS PRODUCT_NO
 		FROM MY_CART A
 		JOIN PRODUCT C ON A.PRODUCT_NO = C.PRODUCT_NO
 		WHERE A.MEMBER_NO = #{memberNo}
-		group by product_name,product_price
+		group by C.product_name, C.product_price, A.product_no
 	</select>
 	
+
+	<delete id="deleteCart" parameterType="int">
+		delete from my_cart where product_no=#{productNo} and member_no=#{memberNo}
+	</delete>
+
+	<select id="getCartFromPayment" resultType="com.yedamMiddle.common.service.CartJoinVO" parameterType="int">
+		SELECT A.CART_NO AS CART_NO, A.MEMBER_NO AS MEMBER_NO, B.PRODUCT_PRICE AS PRODUCT_PRICE
+    FROM MY_CART A
+    JOIN PRODUCT B ON A.PRODUCT_NO = B.PRODUCT_NO
+    WHERE A.MEMBER_NO = 0 AND B.PRODUCT_NO IN
+    <foreach collection="array" item="arr" open="(" close=")" separator=",">
+ 		#{arr}
+	</foreach>
+	</select>
+	
+	<update id="updateCart" parameterType="int">
+		update my_cart set select_cnt=#{selectCnt} where member_no=#{memberNo} and product_no= in
+		<foreach collection="array" item="arr" open="(" close=")" separator=",">
+ 			#{arr}
+		</foreach>
+	</update>
 	</mapper>

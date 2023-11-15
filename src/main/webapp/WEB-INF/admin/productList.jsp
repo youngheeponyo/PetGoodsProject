@@ -89,7 +89,7 @@
 									<td>${prod.productNo }</td>
 									<td>${prod.petType }</td>
 									<td>${prod.categoryNo }</td>
-									<td>${prod.productName }</td>
+									<td><a href="getProduct.do?prno=${prod.productNo }">${prod.productName }</a></td>
 									<td>${prod.productStock }</td>
 								</tr>
 							</c:forEach>

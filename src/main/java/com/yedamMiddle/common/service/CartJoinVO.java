@@ -7,6 +7,7 @@ public class CartJoinVO {
 	private int productPrice;
 	private int selCnt;
 	private int productNo;
+	
 	public int getProductNo() {
 		return productNo;
 	}

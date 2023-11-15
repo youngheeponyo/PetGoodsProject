@@ -83,5 +83,16 @@
  			#{arr}
 		</foreach>
     </select>
+    
+    <select id="selectProductOrder" resultType="com.yedamMiddle.product.service.ProductOrderVO"> 
+      SELECT *
+    	FROM PRODUCT_ORDER
+    	WHERE PRODUCT_NO IN 
+    	<foreach collection="productNos" item="arr" open="(" close=")" separator=",">
+ 			#{arr}
+		</foreach>
+		AND MER_UID = #{merUid}
+		AND USER_NO = #{uNo}
+    </select>
 
 </mapper>

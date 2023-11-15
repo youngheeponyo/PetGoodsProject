@@ -25,9 +25,15 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
+	public ProductVO getProduct(int ProductNo) {
+		return mapper.select(ProductNo);
+	}
+
+	@Override
 	public boolean addProduct(ProductVO vo) {
 		return mapper.insert(vo) == 1;
 	}
+
 	
 	
 }
