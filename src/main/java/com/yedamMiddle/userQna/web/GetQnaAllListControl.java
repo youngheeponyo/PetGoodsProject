@@ -20,7 +20,7 @@ public class GetQnaAllListControl implements Command {
 		UserQnaService svc = new UserQnaServiceImpl();
 		List<UserQnaVO> list = svc.userQnaAllList();
 		req.setAttribute("list", list);
-		System.out.println(list);
+//		System.out.println(list);
 		
 				
 		try {

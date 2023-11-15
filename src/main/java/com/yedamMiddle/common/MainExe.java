@@ -1,22 +1,11 @@
 package com.yedamMiddle.common;
 
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
-import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.yedamMiddle.admin.mapper.AdminMapper;
-import com.yedamMiddle.admin.service.AdminService;
-import com.yedamMiddle.admin.serviceImpl.AdminServiceImpl;
-import com.yedamMiddle.common.service.CategoryJoinVO;
-import com.yedamMiddle.common.service.UserVO;
-import com.yedamMiddle.notice.mapper.NoticeMapper;
-import com.yedamMiddle.product.service.ProductService;
-import com.yedamMiddle.product.service.ProductVO;
-import com.yedamMiddle.product.serviceImpl.ProductServiceImpl;
+import com.yedamMiddle.product.mapper.ProductMapper;
+import com.yedamMiddle.product.service.ProductOrderVO;
 
 public class MainExe {
 
@@ -26,32 +15,20 @@ public class MainExe {
 //		
 //		NoticeMapper nomapper = sql.getMapper(NoticeMapper.class);
 //		
-//		List<UserVO> ulist = mapper.userList();
-////		List<NoticeVO> list = nomapper.list();
-//		List<ProductVO> list = mapper.prodList();
-//		list.forEach(vo -> System.out.println(vo));
-//		System.out.println("=====================");
-//		ulist.forEach(vo -> System.out.println(vo));
-		ProductService svc = new ProductServiceImpl();
-		ProductVO vo = new ProductVO();
-		AdminService asvc = new AdminServiceImpl();
-		List<CategoryJoinVO> result = svc.getCategoryList();
-		Map<Integer, List<CategoryJoinVO>> categoryMap = result.stream().collect(Collectors.groupingBy(CategoryJoinVO::getMainCateNo));
+		SqlSession sql = Mybatis.getInstance().openSession(true);
+		ProductMapper m = sql.getMapper(ProductMapper.class);
 		
-//		System.out.println(categoryMap);
-//		System.out.println(categoryMap.values());
-		vo.setPetType("0");
-		vo.setCategoryNo(0);
-		vo.setProductName("로얄캐닌 말티즈 어덜트 3kg 피모관리");
-		vo.setProductPrice(50500);
-		vo.setProductStock(5);
-		vo.setProductDesc("=");
-		vo.setProductImage("메인");
-		if(asvc.addProduct(vo)) {
-			System.out.println("성공");
-		}else {
-			System.out.println("실패");
-		}
+		int[] pr = new int[4];
+		pr[0] = 14;
+		pr[1] = 15;
+		pr[2] = 16;
+		pr[3] = 17;
+		
+		int userNo = 0;
+		long merUid = 17000295505990L;
+		List<ProductOrderVO> vo = m.selectProductOrder(pr,merUid, userNo);
+		
+		System.out.println(vo);
 		
 		
 		

@@ -59,11 +59,6 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<CartJoinVO> getCartList(int userNo) {
-		// TODO Auto-generated method stub
-		return mapper.selectCartList(userNo);
-	}
-	@Override
 	public ApiInfoVO getApiInfo(String apiName) {
 		// TODO Auto-generated method stub
 		return mapper.selectApiInfo(apiName);
@@ -85,5 +80,14 @@ public class ProductServiceImpl implements ProductService {
 		sql.commit();
 		return true;
 	}
-	
+	@Override
+	public List<Integer> getProductPrice(int[] productNos) {
+		// TODO Auto-generated method stub
+		return mapper.selectProductPrice(productNos);
+	}
+	@Override
+	public List<ProductOrderVO> getProductOrder(int[] productNos, long merUid, int userNo) {
+		// TODO Auto-generated method stub
+		return mapper.selectProductOrder(productNos, merUid, userNo);
+	}
 }

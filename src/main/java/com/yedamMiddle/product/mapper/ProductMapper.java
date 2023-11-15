@@ -24,7 +24,7 @@ public interface ProductMapper {
 	
 	public ApiInfoVO selectApiInfo(String apiName);
 	public int insertProductOrder(ProductOrderVO vo);
+	public List<Integer> selectProductPrice(int[] productNos);
 	
-	// 테스트위해서 여기에 추가 제거예정.
-	public List<CartJoinVO> selectCartList(int userNo);
+	public List<ProductOrderVO> selectProductOrder(@Param("productNos") int[] productNos, @Param("merUid") long merUid, @Param("uNo") int userNo);
 }

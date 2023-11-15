@@ -2,6 +2,8 @@ package com.yedamMiddle.product.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.yedamMiddle.common.ApiInfoVO;
 import com.yedamMiddle.common.service.CartJoinVO;
 import com.yedamMiddle.common.service.CategoryJoinVO;
@@ -21,6 +23,6 @@ public interface ProductService {
 	public ApiInfoVO getApiInfo(String apiName);
 	public boolean addPaymentInfo(List<ProductOrderVO> vo);
 	
-	// 장바구니 테스트위해서 추가. 제거예정
-	public List<CartJoinVO> getCartList(int userNo);
+	public List<Integer> getProductPrice(int[] productNos);
+	public List<ProductOrderVO> getProductOrder(int[] productNos, long merUid, int userNo);
 }

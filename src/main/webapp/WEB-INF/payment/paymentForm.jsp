@@ -8,7 +8,7 @@
       <div class="col-md-5 col-lg-4 order-md-last">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
           <span class="text-primary">장바구니</span>
-          <span class="badge bg-primary rounded-pill">${fn:length(cartList) }</span>
+          <span class="badge bg-primary rounded-pill">${allAmount }</span>
         </h4>
         <ul class="list-group mb-3">
           <c:forEach items="${cartList }" var="cart">
@@ -16,7 +16,7 @@
             	<div>
             		<input type="hidden" value="${cart.productNo }" class="prInfo">  <!-- productNo캐싱용 -->
               		<h6 class="my-0">${cart.productName }</h6>
-              		<small class="text-muted">${cart.selCnt }개</small>
+              		<small class="prSel">${cart.selCnt }</small><small>개</small>
             	</div>
             	<span class="text-muted">${cart.productPrice }원</span>
           	</li>
@@ -139,16 +139,18 @@
 	   }
 	   // 고유한 주문번호/거래번호 id
 	   let merchantUID = String(new Date().getTime()) + ${uno};
-	   let productCnt = ${fn:length(cartList)};
+	   let productCnt = ${allAmount};
 	   let productName = "";
 	   let productNoList = document.querySelectorAll('.prInfo');
-
+	   let productSelCntList = document.querySelectorAll('.prSel');
+	   
 	   if(productCnt > 1) {
 		   productName = '${cartList[0].productName}' + '외 ' + (productCnt - 1) + '개'
 	   }
 	   else {
 		   productName = '${cartList[0].productName}';
 	   }
+	   
 	   let allPrice = ${sumPrice};
 	   
 	   // amount allPrice로 변경하자.
@@ -174,6 +176,10 @@
 	            	  dataArray.push({name : 'productNo', value: obj.value });
 	              })
 	              
+	              productSelCntList.forEach((obj) => {
+	            	  dataArray.push({name : 'productSelCnt', value: obj.innerHTML });
+	              })
+	              
 	              dataArray.push({name : 'impUid', value: response.imp_uid});
 	              dataArray.push({name : 'merUid', value: response.merchant_uid});
 	              dataArray.push({name : 'payAmount', value: response.paid_amount});
@@ -185,7 +191,7 @@
 	              dataArray.forEach(({ name, value }) => {
 	            	formData.append(name, value);
 	              });
-	              console.log(dataArray);
+	              
 	              // 서버에서 가격검증
 	              fetch('paymentComplete.do', {
 	            	  method: "POST",
@@ -198,7 +204,27 @@
 	            	  return resolve.json();
 	              })
 	              .then(result => {
-	            	  console.log(result);
+	            	  if(result.invalidPrice) {
+	            		  alert('실제 상품가격과 결제한 금액이 일치하지 않음.');
+	            		  window.location.href="main.do";
+	            	  }
+	            	  else if(result.serverError) {
+						  alert('서버 에러.');
+						  window.location.href="main.do";
+	            	  }
+	            	  else {
+	            		  // 결제완료 Form이동
+	            		  let queryString = "";
+	            		  for(let i = 0; i < productNoList.length; ++i) {
+	            			  if(i == 0) {
+	            				  queryString += ('pno=' + productNoList[i].value);  
+	            			  }
+	            			  else {
+	            				  queryString += ('&pno=' + productNoList[i].value);
+	            			  }
+	            		  }
+	            		  window.location.href="payCompleteForm.do?" + queryString + '&merUid=' + merchantUID;
+	            	  }
 	              })
 	          } else {
 	              alert(response.error_msg);

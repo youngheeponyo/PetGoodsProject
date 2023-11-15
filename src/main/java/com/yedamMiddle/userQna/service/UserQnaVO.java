@@ -3,6 +3,7 @@ package com.yedamMiddle.userQna.service;
 import java.util.Date;
 
 public class UserQnaVO {
+	private String qnaType;
 	private String nickName;
 	private int qnaNo;
 	private int userNo;
@@ -16,7 +17,12 @@ public class UserQnaVO {
 	private int qnaState;
 	
 	
-	
+	public String getQnaType() {
+		return qnaType;
+	}
+	public void setQnaType(String qnaType) {
+		this.qnaType = qnaType;
+	}
 	
 	public String getNickName() {
 		return nickName;

@@ -32,14 +32,18 @@ import com.yedamMiddle.notice.web.NoticeFormControl;
 import com.yedamMiddle.notice.web.NoticeListControl;
 import com.yedamMiddle.notice.web.RemoveNoticeControl;
 import com.yedamMiddle.product.web.CategorySearchControl;
+import com.yedamMiddle.product.web.PayCompleteFormControl;
 import com.yedamMiddle.product.web.PaymentCompleteControl;
 import com.yedamMiddle.product.web.PaymentFormControl;
 import com.yedamMiddle.product.web.ProductDetailControl;
 import com.yedamMiddle.product.web.ProductSearchControl;
 import com.yedamMiddle.userQna.web.AddQnaControl;
 import com.yedamMiddle.userQna.web.AddQnaFormControl;
+import com.yedamMiddle.userQna.web.DeleteUserQnaControl;
 import com.yedamMiddle.userQna.web.GetQnaAllListControl;
 import com.yedamMiddle.userQna.web.GetQnaListControl;
+import com.yedamMiddle.userQna.web.ModifyUserQnaControl;
+import com.yedamMiddle.userQna.web.ModifyUserQnaFormControl;
 import com.yedamMiddle.userQna.web.QnaReplyControl;
 
 // 0 -> 개 type
@@ -53,15 +57,20 @@ public class FrontController extends HttpServlet {
 		// map에 command추가할 때 옆에 기능 주석적어주세요.
 		
 		// 김은별
-		commandByURL.put("/getUserQnaAllList.do", new GetQnaAllListControl());//조회
-		commandByURL.put("/getUserQnaList.do", new GetQnaListControl()); //수정예정
-		commandByURL.put("/qnaReply.do", new QnaReplyControl());
+		commandByURL.put("/getUserQnaAllList.do", new GetQnaAllListControl());//Qna목록
+		commandByURL.put("/getUserQnaList.do", new GetQnaListControl()); //Qna조회
+		commandByURL.put("/qnaReply.do", new QnaReplyControl());//Qna관리자 답글달기
 		
-		commandByURL.put("/addUserQnaFrom.do", new AddQnaFormControl());
-		commandByURL.put("/addUserQna.do", new AddQnaControl());//등록	
-//		commandByURL.put("/modifyUserQna.do", new ModifyUserQnaControl());
-//		commandByURL.put("/deleteUserQna.do", new DeleteUserQnaControl());
+		commandByURL.put("/addUserQnaForm.do", new AddQnaFormControl());
+//		commandByURL.put("/addUserQna.do", new AddQnaControl());//등록보류
+		
+		commandByURL.put("/modifyUserQnaForm.do", new ModifyUserQnaFormControl());//Qna수정
+		commandByURL.put("/modifyUserQna.do", new ModifyUserQnaControl());//Qna수정
+		
+		commandByURL.put("/deleteUserQna.do", new DeleteUserQnaControl()); //Qna삭제
 //		commandByURL.put("/modifyAdminQna.do", new ModifyAdminQnaControl());
+		
+		
 		// 김준성
 		//공지사항 게시판
 		commandByURL.put("/noticeList.do", new NoticeListControl());
@@ -111,8 +120,9 @@ public class FrontController extends HttpServlet {
 		
 		commandByURL.put("/changePetType.do", new ChangePetControl()); // 고양이/강아지 상품 전환
 		commandByURL.put("/testCartForm.do", new TestCartFormControl()); // 결제창 구현을 위한 테스트화면
-		commandByURL.put("/paymentForm.do", new PaymentFormControl());
-		commandByURL.put("/paymentComplete.do", new PaymentCompleteControl());
+		commandByURL.put("/paymentForm.do", new PaymentFormControl()); // 결제화면 요청
+		commandByURL.put("/paymentComplete.do", new PaymentCompleteControl()); // 결제완료처리(검증 및 결제데이터 삽입)
+		commandByURL.put("/payCompleteForm.do", new PayCompleteFormControl()); // 결제완료화면 요청
 	}
 	
 	//끼양

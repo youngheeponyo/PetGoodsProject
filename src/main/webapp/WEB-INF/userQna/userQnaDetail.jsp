@@ -30,25 +30,26 @@
 }
 </style>
 
+${userQnaVo} ${userVo } ${productVo }
 <section class="py-5">
 	<div class="container px-4 px-lg-5 mt-5">
 		<div class="container-fluid">
-			<form action="modifyForm.do" name="myFrm" style=text-align:center;>
-				<input type="hidden" name="bno" value="">
+			<form action="modifyUserQnaForm.do" name="userQnaDetailForm" method="post" style=text-align:center;>
+				<input type="hidden" name="qnaNo" value="${vo.qnaNo }">
 				<h3>문의글 작성</h3>
 				<br><hr>
 				<table class="table" border="1">
 					<tr>
-						<th>글번호</th>
+						<th colspan="2">글번호</th>
 							<td>${vo.qnaNo }</td>	
-						<th>작성자</th>
+						<th colspan="2">작성자</th>
 							<td>${userVo.nickName }</td>
-						<th>작성일시</th>
+						<th colspan="2">작성일시</th>
 							<td>
 								<fmt:formatDate value="${vo.registDate }"
 								pattern="yyyy-MM-dd  hh:mm"></fmt:formatDate>
 							</td>
-						<th>문의상태</th>
+						<th colspan="2">문의상태</th>
 							<td>
 								<c:if test="${not empty vo.qnaNo}">
 	                    				<c:choose>
@@ -65,11 +66,21 @@
 
 
 					<tr>
-						<th colspan="3">글제목</th>
+						<th colspan="2">글제목</th>
 						<td>${vo.title }</td>
-						<th>상품명</th>
-						<td>${productVo.productName }<td>
-							
+						<th colspan="1">문의종류<th>
+						<td>${vo.qnaType }<td>
+						
+						<c:if test="${vo.qnaType =='상품문의'}">
+							<th colspan="2">상품명</th>
+							<td>${productVo.productName }<td>
+						</c:if>
+						
+						
+						
+						
+						
+<!-- 						
 <%-- 							<c:choose> --%>
 <%-- 								<c:when test="상품페이지에서 넘어왔을때"><!-- 상품이랑 사람 조인 후 구매내역이 있을때 --> --%>
 <%-- 											${productVo.productNo } --%>
@@ -87,7 +98,7 @@
 
 
 					<tr>
-						<td colspan="8"><textarea rows="10" cols="40"
+						<td colspan="14"><textarea rows="10" cols="40"
 								class="form-control" disabled>${vo.contents }</textarea></td>
 					</tr>
 
@@ -96,11 +107,22 @@
 					</tr>
 
 					<tr>
-						<td colspan="8" align="center" >
+						<td colspan="14" align="center" >
 						<c:choose>
 							<c:when test="${not empty uno && uno ==userVo.userNo }">
-								<input type="submit" value="수정">
-								<input type="button" value="삭제">
+								<c:choose>
+									<c:when test="${vo.qnaState==1 }">
+										<input disabled type="submit" value="수정">
+										<input type="button" value="삭제">
+									</c:when>
+									<c:otherwise>
+										<input type="submit" value="수정">
+										<input type="button" value="삭제">
+									</c:otherwise>
+								</c:choose>
+							
+							
+								
 							</c:when>
 							<c:otherwise>
 								<input disabled type="submit" value="수정">
@@ -113,9 +135,6 @@
 					</tr>
 				</table>
 			</form>
-			<p>
-				<a href="getUserQnaAllList.do">목록으로</a>
-			</p>
 			
 			
 			<br><br>
@@ -124,46 +143,72 @@
 				<h3>문의답변</h3>
 				<br><hr>
 				<table class="table">
-					
+				
+				
+				<c:choose>
+					<c:when test="${permission =='0'}"> <!-- 관리자일때 -->
 						<c:choose>
-							<c:when test="${vo.qnaState ==1 }">
+							<c:when test="${vo.qnaState ==1 }"> <!-- 답글이 있음 -->
 								<tr>
-									<td><textarea rows="10" cols="40" class="form-control" disabled>${vo.qnaReply }</textarea></td>
+									<td><textarea rows="10" cols="40" class="form-control" name="updateReply"></textarea></td>
+								</tr>
+								<tr>
+									<td><input type="submit" name="modify" value="수정하기"></td>
 								</tr>
 							</c:when>
-							<c:otherwise>
 							
-								<c:choose>
-								
-									<c:when test="${permission =='0'}"> <!-- 관리자일때 -->
-									<tr>
-										<td><textarea rows="10" cols="40" class="form-control" name="reply"></textarea></td>
-									</tr>
-									<tr>
-										<td><input type="submit" value="등록하기"></td>
-									</tr>
-									</c:when>
-									
-									<c:otherwise>
-										<td><textarea rows="" cols="40" class="form-control" disabled>*아직 답변이 달리지 않았습니다.*</textarea></td>
-									</c:otherwise>
-									
-								</c:choose>
-							
-							
+							<c:otherwise><!-- 답글이 없음 -->
+								<tr>
+									<td><textarea rows="10" cols="40" class="form-control" name="updateReply"></textarea></td>
+								</tr>
+								<tr>
+									<td><input type="submit" value="등록하기"></td>
+								</tr>
 							</c:otherwise>
 						</c:choose>
-						
-						
-							
-							
+					</c:when>
 					
+					<c:otherwise> <!-- 유저일때 -->
+						<c:when test="${vo.qnaState ==1 }"><!-- 답글이 있음 -->
+								<td><textarea rows="10" cols="40" class="form-control" name="reply" disabled>${vo.qnaReply }</textarea></td>
+							</c:when>
+							
+							<c:otherwise><!-- 답글이 없음 -->
+								<td><textarea rows="" cols="40" class="form-control" disabled>*아직 답변이 달리지 않았습니다.*</textarea></td>
+							</c:otherwise>
+					</c:otherwise>
+				</c:choose>
+								
 				</table>
+				<p>
+					<a href="getUserQnaAllList.do">목록으로</a>
+				</p>
 			</form>
 			
 			
 		</div>
 	</div>
 </section>
+	
+				<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+
+
+<script>//삭제버튼 이벤트
+	document.querySelector("input[type=button]").addEventListener('click', function(e){
+		if(confirm("정말 삭제하시겠습니까?")==true){
+			console.log("삭제버튼 눌렸음");
+			
+			document.forms.userQnaDetailForm.action="deleteUserQna.do";
+			document.forms.userQnaDetailForm.submit();
+		}
+		
+	})
+	
+	//수정버튼 이벤트(목록으로 돌아감)
+	document.querySelector("input[name=modify]").addEventListener('click', function(e){
+		alert("수정이 완료 되었습니다")
+	})
+
+</script>
 
 
