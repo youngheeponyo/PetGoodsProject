@@ -181,7 +181,7 @@
             <form>
                 <thead>
                     <tr>
-                        <td><input type="checkbox"></td>
+                        <td><input type="checkbox" id="allCheck"></td>
                         <td colspan="2">상품정보</td>
                         <td>옵션</td>
                         <td>상품금액</td>
@@ -189,29 +189,37 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="cart__list__detail">
-                        <td><input type="checkbox"></td>
-                        <td><img src="image/keyboard.jpg" alt="magic keyboard"></td>
-                        <td><a href="#">애플 공식 브랜드스토어</a><span class="cart__list__smartstore"> 스마트스토어</span>
-                            <p>Apple 매직 키보드 - 한국어(MK2A3KH/A)</p>
-                            <sapn class="price">116,62원</sapn><span
-                                style="text-decoration: line-through; color: lightgray;">119,000</span>
+                <c:forEach items="${list }" var="vo">
+                    <tr class="cart__list__detail" id="a11">
+                        <td><input type="checkbox" class="chk" name value="check"></td>
+                        <td><img src="productImage/dog/${vo.productName }.png" alt=""></td>
+                        <td><a href="#">${vo.productName }</a><span class="cart__list__smartstore"> 스마트스토어</span>
+                            <br><sapn class="price">${vo.productPrice }</sapn>
                         </td>
                         <td class="cart__list__option">
-                            <p>모델명 : 키보드 - 한국어 MK2A3KH/A / 1개</p>
+                            <p>모델명 : ${vo.productName } / ${vo.selCnt }개</p>
                             <button class="cart__list__optionbtn">주문조건 추가/변경</button>
                         </td>
-                        <td><span class="price">116,620원</span><br>
-                            <button class="cart__list__orderbtn">주문하기</button>
+                        <td><span class="price">${vo.productPrice*vo.selCnt }원</span><br>
+                            <button class="cart__list__orderbtn" type = "button" onclick="location.href='paymentForm.do?${uno}'">주문하기</button>
                         </td>
-                        <td>무료</td>
+                        <td>
+							<c:choose>
+								<c:when test="${vo.productPrice*vo.selCnt >= 30000}">
+									무료
+								</c:when>
+								<c:otherwise>
+									2500원
+								</c:otherwise>
+							</c:choose>
+						</td>
                     </tr>
+                </c:forEach>
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="3"><input type="checkbox"> <button class="cart__list__optionbtn">선택상품 삭제</button>
-                            <button class="cart__list__optionbtn">선택상품 찜</button>
-                        </td>
+                        <td colspan="3"><button class="cart__list__optionbtn">선택상품 삭제</button></td>
+                        <td><h3>총 상품금액</h3></td><td><h3>총 배송비</h3></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -220,8 +228,38 @@
             </form>
         </table>
         <div class="cart__mainbtns">
-            <button class="cart__bigorderbtn left">쇼핑 계속하기</button>
-            <button class="cart__bigorderbtn right">주문하기</button>
+            <button class="cart__bigorderbtn left" type = "button" onclick="location.href='main.do'">쇼핑 계속하기</button>
+            <button class="cart__bigorderbtn right" type = "button" onclick="location.href='paymentForm.do?${uno}'">주문하기</button>
         </div>
     </section>
 </body>
+<script>
+//체크박스 클릭
+$("#allCheck").click(function(){
+	  if($("#allCheck").is(":checked")){
+	 	 $(".chk").prop("checked", true);
+	  }else{
+	  	$(".chk").prop("checked", false);
+	  }
+	});
+	var result = "";
+$(".chk").click(function(){
+	  if($(".chk:checked").length == $(".chk").length){
+	  	$("#allCheck").prop("checked", true);
+	   }else{
+	  	$("#allCheck").prop("checked", false);
+	  }
+	});
+
+	let sumPrice = 0;
+	let addrPee = 2500;
+
+
+	// 이벤트 일어나면
+	// 해당 input이 가지고있는 productPrice +
+	// if(sumPrice > 30000)
+    // addrPee = 0;
+	// 체크를 해제 할때도. sumPrice < 30000
+	// addrPee = 2500;
+	
+</script>
