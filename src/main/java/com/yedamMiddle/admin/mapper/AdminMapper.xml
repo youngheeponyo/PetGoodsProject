@@ -7,7 +7,11 @@
 	</select>
 	
 	<select id = "prodList" resultType="com.yedamMiddle.product.service.ProductVO">
-		SELECT * FROM PRODUCT ORDER BY CATEGORY_NO DESC
+		SELECT * FROM PRODUCT ORDER BY PRODUCT_NO DESC
+	</select>
+	
+	<select id = "select" resultType="com.yedamMiddle.product.service.ProductVO" parameterType="int">
+		SELECT * FROM PRODUCT WHERE PRODUCT_NO = #{productNo}
 	</select>
 	
 	<insert id = "insert" parameterType="com.yedamMiddle.product.service.ProductVO">

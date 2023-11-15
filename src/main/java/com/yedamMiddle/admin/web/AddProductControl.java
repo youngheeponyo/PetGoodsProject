@@ -2,7 +2,9 @@ package com.yedamMiddle.admin.web;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,43 +30,49 @@ public class AddProductControl implements Command {
 		}
 		ProductVO vo = new ProductVO();
 		AdminService svc = new AdminServiceImpl();
+		List<String> data = new ArrayList<>();;
 		
-		vo.setPetType(req.getParameter("pet"));
-		vo.setCategoryNo(Integer.parseInt(req.getParameter("category")));
-		vo.setProductName(req.getParameter("prodname"));
-		vo.setProductPrice(Integer.parseInt(req.getParameter("price")));
-		vo.setProductStock(Integer.parseInt(req.getParameter("stock")));
-		vo.setProductDesc(req.getParameter("desc"));
-		vo.setProductImage(req.getParameter("filename"));
-		
-		int ctno = vo.getCategoryNo();
-		int prpr = vo.getProductPrice();
-		int prst = vo.getProductStock();
-		System.out.println("ctno : " + ctno);
-		System.out.println("prpr : " + prpr);
-		System.out.println("prst : " + prst);
-		
-		String saveDeployDir = req.getServletContext().getRealPath("productImage");
-		String uploadPath1 = saveDeployDir + "/dog";
-        String uploadPath2 = saveDeployDir + "/dog/detail";
-        
-        File uploadDir1 = new File(uploadPath1);
-        File uploadDir2 = new File(uploadPath2);
-        
-        if (!uploadDir1.exists()) {
-            uploadDir1.mkdirs();
-        }
-
-        if (!uploadDir2.exists()) {
-            uploadDir2.mkdirs();
-        }
         
         try {
             List<FileItem> items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(req);
+            String petType = "";
+            for(FileItem item : items) {
+            	if(item.getFieldName().equals("petType")) {
+            		petType = item.getString("utf-8");
+            	}
+            }
+            
+            System.out.println("펫타입 : " + petType);
+            
             int idx = 0;
+            String typePath = "";
+            if(petType.equals("0")) {
+            	typePath = "\\dog";
+            }else if(petType.equals("1")){
+            	typePath = "\\cat";
+            }
+            String saveDeployDir1 = req.getServletContext().getRealPath("productImage");
+            String saveDeployDir2 = req.getServletContext().getRealPath("productDetailImage");
+            String uploadPath1 = saveDeployDir1 + typePath;
+            String uploadPath2 = saveDeployDir2 + typePath;
+            
+            System.out.println("path1 : " + uploadPath1);
+            System.out.println("path2 : " + uploadPath2);
+            
+            File uploadDir1 = new File(uploadPath1);
+            File uploadDir2 = new File(uploadPath2);
+            
+            if (!uploadDir1.exists()) {
+            	uploadDir1.mkdirs();
+            }
+            
+            if (!uploadDir2.exists()) {
+            	uploadDir2.mkdirs();
+            }
+            
             for (FileItem item : items) {
             	if(!item.isFormField()) { // 폼 필드가 아닌경우에만 처리.
-                    String fileName = vo.getProductName();//new File(item.getName()).getName();
+                    String fileName = data.get(2) + ".png";
                     String filePath;
                     
                     // 첫번쨰 item은 상품이미지 
@@ -78,9 +86,39 @@ public class AddProductControl implements Command {
 
                     idx++;
                     File storeFile = new File(filePath);
-                    item.write(storeFile);
+                    if(!storeFile.exists()) {
+                    	item.write(storeFile);                    	
+                    }
+                    else {
+                    	PrintWriter out = resp.getWriter();
+            			resp.setCharacterEncoding("utf-8");
+            			resp.setContentType("text/html; charset=utf-8");
+            			out.println("<script> alert('이미 존재하는 파일입니다.');");
+            			out.println("history.go(-1); </script>"); 
+            			out.close();
+            			try {
+            				resp.sendRedirect("productForm.do");
+            			} catch (IOException e) {
+            				e.printStackTrace();
+            			}
+                    }
                 }
+            	else {
+            		System.out.printf("파라미터명 : %s, 파라미터값 : %s \n",item.getFieldName(), item.getString("utf-8"));
+            		data.add(item.getString("utf-8"));
+            	}
             }
+            
+            System.out.println(data);
+            
+            vo.setPetType(data.get(0));
+            vo.setCategoryNo(Integer.parseInt(data.get(1)));
+            vo.setProductName(data.get(2));
+            vo.setProductPrice(Integer.parseInt(data.get(3)));
+            vo.setProductStock(Integer.parseInt(data.get(4)));
+            vo.setProductDesc(data.get(5));
+            vo.setProductImage(data.get(2)+".png");
+            
         } catch (Exception ex) {
             ex.printStackTrace();
         }

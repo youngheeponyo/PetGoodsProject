@@ -10,7 +10,9 @@ import com.yedamMiddle.admin.serviceImpl.AdminServiceImpl;
 import com.yedamMiddle.common.Command;
 import com.yedamMiddle.common.service.UserVO;
 
-public class memberListControl implements Command {
+
+
+public class MemberListControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {

@@ -13,7 +13,7 @@ public class ProductVO {
 	private int productPrice;
 	private String productDesc;
 	private String productImage;
-	private Date productRegist;
+	private Date productRegistDate;
 	private int productStock;
 
 	public int getProductNo() {
@@ -72,12 +72,12 @@ public class ProductVO {
 		this.productImage = productImage;
 	}
 
-	public Date getProductRegist() {
-		return productRegist;
+	public Date getProductRegistDate() {
+		return productRegistDate;
 	}
 
-	public void setProductRegist(Date productRegist) {
-		this.productRegist = productRegist;
+	public void setProductRegistDate(Date productRegistDate) {
+		this.productRegistDate = productRegistDate;
 	}
 
 	public int getProductStock() {
@@ -92,7 +92,7 @@ public class ProductVO {
 	public String toString() {
 		return "ProductVO [productNo=" + productNo + ", petType=" + petType + ", categoryNo=" + categoryNo
 				+ ", productName=" + productName + ", productPrice=" + productPrice + ", productDesc=" + productDesc
-				+ ", productImage=" + productImage + ", productRegist=" + productRegist + ", productStock="
+				+ ", productImage=" + productImage + ", productRegistDate=" + productRegistDate + ", productStock="
 				+ productStock + "]";
 	}
 }
