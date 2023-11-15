@@ -1,28 +1,27 @@
 package com.yedamMiddle.admin.web;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedamMiddle.admin.service.AdminService;
 import com.yedamMiddle.admin.serviceImpl.AdminServiceImpl;
 import com.yedamMiddle.common.Command;
-import com.yedamMiddle.common.service.UserVO;
+import com.yedamMiddle.product.service.ProductVO;
 
-public class memberListControl implements Command {
+public class GetProductControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		
+		String prodno = req.getParameter("prno");
 		AdminService svc = new AdminServiceImpl();
-		List<UserVO> list = svc.userList();
-		req.setAttribute("userlist", list);
+		ProductVO vo = svc.getProduct(Integer.parseInt(prodno));
+		System.out.println(prodno);
+		System.out.println(vo);
+		req.setAttribute("prno", vo);
 		
 		try {
-			req.getRequestDispatcher("admin/memberList.tiles").forward(req, resp);
+			req.getRequestDispatcher("admin/getProduct.tiles").forward(req, resp);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

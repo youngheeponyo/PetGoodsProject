@@ -14,8 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedamMiddle.admin.web.AddProductControl;
 import com.yedamMiddle.admin.web.ProductFormControl;
 import com.yedamMiddle.admin.web.ProductListControl;
-import com.yedamMiddle.admin.web.adminPageControl;
-import com.yedamMiddle.admin.web.memberListControl;
+import com.yedamMiddle.admin.web.AdminPageControl;
+import com.yedamMiddle.admin.web.GetProductControl;
+import com.yedamMiddle.admin.web.MemberListControl;
 import com.yedamMiddle.cart.web.AddCartControl;
 import com.yedamMiddle.cart.web.MyCartControl;
 import com.yedamMiddle.login.web.AddUserControl;
@@ -29,7 +30,7 @@ import com.yedamMiddle.notice.web.AddNoticeControl;
 import com.yedamMiddle.notice.web.GetNoticeControl;
 import com.yedamMiddle.notice.web.NoticeFormControl;
 import com.yedamMiddle.notice.web.NoticeListControl;
-import com.yedamMiddle.notice.web.removeNoticeControl;
+import com.yedamMiddle.notice.web.RemoveNoticeControl;
 import com.yedamMiddle.product.web.CategorySearchControl;
 import com.yedamMiddle.product.web.PayCompleteFormControl;
 import com.yedamMiddle.product.web.PaymentCompleteControl;
@@ -76,17 +77,19 @@ public class FrontController extends HttpServlet {
 		commandByURL.put("/noticeForm.do", new NoticeFormControl());
 		commandByURL.put("/getNotice.do", new GetNoticeControl());
 		commandByURL.put("/addNotice.do", new AddNoticeControl());
-		commandByURL.put("/removeNotice.do", new removeNoticeControl());
+		commandByURL.put("/removeNotice.do", new RemoveNoticeControl());
 		
 		//관리자페이지
-		commandByURL.put("/adminPage.do", new adminPageControl());
+		commandByURL.put("/adminPage.do", new AdminPageControl());
 		//회원목록
-		commandByURL.put("/memberList.do", new memberListControl());
+		commandByURL.put("/memberList.do", new MemberListControl());
 		//상품
 		commandByURL.put("/productList.do", new ProductListControl());
+		//상품추가
 		commandByURL.put("/productForm.do", new ProductFormControl());
-		//상품추가 작업중!
 		commandByURL.put("/addProduct.do", new AddProductControl());
+		//상품선택
+		commandByURL.put("/getProduct.do", new GetProductControl());
 		
 		
 		// 서영희

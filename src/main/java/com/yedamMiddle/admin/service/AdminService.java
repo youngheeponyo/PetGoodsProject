@@ -9,4 +9,5 @@ public interface AdminService {
 	List<UserVO> userList();
 	List<ProductVO> prodList();
 	public boolean addProduct(ProductVO vo);
+	public ProductVO getProduct(int ProductNo);
 }

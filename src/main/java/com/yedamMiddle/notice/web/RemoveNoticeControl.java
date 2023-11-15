@@ -9,7 +9,8 @@ import com.yedamMiddle.common.Command;
 import com.yedamMiddle.notice.service.NoticeService;
 import com.yedamMiddle.notice.serviceImpl.NoticeServiceImpl;
 
-public class removeNoticeControl implements Command {
+
+public class RemoveNoticeControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
