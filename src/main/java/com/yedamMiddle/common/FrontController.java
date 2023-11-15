@@ -38,6 +38,7 @@ import com.yedamMiddle.product.web.ProductDetailControl;
 import com.yedamMiddle.product.web.ProductSearchControl;
 import com.yedamMiddle.userQna.web.AddQnaControl;
 import com.yedamMiddle.userQna.web.AddQnaFormControl;
+import com.yedamMiddle.userQna.web.DeleteUserQnaControl;
 import com.yedamMiddle.userQna.web.GetQnaAllListControl;
 import com.yedamMiddle.userQna.web.GetQnaListControl;
 import com.yedamMiddle.userQna.web.ModifyUserQnaControl;
@@ -55,17 +56,20 @@ public class FrontController extends HttpServlet {
 		// map에 command추가할 때 옆에 기능 주석적어주세요.
 		
 		// 김은별
-		commandByURL.put("/getUserQnaAllList.do", new GetQnaAllListControl());//목록
-		commandByURL.put("/getUserQnaList.do", new GetQnaListControl()); //조회
-		commandByURL.put("/qnaReply.do", new QnaReplyControl());//관리자 답글달기
+		commandByURL.put("/getUserQnaAllList.do", new GetQnaAllListControl());//Qna목록
+		commandByURL.put("/getUserQnaList.do", new GetQnaListControl()); //Qna조회
+		commandByURL.put("/qnaReply.do", new QnaReplyControl());//Qna관리자 답글달기
 		
 		commandByURL.put("/addUserQnaForm.do", new AddQnaFormControl());
-//		commandByURL.put("/addUserQna.do", new AddQnaControl());//등록	
-		commandByURL.put("/modifyUserQnaForm.do", new ModifyUserQnaFormControl());
-		commandByURL.put("/modifyUserQna.do", new ModifyUserQnaControl());
+//		commandByURL.put("/addUserQna.do", new AddQnaControl());//등록보류
 		
-//		commandByURL.put("/deleteUserQna.do", new DeleteUserQnaControl());
+		commandByURL.put("/modifyUserQnaForm.do", new ModifyUserQnaFormControl());//Qna수정
+		commandByURL.put("/modifyUserQna.do", new ModifyUserQnaControl());//Qna수정
+		
+		commandByURL.put("/deleteUserQna.do", new DeleteUserQnaControl()); //Qna삭제
 //		commandByURL.put("/modifyAdminQna.do", new ModifyAdminQnaControl());
+		
+		
 		// 김준성
 		//공지사항 게시판
 		commandByURL.put("/noticeList.do", new NoticeListControl());

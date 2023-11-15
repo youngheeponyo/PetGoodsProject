@@ -30,10 +30,11 @@
 }
 </style>
 
+${userQnaVo} ${userVo } ${productVo }
 <section class="py-5">
 	<div class="container px-4 px-lg-5 mt-5">
 		<div class="container-fluid">
-			<form action="modifyUserQnaForm.do" name="userQnaDetailFrom" method="post" style=text-align:center;>
+			<form action="modifyUserQnaForm.do" name="userQnaDetailForm" method="post" style=text-align:center;>
 				<input type="hidden" name="qnaNo" value="${vo.qnaNo }">
 				<h3>문의글 작성</h3>
 				<br><hr>
@@ -109,8 +110,19 @@
 						<td colspan="14" align="center" >
 						<c:choose>
 							<c:when test="${not empty uno && uno ==userVo.userNo }">
-								<input type="submit" value="수정">
-								<input type="button" value="삭제">
+								<c:choose>
+									<c:when test="${vo.qnaState==1 }">
+										<input disabled type="submit" value="수정">
+										<input type="button" value="삭제">
+									</c:when>
+									<c:otherwise>
+										<input type="submit" value="수정">
+										<input type="button" value="삭제">
+									</c:otherwise>
+								</c:choose>
+							
+							
+								
 							</c:when>
 							<c:otherwise>
 								<input disabled type="submit" value="수정">
@@ -169,5 +181,18 @@
 		</div>
 	</div>
 </section>
+
+<script>//삭제버튼 이벤트
+	document.querySelector("input[type=button]").addEventListener('click', function(e){
+		if(confirm("정말 삭제하시겠습니까?")==true){
+			console.log("삭제버튼 눌렸음");
+			
+			document.forms.userQnaDetailForm.action="deleteUserQna.do";
+			document.forms.userQnaDetailForm.submit();
+		}
+		
+	})
+
+</script>
 
 
