@@ -36,11 +36,9 @@ ${userQnaVo} ${userVo } ${productVo }
 		<div class="container-fluid">
 			<form action="modifyUserQna.do" name="modifyUserQna" method="post" style=text-align:center;>
 				<input type="hidden" name="qnaNo" value="${userQnaVo.qnaNo }">
-				<input type="hidden" name="title" value="${userQnaVo.title }">
-				<input type="hidden" name="contents" value="${userQnaVo.contents }">
-				<input type="hidden" name="registDate" 
-				value="<fmt:formatDate value="${userQnaVo.registDate }"
-								pattern="yyyy-MM-dd hh:mm"></fmt:formatDate>">
+<!-- 				<input type="hidden" name="registDate"  -->
+<%-- 				value="<fmt:formatDate value="${userQnaVo.registDate }" --%>
+<%-- 								pattern="yyyy-MM-dd hh:mm"></fmt:formatDate>"> --%>
 				
 				<h3>문의글 작성</h3>
 				<br><hr>
@@ -73,7 +71,7 @@ ${userQnaVo} ${userVo } ${productVo }
 
 					<tr>
 						<th colspan="2">글제목</th>
-						<td><input type="text" value="${userQnaVo.title }"></td>
+						<td><input type="text" name="title" value="${userQnaVo.title }"></td>
 						<th colspan="1">문의종류<th>
 						<td>${userQnaVo.qnaType }<td>
 						
@@ -86,7 +84,7 @@ ${userQnaVo} ${userVo } ${productVo }
 
 
 					<tr>
-						<td colspan="14"><textarea rows="10" cols="40"
+						<td colspan="14"><textarea rows="10" cols="40" name="contents"
 								class="form-control">${userQnaVo.contents }</textarea></td>
 					</tr>
 

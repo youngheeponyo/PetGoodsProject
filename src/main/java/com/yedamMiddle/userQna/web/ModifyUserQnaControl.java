@@ -22,31 +22,29 @@ public class ModifyUserQnaControl implements Command {
 		String qnaNo = req.getParameter("qnaNo");
 		String title = req.getParameter("title");
 		String contents = req.getParameter("contents");
-		String registDate = req.getParameter("registDate");
+//		String registDate = req.getParameter("registDate");
 		
-		System.out.println("qnaNo :" + qnaNo);
-		System.out.println("title :" + title);
-		System.out.println("contents :" + contents);
-		System.out.println("registDate :" + registDate);//Tue Nov 14 16:07:07 KST 2023
+//		System.out.println("qnaNo :" + qnaNo);
+//		System.out.println("title :" + title);
+//		System.out.println("contents :" + contents);
+//		System.out.println("registDate :" + registDate);//Tue Nov 14 16:07:07 KST 2023
 		
 		UserQnaVO userQnaVo = new UserQnaVO();
-	
-		
 		userQnaVo.setQnaNo(Integer.parseInt(qnaNo) );
 		userQnaVo.setTitle(title);
 		userQnaVo.setContents(contents);
 		
 		
-		try {//String을 Date형식으로 변경(들어가는 자료도 format의 형태와 같아야 오류 안뜸)
-			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-			Date date = format.parse(registDate);
-			
-			userQnaVo.setRegistDate(date);
-			System.out.println("date : " + date);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}   
+//		try {//String을 Date형식으로 변경(들어가는 자료도 format의 형태와 같아야 오류 안뜸)
+//			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+//			Date date = format.parse(registDate);
+//			
+//			userQnaVo.setRegistDate(date);
+//			System.out.println("date : " + date);
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}   
 		
 		
 		UserQnaService svc = new UserQnaServiceImpl();
@@ -54,7 +52,7 @@ public class ModifyUserQnaControl implements Command {
 		
 		if(upDateCheck == 1) {
 			try {
-				System.out.println("성공");
+//				System.out.println("성공");
 				req.getRequestDispatcher(path).forward(req, resp);
 			} catch (Exception e) {
 				e.printStackTrace();
