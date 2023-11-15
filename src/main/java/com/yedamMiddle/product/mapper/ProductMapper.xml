@@ -74,4 +74,14 @@
 	<insert id="insertProductOrder" parameterType="com.yedamMiddle.product.service.ProductOrderVO">
 		INSERT INTO PRODUCT_ORDER VALUES(seq_productorderno.NEXTVAL,#{productNo},#{userNo},#{couponNo},sysdate,#{impUid},#{merUid})
 	</insert>
+	
+    <select id="selectProductPrice" resultType="int"> 
+      SELECT PRODUCT_PRICE
+    	FROM PRODUCT
+    	WHERE PRODUCT_NO IN 
+    	<foreach collection="array" item="arr" open="(" close=")" separator=",">
+ 			#{arr}
+		</foreach>
+    </select>
+
 </mapper>

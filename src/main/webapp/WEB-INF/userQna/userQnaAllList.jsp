@@ -19,6 +19,7 @@ ${uno }
                     		<tr>
                     			<th>공개여부</th>
 	                    		<th>글번호</th>
+	                    		<th>문의정보</th>
 	                    		<th>제목</th>
 	                    		<th>작성자</th>
 	                    		<th>작성일</th>
@@ -40,6 +41,8 @@ ${uno }
                     			</td>
                     					
                     			<td class="qnaNocheck">${vo.qnaNo}</td>
+                    			<td>${vo.qnaType }</td>
+                    			
                     			<td class="passcheck" onclick="passCheck('${vo.password}', '${vo.qnaNo }')">
                     				<a href=#>${vo.title }</a> pw:${vo.password }
                     			</td>
@@ -66,7 +69,7 @@ ${uno }
                     </table>
                     <div style= text-ailgn:right>
                     <hr>
-                     	 <p><a href="addUserQnaFrom.do">문의글 작성</a></p>
+                     	 <p><a href="addUserQnaForm.do">문의글 작성</a></p>
                     </div>
                 </div>
          </div>
