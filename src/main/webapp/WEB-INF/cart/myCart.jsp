@@ -93,6 +93,7 @@
 		.cart__list__option p {
 		  margin-bottom: 25px;
 		  position: relative;
+		  color:black;
 		}
 		
 		.cart__list__option p::after {
@@ -112,18 +113,18 @@
 		  padding: 7px;
 		}
 		
-		.cart__list__detail :nth-child(4),
 		.cart__list__detail :nth-child(5),
-		.cart__list__detail :nth-child(6) {
+		.cart__list__detail :nth-child(6),
+		.cart__list__detail :nth-child(7) {
 		  border-left: 2px solid whitesmoke;
 		}
 		
-		.cart__list__detail :nth-child(5),
-		.cart__list__detail :nth-child(6) {
+		.cart__list__detail :nth-child(6),
+		.cart__list__detail :nth-child(7) {
 		  text-align: center;
 		}
 		
-		.cart__list__detail :nth-child(5) button {
+		.cart__list__detail :nth-child(6) button {
 		  background-color: pink;
 		  color: white;
 		  border: none;
@@ -182,36 +183,37 @@
                 <thead>
                     <tr>
                         <td><input type="checkbox" id="allCheck"></td>
-                        <td colspan="2">상품정보</td>
+                        <td colspan="3">상품정보</td>
                         <td>옵션</td>
                         <td>상품금액</td>
-                        <td>배송비</td>
+                        <td>배송비<p>3만원 이상 무료배송</p></td>
                     </tr>
                 </thead>
                 <tbody>
                 <c:forEach items="${list }" var="vo">
-                    <tr class="cart__list__detail" id="a11">
-                        <td><input type="checkbox" class="chk" name value="check"></td>
-                        <td><img src="productImage/dog/${vo.productName }.png" alt=""></td>
-                        <td><a href="#">${vo.productName }</a><span class="cart__list__smartstore"> 스마트스토어</span>
-                            <br><sapn class="price">${vo.productPrice }</sapn>
+                    <tr class="cart__list__detail">
+                        <td><input type="checkbox" class="chk" name="product" value=${vo.productPrice*vo.selCnt } onclick="checkfunction()"></td>
+                        <td><input type="checkbox" id = "pno" name="pno" value=${vo.productNo } style="display:none"></td>
+                        <td><a href="detailProduct.do?pno=${vo.productNo }"><img src="productImage/dog/${vo.productName }.png" alt=""></a></td>
+                        <td><a href="detailProduct.do?pno=${vo.productNo }">${vo.productName }</a><span class="cart__list__smartstore"> 스마트스토어</span>
+                            <br><sapn class="price">${vo.productPrice }원</sapn>
                         </td>
                         <td class="cart__list__option">
                             <p>모델명 : ${vo.productName } / ${vo.selCnt }개</p>
                             <button class="cart__list__optionbtn">주문조건 추가/변경</button>
                         </td>
                         <td><span class="price">${vo.productPrice*vo.selCnt }원</span><br>
-                            <button class="cart__list__orderbtn" type = "button" onclick="location.href='paymentForm.do?${uno}'">주문하기</button>
+                            
                         </td>
                         <td>
-							<c:choose>
+                        <c:choose>
 								<c:when test="${vo.productPrice*vo.selCnt >= 30000}">
 									무료
 								</c:when>
 								<c:otherwise>
 									2500원
 								</c:otherwise>
-							</c:choose>
+						</c:choose>
 						</td>
                     </tr>
                 </c:forEach>
@@ -219,7 +221,7 @@
                 <tfoot>
                     <tr>
                         <td colspan="3"><button class="cart__list__optionbtn">선택상품 삭제</button></td>
-                        <td><h3>총 상품금액</h3></td><td><h3>총 배송비</h3></td>
+                        <td>상품금액 : <h4 id="total">0</h4></td><td>배송비 : <h4 id="price">0</h4></td><td>총 금액 : <h3 id="totalPrice">0</h3></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -229,7 +231,7 @@
         </table>
         <div class="cart__mainbtns">
             <button class="cart__bigorderbtn left" type = "button" onclick="location.href='main.do'">쇼핑 계속하기</button>
-            <button class="cart__bigorderbtn right" type = "button" onclick="location.href='paymentForm.do?${uno}'">주문하기</button>
+            <button id="tess" class="cart__bigorderbtn right" type = "button" onclick="paymentfunction()">주문하기</button>
         </div>
     </section>
 </body>
@@ -238,8 +240,11 @@
 $("#allCheck").click(function(){
 	  if($("#allCheck").is(":checked")){
 	 	 $(".chk").prop("checked", true);
+	 	 $(".chk").click(checkfunction());
+	 	 
 	  }else{
 	  	$(".chk").prop("checked", false);
+	  	$(".chk").click(checkfunction());
 	  }
 	});
 	var result = "";
@@ -251,15 +256,46 @@ $(".chk").click(function(){
 	  }
 	});
 
-	let sumPrice = 0;
-	let addrPee = 2500;
+let sumPrice = 0;
+let addrPee = 2500;
+let price = 0;
+let total = 0;
+let str = 'paymentForm.do?uno=${uno}';
+let a = '';
 
+function checkfunction(){
+	var checkBox = document.getElementsByName('product');
+	var pno = document.getElementsByName('pno');
+	for(var i=0; i<checkBox.length;i++){
+		if(checkBox[i].checked){
+			sumPrice += parseInt(checkBox[i].value);
+			str += ('&pno=' + pno[i].value); 
+		}else if(!checkBox[i].checked){
+			sumPrice = sumPrice;
+		}
+	}
+	a = str;
+	console.log(str)
+	price=sumPrice;
+	if(sumPrice==0){
+		addrPee = 0;
+	}else if(sumPrice < 30000) {
+		addrPee = 2500;
+	}else{
+		addrPee = 0;
+	}
 
-	// 이벤트 일어나면
-	// 해당 input이 가지고있는 productPrice +
-	// if(sumPrice > 30000)
-    // addrPee = 0;
-	// 체크를 해제 할때도. sumPrice < 30000
-	// addrPee = 2500;
+	sumPrice = 0;
+	str = 'paymentForm.do?uno=${uno}';
 	
+	document.getElementById('price').innerHTML = addrPee;
+	document.getElementById('total').innerHTML = price;
+	document.getElementById('totalPrice').innerHTML = addrPee+price;
+
+}
+
+function paymentfunction(){
+	window.location.href = a;
+}
+
 </script>

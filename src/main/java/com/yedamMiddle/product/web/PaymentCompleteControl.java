@@ -26,6 +26,7 @@ public class PaymentCompleteControl implements Command {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		// TODO Auto-generated method stub
 		Object userNoObj = req.getSession().getAttribute("uno");
+		
 		if(userNoObj == null) {
 			try {
 				resp.sendRedirect("main.do");
