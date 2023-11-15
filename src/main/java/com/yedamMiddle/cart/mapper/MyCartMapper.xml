@@ -16,7 +16,7 @@
 	</select>
 	
 
-	<delete id="deleteCart" parameterType="int">
+	<delete id="deleteCart">
 		delete from my_cart where product_no=#{productNo} and member_no=#{memberNo}
 	</delete>
 
@@ -30,10 +30,7 @@
 	</foreach>
 	</select>
 	
-	<update id="updateCart" parameterType="int">
-		update my_cart set select_cnt=#{selectCnt} where member_no=#{memberNo} and product_no= in
-		<foreach collection="array" item="arr" open="(" close=")" separator=",">
- 			#{arr}
-		</foreach>
+	<update id="updateCart">
+		update my_cart set select_cnt=#{selectCnt} where member_no=#{memberNo} and product_no= #{productNo}
 	</update>
 	</mapper>

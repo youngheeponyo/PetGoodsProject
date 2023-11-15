@@ -27,12 +27,12 @@ public class MyCartServiceImpl implements MyCartService {
 	}
 	
 	@Override
-	public boolean delCart(int[] productNos, int memberNo) {
-		return mapper.deleteCart(productNos, memberNo) ==1;
+	public boolean delCart(int productNo, int memberNo) {
+		return mapper.deleteCart(productNo, memberNo) ==1;
 	}
 	
 	@Override
-	public boolean modCart(int productNo, int memberNo) {
-		return mapper.updateCart(productNo, memberNo) == 1;
+	public boolean modCart(MyCartVO vo) {
+		return mapper.updateCart(vo) == 1;
 	}
 }

@@ -12,6 +12,7 @@
 </c:choose>
 
 <section class="py-5" id="top">
+${uno }
 	<div class="container px-4 px-lg-5 my-5">
 		<div class="row gx-4 gx-lg-5 align-items-center">
 			<div class="col-md-6">
@@ -30,9 +31,16 @@
 						style="margin: 5px; padding: 5px; border-radius: 5px;"
 						data-hook="number-input-spinner-input" aria-label="Quantity"
 						max="99" min="1" value="1" name="cnt">
-					
-					<button class="btn btn-outline-dark flex-shrink-0" onclick="functionCart()">
-					<i class="bi-cart-fill me-1"></i> Add to cart</button>
+					<c:choose>
+						<c:when test="${empty uno }">
+							<button class="btn btn-outline-dark flex-shrink-0" type="button" onclick="location.href='loginForm.do'">
+							<i class="bi-cart-fill me-1"></i> Add to cart</button>
+						</c:when>
+						<c:otherwise>
+							<button class="btn btn-outline-dark flex-shrink-0" onclick="functionCart()">
+							<i class="bi-cart-fill me-1"></i> Add to cart</button>
+						</c:otherwise>
+					</c:choose>
 				</div>
 			</div>
 		</div>
@@ -158,17 +166,15 @@
 <script>
 	function functionCart() {
 		let pno = ${pno.productNo};
-		let uno = ${uno};
 		let count = document.getElementById('inputQuantity').value;
-		
 		// ajax써서 AddCartControl(addCart.do?productNo=)
-		fetch('addCart.do?pno='+pno+'&uno='+uno+'&cnt='+count)
+		fetch('addCart.do?pno='+pno+'&uno='+${uno}+'&cnt='+count)
 		.then(resolve=>resolve.json())
 		.then(result=>{
 			console.log(result)
 			if(result.retCode=='OK'){
 				alert("장바구니에 추가되었습니다");
-				window.location.href = "myCart.do?uno=" + uno;
+					window.location.href = "myCart.do?uno=" + ${uno};
 			}else{
 				alert("추가 실패");
 			}

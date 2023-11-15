@@ -21,6 +21,7 @@ import com.yedamMiddle.cart.web.AddCartControl;
 import com.yedamMiddle.cart.web.MyCartControl;
 import com.yedamMiddle.cart.web.deleteCartControl;
 import com.yedamMiddle.cart.web.updateCartControl;
+import com.yedamMiddle.cart.web.updateCartFormControl;
 import com.yedamMiddle.login.web.AddUserControl;
 import com.yedamMiddle.login.web.AddUserFormControl;
 import com.yedamMiddle.login.web.DelUserControl;
@@ -76,12 +77,12 @@ public class FrontController extends HttpServlet {
 		commandByURL.put("/noticeForm.do", new NoticeFormControl());
 		commandByURL.put("/getNotice.do", new GetNoticeControl());
 		commandByURL.put("/addNotice.do", new AddNoticeControl());
-		commandByURL.put("/removeNotice.do", new RemoveNoticeControl());
+//		commandByURL.put("/removeNotice.do", new RemoveNoticeControl());
 		
 		//관리자페이지
-		commandByURL.put("/adminPage.do", new AdminPageControl());
+	//	commandByURL.put("/adminPage.do", new AdminPageControl());
 		//회원목록
-		commandByURL.put("/memberList.do", new MemberListControl());
+		//commandByURL.put("/memberList.do", new MemberListControl());
 		//상품
 		commandByURL.put("/productList.do", new ProductListControl());
 		//상품추가
@@ -111,6 +112,7 @@ public class FrontController extends HttpServlet {
 		commandByURL.put("/myCart.do", new MyCartControl());
 		//장바구니 삭제.업데이트
 		commandByURL.put("/updateCart.do", new updateCartControl());
+		commandByURL.put("/updateCartForm.do", new updateCartFormControl());
 		commandByURL.put("/deleteCart.do", new deleteCartControl());
 		
 		// 전민교

@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.yedamMiddle.cart.service.MyCartService;
 import com.yedamMiddle.cart.service.MyCartVO;
@@ -28,7 +29,6 @@ public class AddCartControl implements Command {
 		vo.setMemberNo(Integer.parseInt(uno));
 		vo.setProductNo(Integer.parseInt(pno));
 		vo.setSelectCnt(Integer.parseInt(cnt));
-		
 		
 		//String result = "{\"retCode\":\"OK\"}";
 		String result = "";

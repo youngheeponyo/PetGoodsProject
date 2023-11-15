@@ -164,6 +164,13 @@
 		  color: white;
 		  border: none;
 		}
+		#img{
+			width:300px;
+			height:219px;
+			margin:auto;
+			text-align: center;
+			border:none;
+		}
 		
 		</style>
     
@@ -179,6 +186,13 @@
             </ul>
         </div>
         <table class="cart__list">
+        <c:choose>
+        	<c:when test="${empty list }">
+                <tr class="cart__list__detail">
+                	<img id="img" src="productImage/cart_img.gif" alt="">
+                </tr>
+            </c:when>
+                <c:otherwise>
             <form>
                 <thead>
                     <tr>
@@ -189,6 +203,7 @@
                         <td>배송비<p>3만원 이상 무료배송</p></td>
                     </tr>
                 </thead>
+                
                 <tbody>
                 <c:forEach items="${list }" var="vo">
                     <tr class="cart__list__detail">
@@ -200,13 +215,15 @@
                         </td>
                         <td class="cart__list__option">
                             <p>모델명 : ${vo.productName } / ${vo.selCnt }개</p>
-                            <button class="cart__list__optionbtn">주문조건 추가/변경</button>
+                            <input type="hidden" name="cnt" value="${vo.selCnt+1 }"><button class="cart__list__optionbtn" type="button" onclick="location.href='updateCart.do?pno=${vo.productNo}&uno=${uno}'">▲</button>
+                            <button class="cart__list__optionbtn" type="button" onclick="downfunction()" value="${vo.selCnt-1 }">▼</button>
+                            <button class="cart__list__optionbtn" type="button" onclick="location.href='deleteCart.do?pno=${vo.productNo }&uno=${uno}'">상품 삭제</button>
                         </td>
                         <td><span class="price">${vo.productPrice*vo.selCnt }원</span><br>
                             
                         </td>
                         <td>
-                        <c:choose>
+                <c:choose>
 								<c:when test="${vo.productPrice*vo.selCnt >= 30000}">
 									무료
 								</c:when>
@@ -218,17 +235,21 @@
                     </tr>
                 </c:forEach>
                 </tbody>
+                 
                 <tfoot>
                     <tr>
-                        <td colspan="3"><button class="cart__list__optionbtn" onclick="removefunction()">선택상품 삭제</button></td>
-                        <td>상품금액 : <h4 id="total">0</h4></td><td>배송비 : <h4 id="price">0</h4></td><td>총 금액 : <h3 id="totalPrice">0</h3></td>
+                        <td colspan="3"></td>
+                        <td>상품금액 : <h4 id="total">0</h4></td><td> 배송비 : <h4 id="price">0</h4></td><td>총 금액 : <h3 id="totalPrice">0</h3></td>
                         <td></td>
                         <td></td>
                         <td></td>
                     </tr>
                 </tfoot>
             </form>
+            </c:otherwise>
+                 </c:choose>
         </table>
+        
         <div class="cart__mainbtns">
             <button class="cart__bigorderbtn left" type = "button" onclick="location.href='main.do'">쇼핑 계속하기</button>
             <button id="tess" class="cart__bigorderbtn right" type = "button" onclick="paymentfunction()">주문하기</button>
@@ -298,9 +319,14 @@ function paymentfunction(){
 	window.location.href = a;
 }
 
-function removefunction(){
-	
-	window.location.href = 'deleteCart.do?uno=${uno}'
+function upfunction(){
+	cnt=${vo.productNo+1};
+	location.href="updateCart.do?pno=${vo.productNo}&uno=${uno}"
 }
+
+function downfunction(){
+	
+}
+
 
 </script>
