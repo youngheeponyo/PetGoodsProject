@@ -72,8 +72,6 @@ public class PaymentFormControl implements Command {
 			sumPrice += totalPrice;
 		}
 		
-		//svc.delCartFromPayment(userNo, selProductNo);
-		
 		req.setAttribute("cartList", list);
 		req.setAttribute("sumPrice", sumPrice);
 		req.setAttribute("userInfo", userVO);
