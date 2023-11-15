@@ -15,7 +15,7 @@ public class QnaReplyControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		String path="userQna/getUserQnaList.tiles";
+		String path="getUserQnaList.do";
 		String qnaNo= req.getParameter("qnaNo");
 		String reply= req.getParameter("reply");
 		System.out.println("qnaNo = "+qnaNo+"   reply = "+ reply);
@@ -32,7 +32,6 @@ public class QnaReplyControl implements Command {
 			try {
 				req.getRequestDispatcher(path).forward(req, resp);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

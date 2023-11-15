@@ -4,7 +4,7 @@
 
 	<!-- 전체목록조회 -->
 	<select id="userQnaAllList" resultType ="com.yedamMiddle.userQna.service.UserQnaVO">
-		SELECT U.NICKNAME, Q.QNA_NO, Q.USER_NO, Q.PRODUCT_ORDER_NO, Q.PRODUCT_NO, Q.TITLE, Q.CONTENTS, Q.REGIST_DATE, Q.PASSWORD, Q.QNA_REPLY, Q.QNA_STATE
+		SELECT U.NICKNAME, Q.QNA_NO, Q.USER_NO, Q.PRODUCT_ORDER_NO, Q.PRODUCT_NO, Q.TITLE, Q.CONTENTS, Q.REGIST_DATE, Q.PASSWORD, Q.QNA_REPLY, Q.QNA_STATE, Q.QNA_TYPE
         FROM USER_TBL U RIGHT JOIN USERQNA Q ON U.USER_NO=Q.USER_NO ORDER BY Q.QNA_NO
 	</select>
 	
@@ -25,11 +25,11 @@
 	
 	
 	<!-- 유저 문의글 수정 -->
-	<update id="userQnaUpdate" parameterType="int">
+	<update id="userQnaUpdate" parameterType="com.yedamMiddle.userQna.service.UserQnaVO">
 		UPDATE USERQNA SET TITLE =#{title},
 						   CONTENTS =#{contents},
 						   REGIST_DATE =#{SYSDATE}
-				WHERE QNA_NO =#{qnaNo}	AND PASSWORD= #{password}				   
+				WHERE QNA_NO =#{qnaNo}			   
 	</update>
 	
 	
