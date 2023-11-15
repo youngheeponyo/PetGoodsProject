@@ -220,7 +220,7 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="3"><button class="cart__list__optionbtn">선택상품 삭제</button></td>
+                        <td colspan="3"><button class="cart__list__optionbtn" onclick="removefunction()">선택상품 삭제</button></td>
                         <td>상품금액 : <h4 id="total">0</h4></td><td>배송비 : <h4 id="price">0</h4></td><td>총 금액 : <h3 id="totalPrice">0</h3></td>
                         <td></td>
                         <td></td>
@@ -296,6 +296,11 @@ function checkfunction(){
 
 function paymentfunction(){
 	window.location.href = a;
+}
+
+function removefunction(){
+	
+	window.location.href = 'deleteCart.do?uno=${uno}'
 }
 
 </script>

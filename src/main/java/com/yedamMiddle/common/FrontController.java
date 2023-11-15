@@ -18,6 +18,8 @@ import com.yedamMiddle.admin.web.adminPageControl;
 import com.yedamMiddle.admin.web.memberListControl;
 import com.yedamMiddle.cart.web.AddCartControl;
 import com.yedamMiddle.cart.web.MyCartControl;
+import com.yedamMiddle.cart.web.deleteCartControl;
+import com.yedamMiddle.cart.web.updateCartControl;
 import com.yedamMiddle.login.web.AddUserControl;
 import com.yedamMiddle.login.web.AddUserFormControl;
 import com.yedamMiddle.login.web.DelUserControl;
@@ -106,6 +108,9 @@ public class FrontController extends HttpServlet {
 		commandByURL.put("/addCart.do", new AddCartControl());
 		//장바구니
 		commandByURL.put("/myCart.do", new MyCartControl());
+		//장바구니 삭제.업데이트
+		commandByURL.put("/updateCart.do", new updateCartControl());
+		commandByURL.put("/deleteCart.do", new deleteCartControl());
 		
 		// 전민교
 		commandByURL.put("/main.do", new MainPageControl()); // 메인페이지
