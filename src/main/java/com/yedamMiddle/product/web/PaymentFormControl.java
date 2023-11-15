@@ -32,8 +32,15 @@ public class PaymentFormControl implements Command {
 			return;
 		}
 		
-		req.getParameterValues("");
-		
+		String[] selectProductNo = req.getParameterValues("pno");
+		if(selectProductNo == null) {
+			try {
+				resp.sendRedirect("main.do");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return;
+		}
 		LoginService lsvc = new LoginServiceImpl();
 		MyCartService svc = new MyCartServiceImpl();
 		

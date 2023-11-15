@@ -15,6 +15,14 @@
 		group by C.product_name, C.product_price, A.product_no
 	</select>
 	
-
+	<select id="getCartFromPayment" resultType="com.yedamMiddle.common.service.CartJoinVO" parameterType="int">
+		SELECT A.CART_NO AS CART_NO, A.MEMBER_NO AS MEMBER_NO, B.PRODUCT_PRICE AS PRODUCT_PRICE
+    FROM MY_CART A
+    JOIN PRODUCT B ON A.PRODUCT_NO = B.PRODUCT_NO
+    WHERE A.MEMBER_NO = 0 AND B.PRODUCT_NO IN
+    <foreach collection="array" item="arr" open="(" close=")" separator=",">
+ 		#{arr}
+	</foreach>
+	</select>
 	
 	</mapper>
