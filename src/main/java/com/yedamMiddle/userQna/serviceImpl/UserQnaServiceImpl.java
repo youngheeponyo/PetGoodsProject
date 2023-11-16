@@ -85,6 +85,11 @@ public class UserQnaServiceImpl implements UserQnaService {
 		return mapper.productNameList();
 	}
 
+	@Override
+	public int productNameToSelectProductNo(String productName) {
+		return mapper.productNameToSelectProductNo(productName);
+	}
+
 
 
 

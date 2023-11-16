@@ -30,16 +30,14 @@
 }
 </style>
 
-console.log(${userVo });
-console.log(${categoryNoList });
-console.log(${productNameList });
-
-
 <section class="py-5">
 	<div class="container px-4 px-lg-5 mt-5">
 		<div class="container-fluid">
 			<form action="addUserQna.do" name="addQnaForm" method="post"
 				style="text-align: center">
+				<input type="hidden" id="categoryNoList" value="${categoryNoList}">
+				<input type="hidden" id="productNameList" value="${productNameList}">
+				
 				<h3>문의글 작성</h3>
 				<br>
 				<hr>
@@ -63,53 +61,48 @@ console.log(${productNameList });
 						<td><input type=text name="title" value=""></td>
 
 
+<!-- 상품페이지에서 문의게시판에 접속하면 -->
 
+<!-- 바깥에서 문의게시판을 접속하면 -->
+<!-- 상품타입이 상품문의라면 --><!-- 상품명 항목 추가 후, -->
+<!-- 카테고리 이름먼저 나오고 --><!-- 해당 카테고리의 번호에 맞는 상품이 나열됨 -->
 						<c:choose>
-							<!-- 상품페이지에서 문의게시판에 접속하면 -->
-							<c:when test="${not empty pName}">
-								<th colspan="1">문의종류
-								<th>
-								<td><select name="qnaType" disabled>
-										<option value="상품문의" selected>상품문의</option>
-								</select></td>
-								<th colspan="2">상품명</th>
-								<td><input type="hidden" name="pName" value="${pName}">${pName}
-								<td>
-							</c:when>
-
-							<!-- 바깥에서 문의게시판을 접속하면 -->
-							<c:otherwise>
-								<th colspan="1">문의종류
-								<th>
-								<td><select name="qnaType">
-										<option value="상품문의" selected>상품문의</option>
-										<option value="배송문의">배송문의</option>
-										<option value="교환/환불문의">교환/환불문의</option>
-										<option value="기타문의">기타문의</option>
-								</select></td>
-								
-								<!-- 상품타입이 상품문의라면 -->
-<%-- 								<c:if test="${상품타입이 상품문의라면}"> --%>
-									<!-- 상품명 항목 추가 후, -->
-									<th colspan="2">상품명</th>
-									<!-- 카테고리 이름먼저 나오고 -->
-									<td>
-									<c:forEach items="${categoryNoList}" var="categoryList">
-										<optgroup label="${categoryList.categoryName}">
-
-											<!-- 해당 카테고리의 번호에 맞는 상품이 나열됨 -->
-<%-- 											<c:forEach items="${productNameList}" var="productList"> --%>
-<%-- 												<c:if test="${{categoryList.categoryNo == productList.categoryNo}"> --%>
-<%-- 													<option value="${productList.productName }">${productList.productName }</option> --%>
-<%-- 												</c:if> --%>
-<%-- 											</c:forEach> --%>
-
-										</optgroup>
-									</c:forEach>
-									</td>
-<%-- 								</c:if> --%>
-							</c:otherwise>
-						</c:choose>
+                     <c:when test="${not empty pName}">
+                        <th colspan="1">문의종류
+                        <th>
+                        <td><select name="qnaType" disabled>
+                              <option value="상품문의" selected>상품문의</option>
+                        </select></td>
+                        <th colspan="2">상품명</th>
+                        <td><input type="hidden" name="pName" value="${pName}">${pName}
+                        <td>
+                     </c:when>
+                     <c:otherwise>
+                        <th colspan="1">문의종류
+                        <th>
+                        <td>
+                        <select name="qnaType" onchange="qnaTypeCheck(this.value)">
+                              <option value="" selected disabled >선택해주세요</option>
+                              <option value="상품문의" >상품문의</option>
+                              <option value="배송문의">배송문의</option>
+                              <option value="교환/환불문의">교환/환불문의</option>
+                              <option value="기타문의">기타문의</option>
+                        </select>
+                        </td>
+                           <th colspan="1" class="">상품카테고리</th>
+                           <td>
+                              <select class="mainCategory" onchange="getSubCategory(this.value)">
+                                 <option>메인카테고리</option>
+                              </select>
+                           </td>
+                           <th>상품명</th>
+                           <td>
+                              <select class="subCategory">
+                                 <option>서브카테고리</option>
+                              </select>
+                           </td>
+                     </c:otherwise>
+                  </c:choose>
 					</tr>
 
 
@@ -119,8 +112,8 @@ console.log(${productNameList });
 								class="form-control" name="contents">여기에 삽입</textarea></td>
 					</tr>
 					<tr>
-						<td colspan="14" align="center"><input type="submit"
-							value="등록하기"></td>
+						<td colspan="14" align="center">
+						<input type="submit" value="등록하기"></td>
 					</tr>
 				</table>
 			</form>
@@ -129,8 +122,43 @@ console.log(${productNameList });
 </section>
 <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 <script>
-	function test() {
-		console.log("ddd");
+	function qnaTypeCheck(value){
+// 		console.log("value:"+ value);
+		if(value=="상품문의"){
+			getsubCategory();
+		}
+		
 	}
+
+
+	function getSubCategory(){
+		
+	}
+
+	// function test(value){
+	// 	var qnaType = document.getElementById('qnaType').value;
+	// 	const categoryNoList = document.getElementById('categoryNoList').value
+	// 	const productNameList = document.getElementById('productNameList').value
+	// 	if(qnaType =="상품문의"){
+	// 		const th = document.createElement("th").append('상품명');
+	// 		const td = document.createElement("td").append(select);
+	// 		const select = document.createElement("select");
+			
+			
+	// 		categoryNoList.forEach(element => {
+	// 			const optgroup= document.createElement('optgroup')
+				
+	// 			optgroup.setAttribute('label',)
+	// 			if(categoryNoList.categoryNo == productNameList.categoryNo){
+	// 				productNameList.forEach(element =>{
+	// 					const option = document.createElement('option').innerHTML=productNameList.productName;
+	// 					select.append(option);
+	// 				})
+	// 			}
+
+	// 		});
+			
+	// 	}
+	//}
 </script>
 
