@@ -8,6 +8,8 @@ import com.yedamMiddle.product.service.ProductVO;
 public interface AdminService {
 	List<UserVO> userList();
 	List<ProductVO> prodList();
-	public boolean addProduct(ProductVO vo);
 	public ProductVO getProduct(int ProductNo);
+	public boolean addProduct(ProductVO vo);
+	public boolean editProduct(ProductVO vo);
+	public boolean removeProduct(ProductVO vo);
 }

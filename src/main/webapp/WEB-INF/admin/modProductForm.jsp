@@ -6,17 +6,21 @@
 <body>
 	<section class="pt-2 pb-4">
 		<div class="container px-4 px-lg-5 mt-3">
-			<h3>상품 등록화면</h3>
-			<form action="addProduct.do" method="post" enctype="multipart/form-data"
-				>
+			<h3>상품 수정화면</h3>
+			<form action="modProduct.do" method="post" >
+			<input type="hidden" name="productNo" value="${prod.productNo}" class="form-control">
 				<table class="table">
 					<tr>
 						<th>애완동물타입</th>
 						<td>
-							<select class="form-select" name="petType" onchange="selectBoxChange(this.value)" aria-label="Default select example">
-							  <option selected value="0">강아지</option>
-							  <option value="1">고양이</option>
-							</select>
+							<c:choose>
+								<c:when test="${prod.petType == '0'}">
+									강아지							
+								</c:when>
+								<c:otherwise>
+									고양이
+								</c:otherwise>
+						</c:choose>
 						</td>
 						<th>카테고리</th>
 						<td>
@@ -33,30 +37,23 @@
 					</tr>
 					<tr>
 						<th>상품명</th>
-						<td colspan="3"><input type="text" name="productName" class="form-control"></td>
+						<td colspan="3">${prod.productName }</td>
 					</tr>
 					<tr>
 						<th>가격</th>
-						<td><input type="text" name="productPrice" class="form-control"></td>
+						<td><input type="text" name="productPrice" class="form-control" value="${prod.productPrice }"></td>
 						<th>상품수량</th>
-						<td><input type="text" name="productStock" class="form-control"></td>
+						<td><input type="text" name="productStock" class="form-control" value="${prod.productStock }"></td>
 					</tr>
 					<tr>
 						<th>상품설명</th>
 						<td colspan="3"><textarea cols="100" rows="6" name="productDesc"
-								class="form-control"></textarea></td>
+								class="form-control" >${prod.productDesc }</textarea></td>
 					</tr>
-					<tr>
-						
-						<td>메인이미지 :</td>
-						<td><input type="file" name="mainfile" class="form-control"></td>
 					
-						<td>상세이미지 :</td>
-						<td><input type="file" name="detailfile" class="form-control"></td>
-					</tr>
 					<tr>
 						<td colspan="2">
-							<input type="submit" value="저장" class="btn btn-primary"> 
+							<input type="submit" value="수정" class="btn btn-primary"> 
 							<input type="reset" value="초기화" class="btn btn-warning">
 						</td>
 					</tr>

@@ -17,6 +17,8 @@ import com.yedamMiddle.admin.web.ProductListControl;
 import com.yedamMiddle.admin.web.AdminPageControl;
 import com.yedamMiddle.admin.web.GetProductControl;
 import com.yedamMiddle.admin.web.MemberListControl;
+import com.yedamMiddle.admin.web.ModProductControl;
+import com.yedamMiddle.admin.web.ModProductFormControl;
 import com.yedamMiddle.cart.web.AddCartControl;
 import com.yedamMiddle.cart.web.MyCartControl;
 import com.yedamMiddle.cart.web.deleteCartControl;
@@ -87,11 +89,11 @@ public class FrontController extends HttpServlet {
       commandByURL.put("/memberList.do", new MemberListControl()); //회원목록
       //상품
       commandByURL.put("/productList.do", new ProductListControl()); //상품목록
-      //상품추가
       commandByURL.put("/productForm.do", new ProductFormControl()); //새 상품 작성
       commandByURL.put("/addProduct.do", new AddProductControl()); //상품등록 
-      //상품선택
       commandByURL.put("/getProduct.do", new GetProductControl()); //상품조회
+      commandByURL.put("/modProductForm.do", new ModProductFormControl()); //상품수정화면
+      commandByURL.put("/modProduct.do", new ModProductControl()); //상품수정
       
       
       // 서영희
