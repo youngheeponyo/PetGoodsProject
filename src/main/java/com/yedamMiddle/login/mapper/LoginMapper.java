@@ -1,5 +1,6 @@
 package com.yedamMiddle.login.mapper;
 
+
 import java.util.List;
 
 
@@ -14,5 +15,5 @@ public interface LoginMapper {
 	public int deleteUser(@Param("userId") String userId, @Param("userPw")String userPw);
 	public List<UserVO> list();
 	public UserVO getUser(int userNo);
-	public int kakao(KakaoVO vo);
+	public UserVO idCheck(String userId);
 }

@@ -52,7 +52,7 @@
 								<label for="name">아이디</label> <input type="text"
 									class="form-control" id="name" name="userId" placeholder=""
 									value="" required>
-								<div class="invalid-feedback">이름을 입력해주세요.</div>
+								<div class="invalid-feedback">아이디를 입력해주세요.</div>
 							</div>
 							<div class="mb-3">
 								<label for="name">비밀번호</label> <input type="password"
@@ -63,7 +63,7 @@
 							<div class="mb-4"></div>
 							<input class="btn btn-primary btn-lg btn-block" type="submit" value="로그인" style="background-color:pink;border:1px white;width:200px;margin:auto;">
 							<input class="btn btn-primary btn-lg btn-block" type="button" value="회원가입" style="background-color:pink;border:1px white;width:200px;margin:auto" onclick="location.href='addUserForm.do'">
-							<a id="kakao-login-btn"><img src="https://developers.kakao.com/tool/resource/static/img/button/login/full/ko/kakao_login_medium_narrow.png" style="width:200px;height:46px;margin:20px auto;text-align: center;"></a>
+							<a id="kakao-login-btn"><img src="https://developers.kakao.com/tool/resource/static/img/button/login/full/ko/kakao_login_medium_narrow.png" style="width:200px;height:46px;margin:20px auto;text-align:center;"></a>
 						</div>
 					<!-- 카카오로그인 -->
 
@@ -82,11 +82,22 @@
 						          Kakao.API.request({
 						            url: '/v2/user/me',
 						            success: function(res) {
-						          console.log(authObj);
 						              const kakaoId = res.id;
+						              const kakaoPw = "kakao" + res.id;
 									  scope : 'account_email';
-									  alert('회원가입 페이지로 넘어갑니다');
-							          location.href="addKakao.do?kId="+kakaoId;
+										fetch('idCheck.do?uid='+kakaoId)
+										.then(resolve=>resolve.json())
+										.then(result=>{
+											console.log(result)
+											if(result.retCode=='NG'){
+												console.log(result);
+												alert("회원가입 후 사용하실 수 있습니다");
+												location.href="addUserForm.do?kId="+kakaoId+"&kPw="+kakaoPw;
+											}else{
+												alert("로그인 완료!");
+												location.href="login.do?userId="+kakaoId+"&userPw="+kakaoPw;
+											}
+										})
 						        }
 						          })
 						          var token = authObj.access_token;

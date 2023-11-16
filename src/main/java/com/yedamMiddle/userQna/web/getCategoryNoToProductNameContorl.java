@@ -20,6 +20,7 @@ public class getCategoryNoToProductNameContorl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
+
 		resp.setContentType("text/json;charset=utf-8");
 		
 		UserQnaService svc = new UserQnaServiceImpl();
@@ -40,6 +41,8 @@ public class getCategoryNoToProductNameContorl implements Command {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
+		
 
 	}
 

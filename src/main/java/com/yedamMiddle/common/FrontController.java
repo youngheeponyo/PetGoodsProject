@@ -1,6 +1,9 @@
 package com.yedamMiddle.common;
 
 import java.io.IOException;
+
+
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,12 +25,11 @@ import com.yedamMiddle.cart.web.AddCartControl;
 import com.yedamMiddle.cart.web.MyCartControl;
 import com.yedamMiddle.cart.web.deleteCartControl;
 import com.yedamMiddle.cart.web.insertOneControl;
-import com.yedamMiddle.login.web.AddKakaoControl;
-import com.yedamMiddle.login.web.AddKakaoFormControl;
 import com.yedamMiddle.login.web.AddUserControl;
 import com.yedamMiddle.login.web.AddUserFormControl;
 import com.yedamMiddle.login.web.DelUserControl;
 import com.yedamMiddle.login.web.DelUserFormControl;
+import com.yedamMiddle.login.web.IdCheckControl;
 import com.yedamMiddle.login.web.LoginControl;
 import com.yedamMiddle.login.web.LoginFormControl;
 import com.yedamMiddle.login.web.LogoutControl;
@@ -103,8 +105,6 @@ public class FrontController extends HttpServlet {
       //회원가입
       commandByURL.put("/addUserForm.do", new AddUserFormControl());
       commandByURL.put("/addUser.do", new AddUserControl());
-      commandByURL.put("/addKakaoForm.do", new AddKakaoFormControl());
-      commandByURL.put("/addKakao.do", new AddKakaoControl());
       //로그인
       commandByURL.put("/loginForm.do", new LoginFormControl());
       commandByURL.put("/login.do", new LoginControl());
@@ -113,6 +113,8 @@ public class FrontController extends HttpServlet {
       //회원탈퇴
       commandByURL.put("/delUserForm.do", new DelUserFormControl());
       commandByURL.put("/delUser.do", new DelUserControl());
+      //아이디 중복 체크
+      commandByURL.put("/idCheck.do", new IdCheckControl());
       //상세페이지 보기
       commandByURL.put("/detailProduct.do", new ProductDetailControl());
       //장바구니 추가

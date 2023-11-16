@@ -12,6 +12,11 @@ public class AddUserFormControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
+		//카카오 아이디
+		String kId = req.getParameter("kId");
+		String kPw = req.getParameter("kPw");
+		req.setAttribute("kId", kId);
+		req.setAttribute("kPw", kPw);
 		// 회원가입 페이지
 		String path = "login/addUser.tiles";
 		try {

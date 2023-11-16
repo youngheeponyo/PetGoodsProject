@@ -10,5 +10,5 @@ public interface LoginService {
 	public UserVO loginUser(String userId,String userPw);
 	public List<UserVO> list();
 	public UserVO getUserInfo(int userNo);
-	public boolean kakao(KakaoVO vo);
+	public UserVO idCheck(String userId);
 }
