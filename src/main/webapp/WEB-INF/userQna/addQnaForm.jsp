@@ -131,8 +131,14 @@
 	}
 
 
-	function getSubCategory(){
-		
+	function getMainCategory(){
+		fetch('getMainCategory.do')
+		.then(resolve => resolve.json()){
+		.then(result =>{
+			console.log(result);
+			console.log(result.mainCategory);
+		})
+		}
 	}
 
 	// function test(value){
