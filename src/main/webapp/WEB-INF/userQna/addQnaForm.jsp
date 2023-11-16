@@ -98,7 +98,7 @@
                            <th>상품명</th>
                            <td>
                               <select class="subCategory">
-                                 <option>서브카테고리</option>
+                                 <option>상품명</option>
                               </select>
                            </td>
                      </c:otherwise>
@@ -125,7 +125,7 @@
 	function qnaTypeCheck(value){
 // 		console.log("value:"+ value);
 		if(value=="상품문의"){
-			getsubCategory();
+			getMainCategory();
 		}
 		
 	}
@@ -133,13 +133,28 @@
 
 	function getMainCategory(){
 		fetch('getMainCategory.do')
-		.then(resolve => resolve.json()){
+		.then(resolve => resolve.json())
 		.then(result =>{
 			console.log(result);
 			console.log(result.mainCategory);
+			makeMainOption(result.mainCategory);
 		})
 		}
+	
+	function makeMainOption(mainCategoryList){
+		console.log("mainCategoryList :" + mainCategoryList)
+		
+		mainCategoryList.forEach(item =>{
+			let option = document.createElement('option');
+			option.value=item.categoryNo;
+			option.innerHTML=itme.categoryName;
+			document.querySelector('.mainCategory').append('opttion')
+		})
+		
+		
 	}
+	
+	
 
 	// function test(value){
 	// 	var qnaType = document.getElementById('qnaType').value;

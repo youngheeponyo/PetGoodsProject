@@ -44,4 +44,7 @@ public interface UserQnaService {
 	
 	//상품명으로 상품번호 찾기
 	public int productNameToSelectProductNo(String productName);
+	
+	//메인 카테고리
+	public List<CategoryVO> getMainCategory();
 }

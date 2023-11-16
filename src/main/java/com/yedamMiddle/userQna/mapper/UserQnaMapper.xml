@@ -89,5 +89,8 @@
 		SELECT PRODUCT_NO FROM PRODUCT WHERE PRODUCT_NAME=#{productName};
 	</select>
 	
+	<select id="getMainCategory" resultType="com.yedamMiddle.common.service.CategoryVO">
+		SELECT CATEGORY_NO, CATEGORY_NAME FROM CATEGORY WHERE CATEGORY_PRENO IS NULL
+	</select>
 	
 </mapper>
