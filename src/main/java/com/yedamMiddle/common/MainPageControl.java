@@ -20,10 +20,6 @@ public class MainPageControl implements Command {
 		// TODO Auto-generated method stub
 		ProductService svc = new ProductServiceImpl();
 		
-		//전체리스트
-		List<ProductVO> list = svc.productList();
-		req.setAttribute("list", list);
-		
 		HttpSession session = req.getSession();
 		if(session.getAttribute("categoryMap") == null) {
 			List<CategoryJoinVO> result = svc.getCategoryList();
@@ -33,9 +29,18 @@ public class MainPageControl implements Command {
 		}
 		
 		// 현재 강아지 상품/고양이 상품 없으면 default로 0으로 설정한다(강아지)
-		if(req.getSession().getAttribute("curShowPetType") == null) {
+		String petType = (String)req.getSession().getAttribute("curShowPetType");
+		if(petType == null) {
 			session.setAttribute("curShowPetType", "0");
 		}
+		
+		List<ProductVO> productRegistDesc = svc.searchRegistDateDescFromMain(petType);
+		List<ProductVO> productReviewDesc = svc.searchReviewDescFromMain(petType);
+		List<ProductVO> productStarCntDesc = svc.searchStarCntDescFromMain(petType);
+		
+		req.setAttribute("registDesc", productRegistDesc);
+		req.setAttribute("reviewDesc", productReviewDesc);
+		req.setAttribute("starCntDesc", productStarCntDesc);
 		
 		try {
 			req.setAttribute("main", 1); // main페이지 구분용도(배너슬라이드)
