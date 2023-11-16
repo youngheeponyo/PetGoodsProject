@@ -35,7 +35,6 @@ ${userVo } ${productVo }
 	<div class="container px-4 px-lg-5 mt-5">
 		<div class="container-fluid">
 			<form action="modifyUserQnaForm.do" name="userQnaDetailForm" method="post" style=text-align:center>
-				<input type="hidden" name="qnaNo" value="${vo.qnaNo }">
 				<h3>문의글 작성</h3>
 				<br><hr>
 				<table class="table" border="1">
@@ -92,9 +91,9 @@ ${userVo } ${productVo }
 						
 <%-- 					</c:choose> --%>
 						
-<!-- 						
+						
 <%-- 							<c:choose> --%>
-<%-- 								<c:when test="상품페이지에서 넘어왔을때"><!-- 상품이랑 사람 조인 후 구매내역이 있을때 --> --%>
+<%-- 								<c:when test="상품페이지에서 넘어왔을때">상품이랑 사람 조인 후 구매내역이 있을때 --%>
 <%-- 											${productVo.productNo } --%>
 <%-- 								</c:when> --%>
 <%-- 								<c:otherwise> --%>

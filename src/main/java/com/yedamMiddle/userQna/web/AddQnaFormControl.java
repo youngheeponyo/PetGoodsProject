@@ -18,14 +18,16 @@ public class AddQnaFormControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		
+		String pName = req.getParameter("pName");
+		System.out.println(pName);
 		
 		
 		//AddQnaControl에서 등록할때 시간으로 넣어주기
 //		LocalDateTime now = LocalDateTime.now();
 //		String fomatedNow = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm"));
 //		System.out.println(fomatedNow);
-
+		
+		
 		UserQnaService svc = new UserQnaServiceImpl();
 		int maxQnaNO = svc.getMaxQnaNo();
 		req.setAttribute("maxQnaNO", maxQnaNO);
