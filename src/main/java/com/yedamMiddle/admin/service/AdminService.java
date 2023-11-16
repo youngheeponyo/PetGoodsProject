@@ -12,4 +12,5 @@ public interface AdminService {
 	public boolean addProduct(ProductVO vo);
 	public boolean editProduct(ProductVO vo);
 	public boolean removeProduct(int productNo);
+	public String cateName(int productNo);
 }
