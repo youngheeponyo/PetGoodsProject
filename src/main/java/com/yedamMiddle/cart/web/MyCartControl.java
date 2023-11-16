@@ -12,6 +12,9 @@ import com.yedamMiddle.cart.service.MyCartService;
 import com.yedamMiddle.cart.serviceImpl.MyCartServiceImpl;
 import com.yedamMiddle.common.Command;
 import com.yedamMiddle.common.service.CartJoinVO;
+import com.yedamMiddle.product.service.ProductService;
+import com.yedamMiddle.product.service.ProductVO;
+import com.yedamMiddle.product.serviceImpl.ProductServiceImpl;
 
 public class MyCartControl implements Command {
 
@@ -20,8 +23,8 @@ public class MyCartControl implements Command {
 		String uno = req.getParameter("uno");
 		MyCartService svc = new MyCartServiceImpl();
 		List<CartJoinVO> list = svc.getCart(Integer.parseInt(uno));
-		
 		req.setAttribute("list", list);
+		
 		
 		
 		try {

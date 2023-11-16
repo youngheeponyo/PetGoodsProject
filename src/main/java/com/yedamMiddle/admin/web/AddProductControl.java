@@ -55,6 +55,8 @@ public class AddProductControl implements Command {
             String saveDeployDir2 = req.getServletContext().getRealPath("productDetailImage");
             String uploadPath1 = saveDeployDir1 + typePath;
             String uploadPath2 = saveDeployDir2 + typePath;
+            PrintWriter out = resp.getWriter();
+            resp.setContentType("text/html; charset=utf-8");
             
             System.out.println("path1 : " + uploadPath1);
             System.out.println("path2 : " + uploadPath2);
@@ -90,17 +92,16 @@ public class AddProductControl implements Command {
                     	item.write(storeFile);                    	
                     }
                     else {
-                    	PrintWriter out = resp.getWriter();
-            			resp.setCharacterEncoding("utf-8");
-            			resp.setContentType("text/html; charset=utf-8");
-            			out.println("<script> alert('이미 존재하는 파일입니다.');");
-            			out.println("history.go(-1); </script>"); 
-            			out.close();
+                    	System.out.println("파일충돌");
+//            			out.println("<script> alert('이미 존재하는 파일입니다.');");
+//            			out.println(" </script>"); 
+            			
             			try {
             				resp.sendRedirect("productForm.do");
             			} catch (IOException e) {
             				e.printStackTrace();
             			}
+            			return;
                     }
                 }
             	else {
@@ -108,6 +109,9 @@ public class AddProductControl implements Command {
             		data.add(item.getString("utf-8"));
             	}
             }
+            
+            // 여기선 내가 처리해야할 데이터들이 모두모임.
+            // 실제처리하기전에 이미 db에 데이터가 있는지 조회한번때리고. 그런다음 삽입처리
             
             System.out.println(data);
             
@@ -119,25 +123,28 @@ public class AddProductControl implements Command {
             vo.setProductDesc(data.get(5));
             vo.setProductImage(data.get(2)+".png");
             
+            if(svc.addProduct(vo)) {
+            	try {
+            		resp.sendRedirect("productList.do");
+            	} catch (IOException e) {
+            		e.printStackTrace();
+            	}
+//            	out.println("<script> alert('등록성공 ㅎ.');");
+//    			out.println(" </script>"); 
+    			
+            }else {
+            	try {
+            		resp.sendRedirect("productForm.do");
+            	} catch (IOException e) {
+            		e.printStackTrace();
+            	}
+            }
+            out.close();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
         
-        if(svc.addProduct(vo)) {
-        	try {
-				resp.sendRedirect("productList.do");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-        }else {
-        	try {
-				resp.sendRedirect("productForm.do");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-        	
-        }
-	
+        
         
 	}
 

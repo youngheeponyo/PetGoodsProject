@@ -26,12 +26,22 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public ProductVO getProduct(int ProductNo) {
-		return mapper.select(ProductNo);
+		return mapper.prodSelect(ProductNo);
 	}
 
 	@Override
 	public boolean addProduct(ProductVO vo) {
-		return mapper.insert(vo) == 1;
+		return mapper.prodInsert(vo) == 1;
+	}
+
+	@Override
+	public boolean editProduct(ProductVO vo) {
+		return mapper.prodUpdate(vo) == 1;
+	}
+
+	@Override
+	public boolean removeProduct(int productNo) {
+		return mapper.prodDelete(productNo) == 1;
 	}
 
 	

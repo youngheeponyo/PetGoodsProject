@@ -6,14 +6,14 @@
 <body>
 	<section class="pt-2 pb-4">
 		<div class="container px-4 px-lg-5 mt-3">
-			<form action="modifyProdForm.do" name="myForm">
+			<form action="modProductForm.do" name="myForm">
 				<h3>상품정보</h3>
-				<input type="hidden" name="prno" value="prno.productNo"
+				<input type="hidden" name="prno" value="${prno.productNo}"
 					class="form-control">
 				<table class="table">
 					<tr>
 						<th>상품명</th>
-						<td class="productName">${prno.productName }</td>
+						<td>${prno.productName }</td>
 						<th>애완동물타입</th>
 						<td>
 						<c:choose>

@@ -44,7 +44,6 @@ public class AddCartControl implements Command {
 		try {
 			resp.getWriter().print(result);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
