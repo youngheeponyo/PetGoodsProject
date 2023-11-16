@@ -69,5 +69,18 @@
 		SELECT MAX(QNA_NO) +1 FROM USERQNA
 	</select>
 	
+	<select id="unoToSelectUser" parameterType="int"
+								resultType="com.yedamMiddle.common.service.UserVO">
+		SELECT * FROM USER_TBL WHERE USER_NO =#{userNo}
+	</select>
+	
+	<!-- 1.카테고리 넘버를 뽑고 그 넘버에 2.해당하는 상품을 정렬해서 보여줌 -->
+		<select id="categoryNoList" resultType="com.yedamMiddle.common.service.CategoryVO">
+			SELECT CATEGORY_NO, CATEGORY_NAME FROM CATEGORY
+		</select>
+		
+		<select id="productNameList" resultType="com.yedamMiddle.product.service.ProductVO">
+			SELECT PRODUCT_NAME, CATEGORY_NO FROM PRODUCT
+		</select>
 	
 </mapper>
