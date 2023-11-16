@@ -55,6 +55,7 @@ import com.yedamMiddle.userQna.web.GetQnaListControl;
 import com.yedamMiddle.userQna.web.ModifyUserQnaControl;
 import com.yedamMiddle.userQna.web.ModifyUserQnaFormControl;
 import com.yedamMiddle.userQna.web.QnaReplyControl;
+import com.yedamMiddle.userQna.web.subCategory;
 
 // 0 -> 개 type
 // 1 -> 고양이 type
@@ -74,7 +75,9 @@ public class FrontController extends HttpServlet {
       commandByURL.put("/qnaReply.do", new QnaReplyControl());//Qna관리자 답글달기(수정은 보류)
       
       commandByURL.put("/addUserQnaForm.do", new AddQnaFormControl());
-      commandByURL.put("/getMainCategory.do", new GetMainCategory());
+      commandByURL.put("/getMainCategory.do", new GetMainCategory());//대분류 카테고리(등록)
+      commandByURL.put("/subCategory.do", new subCategory());//소분류 카테고리(등록)
+      
       
 //      commandByURL.put("/addUserQna.do", new AddQnaControl());//등록보류
       

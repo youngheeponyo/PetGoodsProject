@@ -92,12 +92,12 @@
                            <th colspan="1" class="">상품카테고리</th>
                            <td>
                               <select class="mainCategory" onchange="getSubCategory(this.value)">
-                                 <option>메인카테고리</option>
+                                 <option value="" selected disabled >선택해주세요</option>
                               </select>
                            </td>
                            <th>상품명</th>
                            <td>
-                              <select class="subCategory">
+                              <select class="subCategory" onchange="subCategory(this.value)">
                                  <option>상품명</option>
                               </select>
                            </td>
@@ -123,7 +123,7 @@
 <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 <script>
 	function qnaTypeCheck(value){
-// 		console.log("value:"+ value);
+		console.log("value:"+ value);
 		if(value=="상품문의"){
 			getMainCategory();
 		}
@@ -147,9 +147,13 @@
 		mainCategoryList.forEach(item =>{
 			let option = document.createElement('option');
 			option.value=item.categoryNo;
-			option.innerHTML=itme.categoryName;
-			document.querySelector('.mainCategory').append('opttion')
+			option.innerHTML=item.categoryName;
+			document.querySelector('.mainCategory').append(option);
 		})
+		
+	function subCategory(){
+			
+		}
 		
 		
 	}
