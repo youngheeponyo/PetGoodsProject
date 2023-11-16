@@ -21,7 +21,7 @@ public class deleteCartControl implements Command {
 		
 		if(svc.delCart(Integer.parseInt(pno), Integer.parseInt(uno))) {
 				try {
-					req.getRequestDispatcher("cart/myCart.tiles").forward(req, resp);
+					req.getRequestDispatcher("myCart.do?uno="+uno).forward(req, resp);
 				} catch (ServletException | IOException e) {
 					e.printStackTrace();
 				}

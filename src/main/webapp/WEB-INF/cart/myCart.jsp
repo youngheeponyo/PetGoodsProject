@@ -214,9 +214,10 @@
                             <br><sapn class="price">${vo.productPrice }원</sapn>
                         </td>
                         <td class="cart__list__option">
-                            <p>모델명 : ${vo.productName } / ${vo.selCnt }개</p>
-                            <input type="hidden" name="cnt" value="${vo.selCnt+1 }"><button class="cart__list__optionbtn" type="button" onclick="location.href='updateCart.do?pno=${vo.productNo}&uno=${uno}'">▲</button>
-                            <button class="cart__list__optionbtn" type="button" onclick="downfunction()" value="${vo.selCnt-1 }">▼</button>
+                            <p>모델명 : ${vo.productName }</p>
+                            <input class="cart__list__optionbtn" id="cnt" type="number" pattern="[0-9]*"style="padding: 5px; border-radius: 5px;"
+							max="99" min="1" value="${vo.selCnt }" name="cnt">
+                            <button class="cart__list__optionbtn" type="button" onclick="location.href='updateCart.do?pno=${vo.productNo}&uno=${uno}'">변경완료</button>
                             <button class="cart__list__optionbtn" type="button" onclick="location.href='deleteCart.do?pno=${vo.productNo }&uno=${uno}'">상품 삭제</button>
                         </td>
                         <td><span class="price">${vo.productPrice*vo.selCnt }원</span><br>
@@ -316,17 +317,13 @@ function checkfunction(){
 }
 
 function paymentfunction(){
-	window.location.href = a;
+	if($(".chk:checked").length == 0){
+		alert('선택된 상품이 없습니다')
+	}else{
+		window.location.href = a;
+	}
 }
 
-function upfunction(){
-	cnt=${vo.productNo+1};
-	location.href="updateCart.do?pno=${vo.productNo}&uno=${uno}"
-}
-
-function downfunction(){
-	
-}
 
 
 </script>
