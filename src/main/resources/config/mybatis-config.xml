@@ -25,6 +25,6 @@
 		<mapper resource="com/yedamMiddle/admin/mapper/AdminMapper.xml" />
 		<mapper resource="com/yedamMiddle/notice/mapper/NoticeMapper.xml" />
 		<mapper resource="com/yedamMiddle/cart/mapper/MyCartMapper.xml" />
-		
+		<mapper resource="com/yedamMiddle/addr/mapper/AddrMapper.xml" />
 	</mappers>
 </configuration>

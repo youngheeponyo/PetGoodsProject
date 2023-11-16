@@ -223,7 +223,7 @@ ${userQnaVo} ${userVo } ${productVo }
 	document.querySelector("input[type=button]").addEventListener('click', function(e){
 		if(confirm("정말 삭제하시겠습니까?")==true){
 			console.log("삭제버튼 눌렸음");
-			
+			 
 			document.forms.userQnaDetailForm.action="deleteUserQna.do";
 			document.forms.userQnaDetailForm.submit();
 		}

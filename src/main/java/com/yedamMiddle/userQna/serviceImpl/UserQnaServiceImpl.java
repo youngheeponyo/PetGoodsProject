@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.yedamMiddle.common.Mybatis;
+import com.yedamMiddle.common.service.CategoryVO;
 import com.yedamMiddle.common.service.UserVO;
 import com.yedamMiddle.product.service.ProductVO;
 import com.yedamMiddle.userQna.mapper.UserQnaMapper;
@@ -68,6 +69,25 @@ public class UserQnaServiceImpl implements UserQnaService {
 	public int getMaxQnaNo() {
 		return mapper.getMaxQnaNo();
 	}
+
+	@Override
+	public UserVO unoToSelectUser(int uno) {
+		return mapper.unoToSelectUser(uno);
+	}
+
+	@Override
+	public List<CategoryVO> categoryNoList() {
+		return mapper.categoryNoList();
+	}
+
+	@Override
+	public List<ProductVO> productNameList() {
+		return mapper.productNameList();
+	}
+
+
+
+
 
 
 

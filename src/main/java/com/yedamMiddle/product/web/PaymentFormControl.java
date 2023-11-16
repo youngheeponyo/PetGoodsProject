@@ -72,6 +72,11 @@ public class PaymentFormControl implements Command {
 			sumPrice += totalPrice;
 		}
 		
+		if(sumPrice < 30000) {
+			sumPrice += 2500; // 배송비..
+			req.setAttribute("addrFee", "1");		
+		}
+		
 		req.setAttribute("cartList", list);
 		req.setAttribute("sumPrice", sumPrice);
 		req.setAttribute("userInfo", userVO);
