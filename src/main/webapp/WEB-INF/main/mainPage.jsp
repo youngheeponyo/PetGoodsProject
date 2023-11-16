@@ -23,7 +23,7 @@
                         <div class="card h-100">
                             <!-- Product image-->
                             <div class="hoverImg">
-                            	<img class="card-img-top" src="productImage/dog/${vo.productImage }" alt="..." />
+                            	<img class="card-img-top" src="productImage/${petType }/${vo.productImage }" alt="..." style="object-fit: cover; height: 268px;" />
                             </div>
                             <!-- Product details-->
                             <div class="card-body p-4">
@@ -56,7 +56,7 @@
                         <div class="card h-100">
                             <!-- Product image-->
                             <div class="hoverImg">
-                            	<img class="card-img-top" src="productImage/dog/${vo.productImage }" alt="..." />
+                            	<img class="card-img-top" src="productImage/${petType }/${vo.productImage }" alt="..." style="object-fit: cover; height: 268px;"/>
                             </div>
                             <!-- Product details-->
                             <div class="card-body p-4">
@@ -89,7 +89,7 @@
                         <div class="card h-100">
                             <!-- Product image-->
                             <div class="hoverImg">
-                            	<img class="card-img-top" src="productImage/dog/${vo.productImage }" alt="..." />
+                            	<img class="card-img-top" src="productImage/${petType }/${vo.productImage }" alt="..." style="object-fit: cover; height: 268px;"/>
                             </div>
                             <!-- Product details-->
                             <div class="card-body p-4">
