@@ -42,4 +42,6 @@ public interface UserQnaService {
 	public List<CategoryVO> getMainCategory();
 	//서브 카테고리
 	public List<CategoryVO> getSubCategory();
+	//카테고리 번호로 상품이름 찾기
+	public List<ProductVO> getCategoryNoToProductName(CategoryVO vo);
 }

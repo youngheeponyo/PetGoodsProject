@@ -150,7 +150,8 @@
 	}
 		
 	function getCategory(value){
-		console.log("value:"+ value);
+// 		console.log("value:"+ value);
+		fetch('')
 		
 	}
 	
@@ -163,7 +164,6 @@
 			makeMainOption(result.mainCategory);
 		})
 		}
-
 
 // 	function getMainCategory(){
 // 		fetch('getMainCategory.do')

@@ -1,10 +1,6 @@
 package com.yedamMiddle.common;
 
 import java.io.IOException;
-
-
-
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,14 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedamMiddle.admin.web.AddProductControl;
-import com.yedamMiddle.admin.web.ProductFormControl;
-import com.yedamMiddle.admin.web.ProductListControl;
-import com.yedamMiddle.admin.web.RemoveProductControl;
 import com.yedamMiddle.admin.web.AdminPageControl;
 import com.yedamMiddle.admin.web.GetProductControl;
 import com.yedamMiddle.admin.web.MemberListControl;
 import com.yedamMiddle.admin.web.ModProductControl;
 import com.yedamMiddle.admin.web.ModProductFormControl;
+import com.yedamMiddle.admin.web.ProductFormControl;
+import com.yedamMiddle.admin.web.ProductListControl;
+import com.yedamMiddle.admin.web.RemoveProductControl;
 import com.yedamMiddle.cart.web.AddCartControl;
 import com.yedamMiddle.cart.web.MyCartControl;
 import com.yedamMiddle.cart.web.deleteCartControl;
@@ -46,17 +42,14 @@ import com.yedamMiddle.product.web.PaymentCompleteControl;
 import com.yedamMiddle.product.web.PaymentFormControl;
 import com.yedamMiddle.product.web.ProductDetailControl;
 import com.yedamMiddle.product.web.ProductSearchControl;
-import com.yedamMiddle.userQna.web.AddQnaControl;
 import com.yedamMiddle.userQna.web.AddQnaFormControl;
 import com.yedamMiddle.userQna.web.DeleteUserQnaControl;
-import com.yedamMiddle.userQna.web.GetMainCategory;
 import com.yedamMiddle.userQna.web.GetQnaAllListControl;
 import com.yedamMiddle.userQna.web.GetQnaListControl;
 import com.yedamMiddle.userQna.web.ModifyUserQnaControl;
 import com.yedamMiddle.userQna.web.ModifyUserQnaFormControl;
 import com.yedamMiddle.userQna.web.QnaReplyControl;
 import com.yedamMiddle.userQna.web.getCategoryNoToProductNameContorl;
-import com.yedamMiddle.userQna.web.subCategory;
 
 // 0 -> 개 type
 // 1 -> 고양이 type

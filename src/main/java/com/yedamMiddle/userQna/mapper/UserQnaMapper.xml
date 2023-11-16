@@ -89,4 +89,9 @@
 		SELECT *  FROM CATEGORY WHERE CATEGORY_PRENO IS NOT NULL
 	</select>
 	
+	<select id="getCategoryNoToProductName" resultType="com.yedamMiddle.product.service.ProductVO"
+											parameterType="com.yedamMiddle.common.service.CategoryVO">
+		SELECT * FROM PRODUCT WHERE CATEGORY_NO=${categoryNo}								
+	</select>
+	
 </mapper>
