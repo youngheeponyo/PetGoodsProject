@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "mybatis-3-mapper.dtd">
+<mapper namespace="com.yedamMiddle.addr.mapper.AddrMapper">
+	
+	<insert id = "insertAddr" parameterType="com.yedamMiddle.addr.service.AddrVO">
+		INSERT INTO ADDR
+		(
+			ADDR_NO,
+			PRODUCT_ORDER_NO,
+			ADDR_ADDRESS,
+			ADDR_FEE,
+			ADDR_STATE,
+			ADDR_REQUEST 
+		)
+		VALUES
+		(
+ 				SEQ_ADDRNO.NEXTVAL,
+ 				#{productOrderNo},
+ 				#{addrAddress},
+ 				#{addrFee},
+ 				#{addrState},
+ 				#{addrRequest}
+ 		)
+	</insert>
+</mapper>
