@@ -76,16 +76,6 @@ public class UserQnaServiceImpl implements UserQnaService {
 	}
 
 	@Override
-	public List<CategoryVO> categoryNoList() {
-		return mapper.categoryNoList();
-	}
-
-	@Override
-	public List<ProductVO> productNameList() {
-		return mapper.productNameList();
-	}
-
-	@Override
 	public int productNameToSelectProductNo(String productName) {
 		return mapper.productNameToSelectProductNo(productName);
 	}
@@ -94,6 +84,19 @@ public class UserQnaServiceImpl implements UserQnaService {
 	public List<CategoryVO> getMainCategory() {
 		return mapper.getMainCategory();
 	}
+
+	@Override
+	public List<CategoryVO> getSubCategory() {
+		return mapper.getSubCategory();
+	}
+
+	@Override
+	public List<ProductVO> getCategoryNoToProductName(CategoryVO vo) {
+		return mapper.getCategoryNoToProductName(vo);
+	}
+
+
+
 
 
 

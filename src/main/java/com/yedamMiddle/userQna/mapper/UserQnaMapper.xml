@@ -73,24 +73,25 @@
 								resultType="com.yedamMiddle.common.service.UserVO">
 		SELECT * FROM USER_TBL WHERE USER_NO =#{userNo}
 	</select>
-	
-	<!-- 1.카테고리 넘버를 뽑고 그 넘버에 2.해당하는 상품을 정렬해서 보여줌 -->
-		<select id="categoryNoList" resultType="com.yedamMiddle.common.service.CategoryVO">
-			SELECT * FROM CATEGORY
-		</select>
-		
-		<select id="productNameList" resultType="com.yedamMiddle.product.service.ProductVO">
-			SELECT * FROM PRODUCT
-		</select>
 		
 	<!-- 상품명으로 상품번호 찾기 -->	
 	<select id="productNameToSelectProductN" resultType="int"
 											parameterType="String">
 		SELECT PRODUCT_NO FROM PRODUCT WHERE PRODUCT_NAME=#{productName};
 	</select>
-	
+	<!-- 메인카테고리 -->
 	<select id="getMainCategory" resultType="com.yedamMiddle.common.service.CategoryVO">
-		SELECT CATEGORY_NO, CATEGORY_NAME FROM CATEGORY WHERE CATEGORY_PRENO IS NULL
+		SELECT *  FROM CATEGORY WHERE CATEGORY_PRENO IS NULL
+	</select>
+	
+	<!-- 서브카테고리 -->
+	<select id="getSubCategory" resultType="com.yedamMiddle.common.service.CategoryVO">
+		SELECT *  FROM CATEGORY WHERE CATEGORY_PRENO IS NOT NULL
+	</select>
+	
+	<select id="getCategoryNoToProductName" resultType="com.yedamMiddle.product.service.ProductVO"
+											parameterType="com.yedamMiddle.common.service.CategoryVO">
+		SELECT * FROM PRODUCT WHERE CATEGORY_NO=${categoryNo}								
 	</select>
 	
 </mapper>

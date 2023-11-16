@@ -24,7 +24,7 @@
                         <div class="card h-100">
                             <!-- Product image-->
                             <div class="hoverImg">
-                            	<img class="card-img-top" src="productImage/${petType }/${product.productImage}" alt="..." />
+                            	<img class="card-img-top" src="productImage/${petType }/${product.productImage}" alt="..." style="object-fit: cover; height: 268px;" />
                             </div>
                             <!-- Product details-->
                             <div class="card-body p-4">

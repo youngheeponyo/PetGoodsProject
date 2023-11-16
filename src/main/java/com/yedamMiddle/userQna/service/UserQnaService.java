@@ -35,16 +35,13 @@ public interface UserQnaService {
 	//session에 담긴 uno를 통해 해당번호의 유저 정보 가져오기
 	public UserVO unoToSelectUser(int uno);
 	
-	//전체 상품 이름 가져오기
-	
-	//1.카테고리 넘버를 뽑고 그 넘버에 2.해당하는 상품을 정렬해서 보여줌
-	//1.카테고리 넘버를 뽑고 그 넘버에 2.해당하는 상품을 정렬해서 보여줌
-	public List<CategoryVO> categoryNoList();
-	public List<ProductVO> productNameList();
-	
 	//상품명으로 상품번호 찾기
 	public int productNameToSelectProductNo(String productName);
 	
 	//메인 카테고리
 	public List<CategoryVO> getMainCategory();
+	//서브 카테고리
+	public List<CategoryVO> getSubCategory();
+	//카테고리 번호로 상품이름 찾기
+	public List<ProductVO> getCategoryNoToProductName(CategoryVO vo);
 }

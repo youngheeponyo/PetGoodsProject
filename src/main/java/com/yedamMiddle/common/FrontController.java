@@ -3,6 +3,7 @@ package com.yedamMiddle.common;
 import java.io.IOException;
 
 
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,14 +13,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedamMiddle.admin.web.AddProductControl;
-import com.yedamMiddle.admin.web.ProductFormControl;
-import com.yedamMiddle.admin.web.ProductListControl;
-import com.yedamMiddle.admin.web.RemoveProductControl;
 import com.yedamMiddle.admin.web.AdminPageControl;
 import com.yedamMiddle.admin.web.GetProductControl;
 import com.yedamMiddle.admin.web.MemberListControl;
 import com.yedamMiddle.admin.web.ModProductControl;
 import com.yedamMiddle.admin.web.ModProductFormControl;
+import com.yedamMiddle.admin.web.ProductFormControl;
+import com.yedamMiddle.admin.web.ProductListControl;
+import com.yedamMiddle.admin.web.RemoveProductControl;
 import com.yedamMiddle.cart.web.AddCartControl;
 import com.yedamMiddle.cart.web.MyCartControl;
 import com.yedamMiddle.cart.web.deleteCartControl;
@@ -45,13 +46,12 @@ import com.yedamMiddle.product.web.ProductDetailControl;
 import com.yedamMiddle.product.web.ProductSearchControl;
 import com.yedamMiddle.userQna.web.AddQnaFormControl;
 import com.yedamMiddle.userQna.web.DeleteUserQnaControl;
-import com.yedamMiddle.userQna.web.GetMainCategory;
 import com.yedamMiddle.userQna.web.GetQnaAllListControl;
 import com.yedamMiddle.userQna.web.GetQnaListControl;
 import com.yedamMiddle.userQna.web.ModifyUserQnaControl;
 import com.yedamMiddle.userQna.web.ModifyUserQnaFormControl;
 import com.yedamMiddle.userQna.web.QnaReplyControl;
-import com.yedamMiddle.userQna.web.subCategory;
+import com.yedamMiddle.userQna.web.getCategoryNoToProductNameContorl;
 
 // 0 -> 개 type
 // 1 -> 고양이 type
@@ -71,10 +71,7 @@ public class FrontController extends HttpServlet {
       commandByURL.put("/qnaReply.do", new QnaReplyControl());//Qna관리자 답글달기(수정은 보류)
       
       commandByURL.put("/addUserQnaForm.do", new AddQnaFormControl());
-      commandByURL.put("/getMainCategory.do", new GetMainCategory());//대분류 카테고리(등록)
-      commandByURL.put("/subCategory.do", new subCategory());//소분류 카테고리(등록)
-      
-      
+      commandByURL.put("/getCategoryNoToProductName.do", new getCategoryNoToProductNameContorl());
 //      commandByURL.put("/addUserQna.do", new AddQnaControl());//등록보류
       
       commandByURL.put("/modifyUserQnaForm.do", new ModifyUserQnaFormControl());//Qna수정
