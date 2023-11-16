@@ -30,102 +30,103 @@
 }
 </style>
 
-${userVo } ${productVo }
+${userVo }
 <section class="py-5">
 	<div class="container px-4 px-lg-5 mt-5">
 		<div class="container-fluid">
-			<form action="modifyUserQnaForm.do" name="userQnaDetailForm" method="post" style=text-align:center>
+			<form action="addUserQna.do" name="addQnaForm" method="post"
+				style="text-align: center">
 				<h3>문의글 작성</h3>
-				<br><hr>
+				<br>
+				<hr>
 				<table class="table" border="1">
 					<tr>
 						<th colspan="2">글번호</th>
-							<td><input type="hidden" name="maxQnaNO" value="${maxQnaNO}">${maxQnaNO}</td>	
+						<td><input type="hidden" name="maxQnaNO" value="${maxQnaNO}">${maxQnaNO}</td>
 						<th colspan="2">작성자</th>
-							<td></td>
+						<td><input type="hidden" name="nickName"
+							value="${uservo.nickName}">${uservo.nickName }</td>
+
 						<th colspan="2">작성일시</th>
-							<td>
-								<fmt:formatDate value=""
-								pattern="yyyy-MM-dd  hh:mm"></fmt:formatDate>
-							</td>
+						<td></td>
 						<th colspan="2">문의상태</th>
-							<td><p style="color: red;"><b>문의대기중</b></p></td>
+						<td><p>
+								<b>문의대기중</b>
+							</p></td>
+					</tr>
+					<tr>
+						<th colspan="2">글제목</th>
+						<td><input type=text name="title" value=""></td>
+
+
+
+						<c:choose>
+							<!-- 상품페이지에서 문의게시판에 접속하면 -->
+							<c:when test="${not empty pName}">
+								<th colspan="1">문의종류
+								<th>
+								<td><select name="qnaType" disabled>
+										<option value="상품문의" selected>상품문의</option>
+								</select></td>
+								<th colspan="2">상품명</th>
+								<td><input type="hidden" name="pName" value="${pName}">${pName}
+								<td>
+							</c:when>
+
+							<!-- 바깥에서 문의게시판을 접속하면 -->
+							<c:otherwise>
+								<th colspan="1">문의종류
+								<th>
+								<td><select name="qnaType">
+										<option value="상품문의" selected>상품문의</option>
+										<option value="배송문의">배송문의</option>
+										<option value="교환/환불문의">교환/환불문의</option>
+										<option value="기타문의">기타문의</option>
+								</select></td>
+								
+								<!-- 상품타입이 상품문의라면 -->
+								<c:if test="${상품타입이 상품문의라면}">
+									<!-- 상품명 항목 추가 후, -->
+									<th colspan="2">상품명</th>
+									<!-- 카테고리 이름먼저 나오고 -->
+									<td>
+									<c:forEach items="${categoryNoList}" var="categoryList">
+										<optgroup label="${categoryList.categoryName}">
+
+											<!-- 해당 카테고리의 번호에 맞는 상품이 나열됨 -->
+											<c:forEach items="${productNameList}" var="productList">
+												<c:if test="${{categoryList.categoryNo==productList.categoryNo}">
+													<option value="${productList.productName }">${productList.productName }</option>
+												</c:if>
+											</c:forEach>
+
+										</optgroup>
+									</c:forEach>
+									</td>
+								</c:if>
+							</c:otherwise>
+						</c:choose>
 					</tr>
 
 
 					<tr>
-						<th colspan="2">글제목</th>
-						<td><input type=text name="title" value=""></td>
-						
-<%-- 					<c:choose> --%>
-<%-- 						<c:when test="${상품상세페이지에서 전해받은 상품이름이 있다면}"> --%>
-<!-- 							<th colspan="1">문의종류<th> -->
-<!-- 							<td><select name="qnaType" disabled> -->
-<!-- 									<option value="상품문의" selected>상품문의</option> -->
-<!-- 								</select></td>	 -->
-<!-- 							<th colspan="2">상품명</th> -->
-<!-- 							<td>해당상품명<td> -->
-<%-- 						</c:when> --%>
-						
-<%-- 						<c:otherwise> --%>
-<!-- 							<th colspan="1">문의종류<th> -->
-<!-- 							<td> -->
-<!-- 								<select name="qnaType"> -->
-<!-- 									<option value="상품문의" selected>상품문의</option> -->
-<!-- 									<option value="배송문의">배송문의</option> -->
-<!-- 									<option value="교환/환불문의">교환/환불문의</option> -->
-<!-- 									<option value="기타문의">기타문의</option> -->
-<!-- 								</select> -->
-<!-- 							</td>	 -->
-<%-- 							<c:if test="${상품타입이 상품문의라면}"> --%>
-<!-- 								<th colspan="2">상품명</th> -->
-<!-- 								<td> -->
-<!-- 									<select> -->
-<%-- 										<c:forEach items="" var="product"> --%>
-<%-- 											<option value="${}">${}</option> --%>
-<%-- 										</c:forEach> --%>
-<!-- 									</select> -->
-<!-- 								<td> -->
-<%-- 							</c:if> --%>
-<%-- 						</c:otherwise> --%>
-						
-<%-- 					</c:choose> --%>
-						
-						
-<%-- 							<c:choose> --%>
-<%-- 								<c:when test="상품페이지에서 넘어왔을때">상품이랑 사람 조인 후 구매내역이 있을때 --%>
-<%-- 											${productVo.productNo } --%>
-<%-- 								</c:when> --%>
-<%-- 								<c:otherwise> --%>
-<!-- 									<select name="product"> -->
-<%-- 											<c:forEach items="${상품목록}" var="product"><!-- 상품개수만큼 --> --%>
-<%-- 											<option value="">${product.해당상품의 이름 }</option> --%>
-<%-- 											</c:forEach> --%>
-<!-- 									</select> -->
-<%-- 								</c:otherwise> --%>
-<%-- 							</c:choose> --%>
-						<td>
-					</tr>
-
-
-					<tr><!-- 컨텐츠 -->
+						<!-- 컨텐츠 -->
 						<td colspan="14"><textarea rows="10" cols="40"
 								class="form-control" name="contents">여기에 삽입</textarea></td>
 					</tr>
 					<tr>
-						<td colspan="14" align="center" >
-						<input type="submit" value="등록하기"></td>
+						<td colspan="14" align="center"><input type="submit"
+							value="등록하기"></td>
 					</tr>
 				</table>
 			</form>
 		</div>
 	</div>
-</section>				
-			<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+</section>
+<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 <script>
-	function test(){
+	function test() {
 		console.log("ddd");
 	}
-	
 </script>
 
