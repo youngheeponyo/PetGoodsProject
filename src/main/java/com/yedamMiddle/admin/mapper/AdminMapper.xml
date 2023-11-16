@@ -25,4 +25,8 @@
 		PRODUCT_STOCK=#{productStock} 
 		WHERE PRODUCT_NO=#{productNo}
 	</update>
+	
+	<delete id="prodDelete" parameterType="int">
+		DELETE FROM PRODUCT WHERE PRODUCT_NO=#{productNo}
+	</delete>
 </mapper>

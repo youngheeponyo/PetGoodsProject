@@ -40,9 +40,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public boolean removeProduct(ProductVO vo) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean removeProduct(int productNo) {
+		return mapper.prodDelete(productNo) == 1;
 	}
 
 	
