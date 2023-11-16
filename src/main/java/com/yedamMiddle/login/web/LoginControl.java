@@ -1,7 +1,6 @@
 package com.yedamMiddle.login.web;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,8 +20,6 @@ public class LoginControl implements Command {
 		
 		LoginService svc = new LoginServiceImpl();
 		UserVO vo = svc.loginUser(uid, upw);
-		
-		
 		
 		if(svc.loginUser(uid, upw)!=null) {
 			HttpSession session = req.getSession();

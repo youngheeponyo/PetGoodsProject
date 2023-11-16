@@ -41,7 +41,7 @@ public class LoginServiceImpl implements LoginService{
 	}
 	
 	@Override
-	public boolean kakao(KakaoVO vo) {
-		return mapper.kakao(vo)==1;
+	public UserVO idCheck(String userId) {
+		return mapper.idCheck(userId);
 	}
 }

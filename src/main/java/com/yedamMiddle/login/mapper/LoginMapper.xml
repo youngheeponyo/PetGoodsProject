@@ -3,7 +3,7 @@
 <mapper namespace="com.yedamMiddle.login.mapper.LoginMapper">
 	<!-- 회원가입 -->
 	<insert id="addUser" parameterType="com.yedamMiddle.common.service.UserVO">
-		insert into user_tbl values(seq_userno.nextval,#{userId},#{userPw},#{nickName},#{userBirth},#{userMail},#{userPhone},'1',sysdate,#{userAddr})
+		insert into user_tbl values(seq_userno.nextval,#{userId},#{userPw},#{nickName},#{userBirth},#{userMail},#{userPhone},'1',#{userAddr},sysdate)
 	</insert>
 	<!-- 로그인 -->
 	<select id="userLogin" resultType="com.yedamMiddle.common.service.UserVO">
@@ -20,7 +20,8 @@
 	<select id="getUser" resultType="com.yedamMiddle.common.service.UserVO" parameterType="int">
 		SELECT * FROM USER_TBL WHERE USER_NO=#{userNo}
 	</select>
-	<insert id="kakao" parameterType="com.yedamMiddle.login.service.KakaoVO">
-		insert into kakao values(#{kakaoId})
-	</insert>
+	<!-- 아이디 중복체크 -->
+	<select id="idCheck" resultType="com.yedamMiddle.common.service.UserVO" parameterType="String">
+		select user_id from user_tbl where user_id=#{userId}
+	</select>
 </mapper>

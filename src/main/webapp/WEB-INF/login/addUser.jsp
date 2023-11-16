@@ -48,9 +48,10 @@
 
 							<div class="col-md-6 mb-3">
 								<label for="name">아이디</label> <input type="text"
-									class="form-control" id="name" name="uid" placeholder=""
-									value="" required>
+									class="form-control" id="names" name="uid" placeholder=""
+									value="${kId }" required>
 								<div class="invalid-feedback">아이디를 입력해주세요.</div>
+								<input type="button" onclick="chkfunction(uid.value)" id="idCheck" value="아이디 중복확인" style="margin-top:10px">
 							</div>
 
 							<div class="col-md-6 mb-3">
@@ -89,11 +90,11 @@
 							<div class="invalid-feedback">전화번호를 입력해주세요.</div>
 						</div>
 						
-						<input type="text" id="sample4_postcode" placeholder="우편번호" name="addr" style="margin:5px 0" readonly>
+						<input type="text" id="sample4_postcode" placeholder="우편번호"  style="margin:5px 0" readonly>
 						<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" style="margin:5px 0"><br> 
-						<input type="text" id="sample4_roadAddress" placeholder="도로명주소" name="addr_detail" style="margin:5px 0" readonly> 
+						<input type="text" id="sample4_roadAddress" placeholder="도로명주소" name="addr" style="margin:5px 0" readonly> 
 						<span id="guide" style="color: #999; display: none"></span>
-						<input type="text" id="sample4_detailAddress" placeholder="상세주소" style="margin:5px 0">
+						<input type="text" id="sample4_detailAddress" name="addr_detail" placeholder="상세주소" style="margin:5px 0">
 
 						<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 						<script>
@@ -152,7 +153,25 @@
 												}
 											}
 										}).open();
+								
+								
 							}
+								function chkfunction(uid){
+									console.log(uid)
+									fetch('idCheck.do?uid='+uid)
+										.then(resolve=>resolve.json())
+										.then(result=>{
+											console.log(result)
+											if(result.retCode=='NG'){
+												console.log(result)
+												alert(uid+"는 사용 가능한 아이디입니다!");
+												document.getElementById('submit').disabled=false;
+											}else{
+												alert(uid+"는 이미 사용 중인 아이디입니다");
+												document.getElementById('names').value=null;
+											}
+										})
+								}
 						</script>
 						<hr class="mb-4">
 						<div class="custom-control custom-checkbox">
@@ -162,7 +181,7 @@
 								이용에 동의합니다.</label>
 						</div>
 						<div class="mb-4"></div>
-						<button class="btn btn-primary btn-lg btn-block" type="submit" style="background-color:pink;border:none;">회원가입하기</button>
+						<button class="btn btn-primary btn-lg btn-block" id="submit" type="submit" style="background-color:pink;border:none;" disabled>회원가입하기</button>
 				</div>
 			</div>
 		</div>
