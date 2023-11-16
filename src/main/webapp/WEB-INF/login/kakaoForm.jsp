@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -45,12 +45,13 @@
 				<div class="input-form col-md-12 mx-auto">
 					<h4 class="hello">회원가입</h4>
 						<div class="row">
-
+							${kId.kakaoId }
+							${kId }
+							${vo }
 							<div class="col-md-6 mb-3">
 								<label for="name">아이디</label> <input type="text"
 									class="form-control" id="name" name="uid" placeholder=""
-									value="" required>
-								<div class="invalid-feedback">아이디를 입력해주세요.</div>
+									value="${kId.kakaoId }" readonly>
 							</div>
 
 							<div class="col-md-6 mb-3">
@@ -169,5 +170,7 @@
 	</form>
 	<footer class="my-3 text-center text-small"> </footer>
 </body>
+<script>
 
+</script>
 </html>

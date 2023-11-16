@@ -23,10 +23,6 @@
 	<insert id="insertCart" parameterType="com.yedamMiddle.cart.service.MyCartVO">
 		insert into my_cart values(seq_cart.nextval,#{memberNo},#{productNo},1)
 	</insert>
-	<!-- 장바구니 안에서 물건 수량 하나 삭제 -->
-	<insert id="deleteOne" parameterType="com.yedamMiddle.cart.service.MyCartVO">
-		insert into my_cart values(seq_cart.nextval,#{memberNo},#{productNo},-1)
-	</insert>
 
 	<delete id="deleteCartFromPayment">
 		DELETE 

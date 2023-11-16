@@ -9,7 +9,6 @@ import com.yedamMiddle.common.service.CartJoinVO;
 public interface MyCartService {
 	public boolean addCart(MyCartVO vo);
 	public boolean insertCart(MyCartVO vo);
-	public boolean deleteOne(MyCartVO vo);
 	public List<CartJoinVO> getCart(int memberNo);
 	public boolean delCart(int productNo,int memberNo);
 	public boolean delCartFromPayment(int uno, int[] productNos);

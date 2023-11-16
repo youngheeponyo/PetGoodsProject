@@ -21,7 +21,8 @@ public class LoginControl implements Command {
 		
 		LoginService svc = new LoginServiceImpl();
 		UserVO vo = svc.loginUser(uid, upw);
-
+		
+		
 		
 		if(svc.loginUser(uid, upw)!=null) {
 			HttpSession session = req.getSession();

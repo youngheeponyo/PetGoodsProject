@@ -21,39 +21,41 @@
 	crossorigin="anonymous">
 
 <style>
-body {
-	min-height: 100vh;
-	background: -webkit-gradient(linear, left bottom, right top, from(#92b5db),
-		to(#1d466c));
-	background: -webkit-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
-	background: -moz-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
-	background: -o-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
-	background: linear-gradient(to top right, #92b5db 0%, #1d466c 100%);
-}
 
 .input-form {
-	max-width: 680px;
-	margin-top: 80px;
+	max-width: 500px;
 	padding: 32px;
-	background: #fff;
+	background: #e6c1c161;
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
-	-webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-	-moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
+}
+#box{
+	border:1px;
+	width:600px;
+	margin:auto;
+}
+.api-btn{
+	width:180px;
+	height:46px;
+	background-color:yellow;
+	border:1px white;
+	color:black;
+	font-size:16px;
+	font:bolder;
+	border-radius: 5px;
 }
 </style>
 </head>
 
 
 <body>
+<div id="box">
 	<form action="delUser.do" method="post">
 		<div class="container">
 			<div class="input-form-backgroud row">
 				<div class="input-form col-md-12 mx-auto">
-					<h4 class="mb-3" style="text-align: center">My Deat Pet</h4>
-					<form class="validation-form" novalidate>
+					<h4 class="mb-3" style="text-align: center;font-size:50px;color:pink">My Dear Pet</h4>
 						<div class="row">
 							<div class="mb-3">
 								<label for="name">탈퇴할 아이디를 입력하세요</label> <input type="text"
@@ -69,13 +71,64 @@ body {
 							</div>
 
 							<div class="mb-4"></div>
-							<input class="btn btn-primary btn-lg btn-block" type="submit" value="회원탈퇴">
+							<input class="btn btn-primary btn-lg btn-block" type="submit" value="회원탈퇴" style="background-color:pink;border:1px white;width:280px;margin:auto">
+							<button  class="api-btn" onclick="unlinkApp()">카카오로그인 탈퇴</button>
 						</div>
-					</form>
+										
+	            	<script src = "https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+	            	<script type='text/javascript'>
+						Kakao.init('d462b7d737c1a7561172e7cffc4ef53b');
+						$("#kakao-login-btn").on("click", function(){
+						    //1. 로그인 시도
+						    Kakao.Auth.login({
+						    	scope:'profile_nickname',
+						        success: function(authObj) {
+						          //2. 로그인 성공시, API 호출
+						          Kakao.API.request({
+						            url: '/v2/user/me',
+						            success: function(res) {
+						              console.log(res);
+						          console.log(authObj);
+						              const kakaoId = res.id;
+						              const nick = res.nickname;
+									  scope : 'account_email';
+									  alert('로그인성공');
+						              location.href="addUserForm.do?uid="+kakaoId+"&nick="+nick;
+						        }
+						          })
+						          var token = authObj.access_token;
+						        },
+						        fail: function(err) {
+						          alert(JSON.stringify(err));
+						        }
+						      });
+						        
+						})
+					</script>
+
+	            	<a id="kakao-login-btn"></a>
+					
+					<div id="result"></div>
+					<script type="text/javascript">
+						function unlinkApp() {
+							Kakao.API.request({
+								url : '/v1/user/unlink',
+								success : function(res) {
+								alert('success: '
+										+ JSON.stringify(res))
+								},
+								fail : function(err) {
+									alert('fail: '
+											+ JSON.stringify(err))
+								},
+							})
+						}
+					</script>
 				</div>
 			</div>
 		</div>
 	</form>
+	</div>
 </body>
 
 	<footer class="my-3 text-center text-small"> </footer>

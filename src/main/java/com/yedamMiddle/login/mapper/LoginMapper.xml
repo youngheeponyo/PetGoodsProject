@@ -20,4 +20,7 @@
 	<select id="getUser" resultType="com.yedamMiddle.common.service.UserVO" parameterType="int">
 		SELECT * FROM USER_TBL WHERE USER_NO=#{userNo}
 	</select>
+	<insert id="kakao" parameterType="com.yedamMiddle.login.service.KakaoVO">
+		insert into kakao values(#{kakaoId})
+	</insert>
 </mapper>

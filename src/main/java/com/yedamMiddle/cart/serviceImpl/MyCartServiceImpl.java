@@ -27,11 +27,6 @@ public class MyCartServiceImpl implements MyCartService {
 	}
 	
 	@Override
-	public boolean deleteOne(MyCartVO vo) {
-		return mapper.deleteOne(vo)==1;
-	}
-	
-	@Override
 	public List<CartJoinVO> getCart(int memberNo) {
 		return  mapper.getCart(memberNo);
 	}

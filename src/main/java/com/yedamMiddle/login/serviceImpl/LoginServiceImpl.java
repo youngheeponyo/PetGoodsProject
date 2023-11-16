@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.yedamMiddle.common.Mybatis;
 import com.yedamMiddle.common.service.UserVO;
 import com.yedamMiddle.login.mapper.LoginMapper;
+import com.yedamMiddle.login.service.KakaoVO;
 import com.yedamMiddle.login.service.LoginService;
 
 public class LoginServiceImpl implements LoginService{
@@ -37,5 +38,10 @@ public class LoginServiceImpl implements LoginService{
 	@Override
 	public List<UserVO> list() {
 		return mapper.list();
+	}
+	
+	@Override
+	public boolean kakao(KakaoVO vo) {
+		return mapper.kakao(vo)==1;
 	}
 }
