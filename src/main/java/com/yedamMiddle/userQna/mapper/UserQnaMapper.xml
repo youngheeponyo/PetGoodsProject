@@ -20,7 +20,7 @@
 	<insert id="userQnaInsert" parameterType="com.yedamMiddle.userQna.service.UserQnaVO"> 
 		INSERT INTO USERQNA VALUES(SEQ_USERQNA.NEXTVAL,#{userNo}
 		#{productOrderNo}, #{productNo}, #{title}, #{contents}, SYSDATE,
-		#{password}, #{qnaReply}, #{qnaState})
+		#{password}, #{qnaReply}, #{qnaState}, #{qnaType})
 	</insert>
 	
 	
@@ -75,9 +75,9 @@
 	</select>
 		
 	<!-- 상품명으로 상품번호 찾기 -->	
-	<select id="productNameToSelectProductN" resultType="int"
+	<select id="productNameToSelectProductNo" resultType="int"
 											parameterType="String">
-		SELECT PRODUCT_NO FROM PRODUCT WHERE PRODUCT_NAME=#{productName};
+		SELECT PRODUCT_NO FROM PRODUCT WHERE PRODUCT_NAME=#{productName}
 	</select>
 	<!-- 메인카테고리 -->
 	<select id="getMainCategory" resultType="com.yedamMiddle.common.service.CategoryVO">

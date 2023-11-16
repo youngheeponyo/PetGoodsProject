@@ -42,6 +42,7 @@ import com.yedamMiddle.product.web.PaymentCompleteControl;
 import com.yedamMiddle.product.web.PaymentFormControl;
 import com.yedamMiddle.product.web.ProductDetailControl;
 import com.yedamMiddle.product.web.ProductSearchControl;
+import com.yedamMiddle.userQna.web.AddQnaControl;
 import com.yedamMiddle.userQna.web.AddQnaFormControl;
 import com.yedamMiddle.userQna.web.DeleteUserQnaControl;
 import com.yedamMiddle.userQna.web.GetQnaAllListControl;
@@ -70,7 +71,7 @@ public class FrontController extends HttpServlet {
       
       commandByURL.put("/addUserQnaForm.do", new AddQnaFormControl());
       commandByURL.put("/getCategoryNoToProductName.do", new getCategoryNoToProductNameContorl());
-//      commandByURL.put("/addUserQna.do", new AddQnaControl());//등록보류
+      commandByURL.put("/addUserQna.do", new AddQnaControl());//등록보류
       
       commandByURL.put("/modifyUserQnaForm.do", new ModifyUserQnaFormControl());//Qna수정
       commandByURL.put("/modifyUserQna.do", new ModifyUserQnaControl());//Qna수정

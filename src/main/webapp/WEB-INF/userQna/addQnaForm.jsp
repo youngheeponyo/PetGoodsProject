@@ -35,30 +35,25 @@
 		<div class="container-fluid">
 			<form action="addUserQna.do" name="addQnaForm" method="post"
 				style="text-align: center">
-				<input type="hidden" id="categoryNoList" value="${categoryNoList}">
-				<input type="hidden" id="productNameList" value="${productNameList}">
 				
 				<h3>문의글 작성</h3>
 				<br>
 				<hr>
 				<table class="table" border="1">
 					<tr>
-						<th colspan="2">글번호</th>
+						<th colspan="1">글번호</th>
 						<td><input type="hidden" name="maxQnaNO" value="${maxQnaNO}">${maxQnaNO}</td>
 						<th colspan="2">작성자</th>
 						<td><input type="hidden" name="nickName"
-							value="${uservo.nickName}">${uservo.nickName }</td>
+							value="${userVo.nickName}">${userVo.nickName }</td>
 
-						<th colspan="2">작성일시</th>
-						<td></td>
 						<th colspan="2">문의상태</th>
 						<td><p>
 								<b>문의대기중</b>
 							</p></td>
 					</tr>
 					<tr>
-						<th colspan="2">글제목</th>
-						<td><input type=text name="title" value=""></td>
+						
 
 
 <!-- 상품페이지에서 문의게시판에 접속하면 -->
@@ -91,7 +86,7 @@
                         </td>
                         <th>상품카테고리</th>
                         <td>
-                        	 <select class="mainCategory" onchange="getCategory(this.value)">
+                        	 <select class="mainCategory" name="productNo" onchange="getCategory(this.value)">
 		                  		<option value="" selected disabled >선택해주세요</option>
 		                  		<c:forEach items="${mainCategory }" var="main">
 		                  			console.log(${main })
@@ -105,26 +100,23 @@
 		                  		</c:forEach>
                   			</select>
                         </td>
-                        
-                        
-                        
-                        
-<!--                            <th colspan="1" class="">상품카테고리</th> -->
-<!--                            <td> -->
-<!--                               <select class="mainCategory" onchange="getSubCategory(this.value)"> -->
-<!--                                  <option value="" selected disabled >선택해주세요</option> -->
-<!--                               </select> -->
-<!--                            </td> -->
-<!--                            <th>상품명</th> -->
-<!--                            <td> -->
-<!--                               <select class="subCategory" onchange=""> -->
-<!--                                  <option>상품명</option> -->
-<!--                               </select> -->
-<!--                            </td> -->
+						<th>상품명</th>
+						<td>
+							<select class="productName">
+								
+
+							</select>
+
+						</td>
                      </c:otherwise>
                   </c:choose>
 					</tr>
-
+					<tr>
+						<th >글제목</th>
+						<td colspan="4"><input style="width: 100%" type=text name="title" value=""></td>
+						<th>비밀번호</th>
+						<td><input type="password" name="password"></td>
+					</tr>
 
 					<tr>
 						<!-- 컨텐츠 -->
@@ -144,26 +136,48 @@
 <script>
 	function qnaTypeCheck(value){
 		console.log("value:"+ value);
-		if(value=="상품문의"){
-			getMainCategory();
+		if(value!="상품문의"){
+			let test = document.querySelectorAll('.categoryClass')
+			test.forEach(item => {
+				item.disabled=true;
+			})
+		}else{
+			let test = document.querySelectorAll('.categoryClass')
+			test.forEach(item => {
+				item.disabled=false;
+			})
 		}
 	}
 		
-	function getCategory(value){
+	function getCategory(categoryNo){
 // 		console.log("value:"+ value);
-		fetch('')
-		
-	}
-	
-	function getMainCategory(){
-		fetch('getMainCategory.do')
+		fetch('getCategoryNoToProductName.do?categoryNo='+categoryNo)
 		.then(resolve => resolve.json())
 		.then(result =>{
-			console.log(result);
-			console.log(result.mainCategory);
-			makeMainOption(result.mainCategory);
+			console.log("result =" , result);
+			makeSelectTag(result.productNameList);
 		})
-		}
+	}
+	
+	function makeSelectTag(productNameList){
+		var productName = document.querySelector('.productName')
+		console.log("productName : ", productName)
+		productName.innerHTML="<option value='' selected disabled >선택해주세요</option>";//다른 문의항목 누르고 올때마다 상품나열된거 리셋
+		
+		productNameList.forEach(element => {
+			let product = document.createElement('option')
+			product.innerHTML=element.productName;
+			product.value=element.productNo;
+			productName.append(product);
+			console.log("element.productName : " , element.productName)
+		});
+
+		document.createElement('th').innerHTML='상품명'
+		document.createElement('select')
+
+	}
+
+	
 
 // 	function getMainCategory(){
 // 		fetch('getMainCategory.do')

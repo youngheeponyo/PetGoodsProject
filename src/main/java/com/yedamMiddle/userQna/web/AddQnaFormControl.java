@@ -20,7 +20,7 @@ public class AddQnaFormControl implements Command {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		HttpSession session = req.getSession();
 		UserQnaService svc = new UserQnaServiceImpl();
-
+		
 		//로그인되어있는지 확인
 		if(session.getAttribute("uno") == null) {
 			try {
