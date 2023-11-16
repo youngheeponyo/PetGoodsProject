@@ -25,20 +25,28 @@
 							</c:otherwise>
 						</c:choose>
 						</td>
+						<th>카테고리</th>
+						<td>${categoryName }</td>
+					</tr>
+					<tr>
+						<th>재고</th>
+						<td>${prno.productStock }</td>
 						<th>등록일자</th>
 						<td><fmt:formatDate value="${prno.productRegistDate}" pattern="yyyy-MM-dd HH:mm"></fmt:formatDate></td>
+						<th></th>
+						<td></td>
 					</tr>
 					<tr>
 						<th>상세설명</th>
 						<td colspan="5">${prno.productDesc }</td>
 					</tr>
 					<tr>
-						<th>이미지</th>
-						<td>${prno.productImage }</td>
-						<th>재고</th>
-						<td>${prno.productStock }</td>
-						<th></th>
-						<td></td>
+						<th colspan="3">메인이미지</th>
+						<th colspan="3">상세이미지</th>
+					</tr>
+					<tr>
+						<th colspan="3"><img style="height: 400px;" src="productImage/${petType }/${prno.productImage }" alt="${prno.productName }" /></th>
+						<th colspan="3"><img style="height: 400px;" src="productDetailImage/${petType }/${prno.productImage }" alt="${prno.productName }" /></th>
 					</tr>
 					<tr>
 						<td colspan="6" align="center">

@@ -12,5 +12,5 @@ public interface AdminMapper {
 	public int prodInsert(ProductVO vo);
 	public int prodUpdate(ProductVO vo);
 	public int prodDelete(int productNo);
-	
+	public String cateName(int productNo);
 }

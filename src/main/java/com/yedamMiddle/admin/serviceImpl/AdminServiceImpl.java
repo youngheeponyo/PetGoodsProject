@@ -44,6 +44,11 @@ public class AdminServiceImpl implements AdminService {
 		return mapper.prodDelete(productNo) == 1;
 	}
 
+	@Override
+	public String cateName(int productNo) {
+		return mapper.cateName(productNo);
+	}
+
 	
 	
 }

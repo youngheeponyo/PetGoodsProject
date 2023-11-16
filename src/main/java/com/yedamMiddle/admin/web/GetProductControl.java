@@ -12,13 +12,20 @@ public class GetProductControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		String prodno = req.getParameter("prno");
+		int prodno = Integer.parseInt(req.getParameter("prno"));
 		AdminService svc = new AdminServiceImpl();
-		ProductVO vo = svc.getProduct(Integer.parseInt(prodno));
-		System.out.println(prodno);
+		ProductVO vo = svc.getProduct(prodno);
+		String categoryName = svc.cateName(prodno);
 		System.out.println(vo);
+		String petType;
+		if(vo.getPetType().equals("0")) {
+			petType = "dog";
+		}else {
+			petType = "cat";
+		}
 		req.setAttribute("prno", vo);
-		
+		req.setAttribute("categoryName", categoryName);
+		req.setAttribute("petType", petType);
 		try {
 			req.getRequestDispatcher("admin/getProduct.tiles").forward(req, resp);
 		} catch (Exception e) {

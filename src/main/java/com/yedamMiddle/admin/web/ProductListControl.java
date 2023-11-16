@@ -16,7 +16,9 @@ public class ProductListControl implements Command {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		AdminService svc = new AdminServiceImpl();
 		List<ProductVO> list = svc.prodList();
+		
 		req.setAttribute("prodlist", list);
+		
 		try {
 			req.getRequestDispatcher("admin/productList.tiles").forward(req, resp);
 		} catch (Exception e) {
