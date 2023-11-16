@@ -68,6 +68,9 @@ ${uno }
 			<h3>구매후기입니다~~~</h3>
 		</div>
 		<hr>
+		
+		<!-- 문의게시판 건드린 부분 -->
+		<form action=addUserQnaForm.do name=productDetail method="post">
 		<div id="qna">
 			<h2 style="font: bolder; font-size: 30px; text-align: left">문의
 				게시판</h2>
@@ -104,8 +107,14 @@ ${uno }
 					</c:forEach>
 				</tbody>
 			</table>
+			 <p><input type="submit" value="문의글 작성" >
+				<input type="hidden" name=pName value="${pno.productName }" >
+			</p>
 		</div>
 		<hr>
+		</form>
+		<!-- 여기까지 -->
+		
 		
 		<div id="order">
 			<h2 style="font: bolder; font-size: 30px; text-align: left">취소/교환/반품
@@ -181,4 +190,5 @@ ${uno }
 		})
 		
 	}
+	
 </script>
