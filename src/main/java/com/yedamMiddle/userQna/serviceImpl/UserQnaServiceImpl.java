@@ -95,6 +95,14 @@ public class UserQnaServiceImpl implements UserQnaService {
 		return mapper.getMainCategory();
 	}
 
+	@Override
+	public List<CategoryVO> getSubCategory(CategoryVO vo) {
+		return mapper.getSubCategory(vo);
+	}
+
+
+
+
 
 
 

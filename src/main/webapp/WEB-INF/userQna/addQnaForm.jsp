@@ -97,7 +97,7 @@
                            </td>
                            <th>상품명</th>
                            <td>
-                              <select class="subCategory" onchange="subCategory(this.value)">
+                              <select class="subCategory" onchange="">
                                  <option>상품명</option>
                               </select>
                            </td>
@@ -150,12 +150,26 @@
 			option.innerHTML=item.categoryName;
 			document.querySelector('.mainCategory').append(option);
 		})
-		
-	function subCategory(){
-			
+	}
+	
+	function getSubCategory(categoryNo){
+			fetch('subCategory.do?categoryNo=' + categoryNo)
+			.then(resolve => resolve.json())
+			.then(result =>{
+				console.log("result="+result);
+				makeSubOption(result.subCategory)
+			})
 		}
 		
+	function makeSubOption(subCategoryList){
+		console.log("subCategoryList="+subCategoryList);
 		
+		subCategoryList.forEach(item =>{
+			let option = document.createElement('option');
+			option.value=item.categoryNo;
+			option.innerHTML=item.categoryName;
+			document.querySelector('.subCategory').append(option);
+		})
 	}
 	
 	

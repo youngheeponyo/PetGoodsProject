@@ -88,9 +88,15 @@
 											parameterType="String">
 		SELECT PRODUCT_NO FROM PRODUCT WHERE PRODUCT_NAME=#{productName};
 	</select>
-	
+	<!-- 메인카테고리 -->
 	<select id="getMainCategory" resultType="com.yedamMiddle.common.service.CategoryVO">
 		SELECT CATEGORY_NO, CATEGORY_NAME FROM CATEGORY WHERE CATEGORY_PRENO IS NULL
+	</select>
+	
+	<!-- 서브카테고리 -->
+	<select id="getSubCategory" resultType="com.yedamMiddle.common.service.CategoryVO"
+								parameterType="com.yedamMiddle.common.service.CategoryVO">
+		SELECT CATEGORY_NAME FROM CATEGORY WHERE CATEGORY_PRENO =#{categoryNo}
 	</select>
 	
 </mapper>

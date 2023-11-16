@@ -47,4 +47,6 @@ public interface UserQnaService {
 	
 	//메인 카테고리
 	public List<CategoryVO> getMainCategory();
+	//서브 카테고리
+	public List<CategoryVO> getSubCategory(CategoryVO vo);
 }
