@@ -10,12 +10,19 @@
 		SELECT * FROM PRODUCT ORDER BY PRODUCT_NO DESC
 	</select>
 	
-	<select id = "select" resultType="com.yedamMiddle.product.service.ProductVO" parameterType="int">
+	<select id = "prodSelect" resultType="com.yedamMiddle.product.service.ProductVO" parameterType="int">
 		SELECT * FROM PRODUCT WHERE PRODUCT_NO = #{productNo}
 	</select>
 	
-	<insert id = "insert" parameterType="com.yedamMiddle.product.service.ProductVO">
+	<insert id = "prodInsert" parameterType="com.yedamMiddle.product.service.ProductVO">
 		INSERT INTO PRODUCT VALUES(productno.nextVAL, #{petType}, #{categoryNo}, #{productName},
 		#{productPrice}, #{productDesc}, #{productImage}, SYSDATE, #{productStock})
 	</insert>
+	
+	<update id="prodUpdate" parameterType="com.yedamMiddle.product.service.ProductVO">
+		UPDATE PRODUCT SET CATEGORY_NO=#{categoryNo}, 
+		PRODUCT_PRICE=#{productPrice}, PRODUCT_DESC=#{productDesc}, 
+		PRODUCT_STOCK=#{productStock} 
+		WHERE PRODUCT_NO=#{productNo}
+	</update>
 </mapper>

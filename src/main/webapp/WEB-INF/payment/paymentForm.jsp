@@ -18,11 +18,19 @@
               		<h6 class="my-0">${cart.productName }</h6>
               		<small class="prSel">${cart.selCnt }</small><small>개</small>
             	</div>
-            	<span class="text-muted">${cart.productPrice }원</span>
+            	<span class="text-muted">${cart.productPrice * cart.selCnt }원</span>
           	</li>
           </c:forEach>
+          <c:if test="${!empty addrFee }">
+          	<li class="list-group-item d-flex justify-content-between bg-body-tertiary">
+            	<div class="text-success">
+              		<h6 class="my-0" id="fee">배송비</h6>
+            	</div>
+            	<span class="text-success">2500원</span>
+          	</li>
+          </c:if>
           <li class="list-group-item d-flex justify-content-between">
-            <span>주문금액</span>
+            <span>총 결제금액</span>
             <strong>${sumPrice }원</strong>
           </li>
         </ul>
@@ -77,7 +85,13 @@
             
             <div class="col-12">
               <label for="requestDelivery" class="form-label">배송 요청사항</label>
-              <input type="text" class="form-control" id="requestDelivery" placeholder="" value="${userInfo.userPhone }" required>
+              <select name="fruit" class="form-control" id="requestDelivery">
+              	<option value="" disabled selected>배송 요청 사항을 선택하세요</option>
+  				<option value="배송 전 연락바랍니다.">배송 전 연락바랍니다.</option>
+  				<option value="부재시 휴대전화로 연락주세요.">부재시 휴대전화로 연락주세요.</option>
+  				<option value="부재시 경비실에 맡겨주세요.">부재시 경비실에 맡겨주세요.</option>
+  				<option value="부재시 문앞에 놓아주세요.">부재시 문앞에 놓아주세요.</option>
+			  </select>
             </div>
 
             
@@ -132,11 +146,19 @@
 	 // submit이면 새로고침되기에 addEventListener방식으로 처리
 	 document.getElementById('paymentBtn').addEventListener('click', (e) => {
 	   e.preventDefault();
+	   let deliveryReq = document.getElementById('requestDelivery');
+	   let reqString = deliveryReq.options[deliveryReq.selectedIndex].value;
+	   if(reqString == '') {
+		   alert('배송 요청사항 선택');
+		   return;
+	   }
+	   
 	   let confirm = document.getElementById('confirmPayment').checked;
 	   if(!confirm) {
 			alert('결제 동의란 체크');
 			return;
 	   }
+	   
 	   // 고유한 주문번호/거래번호 id
 	   let merchantUID = String(new Date().getTime()) + ${uno};
 	   let productCnt = ${allAmount};
@@ -184,6 +206,12 @@
 	              dataArray.push({name : 'merUid', value: response.merchant_uid});
 	              dataArray.push({name : 'payAmount', value: response.paid_amount});
 	              
+	              if(document.getElementById('fee') != null) {
+	              	dataArray.push({name: 'fee', value: 2500 });
+	              }
+	              
+	              dataArray.push({name : 'deliveryReq', value: reqString});
+	              
 	              // URLSearchParams 객체 생성
 	              const formData = new URLSearchParams();
 
@@ -223,7 +251,9 @@
 	            				  queryString += ('&pno=' + productNoList[i].value);
 	            			  }
 	            		  }
-	            		  window.location.href="payCompleteForm.do?" + queryString + '&merUid=' + merchantUID;
+	            		  
+	            		  window.location.href="payCompleteForm.do?" + queryString + '&merUid=' + merchantUID;  
+	            		          		  
 	            	  }
 	              })
 	          } else {

@@ -14,10 +14,16 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.siot.IamportRestClient.response.IamportResponse;
 import com.siot.IamportRestClient.response.Payment;
+import com.yedamMiddle.addr.service.AddrService;
+import com.yedamMiddle.addr.service.AddrVO;
+import com.yedamMiddle.addr.serviceImpl.AddrServiceImpl;
 import com.yedamMiddle.cart.service.MyCartService;
 import com.yedamMiddle.cart.serviceImpl.MyCartServiceImpl;
 import com.yedamMiddle.common.Command;
 import com.yedamMiddle.common.IamPort;
+import com.yedamMiddle.common.service.UserVO;
+import com.yedamMiddle.login.service.LoginService;
+import com.yedamMiddle.login.serviceImpl.LoginServiceImpl;
 import com.yedamMiddle.product.service.ProductOrderVO;
 import com.yedamMiddle.product.service.ProductService;
 import com.yedamMiddle.product.serviceImpl.ProductServiceImpl;
@@ -40,11 +46,33 @@ public class PaymentCompleteControl implements Command {
 		}
 		
 		int userNo = (Integer)userNoObj;
+		LoginService loginsvc = new LoginServiceImpl();
+		UserVO userInfo = loginsvc.getUserInfo(userNo);
+		if(userInfo == null) {
+			try {
+				resp.sendRedirect("main.do");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return;
+		}
+		
 		String imp = req.getParameter("impUid");
 		String merUid = req.getParameter("merUid");
 		String[] proNos = req.getParameterValues("productNo");
 		String[] proSel = req.getParameterValues("productSelCnt");
 		String payAmount = req.getParameter("payAmount"); // 클라이언트가 보낸 결제금액
+		
+		String fee = req.getParameter("fee");
+		String deliveryReq = req.getParameter("deliveryReq");
+		System.out.println(deliveryReq);
+		String addr = userInfo.getUserAddr(); // 만약 주소지 변경할수있으면 바꿔야함.
+		
+		int addrFee = 0;
+		if(fee != null) {
+			addrFee = Integer.parseInt(fee);
+		}
 		
 		int[] productNos = Arrays.stream(proNos).mapToInt(Integer::parseInt).toArray();
 		
@@ -67,6 +95,8 @@ public class PaymentCompleteControl implements Command {
 				realProductNo.add(Integer.parseInt(proNos[i]));
 			}
 		}
+		
+		realAllProductPrice += addrFee; // 배송비 추가.
 		
 		// 실제상품과 사용자가 결제한 금액을 비교
 		if(portPrice != realAllProductPrice) {
@@ -105,9 +135,34 @@ public class PaymentCompleteControl implements Command {
 			return;
 		}
 		
+		AddrService svc3 = new AddrServiceImpl();
+		List<AddrVO> addrList = new ArrayList<AddrVO>();
+		//productOrderNo정보를 가져오기 위해..
+		List<ProductOrderVO> productOrderNo = svc.getProductOrder(productNos, Long.parseLong(merUid), userNo);
+		for(ProductOrderVO vo : productOrderNo) {
+			int prOrderNo = vo.getProductOrderNo();
+			AddrVO addrVO = new AddrVO();
+			addrVO.setProductOrderNo(prOrderNo);
+			addrVO.setAddrFee(addrFee);
+			addrVO.setAddrAddress(userInfo.getUserAddr());
+			addrVO.setAddrRequest(deliveryReq);
+			addrVO.setAddrState("0");
+			
+			addrList.add(addrVO);
+		}
+		
+		for(AddrVO vo : addrList) {
+			svc3.saveProductAddr(vo);
+		}
+		
 		// 선택한 장바구니 상품들이 결제완료시 삭제. (만약 삭제가 안되더라도 일단넘어감.)
 		MyCartService svc2 = new MyCartServiceImpl();
 		svc2.delCartFromPayment(userNo, productNos); 
+		
+		// 배송지 정보삽입
+		
+		//svc3.saveProductAddr(null)
+		
 		
 		retJson.put("retCode", "OK");
 		try {
