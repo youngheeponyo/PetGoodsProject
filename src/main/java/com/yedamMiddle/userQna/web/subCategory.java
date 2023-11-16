@@ -27,7 +27,7 @@ public class subCategory implements Command {
 		CategoryVO categoryVo = new CategoryVO();
 		categoryVo.setCategoryNo(Integer.parseInt(categoryNo));
 		
-		List<CategoryVO> subCategory = svc.getSubCategory(categoryVo);
+		List<CategoryVO> subCategory = svc.getSubCategory();
 		
 		Map<String, Object> map= new HashMap<>();
 		

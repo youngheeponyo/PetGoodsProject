@@ -89,18 +89,38 @@
                               <option value="기타문의">기타문의</option>
                         </select>
                         </td>
-                           <th colspan="1" class="">상품카테고리</th>
-                           <td>
-                              <select class="mainCategory" onchange="getSubCategory(this.value)">
-                                 <option value="" selected disabled >선택해주세요</option>
-                              </select>
-                           </td>
-                           <th>상품명</th>
-                           <td>
-                              <select class="subCategory" onchange="">
-                                 <option>상품명</option>
-                              </select>
-                           </td>
+                        <th>상품카테고리</th>
+                        <td>
+                        	 <select class="mainCategory" onchange="getCategory(this.value)">
+		                  		<option value="" selected disabled >선택해주세요</option>
+		                  		<c:forEach items="${mainCategory }" var="main">
+		                  			console.log(${main })
+		                  			<optgroup label="${main.categoryName}">
+										<c:forEach items="${subCategory }" var="sub">
+											<c:if test="${main.categoryNo==sub.categoryPreno }">
+											<option value="${sub.categoryNo}">${sub.categoryName}</option>
+											</c:if>
+										</c:forEach>
+									</optgroup>
+		                  		</c:forEach>
+                  			</select>
+                        </td>
+                        
+                        
+                        
+                        
+<!--                            <th colspan="1" class="">상품카테고리</th> -->
+<!--                            <td> -->
+<!--                               <select class="mainCategory" onchange="getSubCategory(this.value)"> -->
+<!--                                  <option value="" selected disabled >선택해주세요</option> -->
+<!--                               </select> -->
+<!--                            </td> -->
+<!--                            <th>상품명</th> -->
+<!--                            <td> -->
+<!--                               <select class="subCategory" onchange=""> -->
+<!--                                  <option>상품명</option> -->
+<!--                               </select> -->
+<!--                            </td> -->
                      </c:otherwise>
                   </c:choose>
 					</tr>
@@ -127,10 +147,13 @@
 		if(value=="상품문의"){
 			getMainCategory();
 		}
+	}
+		
+	function getCategory(value){
+		console.log("value:"+ value);
 		
 	}
-
-
+	
 	function getMainCategory(){
 		fetch('getMainCategory.do')
 		.then(resolve => resolve.json())
@@ -140,37 +163,48 @@
 			makeMainOption(result.mainCategory);
 		})
 		}
+
+
+// 	function getMainCategory(){
+// 		fetch('getMainCategory.do')
+// 		.then(resolve => resolve.json())
+// 		.then(result =>{
+// 			console.log(result);
+// 			console.log(result.mainCategory);
+// 			makeMainOption(result.mainCategory);
+// 		})
+// 		}
 	
-	function makeMainOption(mainCategoryList){
-		console.log("mainCategoryList :" + mainCategoryList)
+// 	function makeMainOption(mainCategoryList){
+// 		console.log("mainCategoryList :" + mainCategoryList)
 		
-		mainCategoryList.forEach(item =>{
-			let option = document.createElement('option');
-			option.value=item.categoryNo;
-			option.innerHTML=item.categoryName;
-			document.querySelector('.mainCategory').append(option);
-		})
-	}
+// 		mainCategoryList.forEach(item =>{
+// 			let option = document.createElement('option');
+// 			option.value=item.categoryNo;
+// 			option.innerHTML=item.categoryName;
+// 			document.querySelector('.mainCategory').append(option);
+// 		})
+// 	}
 	
-	function getSubCategory(categoryNo){
-			fetch('subCategory.do?categoryNo=' + categoryNo)
-			.then(resolve => resolve.json())
-			.then(result =>{
-				console.log("result="+result);
-				makeSubOption(result.subCategory)
-			})
-		}
+// 	function getSubCategory(categoryNo){
+// 			fetch('subCategory.do?categoryNo=' + categoryNo)
+// 			.then(resolve => resolve.json())
+// 			.then(result =>{
+// 				console.log("result="+result);
+// 				makeSubOption(result.subCategory)
+// 			})
+// 		}
 		
-	function makeSubOption(subCategoryList){
-		console.log("subCategoryList="+subCategoryList);
+// 	function makeSubOption(subCategoryList){
+// 		console.log("subCategoryList="+subCategoryList);
 		
-		subCategoryList.forEach(item =>{
-			let option = document.createElement('option');
-			option.value=item.categoryNo;
-			option.innerHTML=item.categoryName;
-			document.querySelector('.subCategory').append(option);
-		})
-	}
+// 		subCategoryList.forEach(item =>{
+// 			let option = document.createElement('option');
+// 			option.value=item.categoryNo;
+// 			option.innerHTML=item.categoryName;
+// 			document.querySelector('.subCategory').append(option);
+// 		})
+// 	}
 	
 	
 

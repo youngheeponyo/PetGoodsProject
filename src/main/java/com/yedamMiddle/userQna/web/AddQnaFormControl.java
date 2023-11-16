@@ -47,12 +47,15 @@ public class AddQnaFormControl implements Command {
 			req.setAttribute("userVo", userVo);
 			System.out.println("userVo = "+ userVo);
 			
-			List<CategoryVO> categoryNoList = svc.categoryNoList();
-			List<ProductVO> productNameList = svc.productNameList();
-			System.out.println("categoryNoList = "+categoryNoList);//전체 카테고리 번호
-			System.out.println("productNameList = "+productNameList);//전체 상품 이름
-			req.setAttribute("categoryNoList", categoryNoList);
-			req.setAttribute("productNameList", productNameList);
+			
+			List<CategoryVO> mainCategory = svc.getMainCategory();
+			List<CategoryVO> subCategory = svc.getSubCategory();
+			
+			System.out.println("mainCategory="+ mainCategory);
+			System.out.println("subCategory="+ subCategory);
+			
+			req.setAttribute("mainCategory", mainCategory);
+			req.setAttribute("subCategory", subCategory);
 			
 			
 			try {
