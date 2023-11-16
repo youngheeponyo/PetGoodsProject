@@ -22,6 +22,16 @@ public class MyCartServiceImpl implements MyCartService {
 	}
 	
 	@Override
+	public boolean insertCart(MyCartVO vo) {
+		return mapper.insertCart(vo)==1;
+	}
+	
+	@Override
+	public boolean deleteOne(MyCartVO vo) {
+		return mapper.deleteOne(vo)==1;
+	}
+	
+	@Override
 	public List<CartJoinVO> getCart(int memberNo) {
 		return  mapper.getCart(memberNo);
 	}
@@ -31,11 +41,6 @@ public class MyCartServiceImpl implements MyCartService {
 		return mapper.deleteCart(productNo, memberNo) ==1;
 	}
 	
-	@Override
-	public boolean modCart(MyCartVO vo) {
-		return mapper.updateCart(vo) == 1;
-	}
-
 	@Override
 	public boolean delCartFromPayment(int uno, int[] productNos) {
 		// TODO Auto-generated method stub
@@ -48,15 +53,5 @@ public class MyCartServiceImpl implements MyCartService {
 		return mapper.getCartFromPayment(uno, productNos);
 	}
 
-	@Override
-	public boolean delCart(int[] productNos, int memberNo) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
-	@Override
-	public boolean modCart(int productNo, int memberNo) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 }

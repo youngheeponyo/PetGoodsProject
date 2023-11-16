@@ -3,6 +3,7 @@ package com.yedamMiddle.common;
 import java.io.IOException;
 
 
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,8 +21,8 @@ import com.yedamMiddle.admin.web.MemberListControl;
 import com.yedamMiddle.cart.web.AddCartControl;
 import com.yedamMiddle.cart.web.MyCartControl;
 import com.yedamMiddle.cart.web.deleteCartControl;
-import com.yedamMiddle.cart.web.updateCartControl;
-import com.yedamMiddle.cart.web.updateCartFormControl;
+import com.yedamMiddle.cart.web.deleteOneControl;
+import com.yedamMiddle.cart.web.insertOneControl;
 import com.yedamMiddle.login.web.AddUserControl;
 import com.yedamMiddle.login.web.AddUserFormControl;
 import com.yedamMiddle.login.web.DelUserControl;
@@ -110,11 +111,13 @@ public class FrontController extends HttpServlet {
       commandByURL.put("/detailProduct.do", new ProductDetailControl());
       //장바구니 추가
       commandByURL.put("/addCart.do", new AddCartControl());
+      //장바구니 삭제
+      commandByURL.put("/deleteCart.do", new deleteCartControl());
       //장바구니
       commandByURL.put("/myCart.do", new MyCartControl());
-      //장바구니 삭제.업데이트
-      commandByURL.put("/updateCart.do", new updateCartControl());
-      commandByURL.put("/deleteCart.do", new deleteCartControl());
+      //수량
+      commandByURL.put("/insertOne.do", new insertOneControl());
+      commandByURL.put("/deleteOne.do", new deleteOneControl());
       
       // 전민교
       commandByURL.put("/main.do", new MainPageControl()); // 메인페이지
