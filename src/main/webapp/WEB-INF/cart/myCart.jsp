@@ -207,7 +207,6 @@
 
 						<tbody>
 							<c:forEach items="${list }" var="vo">
-								let pno = ${vo.productNo }
 								<tr class="cart__list__detail">
 									<td><input type="checkbox" class="chk" name="product"
 											value=${vo.productPrice*vo.selCnt } onclick="checkfunction()"></td>
@@ -350,12 +349,16 @@
 		fetch('insertOne.do?pno='+pno+'&uno=' + ${uno})
 			.then(resolve => resolve.json())
 			.then(result => {
+				console.log(result)
 				if (result.retCode == 'OK') {
 					alert("장바구니에 추가되었습니다");
 					window.location.href = "myCart.do?uno=" + ${uno};
 				} else {
+					console.log(result)
 					alert("추가 실패");
+					window.location.href = "myCart.do?uno=" + ${uno};
 				}
 			})
+			.catch(error=>console.log(error))
 	}
 </script>

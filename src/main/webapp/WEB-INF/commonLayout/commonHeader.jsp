@@ -41,33 +41,29 @@
                             </c:otherwise>
                         </c:choose>	
                         </button>
-                        <c:choose>
-                        	<c:when test="${empty uno }">
-		                        <a class="btn" href="loginForm.do">
-		                            <i class="far fa-user fa-2x">로그인</i>
-		                        </a>
-		                        <a class="btn" href="addUserForm.do">
-                           		 	<i class="far fa-user fa-2x">회원가입</i>
-                       			</a>
-                        	</c:when>
-                        	<c:otherwise>
-                        		<a class="btn" href="logout.do">
-		                            <i class="far fa-user fa-2x">로그아웃</i>
-		                        </a>
-		                        <a class="btn" href="delUserForm.do">
-		                            <i class="far fa-user fa-2x">회원탈퇴</i>
-		                        </a>
-                        	</c:otherwise>
-                        </c:choose>
-                        
-                        
-                        
-                        <button class="btn" type="button" onclick="location.href='myCart.do?uno=${uno }'">
-                            <i class="bi-cart-fill me-1"></i>
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                        </button>
-                        
-                        
+		                <c:choose>
+		                	<c:when test="${!empty uno }">
+		                		<button class="btn" type="button" onclick="">
+                             		<i class="far fa-user fa-2x"></i>
+                        		</button>
+                        		<button class="btn" type="button" onclick="location.href='logout.do'">
+                             		<i class="far fa-user fa-2x">로그아웃</i>
+                        		</button>
+		                		<button class="btn" type="button" onclick="location.href='myCart.do?uno=${uno }'">
+                            		<i class="bi-cart-fill me-1"></i>
+                            		<span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                        		</button>
+		                	</c:when>
+		                	<c:otherwise>
+		                		<button class="btn" type="button" onclick="location.href='login.do'">
+                             		<i class="far fa-user fa-2x"></i>
+                        		</button>
+		                		<button class="btn" type="button" onclick="location.href='login.do'">
+                            		<i class="bi-cart-fill me-1"></i>
+                            		<span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                        		</button>
+		                	</c:otherwise>
+		                </c:choose>     
                     </form>
                 </div>
             </div>

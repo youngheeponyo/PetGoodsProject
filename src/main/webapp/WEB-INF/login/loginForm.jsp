@@ -20,39 +20,33 @@
 	crossorigin="anonymous">
 
 <style>
-body {
-	min-height: 100vh;
-	background: -webkit-gradient(linear, left bottom, right top, from(#92b5db),
-		to(#1d466c));
-	background: -webkit-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
-	background: -moz-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
-	background: -o-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
-	background: linear-gradient(to top right, #92b5db 0%, #1d466c 100%);
-}
+
 
 .input-form {
-	max-width: 680px;
-	margin-top: 80px;
+	max-width: 500px;
 	padding: 32px;
-	background: #fff;
+	background: #e6c1c161;
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
-	-webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-	-moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
+}
+#box{
+	border:1px;
+	width:600px;
+	margin:auto;
 }
 </style>
 </head>
 
 
 <body>
+<div id="box">
+
 	<form action="login.do" method="post">
 		<div class="container">
 			<div class="input-form-backgroud row">
 				<div class="input-form col-md-12 mx-auto">
-					<h4 class="mb-3" style="text-align: center">My Deat Pet</h4>
-					<form class="validation-form" novalidate>
+					<h4 class="mb-3" style="text-align: center;font-size:50px;color:pink">My Dear Pet</h4>
 						<div class="row">
 							<div class="mb-3">
 								<label for="name">아이디</label> <input type="text"
@@ -67,16 +61,17 @@ body {
 								<div class="invalid-feedback">비밀번호를 입력해주세요.</div>
 							</div>
 							<div class="mb-4"></div>
-							<input class="btn btn-primary btn-lg btn-block" type="submit" value="로그인">
+							<input class="btn btn-primary btn-lg btn-block" type="submit" value="로그인" style="background-color:pink;border:1px white;width:200px;margin:auto;">
+							<input class="btn btn-primary btn-lg btn-block" type="button" value="회원가입" style="background-color:pink;border:1px white;width:200px;margin:auto" onclick="location.href='addUserForm.do'">
+							<a id="kakao-login-btn"><img src="https://developers.kakao.com/tool/resource/static/img/button/login/full/ko/kakao_login_medium_narrow.png" style="width:200px;height:46px;margin:20px auto;text-align: center;"></a>
 						</div>
-					</form>
 					<!-- 카카오로그인 -->
-					<div class="button-login" align ="center">
-	                	<a id="kakao-login-btn" >
-	    				<img src="https://developers.kakao.com/tool/resource/static/img/button/login/full/ko/kakao_login_medium_narrow.png"  /></a>
-	            	</div>
+
+						
+
 	            	<script src = "https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 	            	<script type='text/javascript'>
+	            	console.log(${list})
 						Kakao.init('d462b7d737c1a7561172e7cffc4ef53b');
 						$("#kakao-login-btn").on("click", function(){
 						    //1. 로그인 시도
@@ -87,13 +82,11 @@ body {
 						          Kakao.API.request({
 						            url: '/v2/user/me',
 						            success: function(res) {
-						              console.log(res);
 						          console.log(authObj);
 						              const kakaoId = res.id;
-						              const nick = res.nickname;
 									  scope : 'account_email';
-									  alert('로그인성공');
-						              location.href="addUserForm.do?uid="+kakaoId+"&nick="+nick;
+									  alert('회원가입 페이지로 넘어갑니다');
+							          location.href="addKakao.do?kId="+kakaoId;
 						        }
 						          })
 						          var token = authObj.access_token;
@@ -105,30 +98,13 @@ body {
 						        
 						})
 					</script>
-
-	            	<a id="kakao-login-btn"></a>
-					<button class="api-btn" onclick="unlinkApp()">앱 탈퇴하기</button>
-					<div id="result"></div>
-					<script type="text/javascript">
-						function unlinkApp() {
-							Kakao.API.request({
-								url : '/v1/user/unlink',
-								success : function(res) {
-								alert('success: '
-										+ JSON.stringify(res))
-								},
-								fail : function(err) {
-									alert('fail: '
-											+ JSON.stringify(err))
-								},
-							})
-						}
-					</script>
+					<a id="kakao-login-btn"></a>
 	            	
 				</div>
 				<footer class="my-3 text-center text-small"> </footer>
 			</div>
 		</div>
 	</form>
+	</div>
 </body>
 </html>
