@@ -3,7 +3,6 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <body>
-	<main>
 		<section class="pt-2 pb-4">
 			<div class="container px-4 px-lg-5 mt-3">
 				<div class="container-fluid px-4">
@@ -574,7 +573,6 @@
 				</div>
 			</div>
 		</section>
-	</main>
 </body>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
