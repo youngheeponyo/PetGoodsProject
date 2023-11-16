@@ -75,24 +75,6 @@ ${userQnaVo} ${userVo } ${productVo }
 							<th colspan="2">상품명</th>
 							<td>${productVo.productName }<td>
 						</c:if>
-						
-						
-						
-						
-						
-<!-- 						
-<%-- 							<c:choose> --%>
-<%-- 								<c:when test="상품페이지에서 넘어왔을때"><!-- 상품이랑 사람 조인 후 구매내역이 있을때 --> --%>
-<%-- 											${productVo.productNo } --%>
-<%-- 								</c:when> --%>
-<%-- 								<c:otherwise> --%>
-<!-- 									<select name="product"> -->
-<%-- 											<c:forEach items="${상품목록}" var="product"><!-- 상품개수만큼 --> --%>
-<%-- 											<option value="">${product.해당상품의 이름 }</option> --%>
-<%-- 											</c:forEach> --%>
-<!-- 									</select> -->
-<%-- 								</c:otherwise> --%>
-<%-- 							</c:choose> --%>
 						<td>
 					</tr>
 

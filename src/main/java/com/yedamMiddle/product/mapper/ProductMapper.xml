@@ -94,5 +94,53 @@
 		AND MER_UID = #{merUid}
 		AND USER_NO = #{uNo}
     </select>
+    
+    <select id="selectRegistDateDescFromMain" resultType="com.yedamMiddle.product.service.ProductVO" parameterType="String">
+		<![CDATA[  
+    		SELECT *
+       			FROM 
+           		(
+               		SELECT *
+               		FROM PRODUCT
+               		WHERE PET_TYPE = #{petType}
+               		ORDER BY PRODUCT_REGIST_DATE DESC
+           		)
+          		WHERE ROWNUM <= 4
+  			]]>
+	</select>
+	
+	<!-- 리뷰많은순 -->
+	<select id="selectReviewDescFromMain" resultType="com.yedamMiddle.product.service.ProductVO" parameterType="String">
+		<![CDATA[  
+    		SELECT B.*
+    			FROM (
+        		SELECT A.PRODUCT_NO, COUNT(*) AS CNT
+        			FROM PRODUCT A
+        			JOIN REVIEW B ON A.PRODUCT_NO = B.PRODUCT_NO
+        			WHERE A.PET_TYPE = #{petType}
+        			GROUP BY A.PRODUCT_NO
+        			ORDER BY CNT DESC
+    			) A
+    			JOIN PRODUCT B ON A.PRODUCT_NO = B.PRODUCT_NO
+    			WHERE ROWNUM <= 4
+  			]]>
+	</select>
+	
+	<!-- 별점 높은순 -->
+	<select id="selectStarCntDescFromMain" resultType="com.yedamMiddle.product.service.ProductVO" parameterType="String">
+		<![CDATA[  
+    		SELECT B.*
+    			FROM (
+        			SELECT A.PRODUCT_NO
+            		FROM PRODUCT A
+            		JOIN REVIEW B ON A.PRODUCT_NO = B.PRODUCT_NO
+            		WHERE A.PET_TYPE = #{petType}
+            		GROUP BY A.PRODUCT_NO
+            		ORDER BY AVG(B.STAR_CNT)
+    			) A
+    			JOIN PRODUCT B ON A.PRODUCT_NO = B.PRODUCT_NO
+    			WHERE ROWNUM <= 4
+  			]]>
+	</select>
 
 </mapper>
