@@ -39,4 +39,7 @@ public interface UserQnaMapper {
 	//1.카테고리 넘버를 뽑고 그 넘버에 2.해당하는 상품을 정렬해서 보여줌
 	public List<CategoryVO> categoryNoList();
 	public List<ProductVO> productNameList();
+	
+	//상품명으로 상품번호 찾기
+	public int productNameToSelectProductNo(String productName);
 }

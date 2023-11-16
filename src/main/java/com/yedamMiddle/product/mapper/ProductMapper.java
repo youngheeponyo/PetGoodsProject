@@ -27,4 +27,8 @@ public interface ProductMapper {
 	public List<Integer> selectProductPrice(int[] productNos);
 	
 	public List<ProductOrderVO> selectProductOrder(@Param("productNos") int[] productNos, @Param("merUid") long merUid, @Param("uNo") int userNo);
+	
+	public List<ProductVO> selectRegistDateDescFromMain(String petType);
+	public List<ProductVO> selectReviewDescFromMain(String petType);
+	public List<ProductVO> selectStarCntDescFromMain(String petType);
 }

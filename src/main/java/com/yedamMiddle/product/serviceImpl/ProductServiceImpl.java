@@ -90,4 +90,19 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		return mapper.selectProductOrder(productNos, merUid, userNo);
 	}
+	@Override
+	public List<ProductVO> searchRegistDateDescFromMain(String petType) {
+		// TODO Auto-generated method stub
+		return mapper.selectRegistDateDescFromMain(petType);
+	}
+	@Override
+	public List<ProductVO> searchReviewDescFromMain(String petType) {
+		// TODO Auto-generated method stub
+		return mapper.selectReviewDescFromMain(petType);
+	}
+	@Override
+	public List<ProductVO> searchStarCntDescFromMain(String petType) {
+		// TODO Auto-generated method stub
+		return mapper.selectStarCntDescFromMain(petType);
+	}
 }

@@ -21,37 +21,6 @@ public class AddQnaFormControl implements Command {
 		HttpSession session = req.getSession();
 		UserQnaService svc = new UserQnaServiceImpl();
 
-		
-	
-		
-		
-		String pName = req.getParameter("pName");//상품이름
-		req.setAttribute("pName", pName);
-//		System.out.println(pName);
-		
-		
-		int maxQnaNO = svc.getMaxQnaNo();
-		req.setAttribute("maxQnaNO", maxQnaNO);//시퀀스 최대넘버 +1=문의글 번호
-		
-		
-		int uno = (int) session.getAttribute("uno");
-		UserVO userVo = svc.unoToSelectUser(uno);//user정보
-		req.setAttribute("userVo", userVo);
-		System.out.println("userVo = "+ userVo);
-		
-		List<CategoryVO> categoryNoList = svc.categoryNoList();
-		List<ProductVO> productNameList = svc.productNameList();
-//		System.out.println("categoryNoList = "+categoryNoList);//전체 카테고리 번호
-//		System.out.println("productNameList = "+productNameList);//전체 상품 이름
-		req.setAttribute("categoryNoList", categoryNoList);
-		req.setAttribute("productNameList", productNameList);
-		
-		//AddQnaControl에서 등록할때 시간으로 넣어주기
-//		LocalDateTime now = LocalDateTime.now();
-//		String fomatedNow = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm"));
-//		System.out.println(fomatedNow);
-		
-		
 		//로그인되어있는지 확인
 		if(session.getAttribute("uno") == null) {
 			try {
@@ -60,6 +29,32 @@ public class AddQnaFormControl implements Command {
 				e.printStackTrace();
 			}
 		}else {
+			
+			String pName = req.getParameter("pName");//상품이름
+			req.setAttribute("pName", pName);
+			System.out.println("pName=" +pName);
+			
+			
+			int maxQnaNO = svc.getMaxQnaNo();
+			req.setAttribute("maxQnaNO", maxQnaNO);//시퀀스 최대넘버 +1=문의글 번호
+			System.out.println("maxQnaNO="+maxQnaNO);
+			
+			
+			int uno = (int) session.getAttribute("uno");
+			System.out.println("uno =" + uno);
+			UserVO userVo = svc.unoToSelectUser(uno);//user정보
+			System.out.println("uno =" + uno);
+			req.setAttribute("userVo", userVo);
+			System.out.println("userVo = "+ userVo);
+			
+			List<CategoryVO> categoryNoList = svc.categoryNoList();
+			List<ProductVO> productNameList = svc.productNameList();
+			System.out.println("categoryNoList = "+categoryNoList);//전체 카테고리 번호
+			System.out.println("productNameList = "+productNameList);//전체 상품 이름
+			req.setAttribute("categoryNoList", categoryNoList);
+			req.setAttribute("productNameList", productNameList);
+			
+			
 			try {
 				
 				req.getRequestDispatcher("userQna/addQnaForm.tiles").forward(req, resp);
@@ -67,17 +62,6 @@ public class AddQnaFormControl implements Command {
 				e.printStackTrace();
 			}
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	}
 
 }

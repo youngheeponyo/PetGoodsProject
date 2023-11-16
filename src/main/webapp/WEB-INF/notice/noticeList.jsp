@@ -8,7 +8,7 @@
 		<div class="container px-4 px-lg-5 mt-3">
 			<h3>공지사항</h3>
 			<form action="addNotice.do" method="post">
-				<table class="table">
+				<table id="datatablesSimple">
 					<thead>
 						<tr>
 							<th>글 번호</th>
@@ -37,3 +37,12 @@
 		</div>
 	</section>
 </body>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+	crossorigin="anonymous"></script>
+<script src="adminResource/js/scripts.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+	crossorigin="anonymous"></script>
+<script src="adminResource/js/datatables-simple-demo.js"></script>
+

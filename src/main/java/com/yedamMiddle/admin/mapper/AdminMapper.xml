@@ -25,4 +25,14 @@
 		PRODUCT_STOCK=#{productStock} 
 		WHERE PRODUCT_NO=#{productNo}
 	</update>
+	
+	<delete id="prodDelete" parameterType="int">
+		DELETE FROM PRODUCT WHERE PRODUCT_NO=#{productNo}
+	</delete>
+	
+	<select id="cateName" parameterType="int" resultType="String">
+		SELECT C.CATEGORY_NAME FROM PRODUCT P JOIN CATEGORY C 
+		ON C.CATEGORY_NO=P.CATEGORY_NO
+		WHERE P.PRODUCT_NO=#{productNo} 
+	</select>
 </mapper>

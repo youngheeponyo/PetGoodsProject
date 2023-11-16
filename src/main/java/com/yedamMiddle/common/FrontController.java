@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedamMiddle.admin.web.AddProductControl;
 import com.yedamMiddle.admin.web.ProductFormControl;
 import com.yedamMiddle.admin.web.ProductListControl;
+import com.yedamMiddle.admin.web.RemoveProductControl;
 import com.yedamMiddle.admin.web.AdminPageControl;
 import com.yedamMiddle.admin.web.GetProductControl;
 import com.yedamMiddle.admin.web.MemberListControl;
@@ -48,6 +49,7 @@ import com.yedamMiddle.product.web.ProductSearchControl;
 import com.yedamMiddle.userQna.web.AddQnaControl;
 import com.yedamMiddle.userQna.web.AddQnaFormControl;
 import com.yedamMiddle.userQna.web.DeleteUserQnaControl;
+import com.yedamMiddle.userQna.web.GetMainCategory;
 import com.yedamMiddle.userQna.web.GetQnaAllListControl;
 import com.yedamMiddle.userQna.web.GetQnaListControl;
 import com.yedamMiddle.userQna.web.ModifyUserQnaControl;
@@ -72,6 +74,8 @@ public class FrontController extends HttpServlet {
       commandByURL.put("/qnaReply.do", new QnaReplyControl());//Qna관리자 답글달기(수정은 보류)
       
       commandByURL.put("/addUserQnaForm.do", new AddQnaFormControl());
+      commandByURL.put("/getMainCategory.do", new GetMainCategory());
+      
 //      commandByURL.put("/addUserQna.do", new AddQnaControl());//등록보류
       
       commandByURL.put("/modifyUserQnaForm.do", new ModifyUserQnaFormControl());//Qna수정
@@ -97,6 +101,7 @@ public class FrontController extends HttpServlet {
       commandByURL.put("/getProduct.do", new GetProductControl()); //상품조회
       commandByURL.put("/modProductForm.do", new ModProductFormControl()); //상품수정화면
       commandByURL.put("/modProduct.do", new ModProductControl()); //상품수정
+      commandByURL.put("/removeProduct.do", new RemoveProductControl()); //상품삭제
       
       
       // 서영희
