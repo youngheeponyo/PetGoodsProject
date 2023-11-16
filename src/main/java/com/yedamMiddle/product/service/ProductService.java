@@ -25,4 +25,8 @@ public interface ProductService {
 	
 	public List<Integer> getProductPrice(int[] productNos);
 	public List<ProductOrderVO> getProductOrder(int[] productNos, long merUid, int userNo);
+	
+	public List<ProductVO> searchRegistDateDescFromMain(String petType);
+	public List<ProductVO> searchReviewDescFromMain(String petType);
+	public List<ProductVO> searchStarCntDescFromMain(String petType);
 }

@@ -3,6 +3,7 @@ package com.yedamMiddle.common;
 import java.io.IOException;
 
 
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,14 +15,17 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedamMiddle.admin.web.AddProductControl;
 import com.yedamMiddle.admin.web.ProductFormControl;
 import com.yedamMiddle.admin.web.ProductListControl;
+import com.yedamMiddle.admin.web.RemoveProductControl;
 import com.yedamMiddle.admin.web.AdminPageControl;
 import com.yedamMiddle.admin.web.GetProductControl;
 import com.yedamMiddle.admin.web.MemberListControl;
+import com.yedamMiddle.admin.web.ModProductControl;
+import com.yedamMiddle.admin.web.ModProductFormControl;
 import com.yedamMiddle.cart.web.AddCartControl;
 import com.yedamMiddle.cart.web.MyCartControl;
 import com.yedamMiddle.cart.web.deleteCartControl;
-import com.yedamMiddle.cart.web.updateCartControl;
-import com.yedamMiddle.cart.web.updateCartFormControl;
+import com.yedamMiddle.cart.web.deleteOneControl;
+import com.yedamMiddle.cart.web.insertOneControl;
 import com.yedamMiddle.login.web.AddUserControl;
 import com.yedamMiddle.login.web.AddUserFormControl;
 import com.yedamMiddle.login.web.DelUserControl;
@@ -87,11 +91,12 @@ public class FrontController extends HttpServlet {
       commandByURL.put("/memberList.do", new MemberListControl()); //회원목록
       //상품
       commandByURL.put("/productList.do", new ProductListControl()); //상품목록
-      //상품추가
       commandByURL.put("/productForm.do", new ProductFormControl()); //새 상품 작성
       commandByURL.put("/addProduct.do", new AddProductControl()); //상품등록 
-      //상품선택
       commandByURL.put("/getProduct.do", new GetProductControl()); //상품조회
+      commandByURL.put("/modProductForm.do", new ModProductFormControl()); //상품수정화면
+      commandByURL.put("/modProduct.do", new ModProductControl()); //상품수정
+      commandByURL.put("/removeProduct.do", new RemoveProductControl()); //상품삭제
       
       
       // 서영희
@@ -110,11 +115,13 @@ public class FrontController extends HttpServlet {
       commandByURL.put("/detailProduct.do", new ProductDetailControl());
       //장바구니 추가
       commandByURL.put("/addCart.do", new AddCartControl());
+      //장바구니 삭제
+      commandByURL.put("/deleteCart.do", new deleteCartControl());
       //장바구니
       commandByURL.put("/myCart.do", new MyCartControl());
-      //장바구니 삭제.업데이트
-      commandByURL.put("/updateCart.do", new updateCartControl());
-      commandByURL.put("/deleteCart.do", new deleteCartControl());
+      //수량
+      commandByURL.put("/insertOne.do", new insertOneControl());
+      commandByURL.put("/deleteOne.do", new deleteOneControl());
       
       // 전민교
       commandByURL.put("/main.do", new MainPageControl()); // 메인페이지

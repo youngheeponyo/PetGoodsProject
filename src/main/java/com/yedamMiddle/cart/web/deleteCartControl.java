@@ -18,13 +18,17 @@ public class deleteCartControl implements Command {
 		String uno = req.getParameter("uno");
 		
 		MyCartService svc = new MyCartServiceImpl();
-		
+		String result = "";
 		if(svc.delCart(Integer.parseInt(pno), Integer.parseInt(uno))) {
-				try {
-					req.getRequestDispatcher("cart/myCart.tiles").forward(req, resp);
-				} catch (ServletException | IOException e) {
-					e.printStackTrace();
-				}
+			result = "{\"retCode\":\"OK\"}";
+		}else {
+			result = "{\"retCode\":\"NG\"}";
+		}
+		
+		try {
+			resp.getWriter().print(result);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		
 	}
