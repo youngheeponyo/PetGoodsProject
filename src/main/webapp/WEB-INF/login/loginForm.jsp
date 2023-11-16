@@ -63,7 +63,7 @@
 							<div class="mb-4"></div>
 							<input class="btn btn-primary btn-lg btn-block" type="submit" value="로그인" style="background-color:pink;border:1px white;width:200px;margin:auto;">
 							<input class="btn btn-primary btn-lg btn-block" type="button" value="회원가입" style="background-color:pink;border:1px white;width:200px;margin:auto" onclick="location.href='addUserForm.do'">
-							<a id="kakao-login-btn" onclick="checkfunction()"><img src="https://developers.kakao.com/tool/resource/static/img/button/login/full/ko/kakao_login_medium_narrow.png" style="width:200px;height:46px;margin:20px auto;text-align:center;"></a>
+							<a id="kakao-login-btn"><img src="https://developers.kakao.com/tool/resource/static/img/button/login/full/ko/kakao_login_medium_narrow.png" style="width:200px;height:46px;margin:20px auto;text-align:center;"></a>
 						</div>
 					<!-- 카카오로그인 -->
 
@@ -82,11 +82,22 @@
 						          Kakao.API.request({
 						            url: '/v2/user/me',
 						            success: function(res) {
-						          console.log(authObj);
 						              const kakaoId = res.id;
+						              const kakaoPw = "kakao" + res.id;
 									  scope : 'account_email';
-									  alert('회원가입을 먼저 해주세요');
-							          location.href="addUserForm.do?kId="+kakaoId;
+										fetch('idCheck.do?uid='+kakaoId)
+										.then(resolve=>resolve.json())
+										.then(result=>{
+											console.log(result)
+											if(result.retCode=='NG'){
+												console.log(result);
+												alert("회원가입 후 사용하실 수 있습니다");
+												location.href="addUserForm.do?kId="+kakaoId+"&kPw="+kakaoPw;
+											}else{
+												alert("로그인 완료!");
+												location.href="login.do?userId="+kakaoId+"&userPw="+kakaoPw;
+											}
+										})
 						        }
 						          })
 						          var token = authObj.access_token;

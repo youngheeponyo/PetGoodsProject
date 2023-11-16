@@ -57,7 +57,7 @@
 							<div class="col-md-6 mb-3">
 								<label for="name">비밀번호</label> <input type="password"
 									class="form-control" id="name" name="upw" placeholder=""
-									value="" required>
+									value="${kPw }" required>
 								<div class="invalid-feedback">비밀번호를 입력해주세요.</div>
 							</div>
 

@@ -44,7 +44,7 @@ public class AddUserControl implements Command {
 		vo.setUserAddr(addr+" "+detailAddr);
 		if(svc.addUser(vo)) {
 				try {
-					resp.sendRedirect("main.do");
+					resp.sendRedirect("loginForm.do");
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
