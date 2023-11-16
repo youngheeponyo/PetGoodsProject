@@ -35,14 +35,14 @@ public class AddQnaFormControl implements Command {
 		
 		
 		int uno = (int) session.getAttribute("uno");
-		UserVO uservo = svc.unoToSelectUser(uno);//user정보
-		req.setAttribute("uservo", uservo);
-		System.out.println("uservo = "+ uservo);
+		UserVO userVo = svc.unoToSelectUser(uno);//user정보
+		req.setAttribute("userVo", userVo);
+		System.out.println("userVo = "+ userVo);
 		
 		List<CategoryVO> categoryNoList = svc.categoryNoList();
 		List<ProductVO> productNameList = svc.productNameList();
-		System.out.println("categoryNoList = "+categoryNoList);//전체 카테고리 번호
-		System.out.println("productNameList = "+productNameList);//전체 상품 이름
+//		System.out.println("categoryNoList = "+categoryNoList);//전체 카테고리 번호
+//		System.out.println("productNameList = "+productNameList);//전체 상품 이름
 		req.setAttribute("categoryNoList", categoryNoList);
 		req.setAttribute("productNameList", productNameList);
 		

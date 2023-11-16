@@ -30,7 +30,11 @@
 }
 </style>
 
-${userVo }
+console.log(${userVo });
+console.log(${categoryNoList });
+console.log(${productNameList });
+
+
 <section class="py-5">
 	<div class="container px-4 px-lg-5 mt-5">
 		<div class="container-fluid">
@@ -85,7 +89,7 @@ ${userVo }
 								</select></td>
 								
 								<!-- 상품타입이 상품문의라면 -->
-								<c:if test="${상품타입이 상품문의라면}">
+<%-- 								<c:if test="${상품타입이 상품문의라면}"> --%>
 									<!-- 상품명 항목 추가 후, -->
 									<th colspan="2">상품명</th>
 									<!-- 카테고리 이름먼저 나오고 -->
@@ -94,16 +98,16 @@ ${userVo }
 										<optgroup label="${categoryList.categoryName}">
 
 											<!-- 해당 카테고리의 번호에 맞는 상품이 나열됨 -->
-											<c:forEach items="${productNameList}" var="productList">
-												<c:if test="${{categoryList.categoryNo==productList.categoryNo}">
-													<option value="${productList.productName }">${productList.productName }</option>
-												</c:if>
-											</c:forEach>
+<%-- 											<c:forEach items="${productNameList}" var="productList"> --%>
+<%-- 												<c:if test="${{categoryList.categoryNo == productList.categoryNo}"> --%>
+<%-- 													<option value="${productList.productName }">${productList.productName }</option> --%>
+<%-- 												</c:if> --%>
+<%-- 											</c:forEach> --%>
 
 										</optgroup>
 									</c:forEach>
 									</td>
-								</c:if>
+<%-- 								</c:if> --%>
 							</c:otherwise>
 						</c:choose>
 					</tr>

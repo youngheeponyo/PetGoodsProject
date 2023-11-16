@@ -78,7 +78,8 @@
 		<select id="categoryNoList" resultType="com.yedamMiddle.common.service.CategoryVO">
 			SELECT CATEGORY_NO, CATEGORY_NAME FROM CATEGORY
 		</select>
-		<select id="productNameList" resultType="com.yedamMiddle.common.service.UserVO">
+		
+		<select id="productNameList" resultType="com.yedamMiddle.product.service.ProductVO">
 			SELECT PRODUCT_NAME, CATEGORY_NO FROM PRODUCT
 		</select>
 	
