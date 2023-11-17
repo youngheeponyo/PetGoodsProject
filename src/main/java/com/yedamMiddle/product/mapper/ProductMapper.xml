@@ -143,11 +143,7 @@
   			]]>
 	</select>
 	
-	<!-- 재고감소 -->
-	<update id="updateProductStock" parameterType="int">
-		<![CDATA[  
-		UPDATE PRODUCT SET PRODUCT_STOCK = PRODUCT_STOCK - 1 WHERE PRODUCT_NO = #{productNo}
-		]]>
+	<update id="updateProductStock">
+		update product set product_stock = product_stock-#{cnt} where product_no = #{productNo}
 	</update>
-
 </mapper>

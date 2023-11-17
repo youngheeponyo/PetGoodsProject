@@ -106,8 +106,8 @@ public class ProductServiceImpl implements ProductService {
 		return mapper.selectStarCntDescFromMain(petType);
 	}
 	@Override
-	public int reduceProductStock(int productNo) {
+	public int reduceProductStock(int cnt, int productNo) {
 		// TODO Auto-generated method stub
-		return mapper.updateProductStock(productNo);
+		return mapper.updateProductStock(cnt, productNo);
 	}
 }

@@ -29,5 +29,5 @@ public interface ProductService {
 	public List<ProductVO> searchRegistDateDescFromMain(String petType);
 	public List<ProductVO> searchReviewDescFromMain(String petType);
 	public List<ProductVO> searchStarCntDescFromMain(String petType);
-	public int reduceProductStock(int productNo);
+	public int reduceProductStock(int cnt, int productNo);
 }

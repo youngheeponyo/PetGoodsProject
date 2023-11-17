@@ -161,8 +161,10 @@ public class PaymentCompleteControl implements Command {
 		svc2.delCartFromPayment(userNo, productNos); 
 		
 		// 재고 감소처리(나중에.. 다중 update처리로 바꿔보자)
-		for(int productNo : realProductNo) {
-			svc.reduceProductStock(productNo);
+		ProductService svct = new ProductServiceImpl();
+		for(int i = 0; i < productNos.length; ++i) {
+			int count = Integer.parseInt(proSel[i]);
+			svct.reduceProductStock(count, productNos[i]);
 		}
 		
 		retJson.put("retCode", "OK");
