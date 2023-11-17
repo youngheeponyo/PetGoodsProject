@@ -192,10 +192,13 @@
 										})
 								}
 								
-								const pw = document.getElementById('pw').value;
-								if(pw.length<5){
-									alert('비밀번호는 5자리 이상 입력해주세요!')
-								}
+// 								const pw = document.getElementById('pw').value;
+// 								function checkfunction(){
+// 									if(pw.length<5){
+// 										alert('비밀번호는 5자리 이상 입력해주세요!')
+// 									}
+// 								}
+								
 						</script>
 						<hr class="mb-4">
 						<div class="custom-control custom-checkbox">
