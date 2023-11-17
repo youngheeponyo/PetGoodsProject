@@ -29,7 +29,7 @@
 		NVL(#{password}, #{password, jdbcType=DOUBLE}),
 		NVL(#{qnaReply}, #{qnaReply, jdbcType=VARCHAR}),
 		0,
-		#{qnaType}
+		NVL(#{qnaType}, '상품문의')
 		)
 	</insert>
 	

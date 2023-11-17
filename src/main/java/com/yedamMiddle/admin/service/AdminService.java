@@ -2,6 +2,7 @@ package com.yedamMiddle.admin.service;
 
 import java.util.List;
 
+import com.yedamMiddle.common.service.CategoryJoinVO;
 import com.yedamMiddle.common.service.UserVO;
 import com.yedamMiddle.product.service.ProductVO;
 
@@ -13,4 +14,7 @@ public interface AdminService {
 	public boolean editProduct(ProductVO vo);
 	public boolean removeProduct(int productNo);
 	public String cateName(int productNo);
+	List<CategoryJoinVO> getJoinCateList();
+	public boolean addMainCate(String categoryName);
+	public boolean addSubCate(String subName, String preName);
 }

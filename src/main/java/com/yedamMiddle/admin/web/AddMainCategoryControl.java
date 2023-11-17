@@ -1,6 +1,6 @@
 package com.yedamMiddle.admin.web;
 
-import java.util.List;
+import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,21 +8,20 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedamMiddle.admin.service.AdminService;
 import com.yedamMiddle.admin.serviceImpl.AdminServiceImpl;
 import com.yedamMiddle.common.Command;
-import com.yedamMiddle.product.service.ProductVO;
 
-public class ProductListControl implements Command {
+public class AddMainCategoryControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
+		String mainCate = req.getParameter("mainCategory");
 		AdminService svc = new AdminServiceImpl();
-		List<ProductVO> list = svc.prodList();
 		
-		req.setAttribute("prodlist", list);
-		
-		try {
-			req.getRequestDispatcher("admin/productList.tiles").forward(req, resp);
-		} catch (Exception e) {
-			e.printStackTrace();
+		if(svc.addMainCate(mainCate)) {
+			try {
+				resp.sendRedirect("categoryManage.do");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

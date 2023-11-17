@@ -14,7 +14,6 @@ public class AddNoticeControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
 		NoticeVO vo = new NoticeVO();
 		NoticeService svc = new NoticeServiceImpl();
 		
