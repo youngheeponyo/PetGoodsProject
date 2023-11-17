@@ -57,7 +57,7 @@
 	
 								<div class="col-md-6 mb-3">
 									<label for="name"></label> <input type="hidden"
-										class="form-control" id="name" name="upw" placeholder=""
+										class="form-control" id="pw" name="upw" placeholder=""
 										value="${kPw }" required>
 									<div class="invalid-feedback">비밀번호를 입력해주세요.</div>
 								</div>
@@ -73,7 +73,7 @@
 	
 								<div class="col-md-6 mb-3">
 									<label for="name">비밀번호</label> <input type="password"
-										class="form-control" id="name" name="upw" placeholder=""
+										class="form-control" id="pw" name="upw" placeholder=""
 										value="" required>
 									<div class="invalid-feedback">비밀번호를 입력해주세요.</div>
 								</div>
@@ -191,6 +191,14 @@
 											}
 										})
 								}
+								
+// 								const pw = document.getElementById('pw').value;
+// 								function checkfunction(){
+// 									if(pw.length<5){
+// 										alert('비밀번호는 5자리 이상 입력해주세요!')
+// 									}
+// 								}
+								
 						</script>
 						<hr class="mb-4">
 						<div class="custom-control custom-checkbox">
