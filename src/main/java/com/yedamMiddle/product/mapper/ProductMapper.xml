@@ -142,5 +142,12 @@
     			WHERE ROWNUM <= 4
   			]]>
 	</select>
+	
+	<!-- 재고감소 -->
+	<update id="updateProductStock" parameterType="int">
+		<![CDATA[  
+		UPDATE PRODUCT SET PRODUCT_STOCK = PRODUCT_STOCK - 1 WHERE PRODUCT_NO = #{productNo}
+		]]>
+	</update>
 
 </mapper>

@@ -105,4 +105,9 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		return mapper.selectStarCntDescFromMain(petType);
 	}
+	@Override
+	public int reduceProductStock(int productNo) {
+		// TODO Auto-generated method stub
+		return mapper.updateProductStock(productNo);
+	}
 }

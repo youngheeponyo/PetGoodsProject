@@ -31,4 +31,5 @@ public interface ProductMapper {
 	public List<ProductVO> selectRegistDateDescFromMain(String petType);
 	public List<ProductVO> selectReviewDescFromMain(String petType);
 	public List<ProductVO> selectStarCntDescFromMain(String petType);
+	public int updateProductStock(int productNo);
 }
