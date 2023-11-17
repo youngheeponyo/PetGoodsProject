@@ -19,6 +19,7 @@ public class GetQnaListControl implements Command {
 		String path ="userQna/userQnaDetail.tiles";
 		String qnaNo = req.getParameter("qnaNo");
 		UserQnaVO userQnaVo = new UserQnaVO();
+		
 		userQnaVo.setQnaNo(Integer.parseInt(qnaNo));
 		
 		//문의번호랑 패스워드 넣으면 해당 상세정보 열어줌
