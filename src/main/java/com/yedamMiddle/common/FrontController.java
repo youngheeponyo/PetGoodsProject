@@ -4,6 +4,7 @@ import java.io.IOException;
 
 
 
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,7 +23,9 @@ import com.yedamMiddle.admin.web.ProductFormControl;
 import com.yedamMiddle.admin.web.ProductListControl;
 import com.yedamMiddle.admin.web.RemoveProductControl;
 import com.yedamMiddle.cart.web.AddCartControl;
+import com.yedamMiddle.cart.web.CartCheckControl;
 import com.yedamMiddle.cart.web.MyCartControl;
+import com.yedamMiddle.cart.web.UpdateCartControl;
 import com.yedamMiddle.cart.web.deleteCartControl;
 import com.yedamMiddle.cart.web.insertOneControl;
 import com.yedamMiddle.login.web.AddUserControl;
@@ -124,7 +127,8 @@ public class FrontController extends HttpServlet {
       //장바구니
       commandByURL.put("/myCart.do", new MyCartControl());
       //수량
-      commandByURL.put("/insertOne.do", new insertOneControl());
+      commandByURL.put("/updateCart.do", new UpdateCartControl());
+      commandByURL.put("/cartCheck.do", new CartCheckControl());
       
       // 전민교
       commandByURL.put("/main.do", new MainPageControl()); // 메인페이지

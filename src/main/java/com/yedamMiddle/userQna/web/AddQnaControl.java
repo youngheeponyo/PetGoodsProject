@@ -21,56 +21,60 @@ public class AddQnaControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		HttpSession session = req.getSession();
+//		Date dateNow= new Date();		
+//		String qnaNo=req.getParameter("maxQnaNO");//1.글번호
+//		String nickName=req.getParameter("nickName");//2.작성자
+//		String fomatedNow = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm"));//3.작성일시
+//		String pName=req.getParameter("pName");//상세페이지에서 가져온 상품명
 		
-		String userNoObj = String.valueOf(session.getAttribute("uno")); 
-//		LocalDateTime now = LocalDateTime.now();
-		Date dateNow= new Date();
+		HttpSession session = req.getSession();
 		UserQnaService svc = new UserQnaServiceImpl();
 		UserQnaVO vo = new UserQnaVO();
-		String path="getUserQnaList.do";
+		String path="getUserQnaAllList.do";
+
+		String userNoObj = String.valueOf(session.getAttribute("uno")); //#{userNo}
+		String title=req.getParameter("title");//#{title}
+		String contents=req.getParameter("contents");//#{contents}
+		String password = req.getParameter("password");//#{password}
+		String qnaType=req.getParameter("qnaType");//#{qnaType})
+		String productNo=req.getParameter("productNo");
+		String pNo = req.getParameter("pNo");
+		
+	
+		
 
 		
-		String qnaNo=req.getParameter("maxQnaNO");//1.글번호
-		String nickName=req.getParameter("nickName");//2.작성자
-//		String fomatedNow = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm"));//3.작성일시
-		String title=req.getParameter("title");//4.제목
-		String qnaType=req.getParameter("qnaType");//5.문의종류
-		String contents=req.getParameter("contents");//6.내용
-		String pName=req.getParameter("pName");//상세페이지에서 가져온 상품명
-//		int detailProductNo = svc.productNameToSelectProductNo(pName);//7.위의 상품명으로 찾은 번호
-		String productNo=req.getParameter("productNo");//리스트에서 고른 상품명
-//		int productNo = svc.productNameToSelectProductNo(productName);//8.위의 상품명으로 찾은 번호
-		String password = req.getParameter("password");
-		
-		System.out.println("qnaNo : " +qnaNo);
-		System.out.println("nickName : " +nickName);
-		System.out.println("title : " +title);
-		System.out.println("qnaType : " +qnaType);
-		System.out.println("contents : " +contents);
-		System.out.println("pName : " +pName);
-//		System.out.println("detailProductNo : " +detailProductNo);
-		System.out.println("productNo : " +productNo);
-//		System.out.println("productNo : " +productNo);
 		System.out.println("uno =" + userNoObj);
+		System.out.println("title : " +title);
+		System.out.println("contents : " +contents);
+		System.out.println("password : " +password);
+		System.out.println("qnaType : " +qnaType);
+		System.out.println("pNo : " +pNo);
+		System.out.println("productNo : " +productNo);
 		
-//		vo.setQnaNo(Integer.parseInt(qnaNo));
-		vo.setUserNo(Integer.parseInt(userNoObj));
-		vo.setProductNo(0);
-//		vo.setNickName(nickName);
-		vo.setRegistDate(dateNow);
-		vo.setTitle(title);
-		vo.setContents(contents);
-		vo.setPassword(Integer.parseInt(password));
-		vo.setQnaState(0);
-		vo.setQnaReply("");
-		vo.setQnaType(qnaType);
-		
-		if(pName != "") {//만약 상세페이지에서 받아온 상품명 정보가 없다면
-//			vo.setProductNo(productNo);//홈페이지
+		vo.setUserNo(Integer.parseInt(userNoObj));//#{userNo}
+		vo.setTitle(title);//#{title}
+		vo.setContents(contents);//#{contents}
+		if(password=="") {
+			vo.setPassword(0);
 		}else {
-//			vo.setProductNo(detailProductNo);//상품상세페이지
+			vo.setPassword(Integer.parseInt(password));//#{password}
 		}
+		
+		
+		
+		vo.setQnaType(qnaType);//#{qnaType})
+		
+		if(pNo ==null && productNo!=null) {//pno가 없고, product넘버가 있을때
+			vo.setProductNo(Integer.parseInt(productNo));
+		}else if(pNo !=null && productNo==null){//product넘버가 없고, pno가 있을때
+			vo.setProductNo(Integer.parseInt(pNo));
+		}else {//둘다 null일때
+			vo.setProductNo(0);
+		}
+		
+		
+	
 		
 		
 		int insertCheck = svc.userQnaInsert(vo);

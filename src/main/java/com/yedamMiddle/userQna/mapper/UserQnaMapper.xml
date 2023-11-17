@@ -18,9 +18,19 @@
 	
 	<!-- 유저 문의글 등록 -->
 	<insert id="userQnaInsert" parameterType="com.yedamMiddle.userQna.service.UserQnaVO"> 
-		INSERT INTO USERQNA VALUES(SEQ_USERQNA.NEXTVAL,#{userNo}
-		#{productOrderNo}, #{productNo}, #{title}, #{contents}, SYSDATE,
-		#{password}, #{qnaReply}, #{qnaState}, #{qnaType})
+		INSERT INTO USERQNA VALUES(
+		SEQ_QNANO.NEXTVAL,
+		#{userNo},
+		NVL(#{productOrderNo}, #{productOrderNo, jdbcType=DOUBLE}),
+		NVL(#{productNo}, #{productNo, jdbcType=DOUBLE}),
+		#{title},
+		#{contents},
+		SYSDATE,
+		NVL(#{password}, #{password, jdbcType=DOUBLE}),
+		NVL(#{qnaReply}, #{qnaReply, jdbcType=VARCHAR}),
+		0,
+		#{qnaType}
+		)
 	</insert>
 	
 	
@@ -74,11 +84,6 @@
 		SELECT * FROM USER_TBL WHERE USER_NO =#{userNo}
 	</select>
 		
-	<!-- 상품명으로 상품번호 찾기 -->	
-	<select id="productNameToSelectProductNo" resultType="int"
-											parameterType="String">
-		SELECT PRODUCT_NO FROM PRODUCT WHERE PRODUCT_NAME=#{productName}
-	</select>
 	<!-- 메인카테고리 -->
 	<select id="getMainCategory" resultType="com.yedamMiddle.common.service.CategoryVO">
 		SELECT *  FROM CATEGORY WHERE CATEGORY_PRENO IS NULL

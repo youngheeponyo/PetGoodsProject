@@ -7,7 +7,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.yedamMiddle.common.service.UserVO;
-import com.yedamMiddle.login.service.KakaoVO;
 
 public interface LoginMapper {
 	public int addUser(UserVO vo);

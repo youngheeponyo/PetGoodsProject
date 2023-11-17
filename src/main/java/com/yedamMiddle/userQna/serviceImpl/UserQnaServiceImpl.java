@@ -76,11 +76,6 @@ public class UserQnaServiceImpl implements UserQnaService {
 	}
 
 	@Override
-	public int productNameToSelectProductNo(String productName) {
-		return mapper.productNameToSelectProductNo(productName);
-	}
-
-	@Override
 	public List<CategoryVO> getMainCategory() {
 		return mapper.getMainCategory();
 	}

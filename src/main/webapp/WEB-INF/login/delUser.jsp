@@ -87,10 +87,8 @@
 						          Kakao.API.request({
 						            url: '/v2/user/me',
 						            success: function(res) {
-						              console.log(res);
-						          console.log(authObj);
 						              const kakaoId = res.id;
-						              const nick = res.nickname;
+						              const kakaoPw = "kakao" + res.id;
 									  scope : 'account_email';
 									  alert('로그인성공');
 						              location.href="addUserForm.do?uid="+kakaoId+"&nick="+nick;
@@ -114,8 +112,11 @@
 							Kakao.API.request({
 								url : '/v1/user/unlink',
 								success : function(res) {
+									const kId = res.id;
+						            const kPw = "kakao" + res.id;
 								alert('success: '
-										+ JSON.stringify(res))
+										+ JSON.stringify(res)+"탈퇴 완료")
+								 location.href="delUser.do?userId="+kId+"&userPw="+kPw;
 								},
 								fail : function(err) {
 									alert('fail: '
