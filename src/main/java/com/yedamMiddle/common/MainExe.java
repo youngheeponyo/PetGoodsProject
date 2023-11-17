@@ -2,13 +2,12 @@ package com.yedamMiddle.common;
 
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
-
 import com.yedamMiddle.admin.service.AdminService;
 import com.yedamMiddle.admin.serviceImpl.AdminServiceImpl;
-import com.yedamMiddle.product.mapper.ProductMapper;
-import com.yedamMiddle.product.service.ProductOrderVO;
+import com.yedamMiddle.common.service.CategoryJoinVO;
+import com.yedamMiddle.product.service.ProductService;
 import com.yedamMiddle.product.service.ProductVO;
+import com.yedamMiddle.product.serviceImpl.ProductServiceImpl;
 
 public class MainExe {
 
@@ -30,6 +29,9 @@ public class MainExe {
 		AdminService svc = new AdminServiceImpl();
 		List<ProductVO> list = svc.prodList();
 		System.out.println(svc.cateName(50));
+		ProductService psvc = new ProductServiceImpl();
+		List<CategoryJoinVO> cateList = psvc.getCategoryList();
+		System.out.println(cateList);
 		
 	}// endmaim
 }// end
