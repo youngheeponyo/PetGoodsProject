@@ -1,5 +1,5 @@
 package com.yedamMiddle.common;
-
+import com.yedamMiddle.product.service.ProductService;
 import java.util.List;
 
 import com.yedamMiddle.admin.service.AdminService;
@@ -12,6 +12,7 @@ import com.yedamMiddle.product.serviceImpl.ProductServiceImpl;
 public class MainExe {
 
 	public static void main(String[] args) {
+		ProductService s = new ProductServiceImpl();
 //		SqlSession sql = Mybatis.getInstance().openSession(true);
 //		ProductMapper m = sql.getMapper(ProductMapper.class);
 //		
@@ -33,5 +34,7 @@ public class MainExe {
 		List<CategoryJoinVO> cateList = psvc.getCategoryList();
 		System.out.println(cateList);
 		
+		int a = s.reduceProductStock(1, 14);
+		System.out.println(a);
 	}// endmaim
 }// end

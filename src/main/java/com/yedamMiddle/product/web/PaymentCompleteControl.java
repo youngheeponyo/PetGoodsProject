@@ -135,6 +135,7 @@ public class PaymentCompleteControl implements Command {
 			return;
 		}
 		
+		// 배송지 정보삽입
 		AddrService svc3 = new AddrServiceImpl();
 		List<AddrVO> addrList = new ArrayList<AddrVO>();
 		//productOrderNo정보를 가져오기 위해..
@@ -159,10 +160,12 @@ public class PaymentCompleteControl implements Command {
 		MyCartService svc2 = new MyCartServiceImpl();
 		svc2.delCartFromPayment(userNo, productNos); 
 		
-		// 배송지 정보삽입
-		
-		//svc3.saveProductAddr(null)
-		
+		// 재고 감소처리(나중에.. 다중 update처리로 바꿔보자)
+		ProductService svct = new ProductServiceImpl();
+		for(int i = 0; i < productNos.length; ++i) {
+			int count = Integer.parseInt(proSel[i]);
+			svct.reduceProductStock(count, productNos[i]);
+		}
 		
 		retJson.put("retCode", "OK");
 		try {
@@ -172,5 +175,4 @@ public class PaymentCompleteControl implements Command {
 			e.printStackTrace();
 		}
 	}
-
 }
