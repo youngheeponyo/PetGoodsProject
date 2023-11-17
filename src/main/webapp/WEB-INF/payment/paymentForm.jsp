@@ -3,6 +3,32 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+<div id="couponmodal" class="modal fade" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">쿠폰선택</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	<!-- 쿠폰연동할 예정 -->
+         <select class="form-select">
+  			<option selected>Open this select menu</option>
+  			<option value="1">One</option>
+  			<option value="2">Two</option>
+  			<option value="3">Three</option>
+		</select>
+      </div>
+      <div class="modal-footer">
+      	<button type="button" class="btn btn-primary">쿠폰적용</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>  
+
 <div class="container">
 <div class="row g-5">
       <div class="col-md-5 col-lg-4 order-md-last">
@@ -38,7 +64,7 @@
         <form class="card p-2">
           <div class="input-group">
             <input type="text" class="form-control" placeholder="">
-            <button type="submit" class="btn btn-secondary">쿠폰선택</button>
+            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#couponmodal">쿠폰선택</button>
           </div>
         </form>
       </div>
