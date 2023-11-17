@@ -51,8 +51,11 @@ public class TestFileUpload implements Command {
 
                     idx++;
                     File storeFile = new File(filePath);
-                    item.write(storeFile);
+                    item.write(storeFile);//저장
                 }
+            	else {
+            		//
+            	}
             }
         } catch (Exception ex) {
             

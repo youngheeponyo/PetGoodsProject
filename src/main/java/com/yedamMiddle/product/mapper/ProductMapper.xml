@@ -142,5 +142,8 @@
     			WHERE ROWNUM <= 4
   			]]>
 	</select>
-
+	
+	<update id="updateProductStock">
+		update product set product_stock = product_stock-#{cnt} where product_no = #{productNo}
+	</update>
 </mapper>
