@@ -36,5 +36,8 @@ public class MainExe {
 		
 		int a = s.reduceProductStock(1, 14);
 		System.out.println(a);
+		
+		
+		
 	}// endmaim
 }// end
