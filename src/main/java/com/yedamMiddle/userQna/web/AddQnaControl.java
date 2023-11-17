@@ -21,30 +21,29 @@ public class AddQnaControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		HttpSession session = req.getSession();
+//		Date dateNow= new Date();		
+//		String qnaNo=req.getParameter("maxQnaNO");//1.글번호
+//		String nickName=req.getParameter("nickName");//2.작성자
+//		String fomatedNow = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm"));//3.작성일시
+
 		
-		String userNoObj = String.valueOf(session.getAttribute("uno")); 
-//		LocalDateTime now = LocalDateTime.now();
-		Date dateNow= new Date();
+		HttpSession session = req.getSession();
 		UserQnaService svc = new UserQnaServiceImpl();
 		UserQnaVO vo = new UserQnaVO();
 		String path="getUserQnaList.do";
 
-		
-		String qnaNo=req.getParameter("maxQnaNO");//1.글번호
-		String nickName=req.getParameter("nickName");//2.작성자
-//		String fomatedNow = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm"));//3.작성일시
-		String title=req.getParameter("title");//4.제목
-		String qnaType=req.getParameter("qnaType");//5.문의종류
-		String contents=req.getParameter("contents");//6.내용
+		String userNoObj = String.valueOf(session.getAttribute("uno")); //#{userNo}
+		String title=req.getParameter("title");//#{title}
+		String contents=req.getParameter("contents");//#{contents}
+		String password = req.getParameter("password");//#{password}
+		String qnaType=req.getParameter("qnaType");//#{qnaType})
+
 		String pName=req.getParameter("pName");//상세페이지에서 가져온 상품명
 //		int detailProductNo = svc.productNameToSelectProductNo(pName);//7.위의 상품명으로 찾은 번호
 		String productNo=req.getParameter("productNo");//리스트에서 고른 상품명
 //		int productNo = svc.productNameToSelectProductNo(productName);//8.위의 상품명으로 찾은 번호
-		String password = req.getParameter("password");
+
 		
-		System.out.println("qnaNo : " +qnaNo);
-		System.out.println("nickName : " +nickName);
 		System.out.println("title : " +title);
 		System.out.println("qnaType : " +qnaType);
 		System.out.println("contents : " +contents);
@@ -58,7 +57,6 @@ public class AddQnaControl implements Command {
 		vo.setUserNo(Integer.parseInt(userNoObj));
 		vo.setProductNo(0);
 //		vo.setNickName(nickName);
-		vo.setRegistDate(dateNow);
 		vo.setTitle(title);
 		vo.setContents(contents);
 		vo.setPassword(Integer.parseInt(password));

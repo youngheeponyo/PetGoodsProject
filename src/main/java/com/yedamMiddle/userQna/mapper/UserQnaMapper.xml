@@ -18,9 +18,9 @@
 	
 	<!-- 유저 문의글 등록 -->
 	<insert id="userQnaInsert" parameterType="com.yedamMiddle.userQna.service.UserQnaVO"> 
-		INSERT INTO USERQNA VALUES(SEQ_USERQNA.NEXTVAL,#{userNo}
-		#{productOrderNo}, #{productNo}, #{title}, #{contents}, SYSDATE,
-		#{password}, #{qnaReply}, #{qnaState}, #{qnaType})
+		INSERT INTO USERQNA VALUES(SEQ_QNANO.NEXTVAL,,#{userNo},
+		0,#{productNo},#{title},#{contents}, SYSDATE,
+		#{password}, '',0,#{qnaType});
 	</insert>
 	
 	

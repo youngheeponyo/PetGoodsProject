@@ -109,6 +109,7 @@
 			</table>
 			 <p><input type="submit" value="문의글 작성" >
 				<input type="hidden" name=pName value="${pno.productName }" >
+				<input type="hidden" name=pNo value="${vo.productNo }">
 			</p>
 		</div>
 		<hr>
