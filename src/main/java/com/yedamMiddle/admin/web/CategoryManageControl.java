@@ -8,19 +8,19 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedamMiddle.admin.service.AdminService;
 import com.yedamMiddle.admin.serviceImpl.AdminServiceImpl;
 import com.yedamMiddle.common.Command;
-import com.yedamMiddle.product.service.ProductVO;
+import com.yedamMiddle.common.service.CategoryJoinVO;
 
-public class ProductListControl implements Command {
+public class CategoryManageControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		AdminService svc = new AdminServiceImpl();
-		List<ProductVO> list = svc.prodList();
+		List<CategoryJoinVO> cateList = svc.getJoinCateList();
 		
-		req.setAttribute("prodlist", list);
+		req.setAttribute("categoryList", cateList);
 		
 		try {
-			req.getRequestDispatcher("admin/productList.tiles").forward(req, resp);
+			req.getRequestDispatcher("admin/categoryManage.tiles").forward(req, resp);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

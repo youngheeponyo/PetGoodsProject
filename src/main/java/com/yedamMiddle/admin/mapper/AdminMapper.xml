@@ -35,4 +35,19 @@
 		ON C.CATEGORY_NO=P.CATEGORY_NO
 		WHERE P.PRODUCT_NO=#{productNo} 
 	</select>
+	
+	<select id="getJoinCateList" resultType="com.yedamMiddle.common.service.CategoryJoinVO">
+		SELECT C2. CATEGORY_NO MAIN_CATE_NO, C2.CATEGORY_NAME MAIN_CATE_NAME, 
+		C1.CATEGORY_NO SUB_CATE_NO, C1.CATEGORY_NAME SUB_CATE_NAME 
+		FROM CATEGORY C1 INNER JOIN CATEGORY C2 ON C1.CATEGORY_PRENO = C2.CATEGORY_NO ORDER BY MAIN_CATE_NO, SUB_CATE_NO
+	</select>
+	
+	<insert id = "mainCateInsert" parameterType="String">
+		INSERT INTO CATEGORY VALUES(seq_category_no.NEXTVAL, #{categoryName}, NULL)
+	</insert>
+	
+	<insert id = "subCateInsert">
+		INSERT INTO CATEGORY VALUES(seq_category_no.NEXTVAL, #{subName},  (
+ 		select category_no from category where category_name=#{preName}) )
+	</insert>
 </mapper>

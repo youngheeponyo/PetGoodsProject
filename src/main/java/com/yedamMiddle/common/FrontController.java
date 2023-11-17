@@ -1,9 +1,6 @@
 package com.yedamMiddle.common;
 
 import java.io.IOException;
-
-
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,8 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yedamMiddle.admin.web.AddMainCategoryControl;
 import com.yedamMiddle.admin.web.AddProductControl;
+import com.yedamMiddle.admin.web.AddSubCategoryControl;
 import com.yedamMiddle.admin.web.AdminPageControl;
+import com.yedamMiddle.admin.web.CategoryManageControl;
 import com.yedamMiddle.admin.web.GetProductControl;
 import com.yedamMiddle.admin.web.MemberListControl;
 import com.yedamMiddle.admin.web.ModProductControl;
@@ -99,6 +99,9 @@ public class FrontController extends HttpServlet {
       commandByURL.put("/modProductForm.do", new ModProductFormControl()); //상품수정화면
       commandByURL.put("/modProduct.do", new ModProductControl()); //상품수정
       commandByURL.put("/removeProduct.do", new RemoveProductControl()); //상품삭제
+      commandByURL.put("/categoryManage.do", new CategoryManageControl()); //카테고리관리
+      commandByURL.put("/addMainCategory.do", new AddMainCategoryControl()); //메인카테고리추가
+      commandByURL.put("/addSubCategory.do", new AddSubCategoryControl()); //서브카테고리추가
       
       
       // 서영희

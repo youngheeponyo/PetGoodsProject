@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <body>
-	<section class="pt-2 pb-4">
+		<section class="pt-2 pb-4">
 		<div class="container px-4 px-lg-5 mt-3">
 			<div class="row">
 				<div class="col-xl-3 col-md-6">
@@ -61,50 +61,66 @@
 			</div>
 			<div class="card mb-4">
 				<div class="card-header">
-					<i class="fas fa-table me-1"></i> 회원목록
+					<i class="fas fa-table me-1"></i> 카테고리관리
 				</div>
 				<div class="card-body">
-					<table id="datatablesSimple">
+					<table class="table">
 						<thead>
 							<tr>
-								<th>회원번호</th>
-								<th>ID</th>
-								<th>닉네임</th>
-								<th>연락처</th>
-								<th>배송지</th>
+								<th colspan="2">메인카테고리</th>
+								<th colspan="2">서브카테고리</th>
+							</tr>
+							<tr>
+								<th>메인카테고리번호</th>
+								<th>메인카테고리명</th>
+								<th>서브카테고리번호</th>
+								<th>서브카테고리명</th>
 							</tr>
 						</thead>
-						<tfoot>
-							<tr>
-								<th>회원번호</th>
-								<th>ID</th>
-								<th>닉네임</th>
-								<th>연락처</th>
-								<th>배송지</th>
-							</tr>
-						</tfoot>
+						
 						<tbody>
-							<c:forEach items="${userlist }" var="user">
+							<c:forEach items="${categoryList }" var="category" >
 								<tr>
-									<td>${user.userNo }</td>
-									<td>${user.userId }</td>
-									<td>${user.nickName }</td>
-									<td>${user.userPhone }</td>
-									<td>${user.userAddr }</td>
+									<td>${category.mainCateNo }</td>
+									<td>${category.mainCateName }</td>
+									<td>${category.subCateNo }</td>
+									<td>${category.subCateName }</td>
 								</tr>
 							</c:forEach>
 						</tbody>
 					</table>
+					
+					<form action="addMainCategory.do" method="post">
+						<table class="table">
+							<tr>
+								<td>메인카테고리추가</td>
+								<td colspan="3"><input type="text" name="mainCategory" class="form-control"></td>
+								<td></td>
+								<td><input type="submit" value="메인카테고리추가" class="btn btn-primary"></td>
+							</tr>
+						</table>
+					</form>
+					
+					<form action="addSubCategory.do" method="post">
+						<table class="table">		
+							<tr>
+								<td>서브카테고리추가</td>
+								<td colspan="2"><input type="text" name="subCategory" class="form-control"></td>
+								<td>
+									<select class="form-select" name="categoryName" onchange="selectBoxChange(this.value)" aria-label="Default select example">
+									  <option selected>메인카테고리를 선택하세요</option>
+									  <c:forEach items="${categoryMap }" var="category">
+									  	<option value="${category.value[0].mainCateName }">${category.value[0].mainCateName }</option>
+									  </c:forEach>
+									</select>
+								</td>
+								<td><input type="submit" value="서브카테고리추가" class="btn btn-primary" formaction="addSubCategory.do"></td>
+							</tr>
+						</table>
+					</form>
 				</div>
 			</div>
 		</div>
 	</section>
+
 </body>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-	crossorigin="anonymous"></script>
-<script src="adminResource/js/scripts.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
-	crossorigin="anonymous"></script>
-<script src="adminResource/js/datatables-simple-demo.js"></script>
