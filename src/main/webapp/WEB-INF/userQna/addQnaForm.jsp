@@ -43,11 +43,11 @@
 					<tr>
 						<th colspan="1">글번호</th>
 						<td><input type="hidden" name="maxQnaNO" value="${maxQnaNO}">${maxQnaNO}</td>
-						<th colspan="2">작성자</th>
+						<th colspan="1">작성자</th>
 						<td><input type="hidden" name="nickName"
 							value="${userVo.nickName}">${userVo.nickName }</td>
 
-						<th colspan="2">문의상태</th>
+						<th colspan="1">문의상태</th>
 						<td><p>
 								<b>문의대기중</b>
 							</p></td>
@@ -103,7 +103,7 @@
 						<th>상품명</th>
 						<td>
 							<select class="productName">
-								
+								<option value="" selected disabled >선택해주세요</option>
 
 							</select>
 
@@ -113,19 +113,22 @@
 					</tr>
 					<tr>
 						<th >글제목</th>
-						<td colspan="4"><input style="width: 100%" type=text name="title" value=""></td>
+						<td colspan="4"><input style="width: 100%" type=text name="title"
+							placeholder="제목을 입력해주세요" onfocus="this.placeholder=''"
+							 value=""></td>
 						<th>비밀번호</th>
-						<td><input type="password" name="password"></td>
+						<td><input type="password" name="password" placeholder="0000" onfocus="this.placeholder=''"></td>
 					</tr>
 
 					<tr>
 						<!-- 컨텐츠 -->
 						<td colspan="14"><textarea rows="10" cols="40"
-								class="form-control" name="contents">여기에 삽입</textarea></td>
+								class="form-control" name="contents"
+								placeholder="글을 입력해주세요" onfocus="this.placeholder=''"></textarea></td>
 					</tr>
 					<tr>
 						<td colspan="14" align="center">
-						<input type="submit" value="등록하기"></td>
+						<input type="submit"value="등록하기"></td>
 					</tr>
 				</table>
 			</form>
@@ -134,22 +137,33 @@
 </section>
 <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 <script>
-	function qnaTypeCheck(value){
+	
+	function qnaTypeCheck(value){//상품문의 아닐때 상품카테고리창 선택 못하게 하는 메소드
 		console.log("value:"+ value);
-		if(value!="상품문의"){
-			let test = document.querySelectorAll('.categoryClass')
+		if(value!="상품문의"){//상품문의가 아니라면
+			let test = document.querySelectorAll('.mainCategory')
 			test.forEach(item => {
+				item.value="";
+				item.disabled=true;
+			})
+			let test2 = document.querySelectorAll('.productName')
+			test2.forEach(item => {
+				item.value="";
 				item.disabled=true;
 			})
 		}else{
-			let test = document.querySelectorAll('.categoryClass')
+			let test = document.querySelectorAll('.mainCategory')
 			test.forEach(item => {
+				item.disabled=false;
+			})
+			let test2 = document.querySelectorAll('.productName')
+			test2.forEach(item => {
 				item.disabled=false;
 			})
 		}
 	}
 		
-	function getCategory(categoryNo){
+	function getCategory(categoryNo){//카테고리 정보를 가져오는 메소드
 // 		console.log("value:"+ value);
 		fetch('getCategoryNoToProductName.do?categoryNo='+categoryNo)
 		.then(resolve => resolve.json())
@@ -159,7 +173,7 @@
 		})
 	}
 	
-	function makeSelectTag(productNameList){
+	function makeSelectTag(productNameList){//가져온 카테고리 정보를 html로 가공하는 메소드
 		var productName = document.querySelector('.productName')
 		console.log("productName : ", productName)
 		productName.innerHTML="<option value='' selected disabled >선택해주세요</option>";//다른 문의항목 누르고 올때마다 상품나열된거 리셋
@@ -176,76 +190,36 @@
 		document.createElement('select')
 
 	}
-
 	
-
-// 	function getMainCategory(){
-// 		fetch('getMainCategory.do')
-// 		.then(resolve => resolve.json())
-// 		.then(result =>{
-// 			console.log(result);
-// 			console.log(result.mainCategory);
-// 			makeMainOption(result.mainCategory);
-// 		})
+	//console.log(document.forms.addQnaForm); 등록버튼이 아니라 form에다가 이벤트를 달아서 등록버튼 눌렀을 시 실행되게 함
+	document.forms.addQnaForm.addEventListener('submit', function (e){//name이 addQnaForm인 폼에
+		e.preventDefault();//기본(전송)기능을 차단 = 현재페이지에 머물게 함
+		console.log("hello")
+		let title = document.querySelector('input[name=title]').value
+		let contents = document.querySelector('textarea[name=contents]').value
+		console.log(contents);
+		let qnaType = document.querySelector('select[name=qnaType]').value
+		console.log(qnaType);
+		if(title.length==0){
+			alert("제목을 입력해주세요");
+		}else if(contents.length==0){
+			alert("내용을 입력해주세요");
+		}else if(qnaType==null){
+			alert("문의종류를 선택해주세요")
+		}else{
+			this.submit();
+		}
+		
+		
+		
+// 		if(title.length!=0 &&contents.length!=0 && qnaType.length!=0)){
+// 			this.submit();//전송기능
 // 		}
-	
-// 	function makeMainOption(mainCategoryList){
-// 		console.log("mainCategoryList :" + mainCategoryList)
-		
-// 		mainCategoryList.forEach(item =>{
-// 			let option = document.createElement('option');
-// 			option.value=item.categoryNo;
-// 			option.innerHTML=item.categoryName;
-// 			document.querySelector('.mainCategory').append(option);
-// 		})
-// 	}
-	
-// 	function getSubCategory(categoryNo){
-// 			fetch('subCategory.do?categoryNo=' + categoryNo)
-// 			.then(resolve => resolve.json())
-// 			.then(result =>{
-// 				console.log("result="+result);
-// 				makeSubOption(result.subCategory)
-// 			})
-// 		}
-		
-// 	function makeSubOption(subCategoryList){
-// 		console.log("subCategoryList="+subCategoryList);
-		
-// 		subCategoryList.forEach(item =>{
-// 			let option = document.createElement('option');
-// 			option.value=item.categoryNo;
-// 			option.innerHTML=item.categoryName;
-// 			document.querySelector('.subCategory').append(option);
-// 		})
-// 	}
-	
+
+	})
+
+
 	
 
-	// function test(value){
-	// 	var qnaType = document.getElementById('qnaType').value;
-	// 	const categoryNoList = document.getElementById('categoryNoList').value
-	// 	const productNameList = document.getElementById('productNameList').value
-	// 	if(qnaType =="상품문의"){
-	// 		const th = document.createElement("th").append('상품명');
-	// 		const td = document.createElement("td").append(select);
-	// 		const select = document.createElement("select");
-			
-			
-	// 		categoryNoList.forEach(element => {
-	// 			const optgroup= document.createElement('optgroup')
-				
-	// 			optgroup.setAttribute('label',)
-	// 			if(categoryNoList.categoryNo == productNameList.categoryNo){
-	// 				productNameList.forEach(element =>{
-	// 					const option = document.createElement('option').innerHTML=productNameList.productName;
-	// 					select.append(option);
-	// 				})
-	// 			}
-
-	// 		});
-			
-	// 	}
-	//}
 </script>
 

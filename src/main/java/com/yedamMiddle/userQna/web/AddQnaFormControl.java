@@ -18,13 +18,12 @@ public class AddQnaFormControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-//		int maxQnaNO = svc.getMaxQnaNo();
-//		req.setAttribute("maxQnaNO", maxQnaNO);//시퀀스 최대넘버 +1=문의글 번호
-//		System.out.println("maxQnaNO="+maxQnaNO);
-		
-		
 		HttpSession session = req.getSession();
 		UserQnaService svc = new UserQnaServiceImpl();
+		
+		int maxQnaNO = svc.getMaxQnaNo();
+		req.setAttribute("maxQnaNO", maxQnaNO);//시퀀스 최대넘버 +1=문의글 번호
+		System.out.println("maxQnaNO="+maxQnaNO);
 		
 		//로그인되어있는지 확인
 		if(session.getAttribute("uno") == null) {
@@ -47,11 +46,6 @@ public class AddQnaFormControl implements Command {
 				System.out.println("pNo="+ pNo);
 			}
 			
-			
-			
-			
-			
-
 			
 			int uno = (int) session.getAttribute("uno");
 			System.out.println("uno =" + uno);

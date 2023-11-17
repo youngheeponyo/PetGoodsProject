@@ -30,22 +30,17 @@ public class AddQnaControl implements Command {
 		HttpSession session = req.getSession();
 		UserQnaService svc = new UserQnaServiceImpl();
 		UserQnaVO vo = new UserQnaVO();
-		String path="getUserQnaList.do";
+		String path="getUserQnaAllList.do";
 
 		String userNoObj = String.valueOf(session.getAttribute("uno")); //#{userNo}
 		String title=req.getParameter("title");//#{title}
 		String contents=req.getParameter("contents");//#{contents}
 		String password = req.getParameter("password");//#{password}
 		String qnaType=req.getParameter("qnaType");//#{qnaType})
-		int productNo=Integer.parseInt(req.getParameter("productNo"));//#{productNo} 리스트에서 가져온 번호
-		int pNo=0;
-		if(productNo == 0) {//상세페이지의 상품넘버가 0(상품없음)이 아니면
-			pNo=Integer.parseInt(req.getParameter("pNo"));//#{productNo} 디테일에서 가져온 번호
-		}
+		String productNo=req.getParameter("productNo");
+		String pNo = req.getParameter("pNo");
 		
-		
-		
-		
+	
 		
 
 		
@@ -60,14 +55,26 @@ public class AddQnaControl implements Command {
 		vo.setUserNo(Integer.parseInt(userNoObj));//#{userNo}
 		vo.setTitle(title);//#{title}
 		vo.setContents(contents);//#{contents}
-		vo.setPassword(Integer.parseInt(password));//#{password}
+		if(password=="") {
+			vo.setPassword(0);
+		}else {
+			vo.setPassword(Integer.parseInt(password));//#{password}
+		}
+		
+		
+		
 		vo.setQnaType(qnaType);//#{qnaType})
 		
-		if(pNo != 0) {//상세페이지의 상품넘버가 0(상품없음)이 아니면
-			vo.setProductNo(pNo);//#{productNo} 디테일에서 가져온 번호
-		}else {
-			vo.setProductNo(productNo);//#{productNo} 리스트에서 가져온 번호
+		if(pNo ==null && productNo!=null) {//pno가 없고, product넘버가 있을때
+			vo.setProductNo(Integer.parseInt(productNo));
+		}else if(pNo !=null && productNo==null){//product넘버가 없고, pno가 있을때
+			vo.setProductNo(Integer.parseInt(pNo));
+		}else {//둘다 null일때
+			vo.setProductNo(0);
 		}
+		
+		
+	
 		
 		
 		int insertCheck = svc.userQnaInsert(vo);
