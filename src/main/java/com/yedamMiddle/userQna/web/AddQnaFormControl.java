@@ -43,6 +43,8 @@ public class AddQnaFormControl implements Command {
 			if(pNo != 0) {//상세페이지의 상품넘버가 0(상품없음)이 아니면
 				req.setAttribute("pNo", pNo);
 				System.out.println("pNo="+ pNo);
+			}else {
+				req.setAttribute("pNo", 0);
 			}
 			
 			
