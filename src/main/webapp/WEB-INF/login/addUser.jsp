@@ -77,7 +77,7 @@
 										value="" required>
 									<div class="invalid-feedback">비밀번호를 입력해주세요.</div>
 								</div>
-s							</c:otherwise>
+							</c:otherwise>
 						</c:choose>
 
 							<div class="col-md-6 mb-3">
