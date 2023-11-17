@@ -21,14 +21,12 @@ public class DelUserControl implements Command {
 		LoginService svc = new LoginServiceImpl();
 		if(svc.deleteUser(uid, upw)) {
 			try {
-				resp.getWriter().print("<script>alert('탈퇴되었습니다!')</script>");
 				resp.sendRedirect("logout.do");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}else {
 			try {
-				resp.getWriter().print("<script>alert('아이디나 비밀번호가 다릅니다')</script>");
 				resp.sendRedirect("delUserForm.do");
 			} catch (IOException e) {
 				e.printStackTrace();

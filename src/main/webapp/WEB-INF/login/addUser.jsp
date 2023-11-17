@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -45,21 +46,39 @@
 				<div class="input-form col-md-12 mx-auto">
 					<h4 class="hello">회원가입</h4>
 						<div class="row">
-
-							<div class="col-md-6 mb-3">
-								<label for="name">아이디</label> <input type="text"
-									class="form-control" id="names" name="uid" placeholder=""
-									value="${kId }" required>
-								<div class="invalid-feedback">아이디를 입력해주세요.</div>
-								<input type="button" onclick="chkfunction(uid.value)" id="idCheck" value="아이디 중복확인" style="margin-top:10px">
-							</div>
-
-							<div class="col-md-6 mb-3">
-								<label for="name">비밀번호</label> <input type="password"
-									class="form-control" id="name" name="upw" placeholder=""
-									value="${kPw }" required>
-								<div class="invalid-feedback">비밀번호를 입력해주세요.</div>
-							</div>
+						<c:choose>
+							<c:when test="${kId!=null }">
+								<div class="col-md-6 mb-3">
+									<label for="name"></label> <input type="hidden"
+										class="form-control" id="names" name="uid" placeholder=""
+										value="${kId }" required>
+									<div class="invalid-feedback">아이디를 입력해주세요.</div>
+								</div>
+	
+								<div class="col-md-6 mb-3">
+									<label for="name"></label> <input type="hidden"
+										class="form-control" id="name" name="upw" placeholder=""
+										value="${kPw }" required>
+									<div class="invalid-feedback">비밀번호를 입력해주세요.</div>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div class="col-md-6 mb-3">
+									<label for="name">아이디</label> <input type="text"
+										class="form-control" id="names" name="uid" placeholder=""
+										value="" required>
+									<div class="invalid-feedback">아이디를 입력해주세요.</div>
+									<input type="button" onclick="chkfunction(uid.value)" id="idCheck" value="아이디 중복확인" style="margin-top:10px">
+								</div>
+	
+								<div class="col-md-6 mb-3">
+									<label for="name">비밀번호</label> <input type="password"
+										class="form-control" id="name" name="upw" placeholder=""
+										value="" required>
+									<div class="invalid-feedback">비밀번호를 입력해주세요.</div>
+								</div>
+							</c:otherwise>
+						</c:choose>
 
 							<div class="col-md-6 mb-3">
 								<label for="nick">이름</label> <input type="text"
@@ -181,7 +200,14 @@
 								이용에 동의합니다.</label>
 						</div>
 						<div class="mb-4"></div>
-						<button class="btn btn-primary btn-lg btn-block" id="submit" type="submit" style="background-color:pink;border:none;" disabled>회원가입하기</button>
+						<c:choose>
+							<c:when test="${kId!=null }">
+								<button class="btn btn-primary btn-lg btn-block" id="submit" type="submit" style="background-color:pink;border:none;">회원가입하기</button>
+							</c:when>
+							<c:otherwise>
+								<button class="btn btn-primary btn-lg btn-block" id="submit" type="submit" style="background-color:pink;border:none;" disabled>회원가입하기</button>
+							</c:otherwise>
+						</c:choose>						
 				</div>
 			</div>
 		</div>
