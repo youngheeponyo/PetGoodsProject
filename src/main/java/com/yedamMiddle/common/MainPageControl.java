@@ -52,10 +52,9 @@ public class MainPageControl implements Command {
 		if(userNo==null) {
 			System.out.println("null임"+userNo);
 		}else {
-			int uno = (Integer)userNo;
-			System.out.println(uno);
+			int uNo = (Integer)userNo;
 			MyCartService csv = new MyCartServiceImpl();
-			List<CartJoinVO> cl = csv.getCart(uno);
+			List<CartJoinVO> cl = csv.getCart(uNo);
 			session.setAttribute("cl", cl);
 		}
 		

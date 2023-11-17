@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.yedamMiddle.cart.service.MyCartService;
 import com.yedamMiddle.cart.serviceImpl.MyCartServiceImpl;
@@ -25,6 +26,18 @@ public class MyCartControl implements Command {
 		List<CartJoinVO> list = svc.getCart(Integer.parseInt(uno));
 		req.setAttribute("list", list);
 		
+		HttpSession session = req.getSession();
+		Object userNo = session.getAttribute("uno");
+		System.out.println(userNo==null);	//로그인을 안하면 null이 뜨고 로그인을 하면 false가 뜬다
+		if(userNo==null) {
+			System.out.println("null임"+userNo);
+		}else {
+			int uNo = (Integer)userNo;
+			System.out.println(uno);
+			MyCartService csv = new MyCartServiceImpl();
+			List<CartJoinVO> cl = csv.getCart(uNo);
+			session.setAttribute("cl", cl);
+		}
 		
 		
 		try {
