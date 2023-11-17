@@ -23,7 +23,7 @@ public interface ProductService {
 	public ApiInfoVO getApiInfo(String apiName);
 	public boolean addPaymentInfo(List<ProductOrderVO> vo);
 	
-	public List<Integer> getProductPrice(int[] productNos);
+	public List<ProductVO> getProductPrice(int[] productNos);
 	public List<ProductOrderVO> getProductOrder(int[] productNos, long merUid, int userNo);
 	
 	public List<ProductVO> searchRegistDateDescFromMain(String petType);

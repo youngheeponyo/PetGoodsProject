@@ -24,7 +24,7 @@ public interface ProductMapper {
 	
 	public ApiInfoVO selectApiInfo(String apiName);
 	public int insertProductOrder(ProductOrderVO vo);
-	public List<Integer> selectProductPrice(int[] productNos);
+	public List<ProductVO> selectProductPrice(int[] productNos);
 	
 	public List<ProductOrderVO> selectProductOrder(@Param("productNos") int[] productNos, @Param("merUid") long merUid, @Param("uNo") int userNo);
 	

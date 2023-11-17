@@ -23,7 +23,6 @@ public class ProductSearchControl implements Command {
 		if(query == null || petType == null || page == null)
 			return;
 		
-		
 		int pageNo = Integer.parseInt(page);
 		
 		ProductService svc = new ProductServiceImpl();

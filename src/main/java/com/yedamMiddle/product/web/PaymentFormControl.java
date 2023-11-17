@@ -46,11 +46,8 @@ public class PaymentFormControl implements Command {
 		}
 		int[] selProductNo = Stream.of(selectProductNo).mapToInt(Integer::parseInt).toArray();
 		
-		ProductService pSvc = new ProductServiceImpl();
 		LoginService lsvc = new LoginServiceImpl();
 		MyCartService svc = new MyCartServiceImpl();
-		
-		// 여기서 흠ㅋㅋ 재고확인해서 유효검사 한번하깅 ㅎㅎ
 		
 		int userNo = (Integer)req.getSession().getAttribute("uno");
 		UserVO userVO = lsvc.getUserInfo(userNo);

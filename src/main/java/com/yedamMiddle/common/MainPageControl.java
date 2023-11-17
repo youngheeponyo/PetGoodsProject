@@ -36,6 +36,7 @@ public class MainPageControl implements Command {
 		String petType = (String)req.getSession().getAttribute("curShowPetType");
 		if(petType == null) {
 			session.setAttribute("curShowPetType", "0");
+			petType = "0"; //ㅋㅋ
 		}
 		
 		List<ProductVO> productRegistDesc = svc.searchRegistDateDescFromMain(petType);
