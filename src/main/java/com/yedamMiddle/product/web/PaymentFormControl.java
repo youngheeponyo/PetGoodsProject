@@ -16,6 +16,8 @@ import com.yedamMiddle.common.service.CartJoinVO;
 import com.yedamMiddle.common.service.UserVO;
 import com.yedamMiddle.login.service.LoginService;
 import com.yedamMiddle.login.serviceImpl.LoginServiceImpl;
+import com.yedamMiddle.product.service.ProductService;
+import com.yedamMiddle.product.serviceImpl.ProductServiceImpl;
 
 public class PaymentFormControl implements Command {
 
@@ -44,8 +46,11 @@ public class PaymentFormControl implements Command {
 		}
 		int[] selProductNo = Stream.of(selectProductNo).mapToInt(Integer::parseInt).toArray();
 		
+		ProductService pSvc = new ProductServiceImpl();
 		LoginService lsvc = new LoginServiceImpl();
 		MyCartService svc = new MyCartServiceImpl();
+		
+		// 여기서 흠ㅋㅋ 재고확인해서 유효검사 한번하깅 ㅎㅎ
 		
 		int userNo = (Integer)req.getSession().getAttribute("uno");
 		UserVO userVO = lsvc.getUserInfo(userNo);
