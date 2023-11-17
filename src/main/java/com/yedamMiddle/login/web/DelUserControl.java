@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedamMiddle.common.Command;
 import com.yedamMiddle.login.service.LoginService;
+import com.yedamMiddle.login.service.Pwsha256;
 import com.yedamMiddle.login.serviceImpl.LoginServiceImpl;
 
 public class DelUserControl implements Command {
@@ -17,9 +18,10 @@ public class DelUserControl implements Command {
 		
 		String uid = req.getParameter("userId");
 		String upw = req.getParameter("userPw");
+		String encryPassword = Pwsha256.encrypt(upw);
 		
 		LoginService svc = new LoginServiceImpl();
-		if(svc.deleteUser(uid, upw)) {
+		if(svc.deleteUser(uid, encryPassword)) {
 			try {
 				resp.sendRedirect("logout.do");
 			} catch (IOException e) {

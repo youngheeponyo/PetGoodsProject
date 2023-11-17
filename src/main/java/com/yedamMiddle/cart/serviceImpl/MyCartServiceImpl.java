@@ -48,5 +48,14 @@ public class MyCartServiceImpl implements MyCartService {
 		return mapper.getCartFromPayment(uno, productNos);
 	}
 
+	@Override
+	public boolean update(int selectCnt,int productNo, int memberNo) {
+		return mapper.update(selectCnt, productNo, memberNo)==1;
+	}
+	
+	@Override
+	public MyCartVO cartCheck(int productNo, int memberNo) {
+		return mapper.cartCheck(productNo, memberNo);
+	}
 
 }
