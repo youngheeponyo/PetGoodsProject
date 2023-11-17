@@ -18,9 +18,19 @@
 	
 	<!-- 유저 문의글 등록 -->
 	<insert id="userQnaInsert" parameterType="com.yedamMiddle.userQna.service.UserQnaVO"> 
-		INSERT INTO USERQNA VALUES(SEQ_QNANO.NEXTVAL,#{userNo},
-		0,#{productNo},#{title},#{contents}, SYSDATE,
-		#{password},'',0,#{qnaType})
+		INSERT INTO USERQNA VALUES(
+		SEQ_QNANO.NEXTVAL,
+		#{userNo},
+		NVL(#{productOrderNo}, #{productOrderNo, jdbcType=DOUBLE}),
+		NVL(#{productNo}, #{productNo, jdbcType=DOUBLE}),
+		#{title},
+		#{contents},
+		SYSDATE,
+		NVL(#{password}, #{password, jdbcType=DOUBLE}),
+		NVL(#{qnaReply}, #{qnaReply, jdbcType=VARCHAR}),
+		0,
+		#{qnaType}
+		)
 	</insert>
 	
 	

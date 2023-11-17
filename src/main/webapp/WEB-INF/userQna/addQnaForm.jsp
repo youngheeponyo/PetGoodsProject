@@ -43,11 +43,11 @@
 					<tr>
 						<th colspan="1">글번호</th>
 						<td><input type="hidden" name="maxQnaNO" value="${maxQnaNO}">${maxQnaNO}</td>
-						<th colspan="2">작성자</th>
+						<th colspan="1">작성자</th>
 						<td><input type="hidden" name="nickName"
 							value="${userVo.nickName}">${userVo.nickName }</td>
 
-						<th colspan="2">문의상태</th>
+						<th colspan="1">문의상태</th>
 						<td><p>
 								<b>문의대기중</b>
 							</p></td>
@@ -103,7 +103,7 @@
 						<th>상품명</th>
 						<td>
 							<select class="productName">
-								
+								<option value="" selected disabled >선택해주세요</option>
 
 							</select>
 
@@ -125,7 +125,7 @@
 					</tr>
 					<tr>
 						<td colspan="14" align="center">
-						<input type="submit" value="등록하기"></td>
+						<input type="submit"value="등록하기" ></td>
 					</tr>
 				</table>
 			</form>
@@ -179,73 +179,5 @@
 
 	
 
-// 	function getMainCategory(){
-// 		fetch('getMainCategory.do')
-// 		.then(resolve => resolve.json())
-// 		.then(result =>{
-// 			console.log(result);
-// 			console.log(result.mainCategory);
-// 			makeMainOption(result.mainCategory);
-// 		})
-// 		}
-	
-// 	function makeMainOption(mainCategoryList){
-// 		console.log("mainCategoryList :" + mainCategoryList)
-		
-// 		mainCategoryList.forEach(item =>{
-// 			let option = document.createElement('option');
-// 			option.value=item.categoryNo;
-// 			option.innerHTML=item.categoryName;
-// 			document.querySelector('.mainCategory').append(option);
-// 		})
-// 	}
-	
-// 	function getSubCategory(categoryNo){
-// 			fetch('subCategory.do?categoryNo=' + categoryNo)
-// 			.then(resolve => resolve.json())
-// 			.then(result =>{
-// 				console.log("result="+result);
-// 				makeSubOption(result.subCategory)
-// 			})
-// 		}
-		
-// 	function makeSubOption(subCategoryList){
-// 		console.log("subCategoryList="+subCategoryList);
-		
-// 		subCategoryList.forEach(item =>{
-// 			let option = document.createElement('option');
-// 			option.value=item.categoryNo;
-// 			option.innerHTML=item.categoryName;
-// 			document.querySelector('.subCategory').append(option);
-// 		})
-// 	}
-	
-	
-
-	// function test(value){
-	// 	var qnaType = document.getElementById('qnaType').value;
-	// 	const categoryNoList = document.getElementById('categoryNoList').value
-	// 	const productNameList = document.getElementById('productNameList').value
-	// 	if(qnaType =="상품문의"){
-	// 		const th = document.createElement("th").append('상품명');
-	// 		const td = document.createElement("td").append(select);
-	// 		const select = document.createElement("select");
-			
-			
-	// 		categoryNoList.forEach(element => {
-	// 			const optgroup= document.createElement('optgroup')
-				
-	// 			optgroup.setAttribute('label',)
-	// 			if(categoryNoList.categoryNo == productNameList.categoryNo){
-	// 				productNameList.forEach(element =>{
-	// 					const option = document.createElement('option').innerHTML=productNameList.productName;
-	// 					select.append(option);
-	// 				})
-	// 			}
-
-	// 		});
-			
-	// 	}
-	//}
 </script>
 
