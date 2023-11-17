@@ -16,6 +16,7 @@ public class UserVO {
 	private String userPermission;
 	private Date userJoinDate;
 	private String userAddr;
+	
 	public int getUserNo() {
 		return userNo;
 	}

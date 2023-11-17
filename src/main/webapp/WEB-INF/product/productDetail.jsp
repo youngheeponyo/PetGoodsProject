@@ -20,7 +20,6 @@
 					src="productImage/${petType }/${pno.productImage }" alt="..." />
 			</div>
 			<div class="col-md-6">
-				<div class="small mb-1">${pno.productRegistDate }</div>
 				<h1 class="display-5 fw-bolder">${pno.productName }</h1>
 				<div class="fs-5 mb-5">
 					<span style="font-size: 30px">₩ ${pno.productPrice }</span>
@@ -109,6 +108,7 @@
 			</table>
 			 <p><input type="submit" value="문의글 작성" >
 				<input type="hidden" name=pName value="${pno.productName }" >
+				<input type="hidden" name=pNo value="${vo.productNo }">
 			</p>
 		</div>
 		<hr>
@@ -176,18 +176,36 @@
 function functionCart() {
 	let pno = ${pno.productNo};
 	let count = document.getElementById('inputQuantity').value;
-	// ajax써서 AddCartControl(addCart.do?productNo=)
-	fetch('addCart.do?pno='+pno+'&uno='+${uno}+'&cnt='+count)
+	fetch('cartCheck.do?pno='+pno+'&uno='+${uno})
 	.then(resolve=>resolve.json())
 	.then(result=>{
-		console.log(result)
 		if(result.retCode=='OK'){
-			alert("장바구니에 추가되었습니다");
-				window.location.href = "myCart.do?uno=" + ${uno};
+			fetch('updateCart.do?pno='+pno+'&uno='+${uno}+'&cnt='+count)
+			.then(resolve=>resolve.json())
+			.then(result=>{
+				console.log(result)
+				if(result.retCode=='OK'){
+					alert("장바구니에 추가되었습니다");
+						window.location.href = "myCart.do?uno=" + ${uno};
+				}else{
+					alert("추가 실패");
+				}
+			})
 		}else{
-			alert("추가 실패");
+			fetch('addCart.do?pno='+pno+'&uno='+${uno}+'&cnt='+count)
+			.then(resolve=>resolve.json())
+			.then(result=>{
+				console.log(result)
+				if(result.retCode=='OK'){
+					alert("장바구니에 추가되었습니다");
+						window.location.href = "myCart.do?uno=" + ${uno};
+				}else{
+					alert("추가 실패");
+				}
+			})
 		}
 	})
+
 	
 }
 	

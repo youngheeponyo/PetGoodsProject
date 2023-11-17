@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import com.yedamMiddle.common.Command;
 import com.yedamMiddle.common.service.UserVO;
 import com.yedamMiddle.login.service.LoginService;
+import com.yedamMiddle.login.service.Pwsha256;
 import com.yedamMiddle.login.serviceImpl.LoginServiceImpl;
 
 public class LoginControl implements Command {
@@ -17,11 +18,13 @@ public class LoginControl implements Command {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		String uid = req.getParameter("userId");
 		String upw = req.getParameter("userPw");
+		String encryPassword = Pwsha256.encrypt(upw);
+		System.out.println(encryPassword);
 		
 		LoginService svc = new LoginServiceImpl();
-		UserVO vo = svc.loginUser(uid, upw);
+		UserVO vo = svc.loginUser(uid, encryPassword);
 		
-		if(svc.loginUser(uid, upw)!=null) {
+		if(svc.loginUser(uid, encryPassword)!=null) {
 			HttpSession session = req.getSession();
 			session.setAttribute("uno", vo.getUserNo());	//로그인한 회원번호 기억 후 사용
 			session.setAttribute("permission", vo.getUserPermission());	//사용자 계정으로 로그인했는지 구분하기 위함

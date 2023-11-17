@@ -49,7 +49,7 @@ ${userQnaVo} ${userVo } ${productVo }
 								<fmt:formatDate value="${vo.registDate }"
 								pattern="yyyy-MM-dd  hh:mm"></fmt:formatDate>
 							</td>
-						<th colspan="2">문의상태</th>
+						<th colspan="1">문의상태</th>
 							<td>
 								<c:if test="${not empty vo.qnaNo}">
 	                    				<c:choose>
@@ -155,40 +155,6 @@ ${userQnaVo} ${userVo } ${productVo }
 						</c:choose>
 						
 			<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
-<%-- 				<c:choose> --%>
-<%-- 					<c:when test="${permission =='0'}"> <!-- 관리자일때 --> --%>
-<%-- 						<c:choose> --%>
-<%-- 							<c:when test="${vo.qnaState ==1 }"> <!-- 답글이 있음 --> --%>
-<!-- 								<tr> -->
-<%-- 									<td><textarea rows="10" cols="40" class="form-control" name="reply">${vo.qnaReply }</textarea></td> --%>
-<!-- 								</tr> -->
-<!-- 								<tr> -->
-<!-- 									<td><input type="submit" name="modify" value="수정하기"></td> -->
-<!-- 								</tr> -->
-<%-- 							</c:when> --%>
-							
-<%-- 							<c:otherwise><!-- 답글이 없음 --> --%>
-<!-- 								<tr> -->
-<!-- 									<td><textarea rows="10" cols="40" class="form-control" name="reply"></textarea></td> -->
-<!-- 								</tr> -->
-<!-- 								<tr> -->
-<!-- 									<td><input type="submit" value="등록하기"></td> -->
-<!-- 								</tr> -->
-<%-- 							</c:otherwise> --%>
-<%-- 						</c:choose> --%>
-<%-- 					</c:when> --%>
-					
-<%-- 					<c:otherwise> <!-- 유저일때 --> --%>
-<%-- 						<c:when test="${vo.qnaState ==1 }"><!-- 답글이 있음 --> --%>
-<%-- 								<td><textarea rows="10" cols="40" class="form-control" name="reply" disabled>${vo.qnaReply }</textarea></td> --%>
-<%-- 							</c:when> --%>
-							
-<%-- 							<c:otherwise><!-- 답글이 없음 --> --%>
-<!-- 								<td><textarea rows="" cols="40" class="form-control" disabled>*아직 답변이 달리지 않았습니다.*</textarea></td> -->
-<%-- 							</c:otherwise> --%>
-<%-- 					</c:otherwise> --%>
-<%-- 				</c:choose> --%>
-			
 			
 				</table>
 				<p>
