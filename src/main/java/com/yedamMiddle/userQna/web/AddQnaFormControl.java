@@ -18,6 +18,11 @@ public class AddQnaFormControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
+//		int maxQnaNO = svc.getMaxQnaNo();
+//		req.setAttribute("maxQnaNO", maxQnaNO);//시퀀스 최대넘버 +1=문의글 번호
+//		System.out.println("maxQnaNO="+maxQnaNO);
+		
+		
 		HttpSession session = req.getSession();
 		UserQnaService svc = new UserQnaServiceImpl();
 		
@@ -34,11 +39,16 @@ public class AddQnaFormControl implements Command {
 			req.setAttribute("pName", pName);
 			System.out.println("pName=" +pName);
 			
+			int pNo=Integer.parseInt(req.getParameter("pNo"));
+			if(pNo != 0) {//상세페이지의 상품넘버가 0(상품없음)이 아니면
+				req.setAttribute("pNo", pNo);
+				System.out.println("pNo="+ pNo);
+			}
 			
-			int maxQnaNO = svc.getMaxQnaNo();
-			req.setAttribute("maxQnaNO", maxQnaNO);//시퀀스 최대넘버 +1=문의글 번호
-			System.out.println("maxQnaNO="+maxQnaNO);
 			
+			
+			
+
 			
 			int uno = (int) session.getAttribute("uno");
 			System.out.println("uno =" + uno);

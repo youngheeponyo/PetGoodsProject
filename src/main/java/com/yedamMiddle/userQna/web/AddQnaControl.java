@@ -25,7 +25,7 @@ public class AddQnaControl implements Command {
 //		String qnaNo=req.getParameter("maxQnaNO");//1.글번호
 //		String nickName=req.getParameter("nickName");//2.작성자
 //		String fomatedNow = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm"));//3.작성일시
-
+//		String pName=req.getParameter("pName");//상세페이지에서 가져온 상품명
 		
 		HttpSession session = req.getSession();
 		UserQnaService svc = new UserQnaServiceImpl();
@@ -37,37 +37,36 @@ public class AddQnaControl implements Command {
 		String contents=req.getParameter("contents");//#{contents}
 		String password = req.getParameter("password");//#{password}
 		String qnaType=req.getParameter("qnaType");//#{qnaType})
-
-		String pName=req.getParameter("pName");//상세페이지에서 가져온 상품명
-//		int detailProductNo = svc.productNameToSelectProductNo(pName);//7.위의 상품명으로 찾은 번호
-		String productNo=req.getParameter("productNo");//리스트에서 고른 상품명
-//		int productNo = svc.productNameToSelectProductNo(productName);//8.위의 상품명으로 찾은 번호
+		int productNo=Integer.parseInt(req.getParameter("productNo"));//#{productNo} 리스트에서 가져온 번호
+		int pNo=0;
+		if(productNo == 0) {//상세페이지의 상품넘버가 0(상품없음)이 아니면
+			pNo=Integer.parseInt(req.getParameter("pNo"));//#{productNo} 디테일에서 가져온 번호
+		}
+		
+		
+		
+		
+		
 
 		
-		System.out.println("title : " +title);
-		System.out.println("qnaType : " +qnaType);
-		System.out.println("contents : " +contents);
-		System.out.println("pName : " +pName);
-//		System.out.println("detailProductNo : " +detailProductNo);
-		System.out.println("productNo : " +productNo);
-//		System.out.println("productNo : " +productNo);
 		System.out.println("uno =" + userNoObj);
+		System.out.println("title : " +title);
+		System.out.println("contents : " +contents);
+		System.out.println("password : " +password);
+		System.out.println("qnaType : " +qnaType);
+		System.out.println("pNo : " +pNo);
+		System.out.println("productNo : " +productNo);
 		
-//		vo.setQnaNo(Integer.parseInt(qnaNo));
-		vo.setUserNo(Integer.parseInt(userNoObj));
-		vo.setProductNo(0);
-//		vo.setNickName(nickName);
-		vo.setTitle(title);
-		vo.setContents(contents);
-		vo.setPassword(Integer.parseInt(password));
-		vo.setQnaState(0);
-		vo.setQnaReply("");
-		vo.setQnaType(qnaType);
+		vo.setUserNo(Integer.parseInt(userNoObj));//#{userNo}
+		vo.setTitle(title);//#{title}
+		vo.setContents(contents);//#{contents}
+		vo.setPassword(Integer.parseInt(password));//#{password}
+		vo.setQnaType(qnaType);//#{qnaType})
 		
-		if(pName != "") {//만약 상세페이지에서 받아온 상품명 정보가 없다면
-//			vo.setProductNo(productNo);//홈페이지
+		if(pNo != 0) {//상세페이지의 상품넘버가 0(상품없음)이 아니면
+			vo.setProductNo(pNo);//#{productNo} 디테일에서 가져온 번호
 		}else {
-//			vo.setProductNo(detailProductNo);//상품상세페이지
+			vo.setProductNo(productNo);//#{productNo} 리스트에서 가져온 번호
 		}
 		
 		

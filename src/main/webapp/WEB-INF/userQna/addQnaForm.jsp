@@ -69,7 +69,7 @@
                               <option value="상품문의" selected>상품문의</option>
                         </select></td>
                         <th colspan="2">상품명</th>
-                        <td><input type="hidden" name="pName" value="${pName}">${pName}
+                        <td><input type="hidden" name="pNo" value="${pNo}">${pName}
                         <td>
                      </c:when>
                      <c:otherwise>
