@@ -6,6 +6,15 @@
 	<insert id="insert" parameterType="com.yedamMiddle.cart.service.MyCartVO">
 		insert into my_cart values(seq_cart.nextval,#{memberNo},#{productNo},#{selectCnt})
 	</insert>
+	<!-- 장바구니에 있는 수량 변경 -->
+	<update id="update">
+		update my_cart set select_cnt = select_cnt+#{selectCnt} where member_no=#{memberNo} and product_no=#{productNo}
+	</update>
+	<!-- 장바구니에 있는지 체크 -->
+	<select id="cartCheck" resultType="com.yedamMiddle.cart.service.MyCartVO">
+		select product_no from my_cart where product_no=#{productNo} and member_no=#{memberNo}
+	</select>
+	
 	<!-- 나의 장바구니 리스트 -->
 	<select id="getCart" resultType="com.yedamMiddle.common.service.CartJoinVO" parameterType="int">
 		SELECT C.PRODUCT_NAME AS PRODUCT_NAME, C.PRODUCT_PRICE AS PRODUCT_PRICE, sum(A.SELECT_CNT) AS SEL_CNT, A.PRODUCT_NO AS PRODUCT_NO
@@ -19,11 +28,7 @@
 	<delete id="deleteCart">
 		delete from my_cart where product_no=#{productNo} and member_no=#{memberNo}
 	</delete>
-	<!-- 장바구니 안에서 물건 수량 하나 추가 -->
-	<insert id="insertCart" parameterType="com.yedamMiddle.cart.service.MyCartVO">
-		insert into my_cart values(seq_cart.nextval,#{memberNo},#{productNo},1)
-	</insert>
-
+	
 	<delete id="deleteCartFromPayment">
 		DELETE 
     		FROM MY_CART

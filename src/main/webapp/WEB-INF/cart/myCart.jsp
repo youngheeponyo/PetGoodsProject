@@ -222,9 +222,9 @@
 									<td class="cart__list__option">
 										<p>모델명 : ${vo.productName }</p>
 										<p>수량 : ${vo.selCnt }</p>
-										<input type="button" name=pno value="▲" class="cart__list__optionbtn" onclick="addfunction(event,${vo.productNo})">
-										<!-- <button class="cart__list__optionbtn" type="button" onclick="location.href='deleteOne.do?pno=${vo.productNo }&uno=${uno}'">▼</button> -->
-										<input type="button" name="pno" class="cart__list__optionbtn" value = "상품 삭제" onclick="delfunction(event,${vo.productNo})">
+										<input type="button" value="▲" class="cart__list__optionbtn" onclick="upfunction(${vo.productNo})">
+										<input class="cart__list__optionbtn" value="▼" type="button" onclick="downfunction(${vo.productNo},${vo.selCnt })">
+										<input type="button" class="cart__list__optionbtn" value = "상품 삭제" onclick="delfunction(${vo.productNo})">
 									</td>
 									<td><span class="price">${vo.productPrice*vo.selCnt }원</span><br></td>
 									<td>
@@ -332,33 +332,51 @@
 		}
 	}
 	
-	function delfunction(e,pno){
-		fetch('deleteCart.do?pno='+pno+'&uno=' + ${uno})
+	function delfunction(pno){
+		fetch('deleteCart.do?pno='+pno+'&uno='+${uno})
 		.then(resolve => resolve.json())
 		.then(result => {
 			if (result.retCode == 'OK') {
-				alert("삭제 완료");
-				window.location.href = "myCart.do?uno=" + ${uno};
+				window.location.href = "myCart.do?uno="+${uno};
 			} else {
 				alert("삭제 실패");
 			}
 		})
 	}
 
-	function addfunction(e,pno) {
-		fetch('insertOne.do?pno='+pno+'&uno=' + ${uno})
+	function upfunction(pno) {
+		console.log(pno);
+		fetch('updateCart.do?pno='+pno+'&uno='+${uno}+'&cnt=1')
 			.then(resolve => resolve.json())
 			.then(result => {
 				console.log(result)
 				if (result.retCode == 'OK') {
-					alert("장바구니에 추가되었습니다");
 					window.location.href = "myCart.do?uno=" + ${uno};
 				} else {
-					console.log(result)
 					alert("추가 실패");
 					window.location.href = "myCart.do?uno=" + ${uno};
 				}
 			})
 			.catch(error=>console.log(error))
+	}
+	
+	function downfunction(pno,cnt){
+		fetch('updateCart.do?pno='+pno+'&uno='+${uno}+'&cnt=-1')
+		.then(resolve => resolve.json())
+		.then(result => {
+			if(cnt==1){
+				alert('상품이 삭제되었습니다');
+				delfunction(pno);
+			}else{
+				if (result.retCode == 'OK') {
+					window.location.href = "myCart.do?uno=" + ${uno};
+				} else {
+					console.log(result)
+					alert("실패");
+					window.location.href = "myCart.do?uno=" + ${uno};
+				}
+			}
+		})
+		.catch(error=>console.log(error))
 	}
 </script>
