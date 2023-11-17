@@ -43,7 +43,6 @@
 				</div>
 			</div>
 		</div>
-
 		<div class="container px-4 px-lg-5 my-5" style="text-align: center">
 			<a
 				style="border: none; padding: 10px 50px; color: black; font-size: 18px"
@@ -108,7 +107,7 @@
 			</table>
 			 <p><input type="submit" value="문의글 작성" >
 				<input type="hidden" name=pName value="${pno.productName }" >
-				<input type="hidden" name=pNo value="${vo.productNo }">
+				<input type="hidden" name=pNo value="${pno.productNo }">
 			</p>
 		</div>
 		<hr>
