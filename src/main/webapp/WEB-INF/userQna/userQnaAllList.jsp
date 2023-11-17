@@ -6,15 +6,16 @@
 
 <body>
  <!-- Page content-->
- <section class="py-5" >
-		<div class="container px-4 px-lg-5 mt-5">
+ <section class="pt-2 pb-4">
+		<div class="container px-4 px-lg-5 mt-3">
                 <div class="container-fluid">
                     <h3 class="mt-4" style= text-align:center>문의사항</h3>
                     <br>
                     <hr>
                     <table class = "table" style= text-align:center>
-                    	<thead>
-                    		<tr>
+<!--                     <table id="datatablesSimple" style=text-align:center> -->
+                    	<thead >
+                    		<tr style=text-align:center>
                     			<th>공개여부</th>
 	                    		<th>글번호</th>
 	                    		<th>문의정보</th>
@@ -105,4 +106,20 @@
 	    	}
 	    }
 	}
+	
+	
+	
+	
 </script>
+
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+	crossorigin="anonymous">
+</script>
+<script src="adminResource/js/scripts.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+	crossorigin="anonymous">
+</script>
+<script src="adminResource/js/datatables-simple-demo.js"></script>
+
