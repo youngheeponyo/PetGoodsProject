@@ -7,6 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import com.yedamMiddle.admin.mapper.AdminMapper;
 import com.yedamMiddle.admin.service.AdminService;
 import com.yedamMiddle.common.Mybatis;
+import com.yedamMiddle.common.service.CategoryJoinVO;
+import com.yedamMiddle.common.service.CategoryVO;
 import com.yedamMiddle.common.service.UserVO;
 import com.yedamMiddle.product.service.ProductVO;
 
@@ -48,6 +50,24 @@ public class AdminServiceImpl implements AdminService {
 	public String cateName(int productNo) {
 		return mapper.cateName(productNo);
 	}
+
+	@Override
+	public List<CategoryJoinVO> getJoinCateList() {
+		return mapper.getJoinCateList();
+	}
+
+	@Override
+	public boolean addMainCate(String categoryName) {
+		return mapper.mainCateInsert(categoryName) == 1;
+	}
+
+	@Override
+	public boolean addSubCate(String subName, String preName) {
+		return mapper.subCateInsert(subName, preName) == 1;
+	}
+
+
+
 
 	
 	

@@ -51,7 +51,13 @@
                         		</button>
 		                		<button class="btn" type="button" onclick="location.href='myCart.do?uno=${uno }'">
                             		<i class="bi-cart-fill me-1"></i>
-                            		<span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                            		<span class="badge bg-dark text-white ms-1 rounded-pill" id="cartCnt">
+                            		<c:set var="sum" value="0"/>
+                            		<c:forEach items="${cl }" var="vo" varStatus="status">
+                            			<c:set var="sum" value="${sum + vo.selCnt }"></c:set>
+                            		</c:forEach>
+                            		<c:out value="${sum }"/>
+									</span>
                         		</button>
 		                	</c:when>
 		                	<c:otherwise>
@@ -174,5 +180,9 @@
 		console.log(curPetType);
 		window.location.href = "changePetType.do?changeType=" + curPetType;
 	}
+	
+	
+	//document.getElementById('cartCnt').innerHTML=2;
+	
 	
 </script>

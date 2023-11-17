@@ -39,11 +39,12 @@ public class AddQnaFormControl implements Command {
 			System.out.println("pName=" +pName);
 			
 			String pNo =req.getParameter("pNo");
+			System.out.println("pNo="+ pNo);
 			if(pNo ==null) {
 				req.setAttribute("pNo", 0);
 			}else {
 				req.setAttribute("pNo", pNo);
-				System.out.println("pNo="+ pNo);
+
 			}
 			
 			

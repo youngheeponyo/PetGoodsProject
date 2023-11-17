@@ -20,7 +20,6 @@
 					src="productImage/${petType }/${pno.productImage }" alt="..." />
 			</div>
 			<div class="col-md-6">
-				<div class="small mb-1">${pno.productRegistDate }</div>
 				<h1 class="display-5 fw-bolder">${pno.productName }</h1>
 				<div class="fs-5 mb-5">
 					<span style="font-size: 30px">₩ ${pno.productPrice }</span>
@@ -44,7 +43,6 @@
 				</div>
 			</div>
 		</div>
-
 		<div class="container px-4 px-lg-5 my-5" style="text-align: center">
 			<a
 				style="border: none; padding: 10px 50px; color: black; font-size: 18px"
@@ -109,7 +107,7 @@
 			</table>
 			 <p><input type="submit" value="문의글 작성" >
 				<input type="hidden" name=pName value="${pno.productName }" >
-				<input type="hidden" name=pNo value="${vo.productNo }">
+				<input type="hidden" name=pNo value="${pno.productNo }">
 			</p>
 		</div>
 		<hr>

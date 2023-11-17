@@ -9,7 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.yedamMiddle.cart.service.MyCartService;
+import com.yedamMiddle.cart.serviceImpl.MyCartServiceImpl;
+import com.yedamMiddle.common.service.CartJoinVO;
 import com.yedamMiddle.common.service.CategoryJoinVO;
+import com.yedamMiddle.common.service.UserVO;
 import com.yedamMiddle.product.service.ProductService;
 import com.yedamMiddle.product.service.ProductVO;
 import com.yedamMiddle.product.serviceImpl.ProductServiceImpl;
@@ -41,6 +45,19 @@ public class MainPageControl implements Command {
 		req.setAttribute("registDesc", productRegistDesc);
 		req.setAttribute("reviewDesc", productReviewDesc);
 		req.setAttribute("starCntDesc", productStarCntDesc);
+
+		
+		Object userNo = session.getAttribute("uno");
+		System.out.println(userNo==null);	//로그인을 안하면 null이 뜨고 로그인을 하면 false가 뜬다
+		if(userNo==null) {
+			System.out.println("null임"+userNo);
+		}else {
+			int uNo = (Integer)userNo;
+			MyCartService csv = new MyCartServiceImpl();
+			List<CartJoinVO> cl = csv.getCart(uNo);
+			session.setAttribute("cl", cl);
+		}
+		
 		
 		try {
 			req.setAttribute("main", 1); // main페이지 구분용도(배너슬라이드)
