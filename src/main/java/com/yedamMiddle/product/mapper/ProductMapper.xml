@@ -146,4 +146,20 @@
 	<update id="updateProductStock">
 		update product set product_stock = product_stock-#{cnt} where product_no = #{productNo}
 	</update>
+	
+	<!-- 결제주문내역 및 리뷰작성했는지 확인하는 쿼리. -->
+	<select id="selectAllMyProductOrderList" resultType="com.yedamMiddle.product.service.ProductOrderJoinVO" parameterType="int">
+		<![CDATA[  
+			SELECT A.*, B.REVIEW_NO
+    			FROM (
+        			SELECT A.MER_UID, B.PRODUCT_NAME,B.PRODUCT_PRICE, COUNT(*) AS BUY_CNT, B.PRODUCT_NO, A.ORDER_DATE
+            		FROM product_order A
+            		JOIN PRODUCT B ON A.PRODUCT_NO = B.PRODUCT_NO
+            		WHERE A.USER_NO = #{userNo}
+            		GROUP BY A.MER_UID, B.PRODUCT_NAME, B.PRODUCT_NO, A.ORDER_DATE, B.PRODUCT_PRICE
+            		ORDER BY A.ORDER_DATE DESC
+    			) A
+    			LEFT JOIN REVIEW B ON A.MER_UID = B.PRODUCT_ORDER_NO AND A.PRODUCT_NO = B.PRODUCT_NO
+  			]]>
+	</select>
 </mapper>

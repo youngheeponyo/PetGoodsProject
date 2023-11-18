@@ -43,7 +43,7 @@
                         </button>
 		                <c:choose>
 		                	<c:when test="${!empty uno }">
-		                		<button class="btn" type="button" onclick="">
+		                		<button class="btn" type="button" onclick="location.href='myPage.do'">
                              		<i class="far fa-user fa-2x"></i>
                         		</button>
                         		<button class="btn" type="button" onclick="location.href='logout.do'">

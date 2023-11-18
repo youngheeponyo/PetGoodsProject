@@ -297,17 +297,40 @@
 	            	  }
 	            	  else {
 	            		  // 결제완료 Form이동
-	            		  let queryString = "";
+	            		  var formData = new FormData();
 	            		  for(let i = 0; i < productNoList.length; ++i) {
-	            			  if(i == 0) {
-	            				  queryString += ('pno=' + productNoList[i].value);  
-	            			  }
-	            			  else {
-	            				  queryString += ('&pno=' + productNoList[i].value);
-	            			  }
+	            			  formData.append("pno", productNoList[i].value);
 	            		  }
 	            		  
-	            		  window.location.href="payCompleteForm.do?" + queryString + '&merUid=' + merchantUID;  
+	            		  // post방식으로 보내기위해서.
+	            		  let form = document.createElement("form");
+	            		  form.method = "post";
+	            		  form.action = "payCompleteForm.do";
+	            		  
+	            		  for (var pair of formData.entries()) {
+							var input = document.createElement("input");
+	            			input.type = "hidden";
+	            			input.name = pair[0];
+	            			input.value = pair[1];
+	            			form.appendChild(input);
+	            		  }
+	            		  
+	            		  let input2 = document.createElement("input");
+	            		  input2.type = "hidden";
+	            		  input2.name = "merUid";
+	            		  input2.value = merchantUID;
+	            		  form.appendChild(input2);
+	            		  
+	            		  let input3 = document.createElement("input");
+	            		  input3.type = "hidden";
+	            		  input3.name = "pName";
+	            		  input3.value = productName;
+	            		  form.appendChild(input3);
+
+	            		  document.body.appendChild(form);
+	            		  form.submit();
+	            		  
+	            		  //window.location.href="payCompleteForm.do?" + queryString + '&merUid=' + merchantUID + '&pName=' + productName;  
 	            		          		  
 	            	  }
 	              })

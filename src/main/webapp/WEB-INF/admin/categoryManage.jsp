@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<body>
+
 		<section class="pt-2 pb-4">
 		<div class="container px-4 px-lg-5 mt-3">
 			<div class="row">
@@ -123,4 +123,4 @@
 		</div>
 	</section>
 
-</body>
+

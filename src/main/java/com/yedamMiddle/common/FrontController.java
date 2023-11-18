@@ -37,6 +37,8 @@ import com.yedamMiddle.login.web.IdCheckControl;
 import com.yedamMiddle.login.web.LoginControl;
 import com.yedamMiddle.login.web.LoginFormControl;
 import com.yedamMiddle.login.web.LogoutControl;
+import com.yedamMiddle.myPage.web.MyPageControl;
+import com.yedamMiddle.myPage.web.OrderDetailFormControl;
 import com.yedamMiddle.notice.web.AddNoticeControl;
 import com.yedamMiddle.notice.web.GetNoticeControl;
 import com.yedamMiddle.notice.web.NoticeFormControl;
@@ -106,6 +108,9 @@ public class FrontController extends HttpServlet {
       commandByURL.put("/categoryManage.do", new CategoryManageControl()); //카테고리관리
       commandByURL.put("/addMainCategory.do", new AddMainCategoryControl()); //메인카테고리추가
       commandByURL.put("/addSubCategory.do", new AddSubCategoryControl()); //서브카테고리추가
+      //마이페이지
+      commandByURL.put("/myPage.do", new MyPageControl()); //마이페이지
+      
       
       
       // 서영희
@@ -131,7 +136,7 @@ public class FrontController extends HttpServlet {
       //장바구니
       commandByURL.put("/myCart.do", new MyCartControl());
       //수량
-      commandByURL.put("/updateCart.do", new UpdateCartControl());
+//      commandByURL.put("/updateCart.do", new UpdateCartControl());
       commandByURL.put("/cartCheck.do", new CartCheckControl());
       //물건 재고량 구하기
       //commandByURL.put("/productStock.do", new productStockControl());
@@ -148,6 +153,7 @@ public class FrontController extends HttpServlet {
       commandByURL.put("/paymentForm.do", new PaymentFormControl()); // 결제화면 요청
       commandByURL.put("/paymentComplete.do", new PaymentCompleteControl()); // 결제완료처리(검증 및 결제데이터 삽입)
       commandByURL.put("/payCompleteForm.do", new PayCompleteFormControl()); // 결제완료화면 요청
+      commandByURL.put("/orderDetailForm.do", new OrderDetailFormControl()); // 내주문내역 보기
    }
    
    //끼양

@@ -21,6 +21,7 @@ public class PayCompleteFormControl implements Command {
 		
 		String[] pNos = req.getParameterValues("pno");
 		String merUid = req.getParameter("merUid");
+		String productName = req.getParameter("pName");
 		Object userNo = req.getSession().getAttribute("uno");
 		if(pNos == null || merUid == null || userNo == null) {
 			try {
@@ -37,12 +38,13 @@ public class PayCompleteFormControl implements Command {
 		List<ProductOrderVO> list = svc.getProductOrder(productNos, Long.parseLong(merUid), (Integer)userNo);
 		
 		req.setAttribute("orderList", list);
+		req.setAttribute("pName", productName);
 		try {
 			req.getRequestDispatcher(path).forward(req, resp);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}	
 	}
 
 }

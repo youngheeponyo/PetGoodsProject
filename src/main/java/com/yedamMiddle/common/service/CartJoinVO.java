@@ -1,7 +1,7 @@
 package com.yedamMiddle.common.service;
 
 //@Data
-public class CartJoinVO {
+public class CartJoinVO implements Cloneable {
 	private int cartNo;
 	private String productName;
 	private int productPrice;
@@ -54,4 +54,16 @@ public class CartJoinVO {
 	
 	
 	
+	 @Override
+	 public CartJoinVO clone() {
+		 CartJoinVO newVO = new CartJoinVO();
+		 newVO.cartNo = this.cartNo;
+		 newVO.productName = new String(this.productName);
+		 newVO.productPrice = this.productPrice;
+		 newVO.selCnt = this.selCnt;
+		 newVO.productNo = this.productNo;
+		 
+		 return newVO;
+	 }
+
 }
