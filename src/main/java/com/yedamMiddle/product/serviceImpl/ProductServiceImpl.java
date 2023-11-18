@@ -11,6 +11,7 @@ import com.yedamMiddle.common.service.CartJoinVO;
 import com.yedamMiddle.common.service.CategoryJoinVO;
 import com.yedamMiddle.common.service.CategoryVO;
 import com.yedamMiddle.product.mapper.ProductMapper;
+import com.yedamMiddle.product.service.ProductOrderJoinVO;
 import com.yedamMiddle.product.service.ProductOrderVO;
 import com.yedamMiddle.product.service.ProductService;
 import com.yedamMiddle.product.service.ProductVO;
@@ -109,5 +110,10 @@ public class ProductServiceImpl implements ProductService {
 	public int reduceProductStock(int cnt, int productNo) {
 		// TODO Auto-generated method stub
 		return mapper.updateProductStock(cnt, productNo);
+	}
+	@Override
+	public List<ProductOrderJoinVO> getAllMyProductOrderList(int userNo) {
+		// TODO Auto-generated method stub
+		return mapper.selectAllMyProductOrderList(userNo);
 	}
 }

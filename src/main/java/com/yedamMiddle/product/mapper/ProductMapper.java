@@ -5,9 +5,9 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.yedamMiddle.common.ApiInfoVO;
-import com.yedamMiddle.common.service.CartJoinVO;
 import com.yedamMiddle.common.service.CategoryJoinVO;
 import com.yedamMiddle.common.service.CategoryVO;
+import com.yedamMiddle.product.service.ProductOrderJoinVO;
 import com.yedamMiddle.product.service.ProductOrderVO;
 import com.yedamMiddle.product.service.ProductVO;
 
@@ -32,4 +32,5 @@ public interface ProductMapper {
 	public List<ProductVO> selectReviewDescFromMain(String petType);
 	public List<ProductVO> selectStarCntDescFromMain(String petType);
 	public int updateProductStock(@Param("cnt") int cnt, @Param("productNo") int productNo);
+	public List<ProductOrderJoinVO> selectAllMyProductOrderList(int userNo);
 }

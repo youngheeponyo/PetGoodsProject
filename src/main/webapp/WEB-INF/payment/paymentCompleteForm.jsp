@@ -18,7 +18,7 @@
       </div>
       <div class="d-grid gap-6 d-sm-flex justify-content-between py-5">
         <div>
-        	<h5>결제번호</h5>
+        	<h5>주문번호</h5>
         </div>
         <div>
         	<h5>${orderList[0].merUid}</h5>

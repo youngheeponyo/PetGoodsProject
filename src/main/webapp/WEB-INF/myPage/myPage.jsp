@@ -11,7 +11,7 @@
 							<div class="card mb-4">
 								<div class="card-header">
 									<i class="bi bi-basket3-fill"></i> 주문내역 
-									<button type="button" class="btn btn-outline-secondary" style="float:right;">더보기</button>
+									<button type="button" class="btn btn-outline-secondary" style="float:right;"><a href="orderDetailForm.do" style="color:black;">더보기</a></button>
 								</div>
 								<div class="card-body">
 									<h3>주문내역현황</h3>

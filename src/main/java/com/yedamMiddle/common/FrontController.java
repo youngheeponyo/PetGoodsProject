@@ -37,6 +37,7 @@ import com.yedamMiddle.login.web.LoginControl;
 import com.yedamMiddle.login.web.LoginFormControl;
 import com.yedamMiddle.login.web.LogoutControl;
 import com.yedamMiddle.myPage.web.MyPageControl;
+import com.yedamMiddle.myPage.web.OrderDetailFormControl;
 import com.yedamMiddle.notice.web.AddNoticeControl;
 import com.yedamMiddle.notice.web.GetNoticeControl;
 import com.yedamMiddle.notice.web.NoticeFormControl;
@@ -149,6 +150,7 @@ public class FrontController extends HttpServlet {
       commandByURL.put("/paymentForm.do", new PaymentFormControl()); // 결제화면 요청
       commandByURL.put("/paymentComplete.do", new PaymentCompleteControl()); // 결제완료처리(검증 및 결제데이터 삽입)
       commandByURL.put("/payCompleteForm.do", new PayCompleteFormControl()); // 결제완료화면 요청
+      commandByURL.put("/orderDetailForm.do", new OrderDetailFormControl()); // 내주문내역 보기
    }
    
    //끼양
