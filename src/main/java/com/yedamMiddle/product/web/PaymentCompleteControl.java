@@ -3,9 +3,11 @@ package com.yedamMiddle.product.web;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.IntStream;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +23,7 @@ import com.yedamMiddle.cart.service.MyCartService;
 import com.yedamMiddle.cart.serviceImpl.MyCartServiceImpl;
 import com.yedamMiddle.common.Command;
 import com.yedamMiddle.common.IamPort;
+import com.yedamMiddle.common.service.CartJoinVO;
 import com.yedamMiddle.common.service.UserVO;
 import com.yedamMiddle.login.service.LoginService;
 import com.yedamMiddle.login.serviceImpl.LoginServiceImpl;
@@ -189,6 +192,8 @@ public class PaymentCompleteControl implements Command {
 		String[] proNos = req.getParameterValues("productNo");
 		String[] proSel = req.getParameterValues("productSelCnt");
 
+		int[] productNos = Arrays.stream(proNos).mapToInt(Integer::parseInt).toArray();
+
 		String fee = req.getParameter("fee");
 		String deliveryReq = req.getParameter("deliveryReq");
 
@@ -196,8 +201,6 @@ public class PaymentCompleteControl implements Command {
 		if (fee != null) {
 			addrFee = Integer.parseInt(fee);
 		}
-		
-		int[] productNos = Arrays.stream(proNos).mapToInt(Integer::parseInt).toArray();
 		
 		ProductService svc = new ProductServiceImpl();
 		AddrService svc3 = new AddrServiceImpl();
@@ -231,6 +234,27 @@ public class PaymentCompleteControl implements Command {
 			svct.reduceProductStock(count, productNos[i]);
 		}
 		
+		// session에 저장된 cartList최신화
+		Object cartObj = req.getSession().getAttribute("cl");
+		if(cartObj != null) {
+			List<CartJoinVO> cartList = ((List<CartJoinVO>)cartObj);
+			if(cartList != null && cartList.size() > 0) {
+				List<CartJoinVO> newCartList = new ArrayList<CartJoinVO>(cartList.size());
+				for(CartJoinVO vo : cartList) {
+					newCartList.add(vo.clone());
+				}
+				
+				for(int pNo : productNos) {
+					for(int i = 0; i < newCartList.size(); ++i) {
+						if(newCartList.get(i).getProductNo() == pNo) {
+							newCartList.remove(i);
+							break;
+						}
+					}
+				}
+				req.getSession().setAttribute("cl", newCartList);
+			}
+		}
 		return true;
 	}
 }
