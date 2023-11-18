@@ -1,6 +1,7 @@
 package com.yedamMiddle.myPage.web;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -42,13 +43,29 @@ public class OrderDetailFormControl implements Command {
 				e.printStackTrace();
 			}
 		}
+
+		String page = req.getParameter("page");
+		if(page == null)
+			page = "1";
+		int pageNo = Integer.parseInt(page);
 		
 		ProductService pSvc = new ProductServiceImpl();
 		List<ProductOrderJoinVO> orderList = pSvc.getAllMyProductOrderList(userNo);
-		PageDTO paging = new PageDTO(0,orderList.size(),1, 10);
+
+		int startIdx = (pageNo - 1) * 10;
+		int endIdx = (pageNo) * 10;
 		
+		List<ProductOrderJoinVO> showList = new ArrayList<>(10);
+		for(int sIdx = startIdx; sIdx < endIdx; ++sIdx) {
+			if(sIdx >= orderList.size() - 1)
+				break;
+			
+			showList.add(orderList.get(sIdx));
+		}
+		
+		PageDTO paging = new PageDTO(0,orderList.size(),pageNo, 10);
 		req.setAttribute("pagination", paging);
-		req.setAttribute("pOrderList", orderList);
+		req.setAttribute("pOrderList", showList);
 		try {
 			req.getRequestDispatcher("myPage/orderDetail.tiles").forward(req, resp);
 		} catch (ServletException | IOException e) {
