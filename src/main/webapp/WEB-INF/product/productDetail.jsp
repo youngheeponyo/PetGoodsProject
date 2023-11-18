@@ -21,10 +21,24 @@
 			</div>
 			<div class="col-md-6">
 				<h1 class="display-5 fw-bolder">${pno.productName }</h1>
+				<p>별점자리입니다</p>
 				<div class="fs-5 mb-5">
-					<span style="font-size: 30px">₩ ${pno.productPrice }</span>
+					<span style="font-size: 30px">₩ ${pno.productPrice }</span><br>
 				</div>
+				<div>
+					<img src="commonResource/image/mainIcon/dogIcon.png" alt="dog" style="width:30px;height:30px;">빠른디어배송
+					<p style="margin-left:20px;margin-bottom:0;color:black">무료배송 (30,000원 이상 구매 시)</p>
+					<p id="today" style="margin-left:20px;margin-bottom:0;color:black">오늘 주문 시 ${day }출발</p>
+					<br>
+				</div>
+				<script>
+					date = new Date();
+					day = date.getDate();
+					month = date.getMonth();
+					document.getElementById('today').innerHTML= '오늘 주문시 '+month+'월 ' + (day+1)+'일에 출발'
+				</script>
 				<p class="lead">${pno.productDesc }</p>
+				<br>
 				<div class="d-flex">
 					<input id="inputQuantity" type="number" pattern="[0-9]*"
 						style="margin: 5px; padding: 5px; border-radius: 5px;"
@@ -41,6 +55,9 @@
 						</c:otherwise>
 					</c:choose>
 				</div>
+				<c:if test="${pno.productStock <= 5}">
+					<p>(현재 재고량 : ${pno.productStock}개)</p>
+				</c:if>
 			</div>
 		</div>
 		<div class="container px-4 px-lg-5 my-5" style="text-align: center">
@@ -172,36 +189,46 @@
 </section>
 
 <script>
-function functionCart() {
+function functionCart(cvo) {
+	let cnt = ${vo2.selectCnt};
 	let pno = ${pno.productNo};
+	let stock = ${pno.productStock};
 	let count = document.getElementById('inputQuantity').value;
 	fetch('cartCheck.do?pno='+pno+'&uno='+${uno})
 	.then(resolve=>resolve.json())
 	.then(result=>{
 		if(result.retCode=='OK'){
-			fetch('updateCart.do?pno='+pno+'&uno='+${uno}+'&cnt='+count)
-			.then(resolve=>resolve.json())
-			.then(result=>{
-				console.log(result)
-				if(result.retCode=='OK'){
-					alert("장바구니에 추가되었습니다");
-						window.location.href = "myCart.do?uno=" + ${uno};
-				}else{
-					alert("추가 실패");
-				}
-			})
+			if(stock<count+cnt){
+				alert('남은 재고량이 부족합니다!')
+			}else if(stock>count+cnt){
+				fetch('updateCart.do?pno='+pno+'&uno='+${uno}+'&cnt='+count)
+				.then(resolve=>resolve.json())
+				.then(result=>{
+					console.log(result)
+					if(result.retCode=='OK'){
+						alert("장바구니에 추가되었습니다");
+							window.location.href = "myCart.do?uno=" + ${uno};
+					}else{
+						alert("추가 실패");
+					}
+				})
+			}
 		}else{
-			fetch('addCart.do?pno='+pno+'&uno='+${uno}+'&cnt='+count)
-			.then(resolve=>resolve.json())
-			.then(result=>{
-				console.log(result)
-				if(result.retCode=='OK'){
-					alert("장바구니에 추가되었습니다");
-						window.location.href = "myCart.do?uno=" + ${uno};
-				}else{
-					alert("추가 실패");
-				}
-			})
+			if(stock<=count){
+				alert('남은 재고량이 부족합니다!')
+			}else if(stock>count){
+				fetch('addCart.do?pno='+pno+'&uno='+${uno}+'&cnt='+count)
+				.then(resolve=>resolve.json())
+				.then(result=>{
+					console.log(result)
+					if(result.retCode=='OK'){
+						alert("장바구니에 추가되었습니다");
+							window.location.href = "myCart.do?uno=" + ${uno};
+					}else{
+						alert("추가 실패");
+					}
+				})
+			}
 		}
 	})
 

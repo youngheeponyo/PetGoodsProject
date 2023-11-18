@@ -218,11 +218,14 @@
 											class="cart__list__smartstore"> 스마트스토어</span>
 										<br>
 										<span class="price">${vo.productPrice }원</span>
+										<c:if test="${vo.productStock <= 5}">
+										<p id="stock">(현재 재고량 : ${vo.productStock })</p>
+										</c:if>
 									</td>
 									<td class="cart__list__option">
 										<p>모델명 : ${vo.productName }</p>
 										<p>수량 : ${vo.selCnt }</p>
-										<input type="button" value="▲" class="cart__list__optionbtn" onclick="upfunction(${vo.productNo})">
+										<input type="button" value="▲" class="cart__list__optionbtn" onclick="upfunction(${vo.productNo},${vo.selCnt },${vo.productStock })">
 										<input class="cart__list__optionbtn" value="▼" type="button" onclick="downfunction(${vo.productNo},${vo.selCnt })">
 										<input type="button" class="cart__list__optionbtn" value = "상품 삭제" onclick="delfunction(${vo.productNo})">
 									</td>
@@ -323,7 +326,7 @@
 		document.getElementById('totalPrice').innerHTML = addrPee + price;
 
 	}
-
+	
 	function paymentfunction() {
 		if ($(".chk:checked").length == 0) {
 			alert('선택된 상품이 없습니다')
@@ -343,21 +346,24 @@
 			}
 		})
 	}
-
-	function upfunction(pno) {
-		console.log(pno);
-		fetch('updateCart.do?pno='+pno+'&uno='+${uno}+'&cnt=1')
-			.then(resolve => resolve.json())
-			.then(result => {
-				console.log(result)
-				if (result.retCode == 'OK') {
-					window.location.href = "myCart.do?uno=" + ${uno};
-				} else {
-					alert("추가 실패");
-					window.location.href = "myCart.do?uno=" + ${uno};
+	
+	function upfunction(pno,cnt,stock) {//cnt는 현재 추가되어있는 갯수
+				if(stock<(cnt+1)){
+					alert('남은 재고량이 부족합니다!')
+				}else{
+					fetch('updateCart.do?pno='+pno+'&uno='+${uno}+'&cnt=1')
+						.then(resolve => resolve.json())
+						.then(result => {
+							console.log(result)
+							if (result.retCode == 'OK') {
+								window.location.href = "myCart.do?uno=" + ${uno};
+							} else {
+								alert("추가 실패");
+								window.location.href = "myCart.do?uno=" + ${uno};
+							}
+						})
+						.catch(error=>console.log(error))
 				}
-			})
-			.catch(error=>console.log(error))
 	}
 	
 	function downfunction(pno,cnt){

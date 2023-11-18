@@ -14,4 +14,6 @@ public interface MyCartService {
 	public boolean delCartFromPayment(int uno, int[] productNos);
 	public List<CartJoinVO> getCartFromPayment(int uno, int[] productNos);
 	public MyCartVO cartCheck(int productNo,int memberNo);
+	public MyCartVO cntInCart(int productNo,int memberNo);
+	
 }

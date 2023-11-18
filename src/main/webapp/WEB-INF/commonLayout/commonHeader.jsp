@@ -61,10 +61,10 @@
                         		</button>
 		                	</c:when>
 		                	<c:otherwise>
-		                		<button class="btn" type="button" onclick="location.href='login.do'">
+		                		<button class="btn" type="button" onclick="location.href='loginForm.do'">
                              		<i class="far fa-user fa-2x"></i>
                         		</button>
-		                		<button class="btn" type="button" onclick="location.href='login.do'">
+		                		<button class="btn" type="button" onclick="location.href='loginForm.do'">
                             		<i class="bi-cart-fill me-1"></i>
                             		<span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
                         		</button>

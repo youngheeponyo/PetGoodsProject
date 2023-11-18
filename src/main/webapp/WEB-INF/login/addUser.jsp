@@ -65,18 +65,19 @@
 							<c:otherwise>
 								<div class="col-md-6 mb-3">
 									<label for="name">아이디</label> <input type="text"
-										class="form-control" id="names" name="uid" placeholder=""
+										class="form-control" id="names" name="uid" placeholder="아이디"
 										value="" required>
 									<div class="invalid-feedback">아이디를 입력해주세요.</div>
-									<input type="button" onclick="chkfunction(uid.value)" id="idCheck" value="아이디 중복확인" style="margin-top:10px">
 								</div>
-	
+									<input type="button" onclick="chkfunction(uid.value)" id="idCheck" value="아이디 중복확인" style="margin-top:35px;width:150px;height:30px">
+								<hr>
 								<div class="col-md-6 mb-3">
-									<label for="name">비밀번호</label> <input type="password"
-										class="form-control" id="pw" name="upw" placeholder=""
-										value="" required>
+									<label for="name">비밀번호</label> <input type="password" onchange="checkPWfunction(upw.value)"
+										class="form-control" id="pw" name="upw" placeholder="비밀번호" value="" required>
 									<div class="invalid-feedback">비밀번호를 입력해주세요.</div>
 								</div>
+									<p id='alert' style="color:red;font-size:12px">비밀번호: 8~16자의 영문 대/소문자, 숫자, 특수문자를 사용해 주세요.</p>
+								<hr>
 							</c:otherwise>
 						</c:choose>
 
@@ -192,12 +193,26 @@
 										})
 								}
 								
-// 								const pw = document.getElementById('pw').value;
-// 								function checkfunction(){
-// 									if(pw.length<5){
-// 										alert('비밀번호는 5자리 이상 입력해주세요!')
-// 									}
-// 								}
+								function checkPWfunction(upw){
+									 var num = upw.search(/[0-9]/g);
+									 var eng = upw.search(/[a-z]/ig);
+									 var spe = upw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+
+									 if(upw.length < 8 || upw.length > 20){
+										//document.getElementById('alert').style="display:block";
+									  //alert("8자리 ~ 20자리 이내로 입력해주세요.");
+									  return false;
+									 }else if(upw.search(/\s/) != -1){
+									  return false;
+									 }else if(num < 0 || eng < 0 || spe < 0 ){
+									  return false;
+									 }else {
+										 document.getElementById('alert').style="display:none";
+										console.log("통과"); 
+									    return true;
+									 }
+								}
+												
 								
 						</script>
 						<hr class="mb-4">

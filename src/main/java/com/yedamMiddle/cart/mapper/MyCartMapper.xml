@@ -17,11 +17,11 @@
 	
 	<!-- 나의 장바구니 리스트 -->
 	<select id="getCart" resultType="com.yedamMiddle.common.service.CartJoinVO" parameterType="int">
-		SELECT C.PRODUCT_NAME AS PRODUCT_NAME, C.PRODUCT_PRICE AS PRODUCT_PRICE, sum(A.SELECT_CNT) AS SEL_CNT, A.PRODUCT_NO AS PRODUCT_NO
+		SELECT C.PRODUCT_NAME AS PRODUCT_NAME, C.PRODUCT_PRICE AS PRODUCT_PRICE, sum(A.SELECT_CNT) AS SEL_CNT, A.PRODUCT_NO AS PRODUCT_NO,C.product_stock
 		FROM MY_CART A
 		JOIN PRODUCT C ON A.PRODUCT_NO = C.PRODUCT_NO
 		WHERE A.MEMBER_NO = #{memberNo}
-		group by C.product_name, C.product_price, A.product_no
+		group by C.product_name, C.product_price, A.product_no,C.product_stock
 	</select>
 	
 	<!-- 장바구니에서 아예 삭제-->
@@ -47,6 +47,10 @@
  				#{arr}
 			</foreach>
 			group by C.product_name, C.product_price, A.product_no
+	</select>
+	
+	<select id="cntInCart" resultType="com.yedamMiddle.cart.service.MyCartVO">
+		select * from  my_cart where product_no=#{productNo} and member_no=#{memberNo}
 	</select>
 
 	</mapper>

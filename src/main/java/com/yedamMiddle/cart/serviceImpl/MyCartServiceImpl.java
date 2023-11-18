@@ -57,5 +57,10 @@ public class MyCartServiceImpl implements MyCartService {
 	public MyCartVO cartCheck(int productNo, int memberNo) {
 		return mapper.cartCheck(productNo, memberNo);
 	}
+	
+	@Override
+	public MyCartVO cntInCart(int productNo, int memberNo) {
+		return mapper.cntInCart(productNo, memberNo);
+	}
 
 }

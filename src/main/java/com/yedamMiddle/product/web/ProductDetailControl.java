@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.yedamMiddle.cart.service.MyCartService;
+import com.yedamMiddle.cart.service.MyCartVO;
 import com.yedamMiddle.cart.serviceImpl.MyCartServiceImpl;
 import com.yedamMiddle.common.Command;
 import com.yedamMiddle.common.service.CartJoinVO;
@@ -39,16 +40,17 @@ public class ProductDetailControl implements Command {
 		List<ProductVO> list = svc.productList();
 		req.setAttribute("list", list);
 		
+		MyCartService csv = new MyCartServiceImpl();
 		HttpSession session = req.getSession();
 		Object userNo = session.getAttribute("uno");
-		System.out.println(userNo==null);	//로그인을 안하면 null이 뜨고 로그인을 하면 false가 뜬다
 		if(userNo==null) {
 			System.out.println("null임"+userNo);
 		}else {
 			int uNo = (Integer)userNo;
-			MyCartService csv = new MyCartServiceImpl();
 			List<CartJoinVO> cl = csv.getCart(uNo);
 			session.setAttribute("cl", cl);
+			MyCartVO cvo = csv.cntInCart(Integer.parseInt(pno), (Integer)userNo);
+			req.setAttribute("vo2", cvo);
 		}
 		
 		try {
@@ -56,6 +58,9 @@ public class ProductDetailControl implements Command {
 		} catch (ServletException | IOException e) {
 			e.printStackTrace();
 		}
+		
+		
+		
 	}
 
 }

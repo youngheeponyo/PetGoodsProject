@@ -7,6 +7,7 @@ public class CartJoinVO {
 	private int productPrice;
 	private int selCnt;
 	private int productNo;
+	private int productStock;
 	
 	public int getProductNo() {
 		return productNo;
@@ -44,5 +45,13 @@ public class CartJoinVO {
 	public void setProductPrice(int productPrice) {
 		this.productPrice = productPrice;
 	}
+	public int getProductStock() {
+		return productStock;
+	}
+	public void setProductStock(int productStock) {
+		this.productStock = productStock;
+	}
+	
+	
 	
 }

@@ -20,4 +20,5 @@ public interface MyCartMapper {
 	//public int deleteCart(int[] productNos,int memberNo);
 	public int deleteCartFromPayment(@Param("uno") int uno, @Param("array") int[] productNos);
 	public List<CartJoinVO> getCartFromPayment(@Param("uno") int uno, @Param("array") int[] productNos);
+	public MyCartVO cntInCart(@Param("productNo") int productNo, @Param("memberNo")int memberNo);
 }
