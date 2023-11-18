@@ -12,7 +12,7 @@ public class UserQnaVO {
 	private String title;
 	private String contents;
 	private Date registDate;
-	private int password;
+	private String password;
 	private String qnaReply;
 	private int qnaState;
 	
@@ -73,10 +73,10 @@ public class UserQnaVO {
 	public void setRegistDate(Date registDate) {
 		this.registDate = registDate;
 	}
-	public int getPassword() {
+	public String getPassword() {
 		return password;
 	}
-	public void setPassword(int password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 	public String getQnaReply() {

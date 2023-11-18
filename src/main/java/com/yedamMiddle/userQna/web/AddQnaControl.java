@@ -56,9 +56,9 @@ public class AddQnaControl implements Command {
 		vo.setTitle(title);//#{title}
 		vo.setContents(contents);//#{contents}
 		if(password=="") {
-			vo.setPassword(0);
+			vo.setPassword(null);
 		}else {
-			vo.setPassword(Integer.parseInt(password));//#{password}
+			vo.setPassword(password);//#{password}
 		}
 		
 		
@@ -81,7 +81,7 @@ public class AddQnaControl implements Command {
 		if(insertCheck == 1) {
 			try {
 				System.out.println("성공");
-				req.getRequestDispatcher(path).forward(req, resp);
+				resp.sendRedirect(path);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

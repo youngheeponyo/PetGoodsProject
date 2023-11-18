@@ -54,10 +54,10 @@
                     			<c:if test="${not empty vo.qnaNo}">
 	                    				<c:choose>
 	                    					<c:when test="${vo.qnaState==1 }" >
-	                    						<p style="color: blue;"><b>답변완료 = (${vo.qnaState })</b></p>
+	                    						<p style="color: blue;"><b>답변완료</b></p>
 	                    					</c:when>
 	                    					<c:otherwise>
-	                    						<p style="color: red;"><b>문의대기중 = (${vo.qnaState })</b></p>
+	                    						<p style="color: red;"><b>문의대기중</b></p>
 	                    					</c:otherwise>
 	                    				</c:choose>
                     				</c:if>
