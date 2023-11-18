@@ -133,6 +133,20 @@
               <label class="form-check-label" for="credit">신용카드</label>
             </div>
           </div>
+          
+          <div class="my-3">
+            <div class="form-check">
+              <input id="toss" name="paymentMethod" type="radio" class="form-check-input" required>
+              <label class="form-check-label" for="credit">토스페이</label>
+            </div>
+          </div>
+          
+          <div class="my-3">
+            <div class="form-check">
+              <input id="kakao" name="paymentMethod" type="radio" class="form-check-input" required>
+              <label class="form-check-label" for="credit">카카오페이</label>
+            </div>
+          </div>
 
           <hr class="my-4">
 
@@ -201,9 +215,24 @@
 	   
 	   let allPrice = ${sumPrice};
 	   
+	   let choicePg = "";
+	   if(document.getElementById('credit').checked) {
+		   choicePg = "html5_inicis";
+	   }
+	   else if(document.getElementById('toss').checked) {
+		   choicePg = "tosspay";
+	   }
+	   else if(document.getElementById('kakao').checked) {
+		   choicePg = "kakaopay";
+	   }
+	   else {
+		   alert('결제사 선택해주세요.')
+		   return;
+	   }
+	   
 	   // amount allPrice로 변경하자.
 	   IMP.request_pay({ // param
-	          pg: "html5_inicis",
+	          pg: choicePg,
 	          pay_method: "card",
 	          merchant_uid: merchantUID,
 	          name: productName,
