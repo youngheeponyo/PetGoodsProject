@@ -78,7 +78,7 @@ public class FrontController extends HttpServlet {
       commandByURL.put("/qnaReply.do", new QnaReplyControl());//Qna관리자 답글달기(수정은 보류)
       
       commandByURL.put("/addUserQnaForm.do", new AddQnaFormControl());
-      commandByURL.put("/getCategoryNoToProductName.do", new getCategoryNoToProductNameContorl());
+      commandByURL.put("/getCategoryNoToProductName.do", new getCategoryNoToProductNameContorl());//상품번호로 상품이름 찾기
       commandByURL.put("/addUserQna.do", new AddQnaControl());//등록보류
       
       commandByURL.put("/modifyUserQnaForm.do", new ModifyUserQnaFormControl());//Qna수정

@@ -40,7 +40,7 @@
 </head>
 
 <body>
-	<form action="addUser.do" method="post">
+	<form action="addUser.do" name="coupon" method="post">
 		<div class="cont">
 			<div class="input-form-backgroud row">
 				<div class="input-form col-md-12 mx-auto">
@@ -236,6 +236,14 @@
 		</div>
 	</form>
 	<footer class="my-3 text-center text-small"> </footer>
+	
+	
+	<script>
+	document.forms.coupon.addEventListener('submit', function (e){
+		alert("축하합니다. 회원가입 전용 쿠폰이 발급되었습니다.\n 로그인 후 이용하시기 바랍니다.")
+	})
+	</script>
 </body>
 
 </html>
+
