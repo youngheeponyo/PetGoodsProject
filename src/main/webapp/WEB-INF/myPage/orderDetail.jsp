@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-<div class="px-4 py-1 my-5 text-center">
+<div class="px-4 py-1 my-3 text-center">
 		<h2 class="fw-bold mb-3">내 주문내역</h2>
 </div>
 
@@ -28,7 +28,15 @@
 				<td>${item.productPrice }</td>
 				<td>${item.buyCnt }</td>
 				<td>${formattedDate}</td>
-				<td><a href="main.do?${item.productNo}" style="color:black;">리뷰작성하기</a></td>
+				<c:choose>
+					<c:when test="${item.reviewNo <= 0 }">
+					<%--<c:if test=""></c:if> 리뷰작성할 떄 mer_uid,product_no넘겨서 작성하도록. --%>
+						<td><a href="main.do" style="color:black;">리뷰작성하기</a></td>
+					</c:when>
+					<c:otherwise>
+						<td><a href="main.do?rNo=${item.reviewNo }" style="color:black;">리뷰보기</a></td>
+					</c:otherwise>
+				</c:choose>
 			</tr>
 			</c:forEach>
 		</tbody>
