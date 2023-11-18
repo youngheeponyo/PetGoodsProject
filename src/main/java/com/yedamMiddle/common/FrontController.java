@@ -36,6 +36,7 @@ import com.yedamMiddle.login.web.IdCheckControl;
 import com.yedamMiddle.login.web.LoginControl;
 import com.yedamMiddle.login.web.LoginFormControl;
 import com.yedamMiddle.login.web.LogoutControl;
+import com.yedamMiddle.myPage.web.MyPageControl;
 import com.yedamMiddle.notice.web.AddNoticeControl;
 import com.yedamMiddle.notice.web.GetNoticeControl;
 import com.yedamMiddle.notice.web.NoticeFormControl;
@@ -105,6 +106,9 @@ public class FrontController extends HttpServlet {
       commandByURL.put("/categoryManage.do", new CategoryManageControl()); //카테고리관리
       commandByURL.put("/addMainCategory.do", new AddMainCategoryControl()); //메인카테고리추가
       commandByURL.put("/addSubCategory.do", new AddSubCategoryControl()); //서브카테고리추가
+      //마이페이지
+      commandByURL.put("/myPage.do", new MyPageControl()); //마이페이지
+      
       
       
       // 서영희
@@ -130,7 +134,7 @@ public class FrontController extends HttpServlet {
       //장바구니
       commandByURL.put("/myCart.do", new MyCartControl());
       //수량
-      commandByURL.put("/updateCart.do", new UpdateCartControl());
+//      commandByURL.put("/updateCart.do", new UpdateCartControl());
       commandByURL.put("/cartCheck.do", new CartCheckControl());
       
       // 전민교
