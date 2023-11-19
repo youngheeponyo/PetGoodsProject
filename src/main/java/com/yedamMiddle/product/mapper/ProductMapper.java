@@ -33,4 +33,8 @@ public interface ProductMapper {
 	public List<ProductVO> selectStarCntDescFromMain(String petType);
 	public int updateProductStock(@Param("cnt") int cnt, @Param("productNo") int productNo);
 	public List<ProductOrderJoinVO> selectAllMyProductOrderList(int userNo);
+	
+	public List<ProductVO> selectRegistDateDescFromTab(String petType);
+	public List<ProductVO> selectBestSellProductFromTab(String petType);
+	public List<ProductVO> selectHighStarProductFromTab(String petType);
 }

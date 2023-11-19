@@ -57,7 +57,7 @@ public class OrderDetailFormControl implements Command {
 		
 		List<ProductOrderJoinVO> showList = new ArrayList<>(10);
 		for(int sIdx = startIdx; sIdx < endIdx; ++sIdx) {
-			if(sIdx >= orderList.size() - 1)
+			if(sIdx >= orderList.size())
 				break;
 			
 			showList.add(orderList.get(sIdx));
