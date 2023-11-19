@@ -201,7 +201,7 @@ function functionCart() {
 		if(result.retCode=='OK'){
 			if(stock<(count+cnt)){
 				alert('남은 재고량이 부족합니다!')
-			}else if(stock>count+cnt){
+			}else if(stock>(count+cnt)){
 				fetch('updateCart.do?pno='+pno+'&uno='+${uno}+'&cnt='+count)
 				.then(resolve=>resolve.json())
 				.then(result=>{
