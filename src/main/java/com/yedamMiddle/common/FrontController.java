@@ -136,7 +136,7 @@ public class FrontController extends HttpServlet {
       //장바구니
       commandByURL.put("/myCart.do", new MyCartControl());
       //수량
-//      commandByURL.put("/updateCart.do", new UpdateCartControl());
+      commandByURL.put("/updateCart.do", new UpdateCartControl());
       commandByURL.put("/cartCheck.do", new CartCheckControl());
       //물건 재고량 구하기
       //commandByURL.put("/productStock.do", new productStockControl());

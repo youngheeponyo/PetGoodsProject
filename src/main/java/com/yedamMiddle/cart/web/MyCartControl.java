@@ -24,10 +24,19 @@ public class MyCartControl implements Command {
 		MyCartService svc = new MyCartServiceImpl();
 		List<CartJoinVO> list = svc.getCart(Integer.parseInt(uno));
 		req.setAttribute("list", list);
+		System.out.println(list);
 		
 		HttpSession session = req.getSession();
-		List<CartJoinVO> cl = svc.getCart(Integer.parseInt(uno));
-		session.setAttribute("cl", cl);
+		Object userNo = session.getAttribute("uno");
+		System.out.println(userNo==null);	//로그인을 안하면 null이 뜨고 로그인을 하면 false가 뜬다
+		if(userNo==null) {
+			System.out.println("null임"+userNo);
+		}else {
+			int uNo = (Integer)userNo;
+			MyCartService csv = new MyCartServiceImpl();
+			List<CartJoinVO> cl = csv.getCart(uNo);
+			session.setAttribute("cl", cl);
+		}
 
 		try {
 			req.getRequestDispatcher("cart/myCart.tiles").forward(req, resp);

@@ -370,9 +370,9 @@
 		fetch('updateCart.do?pno='+pno+'&uno='+${uno}+'&cnt=-1')
 		.then(resolve => resolve.json())
 		.then(result => {
+			console.log(result)
 			if(cnt==1){
-				alert('상품이 삭제되었습니다');
-				delfunction(pno);
+				alert('최소 하나 이상은 구매하셔야 합니다');
 			}else{
 				if (result.retCode == 'OK') {
 					window.location.href = "myCart.do?uno=" + ${uno};

@@ -189,16 +189,17 @@
 </section>
 
 <script>
-function functionCart(cvo) {
-	let cnt = ${vo2.selectCnt};
+function functionCart() {
+	let cnt = ${mvo.selectCnt};
 	let pno = ${pno.productNo};
 	let stock = ${pno.productStock};
 	let count = document.getElementById('inputQuantity').value;
+	
 	fetch('cartCheck.do?pno='+pno+'&uno='+${uno})
 	.then(resolve=>resolve.json())
 	.then(result=>{
 		if(result.retCode=='OK'){
-			if(stock<count+cnt){
+			if(stock<(count+cnt)){
 				alert('남은 재고량이 부족합니다!')
 			}else if(stock>count+cnt){
 				fetch('updateCart.do?pno='+pno+'&uno='+${uno}+'&cnt='+count)
