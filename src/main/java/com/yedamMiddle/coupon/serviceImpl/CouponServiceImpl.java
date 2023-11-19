@@ -14,8 +14,8 @@ public class CouponServiceImpl implements CouponService {
 	CouponMapper mapper = sqlSession.getMapper(CouponMapper.class);
 
 	@Override
-	public int newUserCouponInsert(CouponVO vo) {
-		return mapper.newUserCouponInsert(vo);
+	public int newUserCouponInsert(int userNo) {
+		return mapper.newUserCouponInsert(userNo);
 	}
 
 	@Override
@@ -24,8 +24,8 @@ public class CouponServiceImpl implements CouponService {
 	}
 
 	@Override
-	public int userExpireCouponUpdate(CouponVO vo) {
-		return mapper.userExpireCouponUpdate(vo);
+	public int userExpireCouponUpdate() {
+		return mapper.userExpireCouponUpdate();
 	}
 
 	@Override

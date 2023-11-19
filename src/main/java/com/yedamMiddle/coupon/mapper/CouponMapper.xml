@@ -3,7 +3,7 @@
 <mapper namespace="com.yedamMiddle.coupon.mapper.CouponMapper">
 
 <!-- 신규유저 회원가입시 쿠폰 발급 -->
-<insert id="newUserCouponInsert" parameterType="com.yedamMiddle.coupon.service.CouponVO">
+<insert id="newUserCouponInsert" parameterType="int">
 	INSERT INTO COUPON VALUES(seq_coupon.nextval,#{userNo}, '신규유저 가입축하쿠폰', '30', TRUNC(SYSDATE+30),'미사용')
 </insert>
 
@@ -13,7 +13,7 @@
 </insert>
 
 <!-- 기존 유저 로그인 시 쿠폰만료 -->
-<update id="userExpireCouponUpdate" parameterType="com.yedamMiddle.coupon.service.CouponVO">
+<update id="userExpireCouponUpdate">
 	UPDATE COUPON SET coupon_state = '사용기간 만료'
 	WHERE coupon_no IN (SELECT coupon_no FROM COUPON <![CDATA[WHERE end_date < TRUNC(SYSDATE)]]>)
 </update>

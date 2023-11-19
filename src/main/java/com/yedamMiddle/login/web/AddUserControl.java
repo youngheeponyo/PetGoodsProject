@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedamMiddle.common.Command;
 import com.yedamMiddle.common.service.UserVO;
+import com.yedamMiddle.coupon.service.CouponService;
+import com.yedamMiddle.coupon.serviceImpl.CouponServiceImpl;
 import com.yedamMiddle.login.service.LoginService;
 import com.yedamMiddle.login.service.Pwsha256;
 import com.yedamMiddle.login.serviceImpl.LoginServiceImpl;
@@ -45,9 +47,18 @@ public class AddUserControl implements Command {
 		vo.setUserMail(mail);
 		vo.setUserPhone(phone);
 		vo.setUserAddr(addr+" "+detailAddr);
+		
 		if(svc.addUser(vo)) {
 				try {
-					resp.sendRedirect("loginForm.do");
+					//회원가입 시 신규유저축하쿠폰 발급됨
+					CouponService csv = new CouponServiceImpl();
+					UserVO userVo =svc.loginUser(uid, encryPassword);
+					int couponCheck = csv.newUserCouponInsert(userVo.getUserNo());
+					if(couponCheck == 1) {
+						System.out.println("쿠폰발급완료");
+						resp.sendRedirect("loginForm.do");
+					}
+
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

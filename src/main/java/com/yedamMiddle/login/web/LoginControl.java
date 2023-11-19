@@ -8,6 +8,8 @@ import javax.servlet.http.HttpSession;
 
 import com.yedamMiddle.common.Command;
 import com.yedamMiddle.common.service.UserVO;
+import com.yedamMiddle.coupon.service.CouponService;
+import com.yedamMiddle.coupon.serviceImpl.CouponServiceImpl;
 import com.yedamMiddle.login.service.LoginService;
 import com.yedamMiddle.login.service.Pwsha256;
 import com.yedamMiddle.login.serviceImpl.LoginServiceImpl;
@@ -29,6 +31,9 @@ public class LoginControl implements Command {
 			session.setAttribute("uno", vo.getUserNo());	//로그인한 회원번호 기억 후 사용
 			session.setAttribute("permission", vo.getUserPermission());	//사용자 계정으로 로그인했는지 구분하기 위함
 			try {
+				//로그인 시 날짜가 지난 쿠폰 만료적용
+				CouponService csv = new CouponServiceImpl();
+				csv.userExpireCouponUpdate();
 				resp.sendRedirect("main.do");
 			} catch (IOException e) {
 				e.printStackTrace();
