@@ -199,9 +199,9 @@ function functionCart() {
 	.then(resolve=>resolve.json())
 	.then(result=>{
 		if(result.retCode=='OK'){
-			if(stock<(count+cnt)){
+			if(stock<(parseInt(count)+cnt)){
 				alert('남은 재고량이 부족합니다!')
-			}else if(stock>(count+cnt)){
+			}else{
 				fetch('updateCart.do?pno='+pno+'&uno='+${uno}+'&cnt='+count)
 				.then(resolve=>resolve.json())
 				.then(result=>{
@@ -215,9 +215,9 @@ function functionCart() {
 				})
 			}
 		}else{
-			if(stock<=count){
+			if(stock<=parseInt(count)){
 				alert('남은 재고량이 부족합니다!')
-			}else if(stock>count){
+			}else{
 				fetch('addCart.do?pno='+pno+'&uno='+${uno}+'&cnt='+count)
 				.then(resolve=>resolve.json())
 				.then(result=>{
