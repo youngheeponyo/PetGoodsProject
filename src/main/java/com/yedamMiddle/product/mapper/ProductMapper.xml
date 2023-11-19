@@ -160,6 +160,7 @@
             		ORDER BY A.ORDER_DATE DESC
     			) A
     			LEFT JOIN REVIEW B ON A.MER_UID = B.PRODUCT_ORDER_NO AND A.PRODUCT_NO = B.PRODUCT_NO
+    			ORDER BY A.ORDER_DATE DESC
   			]]>
 	</select>
 </mapper>
