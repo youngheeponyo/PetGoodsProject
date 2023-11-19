@@ -26,10 +26,9 @@ public class ProductDetailControl implements Command {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		String path = "product/productDetail.tiles";
 		
-		String pno2 = req.getParameter("pno");
-		int pno = Integer.parseInt(pno2);
+		String pno = req.getParameter("pno");
 		ProductService svc = new ProductServiceImpl();
-		ProductVO vo = svc.productDetail(pno);
+		ProductVO vo = svc.productDetail(Integer.parseInt(pno));
 		req.setAttribute("pno", vo);
 		
 		
@@ -50,9 +49,9 @@ public class ProductDetailControl implements Command {
 			int uNo = (Integer)userNo;
 			List<CartJoinVO> cl = csv.getCart(uNo);
 			session.setAttribute("cl", cl);
-			MyCartVO mvo = csv.cntInCart(pno, uNo);
-			System.out.println("cvo="+mvo);
+			MyCartVO mvo = csv.cntInCart(Integer.parseInt(pno), uNo);
 			req.setAttribute("mvo", mvo);
+
 		}
 		
 		try {

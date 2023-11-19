@@ -190,15 +190,15 @@
 
 <script>
 function functionCart() {
-	let cnt = ${mvo.selectCnt};
 	let pno = ${pno.productNo};
 	let stock = ${pno.productStock};
 	let count = document.getElementById('inputQuantity').value;
-	
+	let cnt = 0;
 	fetch('cartCheck.do?pno='+pno+'&uno='+${uno})
 	.then(resolve=>resolve.json())
 	.then(result=>{
 		if(result.retCode=='OK'){
+			cnt = ${mvo.selectCnt};
 			if(stock<(parseInt(count)+cnt)){
 				alert('남은 재고량이 부족합니다!')
 			}else{
@@ -215,7 +215,7 @@ function functionCart() {
 				})
 			}
 		}else{
-			if(stock<=parseInt(count)){
+			if(stock<parseInt(count)){
 				alert('남은 재고량이 부족합니다!')
 			}else{
 				fetch('addCart.do?pno='+pno+'&uno='+${uno}+'&cnt='+count)

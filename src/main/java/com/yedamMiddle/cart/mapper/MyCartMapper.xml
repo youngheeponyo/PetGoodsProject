@@ -50,7 +50,7 @@
 	</select>
 	
 	<select id="cntInCart" resultType="com.yedamMiddle.cart.service.MyCartVO">
-		select select_cnt from my_cart where product_no=#{productNo} and member_no=#{memberNo}
+		select nvl(max(select_cnt),0) select_cnt from my_cart where product_no=#{productNo} and member_no=#{memberNo}
 	</select>
 
 	</mapper>
