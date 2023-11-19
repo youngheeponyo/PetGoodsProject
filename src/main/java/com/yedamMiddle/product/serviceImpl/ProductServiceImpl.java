@@ -116,4 +116,19 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		return mapper.selectAllMyProductOrderList(userNo);
 	}
+	@Override
+	public List<ProductVO> searchRegistDateDescFromTab(String petType) {
+		// TODO Auto-generated method stub
+		return mapper.selectRegistDateDescFromTab(petType);
+	}
+	@Override
+	public List<ProductVO> searchBestSellProductFromTab(String petType) {
+		// TODO Auto-generated method stub
+		return mapper.selectBestSellProductFromTab(petType);
+	}
+	@Override
+	public List<ProductVO> searchHighStarProductFromTab(String petType) {
+		// TODO Auto-generated method stub
+		return mapper.selectHighStarProductFromTab(petType);
+	}
 }

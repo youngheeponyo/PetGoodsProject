@@ -58,9 +58,18 @@
     			<c:when test="${active eq 'category' }">
     				<a class="page-link" href="categorySearch.do?categoryNo=${categoryNo }&type=${curShowPetType}&page=${curPage - 1}" aria-label="Next">
     			</c:when>
-    			<c:otherwise>
+    			<c:when test="${active eq 'search' }">
     				<a class="page-link" href="productSearch.do?q=${query }&type=${curShowPetType}&page=${curPage - 1}" aria-label="Next">
-    			</c:otherwise>
+    			</c:when>
+    			<c:when test="${active eq 'newProduct' }">
+    				<a class="page-link" href="showNewProduct.do?page=${curPage - 1}" aria-label="Next">
+    			</c:when>
+    			<c:when test="${active eq 'bestSell' }">
+    				<a class="page-link" href="showBestProduct.do?page=${curPage - 1}" aria-label="Next">
+    			</c:when>
+    			<c:when test="${active eq 'highStar' }">
+    				<a class="page-link" href="showRecommendProduct.do?page=${curPage - 1}" aria-label="Next">
+    			</c:when>
     		</c:choose>
         		<span aria-hidden="true">&laquo;</span>
         		<span class="sr-only">Previous</span>
@@ -79,7 +88,7 @@
             		</c:otherwise>
         		</c:choose>
     		</c:when>
-			<c:otherwise>
+    		<c:when test="${active eq 'search' }">
 				<c:choose>
             		<c:when test="${idx == curPage}">
             			<li class="page-item active"><a class="page-link" href="productSearch.do?q=${query }&type=${curShowPetType}&page=${idx}">${idx}</a></li>		
@@ -88,7 +97,37 @@
             			<li class="page-item"><a class="page-link" href="productSearch.do?q=${query }&type=${curShowPetType}&page=${idx}">${idx}</a></li>
             		</c:otherwise>
         		</c:choose>
-			</c:otherwise>
+			</c:when>
+			<c:when test="${active eq 'newProduct' }">
+				<c:choose>
+            		<c:when test="${idx == curPage}">
+            			<li class="page-item active"><a class="page-link" href="showNewProduct.do?page=${idx}">${idx}</a></li>		
+            		</c:when>
+            		<c:otherwise>
+            			<li class="page-item"><a class="page-link" href="showNewProduct.do?page=${idx}">${idx}</a></li>
+            		</c:otherwise>
+        		</c:choose>
+			</c:when>
+			<c:when test="${active eq 'bestSell' }">
+				<c:choose>
+            		<c:when test="${idx == curPage}">
+            			<li class="page-item active"><a class="page-link" href="showBestProduct.do?page=${idx}">${idx}</a></li>		
+            		</c:when>
+            		<c:otherwise>
+            			<li class="page-item"><a class="page-link" href="showBestProduct.do?page=${idx}">${idx}</a></li>
+            		</c:otherwise>
+        		</c:choose>
+    		</c:when>
+    		<c:when test="${active eq 'highStar' }">
+				<c:choose>
+            		<c:when test="${idx == curPage}">
+            			<li class="page-item active"><a class="page-link" href="showRecommendProduct.do?page=${idx}">${idx}</a></li>		
+            		</c:when>
+            		<c:otherwise>
+            			<li class="page-item"><a class="page-link" href="showRecommendProduct.do?page=${idx}">${idx}</a></li>
+            		</c:otherwise>
+        		</c:choose>
+    		</c:when>
 		</c:choose>
 	</c:forEach>
 	<c:if test="${curPage != end and end > 1}">
@@ -97,9 +136,18 @@
     			<c:when test="${active eq 'category' }">
     				<a class="page-link" href="categorySearch.do?categoryNo=${categoryNo }&type=${curShowPetType}&page=${curPage + 1}" aria-label="Next">
     			</c:when>
-    			<c:otherwise>
+    			<c:when test="${active eq 'search' }">
     				<a class="page-link" href="productSearch.do?q=${query }&type=${curShowPetType}&page=${curPage + 1}" aria-label="Next">
-    			</c:otherwise>
+    			</c:when>
+    			<c:when test="${active eq 'newProduct' }">
+    				<a class="page-link" href="showNewProduct.do?page=${curPage + 1}" aria-label="Next">
+    			</c:when>
+    			<c:when test="${active eq 'bestSell' }">
+    				<a class="page-link" href="showBestProduct.do?page=${curPage + 1}" aria-label="Next">
+    			</c:when>
+    			<c:when test="${active eq 'highStar' }">
+    				<a class="page-link" href="showRecommendProduct.do?page=${curPage + 1}" aria-label="Next">
+    			</c:when>
     		</c:choose>
         		<span aria-hidden="true">&raquo;</span>
         		<span class="sr-only">Next</span>

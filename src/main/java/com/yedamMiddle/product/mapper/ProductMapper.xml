@@ -163,4 +163,35 @@
     			ORDER BY A.ORDER_DATE DESC
   			]]>
 	</select>
+	
+	<select id="selectRegistDateDescFromTab" resultType="com.yedamMiddle.product.service.ProductVO" parameterType="String">
+		SELECT *
+               FROM PRODUCT
+               WHERE PET_TYPE = #{petType}
+               ORDER BY PRODUCT_REGIST_DATE DESC
+	</select>
+	<select id="selectBestSellProductFromTab" resultType="com.yedamMiddle.product.service.ProductVO" parameterType="String">
+	SELECT B.*
+    	FROM (
+        	SELECT PRODUCT_NO, COUNT(*) AS CNT
+            	FROM PRODUCT_ORDER
+            	GROUP BY PRODUCT_NO
+    	) A
+    	JOIN PRODUCT B ON A.PRODUCT_NO = B.PRODUCT_NO
+    	WHERE B.PET_TYPE = #{petType}
+    	ORDER BY A.CNT DESC
+	</select>
+	
+	<select id="selectHighStarProductFromTab" resultType="com.yedamMiddle.product.service.ProductVO" parameterType="String">
+		SELECT B.*
+    		FROM (
+        		SELECT PRODUCT_NO, AVG(STAR_CNT) AS AVG_STAR
+            	FROM REVIEW
+            	GROUP BY PRODUCT_NO, STAR_CNT
+    		) A
+    		JOIN PRODUCT B ON A.PRODUCT_NO = B.PRODUCT_NO
+    		WHERE B.PET_TYPE = #{petType}
+    		ORDER BY AVG_STAR DESC
+	</select>
+
 </mapper>
