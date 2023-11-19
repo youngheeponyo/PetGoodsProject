@@ -50,6 +50,9 @@ import com.yedamMiddle.product.web.PaymentCompleteControl;
 import com.yedamMiddle.product.web.PaymentFormControl;
 import com.yedamMiddle.product.web.ProductDetailControl;
 import com.yedamMiddle.product.web.ProductSearchControl;
+import com.yedamMiddle.product.web.ShowBestProductControl;
+import com.yedamMiddle.product.web.ShowNewProductControl;
+import com.yedamMiddle.product.web.ShowRecommendProductControl;
 import com.yedamMiddle.userQna.web.AddQnaControl;
 import com.yedamMiddle.userQna.web.AddQnaFormControl;
 import com.yedamMiddle.userQna.web.DeleteUserQnaControl;
@@ -147,6 +150,9 @@ public class FrontController extends HttpServlet {
       commandByURL.put("/categorySearch.do", new CategorySearchControl()); // 카테고리검색(카테고리바)
       commandByURL.put("/fileUploadTestForm.do", new TestUploadFormControl()); // 테스트 파일업로드
       commandByURL.put("/fileUpload.do", new TestFileUpload());
+      commandByURL.put("/showNewProduct.do", new ShowNewProductControl()); // 신상품(등록일기준)
+      commandByURL.put("/showBestProduct.do", new ShowBestProductControl()); // 베스트상품(판매순)
+      commandByURL.put("/showRecommendProduct.do", new ShowRecommendProductControl()); // 추천상품(리뷰순)
       
       commandByURL.put("/changePetType.do", new ChangePetControl()); // 고양이/강아지 상품 전환
       commandByURL.put("/testCartForm.do", new TestCartFormControl()); // 결제창 구현을 위한 테스트화면
