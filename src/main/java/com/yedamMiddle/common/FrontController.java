@@ -91,7 +91,7 @@ public class FrontController extends HttpServlet {
       commandByURL.put("/deleteUserQna.do", new DeleteUserQnaControl()); //Qna삭제 
       
       //나의쿠폰확인창
-      commandByURL.put("/myCouponList", new MyCouponListForm()); //내 쿠폰 전체보기
+      commandByURL.put("/myCouponList.do", new MyCouponListForm()); //내 쿠폰 전체보기
       
       
       // 김준성
