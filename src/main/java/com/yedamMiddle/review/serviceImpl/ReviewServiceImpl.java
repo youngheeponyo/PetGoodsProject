@@ -17,31 +17,27 @@ public class ReviewServiceImpl implements ReviewService {
 	
 	@Override
 	public List<ReviewVO> selectMyReview(int userNo) {
-		return mapper.selectProductReview(userNo);
+		return mapper.selectMyReview(userNo);
 	}
 
 	@Override
 	public List<ReviewVO> selectProductReview(int productNo) {
-		// TODO Auto-generated method stub
-		return null;
+		return mapper.selectProductReview(productNo);
 	}
 
 	@Override
 	public int insertReview(ReviewVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return mapper.insertReview(vo);
 	}
 
 	@Override
 	public int updateReview(ReviewVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return mapper.updateReview(vo);
 	}
 
 	@Override
 	public int deleteReview(ReviewVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return mapper.deleteReview(vo);
 	}
 
 }

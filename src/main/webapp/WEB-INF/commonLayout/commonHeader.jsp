@@ -99,6 +99,7 @@
 	                        <li class="nav-item"><a class="nav-link" href="showRecommendProduct.do">추천상품</a></li>
                     </ul>
                 <ul class="navbar-nav">
+                	<li class="nav-item"><a class="nav-link" href="myReviewList.do">나의리뷰(임시)</a></li>
                 	<li class="nav-item"><a class="nav-link" href="myCouponList.do">나의쿠폰(임시)</a></li>
                 	<li class="nav-item"><a class="nav-link" aria-current="page" href="noticeList.do">공지사항</a></li>
                     <li class="nav-item"><a class="nav-link" href="getUserQnaAllList.do">고객센터</a></li>

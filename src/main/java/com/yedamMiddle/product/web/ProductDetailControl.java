@@ -16,6 +16,9 @@ import com.yedamMiddle.common.service.CartJoinVO;
 import com.yedamMiddle.product.service.ProductService;
 import com.yedamMiddle.product.service.ProductVO;
 import com.yedamMiddle.product.serviceImpl.ProductServiceImpl;
+import com.yedamMiddle.review.service.ReviewService;
+import com.yedamMiddle.review.service.ReviewVO;
+import com.yedamMiddle.review.serviceImpl.ReviewServiceImpl;
 import com.yedamMiddle.userQna.service.UserQnaService;
 import com.yedamMiddle.userQna.service.UserQnaVO;
 import com.yedamMiddle.userQna.serviceImpl.UserQnaServiceImpl;
@@ -43,6 +46,9 @@ public class ProductDetailControl implements Command {
 		String type = req.getParameter("type");
 		List<ProductVO> clist = svc.categoryList(Integer.parseInt(cno),Integer.parseInt(pno),type);
 		req.setAttribute("clist", clist);
+		
+		ReviewService rvc = new ReviewServiceImpl();
+//		List<ReviewVO> Rlist = rvc.selectProductReview();
 		
 		MyCartService csv = new MyCartServiceImpl();
 		HttpSession session = req.getSession();

@@ -38,4 +38,10 @@ public class CouponServiceImpl implements CouponService {
 		return mapper.userUseCoupon(vo);
 	}
 
+	@Override
+	public List<CouponVO> getNotUseCoupon(int userNo) {
+		// TODO Auto-generated method stub
+		return mapper.selectNotUseCoupon(userNo);
+	}
+
 }

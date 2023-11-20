@@ -42,6 +42,7 @@ import com.yedamMiddle.login.web.LogoutControl;
 import com.yedamMiddle.login.web.updatePwControl;
 import com.yedamMiddle.myPage.web.CouponDetailFormControl;
 import com.yedamMiddle.myPage.web.MyPageControl;
+import com.yedamMiddle.myPage.web.MyProdQnaDetailFormControl;
 import com.yedamMiddle.myPage.web.OrderDetailFormControl;
 import com.yedamMiddle.notice.web.AddNoticeControl;
 import com.yedamMiddle.notice.web.GetNoticeControl;
@@ -57,6 +58,13 @@ import com.yedamMiddle.product.web.ProductSearchControl;
 import com.yedamMiddle.product.web.ShowBestProductControl;
 import com.yedamMiddle.product.web.ShowNewProductControl;
 import com.yedamMiddle.product.web.ShowRecommendProductControl;
+import com.yedamMiddle.review.web.AddReviewControl;
+import com.yedamMiddle.review.web.AddReviewFormControl;
+import com.yedamMiddle.review.web.DeleteReviewControl;
+import com.yedamMiddle.review.web.ModifyReviewControl;
+import com.yedamMiddle.review.web.ModifyReviewFormControl;
+import com.yedamMiddle.review.web.MyReviewListControl;
+import com.yedamMiddle.review.web.ProductReviewListControl;
 import com.yedamMiddle.userQna.web.AddQnaControl;
 import com.yedamMiddle.userQna.web.AddQnaFormControl;
 import com.yedamMiddle.userQna.web.DeleteUserQnaControl;
@@ -95,13 +103,12 @@ public class FrontController extends HttpServlet {
       commandByURL.put("/myCouponList.do", new MyCouponListForm()); //내 쿠폰 전체보기
       
       //리뷰
-//      commandByURL.put("/myReviewList.do", new MyReviewListControl());//나의리뷰목록
-//      commandByURL.put("/productReviewList.do", new ProductReviewListControl());//해당상품리뷰목록
-//      commandByURL.put("/addReviewForm.do", new AddReviewFormControl());//리뷰등록폼
-//      commandByURL.put("/addReview.do", new AddReviewControl());//리뷰등록
-//      commandByURL.put("/modifyReviewForm.do", new ModifyReviewFormControl());//리뷰수정폼
-//      commandByURL.put("/modifyReview.do", new ModifyReviewControl());//리뷰수정
-//      commandByURL.put("/deleteReview.do", new DeleteReviewControl());//리뷰삭제
+      commandByURL.put("/myReviewList.do", new MyReviewListControl());//나의리뷰목록
+      commandByURL.put("/addReviewForm.do", new AddReviewFormControl());//리뷰등록폼
+      commandByURL.put("/addReview.do", new AddReviewControl());//리뷰등록
+      commandByURL.put("/modifyReviewForm.do", new ModifyReviewFormControl());//리뷰수정폼
+      commandByURL.put("/modifyReview.do", new ModifyReviewControl());//리뷰수정
+      commandByURL.put("/deleteReview.do", new DeleteReviewControl());//리뷰삭제
       
       
       
@@ -131,6 +138,7 @@ public class FrontController extends HttpServlet {
       //마이페이지
       commandByURL.put("/myPage.do", new MyPageControl()); //마이페이지
       commandByURL.put("/couponDetailForm.do", new CouponDetailFormControl()); //내 쿠폰
+      commandByURL.put("/myProdQnaDetailForm.do", new MyProdQnaDetailFormControl()); //내 Q&A
       
       
       
@@ -148,7 +156,7 @@ public class FrontController extends HttpServlet {
       commandByURL.put("/delUser.do", new DelUserControl());
       //아이디 중복 체크
       commandByURL.put("/idCheck.do", new IdCheckControl());
-      //상세페이지 보기
+      //상세페이지 보기+문의게시판+상품별리뷰게시판
       commandByURL.put("/detailProduct.do", new ProductDetailControl());
       //장바구니 추가
       commandByURL.put("/addCart.do", new AddCartControl());
