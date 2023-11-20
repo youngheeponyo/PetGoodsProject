@@ -35,4 +35,6 @@ public interface ProductService {
 	public List<ProductVO> searchRegistDateDescFromTab(String petType);
 	public List<ProductVO> searchBestSellProductFromTab(String petType);
 	public List<ProductVO> searchHighStarProductFromTab(String petType);
+	public List<ProductVO> categoryList(int categoryNo,int productNo);
+
 }

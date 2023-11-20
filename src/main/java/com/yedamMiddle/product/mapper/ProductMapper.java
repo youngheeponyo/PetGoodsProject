@@ -37,4 +37,6 @@ public interface ProductMapper {
 	public List<ProductVO> selectRegistDateDescFromTab(String petType);
 	public List<ProductVO> selectBestSellProductFromTab(String petType);
 	public List<ProductVO> selectHighStarProductFromTab(String petType);
+	
+	public List<ProductVO> categoryList(@Param("categoryNo") int categoryNo,@Param("productNo") int productNo);
 }
