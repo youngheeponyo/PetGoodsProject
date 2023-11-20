@@ -52,7 +52,7 @@
 
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
-  	<c:if test="${curPage != start }">
+  	<c:if test="${pagination.prev }">
     	<li class="page-item">
     		<c:choose>
     			<c:when test="${active eq 'category' }">
@@ -130,7 +130,7 @@
     		</c:when>
 		</c:choose>
 	</c:forEach>
-	<c:if test="${curPage != end and end > 1}">
+	<c:if test="${pagination.next}">
     	<li class="page-item">
     		<c:choose>
     			<c:when test="${active eq 'category' }">

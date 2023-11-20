@@ -33,4 +33,9 @@ public class CouponServiceImpl implements CouponService {
 		return mapper.userCouponSelect(vo);
 	}
 
+	@Override
+	public int userUseCoupon(CouponVO vo) {
+		return mapper.userUseCoupon(vo);
+	}
+
 }

@@ -51,7 +51,7 @@
 
 <nav aria-label="Page navigation example">
 	<ul class="pagination justify-content-center">
-		<c:if test="${curPage != start }">
+		<c:if test="${pagination.prev }">
 			<li class="page-item"><a class="page-link"
 				href="orderDetailForm.do?page=${curPage - 1}" aria-label="Next">
 					<span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span>
@@ -69,7 +69,7 @@
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
-		<c:if test="${curPage != end and end > 1}">
+		<c:if test="${pagination.next}">
 			<li class="page-item"><a class="page-link"
 				href="orderDetailForm.do?page=${curPage + 1}"
 				aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span

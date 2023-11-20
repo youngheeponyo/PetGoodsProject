@@ -90,12 +90,12 @@ public class PageDTO {
 		this.boardNo = boardNo;
 		this.total = total;
 
-		this.endPage = (int)Math.ceil(currentPage / 10.0)  * 10;
+		this.endPage = (int)Math.ceil((double)currentPage / 10.0)  * 10;
 		this.startPage = this.endPage - 9;
 		
 		this.endPage = this.endPage > this.lastPage ? this.lastPage : this.endPage;
-		this.prev = this.startPage > 1;
-		this.next = this.endPage < this.lastPage;		
+		this.prev = this.currentPage > 1;
+		this.next = this.currentPage < this.lastPage;		
 	}
 
 	@Override

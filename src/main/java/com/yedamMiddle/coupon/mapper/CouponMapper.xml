@@ -14,8 +14,14 @@
 
 <!-- 기존 유저 로그인 시 쿠폰만료 -->
 <update id="userExpireCouponUpdate">
-	UPDATE COUPON SET coupon_state = '사용기간 만료'
+	UPDATE COUPON SET coupon_state = '기간만료'
 	WHERE coupon_no IN (SELECT coupon_no FROM COUPON <![CDATA[WHERE end_date < TRUNC(SYSDATE)]]>)
+</update>
+
+<!-- 결제창에서 쿠폰 사용 시 쿠폰 사용완료처리 -->
+<update id="userUseCoupon" parameterType="com.yedamMiddle.coupon.service.CouponVO">
+	UPDATE COUPON SET coupon_state = '사용완료'
+	WHERE coupon_no=#{couponNo}
 </update>
 
 <!-- 마이페이지에서 현재 가지고 있는 쿠폰 보기 -->
@@ -23,5 +29,7 @@
 								parameterType="com.yedamMiddle.coupon.service.CouponVO">
 	SELECT * from COUPON where USER_NO=#{userNo}				
 </select>
+
+
 
 </mapper>
