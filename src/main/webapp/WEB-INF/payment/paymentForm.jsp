@@ -7,28 +7,29 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">쿠폰선택</h5>
+        <h5 class="modal-title">쿠폰</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
       </div>
       <div class="modal-body">
       	<!-- 쿠폰연동할 예정 -->
-         <select class="form-select">
-  			<option selected>Open this select menu</option>
-  			<option value="1">One</option>
-  			<option value="2">Two</option>
-  			<option value="3">Three</option>
+         <select class="form-select" id="selectCoupon">
+         	<option selected disabled>쿠폰선택</option>
+  				<c:forEach items="${couponList }" var="coupon">
+  					<option value="${coupon.couponNo }" class="${coupon.discountPct }">${coupon.couponName }</option>
+  				</c:forEach>
 		</select>
       </div>
       <div class="modal-footer">
-      	<button type="button" class="btn btn-primary">쿠폰적용</button>
+      	<c:if test="${couponList.size() > 0 }">
+      		<button type="button" class="btn btn-primary" id="selectCpn" onclick="selectCoupon()" data-dismiss="modal">쿠폰적용</button>
+      	</c:if>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
       </div>
     </div>
   </div>
 </div>  
-
 <div class="container">
 <div class="row g-5">
       <div class="col-md-5 col-lg-4 order-md-last">
@@ -36,7 +37,7 @@
           <span class="text-primary">장바구니</span>
           <span class="badge bg-primary rounded-pill">${allAmount }</span>
         </h4>
-        <ul class="list-group mb-3">
+        <ul class="list-group mb-3" id="pList">
           <c:forEach items="${cartList }" var="cart">
           	<li class="list-group-item d-flex justify-content-between lh-sm">
             	<div>
@@ -57,13 +58,13 @@
           </c:if>
           <li class="list-group-item d-flex justify-content-between">
             <span>총 결제금액</span>
-            <strong>${sumPrice }원</strong>
+            <strong id="priceTag">${sumPrice }원</strong>
           </li>
         </ul>
 
         <form class="card p-2">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="">
+            <input type="text" class="form-control" placeholder="" id="couponNameBox" style="font-size:10px;">
             <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#couponmodal">쿠폰선택</button>
           </div>
         </form>
@@ -183,6 +184,8 @@
 	     })
 	 })()
 	 
+	 let couponNo = -1;
+	 
 	 // submit이면 새로고침되기에 addEventListener방식으로 처리
 	 document.getElementById('paymentBtn').addEventListener('click', (e) => {
 	   e.preventDefault();
@@ -213,7 +216,9 @@
 		   productName = '${cartList[0].productName}';
 	   }
 	   
-	   let allPrice = ${sumPrice};
+	   let allPrice = document.getElementById('priceTag').innerHTML;
+	   allPrice = allPrice.replace('원','');
+	   allPrice = Number(allPrice);
 	   
 	   let choicePg = "";
 	   if(document.getElementById('credit').checked) {
@@ -266,6 +271,9 @@
 	              }
 	              
 	              dataArray.push({name : 'deliveryReq', value: reqString});
+	              if(couponNo >= 0) {
+	            	  dataArray.push({name : 'couponNo', value: couponNo});  
+	              }
 	              
 	              // URLSearchParams 객체 생성
 	              const formData = new URLSearchParams();
@@ -343,4 +351,67 @@
 	 IMP.init("imp46368323");
 	 console.log(new Date().getTime());
    
+	 
+	 function selectCoupon() {
+		let selectCoupon = document.getElementById("selectCoupon");
+		let cpName = selectCoupon.options[selectCoupon.selectedIndex].text;
+		let cpNo = selectCoupon.options[selectCoupon.selectedIndex].value;
+		if(cpNo == "쿠폰선택") {
+			alert('쿠폰을 선택해주세요.')
+			return;
+		}
+		document.getElementById('couponNameBox').value = cpName;
+		couponNo = cpNo;
+		
+		let discountPercent = Number(selectCoupon.options[selectCoupon.selectedIndex].className);
+		// 이미 있는지 체크.
+		let checkNode = document.getElementById('discount');
+		if(checkNode != null) {
+			checkNode.remove();
+		}
+		
+		let len = document.getElementById('pList').children.length;
+		let markNode = document.getElementById('pList').children[len-2];
+		let insertNode;
+		if(document.getElementById('fee') != null)
+			insertNode = document.getElementById('pList').children[len-2];
+		else
+			insertNode = document.getElementById('pList').children[len-1];
+		
+		let parentNode = markNode.parentNode;
+		let newNode = markNode.cloneNode(true);
+		newNode.id = "discount";
+		
+		// 새로들어갈 노드.
+		parentNode.insertBefore(newNode, insertNode);
+		
+		let divTag = document.getElementById('discount').querySelector('div');
+		divTag.className = "text-danger";
+		let spanTag = document.getElementById('discount').querySelector('span');
+		spanTag.className = "text-danger";
+		
+		let h6Tag = divTag.querySelector('h6');
+		h6Tag.id = 'a';
+		h6Tag.innerHTML = "할인금액";
+		
+		let inputTag = divTag.querySelector('input');
+		if(inputTag != null) {
+			inputTag.remove();
+		}
+		
+		// 배송비를 제외한 상품금액에서의 할인을 때린다.
+		let sumPric = ${sumPrice};
+		let originalPrice = Number(sumPric);
+		let fee = 0;
+		if(document.getElementById('fee') != null) {
+			originalPrice -= 2500;
+			fee = 2500;
+		}
+		
+		let disPrice = originalPrice * (discountPercent / 100);
+		spanTag.innerHTML = disPrice + "원";	
+		
+		let finalPrice = originalPrice - disPrice + fee;
+		document.getElementById('priceTag').innerHTML = finalPrice + "원";
+	 }
    </script>
