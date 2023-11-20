@@ -38,7 +38,7 @@
 					<main>
 						<div class="container-fluid px-4">
 							<div class="d-flex justify-content-center">
-								<table class="table w-75">
+								<table class="table w-85">
 									<tr>
 										<th>보유중인 쿠폰</th>
 									</tr>

@@ -40,9 +40,8 @@
 							<div class="px-4 py-1 my-3 text-center">
 								<h2 class="fw-bold mb-3">내 주문내역</h2>
 							</div>
-
 							<div class="d-flex justify-content-center">
-								<table class="table w-50">
+								<table class="table w-85">
 									<thead>
 										<tr>
 											<th scope="col">주문번호</th>
@@ -78,7 +77,6 @@
 									</tbody>
 								</table>
 							</div>
-
 
 							<c:set var="curPage" value="${pagination.currentPage }" />
 							<c:set var="start" value="${pagination.startPage }" />

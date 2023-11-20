@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:choose>
 	<c:when test="${curShowPetType eq 0}">
@@ -92,32 +93,51 @@
 			<table class="table" style="text-align: center">
 				<thead>
 					<tr>
-						<th>글번호</th>
-						<th>제목</th>
-						<th>작성자번호</th>
-						<th>작성일</th>
-						<th>문의상태</th>
+						<th>공개여부</th>
+                   		<th>글번호</th>
+                   		<th>문의정보</th>
+                   		<th>제목</th>
+                   		<th>작성자</th>
+                   		<th>작성일</th>
+                   		<th>문의상태</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach items="${qlist }" var="qvo">
 						<tr>
-							<td>${qvo.qnaNo}</td>
-							<td><a href="getUserQnaList.do?vo=${qvo.qnaNo}">${qvo.title }</a></td>
-							<td>${qvo.userNo }</td>
-							<td><c:choose>
-									<c:when test="${!empty qvo.qnaNo }">
-										<c:choose>
-											<c:when test="${qvo.qnaState==1 }">
-                    						답변완료
-                    					</c:when>
-											<c:otherwise>
-                    						문의대기중
-                    					</c:otherwise>
-										</c:choose>
-									</c:when>
-
-								</c:choose></td>
+							<td>
+							<c:choose>
+                  				<c:when test="${qvo.password==0 }">
+                  					전체공개
+                  				</c:when>
+                  				<c:otherwise>
+                  					비밀글
+                  				</c:otherwise>
+                 			</c:choose>
+							</td>
+							
+							<td class="qnaNocheck">${qvo.qnaNo}</td>
+							<td>${qvo.qnaType }</td>
+							
+							<td class="passcheck" onclick="passCheck('${qvo.password}', '${qvo.qnaNo }')">
+                    				<a href=#>${qvo.title }</a> pw:${qvo.password }
+                    		</td>
+                    		
+							<td>${qvo.nickName }</td>
+                    		<td><fmt:formatDate value ="${qvo.registDate }" pattern="yyyy-MM-dd"></fmt:formatDate></td>
+                    			
+							<td>
+                    			<c:if test="${not empty qvo.qnaNo}">
+	                    				<c:choose>
+	                    					<c:when test="${qvo.qnaState==1 }" >
+	                    						<p style="color: blue;"><b>답변완료</b></p>
+	                    					</c:when>
+	                    					<c:otherwise>
+	                    						<p style="color: red;"><b>문의대기중</b></p>
+	                    					</c:otherwise>
+	                    				</c:choose>
+                    				</c:if>
+                    			</td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -194,7 +214,8 @@
 		</div>
 	</div>
 </section>
-
+<input type="hidden" value="${uno }" id="userSessionNo">
+<input type="hidden" value="${permission }" id="permission">
 <script>
 function functionCart() {
 	let pno = ${pno.productNo};
@@ -239,8 +260,33 @@ function functionCart() {
 			}
 		}
 	})
+}
 
-	
+function passCheck(password, qnaNo){
+	let userSessionNo = document.querySelector("#userSessionNo").value;
+	let permission = document.querySelector("#permission").value;
+	if(userSessionNo == ""){//console.log(typeof userSessionNo); 타입확인
+		alert("로그인을 먼저 해주시기 바랍니다.")
+		window.location.href="loginForm.do";
+		return;
+	}		
+
+	console.log("password :", password,"   qnaNo: ", qnaNo)
+    if(password == "0" || permission == "0"){//패스워드가 없거나 관리자일때
+    	
+    	window.location.href="getUserQnaList.do?qnaNo="+qnaNo;
+    	return;
+    	
+    }else{
+    	let inputPassword = prompt('비밀번호를 입력하세요', '0000');
+    	if(password == inputPassword){
+    		
+    		window.location.href="getUserQnaList.do?qnaNo="+qnaNo+"&password="+password;
+    		return;
+    	}else{
+    		alert("비밀번호가 다릅니다.");
+    	}
+    }
 }
 	
 </script>
