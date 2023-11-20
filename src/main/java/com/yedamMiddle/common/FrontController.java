@@ -1,8 +1,6 @@
 package com.yedamMiddle.common;
 
 import java.io.IOException;
-
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,16 +26,21 @@ import com.yedamMiddle.cart.web.CartCheckControl;
 import com.yedamMiddle.cart.web.MyCartControl;
 import com.yedamMiddle.cart.web.UpdateCartControl;
 import com.yedamMiddle.cart.web.deleteCartControl;
-import com.yedamMiddle.cart.web.productStockControl;
 import com.yedamMiddle.coupon.web.MyCouponListForm;
 import com.yedamMiddle.login.web.AddUserControl;
 import com.yedamMiddle.login.web.AddUserFormControl;
 import com.yedamMiddle.login.web.DelUserControl;
 import com.yedamMiddle.login.web.DelUserFormControl;
+import com.yedamMiddle.login.web.FindControl;
+import com.yedamMiddle.login.web.FindIdControl;
+import com.yedamMiddle.login.web.FindIdFormControl;
+import com.yedamMiddle.login.web.FindPwControl;
+import com.yedamMiddle.login.web.FindPwFormControl;
 import com.yedamMiddle.login.web.IdCheckControl;
 import com.yedamMiddle.login.web.LoginControl;
 import com.yedamMiddle.login.web.LoginFormControl;
 import com.yedamMiddle.login.web.LogoutControl;
+import com.yedamMiddle.login.web.updatePwControl;
 import com.yedamMiddle.myPage.web.CouponDetailFormControl;
 import com.yedamMiddle.myPage.web.MyPageControl;
 import com.yedamMiddle.myPage.web.OrderDetailFormControl;
@@ -166,6 +169,12 @@ public class FrontController extends HttpServlet {
       commandByURL.put("/cartCheck.do", new CartCheckControl());
       //물건 재고량 구하기
       //commandByURL.put("/productStock.do", new productStockControl());
+      //아이디 비밀번호 찾기
+      commandByURL.put("/findIdForm.do", new FindIdFormControl());
+      commandByURL.put("/findId.do", new FindIdControl());
+      commandByURL.put("/findPwForm.do", new FindPwFormControl());
+      commandByURL.put("/findPw.do", new FindPwControl());
+      commandByURL.put("/updatePw.do", new updatePwControl());
       
       // 전민교
       commandByURL.put("/main.do", new MainPageControl()); // 메인페이지
