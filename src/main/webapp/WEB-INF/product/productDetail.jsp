@@ -81,7 +81,7 @@
 		<div id="review">
 			<h2 style="font: bolder; font-size: 30px; text-align: left">구매
 				후기</h2>
-			<h3>구매후기입니다~~~</h3>
+			
 		</div>
 		<hr>
 		

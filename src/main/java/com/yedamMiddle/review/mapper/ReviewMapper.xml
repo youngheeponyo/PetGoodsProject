@@ -5,7 +5,14 @@
 	<!-- 나의 리뷰 가져오기 -->
 	<select id="selectMyReview" resultType="com.yedamMiddle.review.service.ReviewVO"
 								parameterType="int">
-		SELECT * FROM review WHERE user_no=#{userNo}
+		SELECT r.review_no, r.mer_uid, r.content, r.star_cnt, r.review_date, r.review_like_cnt,
+		 		r.product_no, r.user_no, r.review_image, p.product_name, u.nickname
+        from review r 
+        left Join user_tbl u
+        on r.user_no = u.user_no
+        left join product p on r.product_no = p.product_no
+        where r.user_no=#{userNo}
+        
 	</select>
 	
 	<!-- 해당상품의 리뷰 가져오기(제품 상세페이지) -->
