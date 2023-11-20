@@ -8,7 +8,7 @@
 </div>
 
 <div class="d-flex justify-content-center">
-	<table class="table w-50">
+	<table class="table w-75">
 		<thead>
 			<tr>
 				<th scope="col">주문번호</th>
