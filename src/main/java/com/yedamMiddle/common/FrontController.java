@@ -60,7 +60,6 @@ import com.yedamMiddle.product.web.ShowNewProductControl;
 import com.yedamMiddle.product.web.ShowRecommendProductControl;
 import com.yedamMiddle.review.web.AddReviewControl;
 import com.yedamMiddle.review.web.AddReviewFormControl;
-import com.yedamMiddle.review.web.DeleteReviewControl;
 import com.yedamMiddle.review.web.ModifyReviewControl;
 import com.yedamMiddle.review.web.ModifyReviewFormControl;
 import com.yedamMiddle.review.web.ModifyreviewLikeCntControl;
@@ -109,7 +108,6 @@ public class FrontController extends HttpServlet {
       commandByURL.put("/addReview.do", new AddReviewControl());//리뷰등록
       commandByURL.put("/modifyReviewForm.do", new ModifyReviewFormControl());//리뷰수정폼
       commandByURL.put("/modifyReview.do", new ModifyReviewControl());//리뷰수정
-      commandByURL.put("/deleteReview.do", new DeleteReviewControl());//리뷰삭제
       
       
       

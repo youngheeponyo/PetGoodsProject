@@ -57,7 +57,6 @@
                     </table>
                     <div style= text-ailgn:right>
                     <hr>
-                     	 <p><a href="addReview.do">리뷰 작성</a></p>
                     </div>
                 </div>
          </div>
