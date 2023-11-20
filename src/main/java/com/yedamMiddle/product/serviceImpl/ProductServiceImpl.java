@@ -133,7 +133,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
-	public List<ProductVO> categoryList(int categoryNo,int productNo) {
-		return mapper.categoryList(categoryNo,productNo);
+	public List<ProductVO> categoryList(int categoryNo,int productNo,String petType) {
+		return mapper.categoryList(categoryNo,productNo,petType);
 	}
 }

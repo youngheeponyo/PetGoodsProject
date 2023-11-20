@@ -11,14 +11,49 @@
 		<c:set var="petType" value="cat" />
 	</c:otherwise>
 </c:choose>
-
+<head>
+<style>
+	#arrow{
+		position:relative;
+		top:10px;
+		width: 10px;
+		height: 10px;
+		border-top: 2px solid black;
+		border-left: 2px solid black;
+		transform:rotate(45deg);
+		}
+	#text1{
+		position: relative;
+		left: 20px;
+		bottom: 10px;
+		}
+		
+	#btn-back-to-top {
+		  display: none;
+		  position: fixed;
+		  bottom: 20px;
+		  right: 30px;
+		  z-index: 9999;
+		  border: none;
+		  outline: none;
+		  background-color: #555;
+		  color: white;
+		  cursor: pointer;
+		  padding: 15px;
+		  border-radius: 40%;
+	}
+	
+	#btn-back-to-top:hover {
+	  background-color: #333;
+	}
+</style>
+</head>
 <section class="py-5" id="top">
 
 	<div class="container px-4 px-lg-5 my-5">
 		<div class="row gx-4 gx-lg-5 align-items-center">
 			<div class="col-md-6">
-				<img class="card-img-top mb-5 mb-md-0"
-					src="productImage/${petType }/${pno.productImage }" alt="..." />
+				<img class="card-img-top mb-5 mb-md-0" src="productImage/${petType }/${pno.productImage }" alt="..."/>
 			</div>
 			<div class="col-md-6">
 				<h1 class="display-5 fw-bolder">${pno.productName }</h1>
@@ -73,9 +108,9 @@
 				href="#order">취소/교환/반품 안내</a>
 			<hr>
 		</div>
-			<div class="container px-4 px-lg-5 my-5" style="text-align: center" id="detail">
+			<div class="container px-4 px-lg-5 my-5" style="text-align: center " id="detail">
 				<h2 style="font: bolder; font-size: 30px; text-align: left">상품 정보</h2>
-				<img style="width: 50%;" src="productDetailImage/${petType }/${pno.productImage }" alt="" />
+				<img style="width: 50%;" src="productDetailImage/${petType }/${pno.productImage }" alt=""/>
 			</div>
 		<hr>
 		<div id="review">
@@ -153,19 +188,42 @@
 		
 		
 		<div id="order">
-			<h2 style="font: bolder; font-size: 30px; text-align: left">취소/교환/반품
-				안내</h2>
-			<ul id="list">
+			<div id="arrow"></div>
+			<h2 id="text1" onclick="openDiv()" style="font: bolder; font-size: 30px; text-align: left">취소/교환/반품안내</h2>
+			<ul>
 				<li>주문취소는 '입금대기, 입금완료' 단계에서만 가능합니다.</li>
 				<li>주문 내 일부 상품의 부분 취소는 불가능합니다.</li>
 				<li>주문취소는 '마이페이지 > 주문 · 배송 > 주문취소 > 주문 상세 보기' 를 통해 직접 취소하실 수 있습니다.</li>
 				<li>교환 및 반품은 배송 완료일 기준으로 7일 이내 신청 가능합니다.</li>
 				<li>단순변심으로 인한 교환/반품은 고객님께서 배송비를 부담하셔야 합니다.</li>
 			</ul>
+			<ul id="list" style="display:none">
+				<li>제주, 도서산간 지역은 추가 배송비가 발생할 수 있습니다.</li>
+				<li>브랜드배송 상품은 판매자 및 상품에 따라 교환/반품 배송비가 다를 수 있으므로 강아지대통령 고객센터로 문의해 주시기 바랍니다.</li>
+				<li>교환/반품하려는 상품은 처음 배송한 택배사에서 수거하므로 다른 택배사 이용은 불가능합니다.</li>
+				<li>'발송준비중, 발송처리완료' 단계에서는 상품 수령 후 교환 또는 반품만 가능합니다.</li>
+				<li>교환/반품 요청 기간이 지난 경우, 주문제작 상품으로 재판매가 불가능한 경우 교환/반품이 불가능합니다</li>
+			</ul>
+			<a id="btn" type="button" onclick="openDiv()">더보기</a>
+			<a id="close" type="button" onclick="openDiv()" style="display:none;">닫기</a>
 		</div>
-
-		
-		<a href="#top"><button style="float: right; margin: 30px">▲</button></a>
+		<script type="text/javascript">
+		function openDiv() {
+			if(document.getElementById('list').style.display==='none'){
+				document.getElementById('btn').style.display='none'
+				document.getElementById('close').style.display='block'
+				document.getElementById('list').style.display='block'
+				document.getElementById('arrow').style.transform='rotate(-135deg)'
+			}else{
+				document.getElementById('btn').style.display='block'
+				document.getElementById('close').style.display='none'
+				document.getElementById('list').style.display='none'
+				document.getElementById('arrow').style.transform='rotate(45deg)'
+			}
+		}
+		</script>
+		<button onclick="location.href='#'" id="btn-back-to-top" title="위로 가기">▲</button>
+</a>
 	</div>
 </section>
 <!-- Related items section-->
@@ -184,8 +242,14 @@
 						<div class="col mb-5">
 							<div class="card h-100">
 								<!-- Product image-->
-								<img class="card-img-top"
-									src="productImage/${petType }/${cvo.productImage }" alt="..." />
+								<c:choose>
+									<c:when test="${cvo.petType==0 }">
+										<img class="card-img-top" src="productImage/dog/${cvo.productImage }" alt="..." />
+									</c:when>
+									<c:otherwise>
+										<img class="card-img-top" src="productImage/cat/${cvo.productImage }" alt="..." />
+									</c:otherwise>
+								</c:choose>
 								<!-- Product details-->
 								<div class="card-body p-4">
 									<div class="text-center">
@@ -288,5 +352,18 @@ function passCheck(password, qnaNo){
     	}
     }
 }
+
+window.addEventListener('scroll', () => {
+	  // 스크롤 위치가 100px 이상일 때 위로 가기 버튼을 보이게 함
+	  if (
+	    document.body.scrollTop > 100 ||
+	    document.documentElement.scrollTop > 20
+	  ) {
+	    document.getElementById('btn-back-to-top').style.display = 'block';
+	  } else {
+	    document.getElementById('btn-back-to-top').style.display = 'none';
+	  }
+	});
+
 	
 </script>

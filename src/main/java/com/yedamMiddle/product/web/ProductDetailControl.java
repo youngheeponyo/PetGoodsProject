@@ -40,7 +40,8 @@ public class ProductDetailControl implements Command {
 		req.setAttribute("list", list);
 		
 		String cno = req.getParameter("cno");
-		List<ProductVO> clist = svc.categoryList(Integer.parseInt(cno),Integer.parseInt(pno));
+		String type = req.getParameter("type");
+		List<ProductVO> clist = svc.categoryList(Integer.parseInt(cno),Integer.parseInt(pno),type);
 		req.setAttribute("clist", clist);
 		
 		MyCartService csv = new MyCartServiceImpl();
