@@ -41,6 +41,7 @@ import com.yedamMiddle.login.web.LoginControl;
 import com.yedamMiddle.login.web.LoginFormControl;
 import com.yedamMiddle.login.web.LogoutControl;
 import com.yedamMiddle.login.web.updatePwControl;
+import com.yedamMiddle.myPage.web.CouponDetailFormControl;
 import com.yedamMiddle.myPage.web.MyPageControl;
 import com.yedamMiddle.myPage.web.OrderDetailFormControl;
 import com.yedamMiddle.notice.web.AddNoticeControl;
@@ -84,17 +85,25 @@ public class FrontController extends HttpServlet {
       commandByURL.put("/getUserQnaAllList.do", new GetQnaAllListControl());//Qna목록
       commandByURL.put("/getUserQnaList.do", new GetQnaListControl()); //Qna조회
       commandByURL.put("/qnaReply.do", new QnaReplyControl());//Qna관리자 답글달기(수정은 보류)
-      
       commandByURL.put("/addUserQnaForm.do", new AddQnaFormControl());
       commandByURL.put("/getCategoryNoToProductName.do", new getCategoryNoToProductNameContorl());//상품번호로 상품이름 찾기
-      commandByURL.put("/addUserQna.do", new AddQnaControl());//등록보류
-      
+      commandByURL.put("/addUserQna.do", new AddQnaControl());//Qna등록
       commandByURL.put("/modifyUserQnaForm.do", new ModifyUserQnaFormControl());//Qna수정
       commandByURL.put("/modifyUserQna.do", new ModifyUserQnaControl());//Qna수정
       commandByURL.put("/deleteUserQna.do", new DeleteUserQnaControl()); //Qna삭제 
       
       //나의쿠폰확인창
-      commandByURL.put("/myCouponList", new MyCouponListForm()); //내 쿠폰 전체보기
+      commandByURL.put("/myCouponList.do", new MyCouponListForm()); //내 쿠폰 전체보기
+      
+      //리뷰
+//      commandByURL.put("/myReviewList.do", new MyReviewListControl());//나의리뷰목록
+//      commandByURL.put("/productReviewList.do", new ProductReviewListControl());//해당상품리뷰목록
+//      commandByURL.put("/addReviewForm.do", new AddReviewFormControl());//리뷰등록폼
+//      commandByURL.put("/addReview.do", new AddReviewControl());//리뷰등록
+//      commandByURL.put("/modifyReviewForm.do", new ModifyReviewFormControl());//리뷰수정폼
+//      commandByURL.put("/modifyReview.do", new ModifyReviewControl());//리뷰수정
+//      commandByURL.put("/deleteReview.do", new DeleteReviewControl());//리뷰삭제
+      
       
       
       // 김준성
@@ -122,6 +131,7 @@ public class FrontController extends HttpServlet {
       commandByURL.put("/addSubCategory.do", new AddSubCategoryControl()); //서브카테고리추가
       //마이페이지
       commandByURL.put("/myPage.do", new MyPageControl()); //마이페이지
+      commandByURL.put("/couponDetailForm.do", new CouponDetailFormControl()); //내 쿠폰
       
       
       

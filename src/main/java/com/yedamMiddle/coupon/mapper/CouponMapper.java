@@ -16,7 +16,7 @@ public interface CouponMapper {
 	public int userExpireCouponUpdate();
 	
 	//마이페이지에서 현재 가지고 있는 쿠폰 보기
-	public List<CouponVO> userCouponSelect(CouponVO vo); 
+	public List<CouponVO> userCouponSelect(int userNo); 
 	
 	//결제창에서 쿠폰 사용시 쿠폰사용완료
 	public int userUseCoupon(CouponVO vo);
