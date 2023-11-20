@@ -21,7 +21,7 @@
                     			<th>별점</th>
                     			<th>작성자</th>
                     			<th>등록날짜</th>
-                    			<th id="">좋아요</th>
+                    			<th>좋아요</th>
                     		</tr>
                     	</thead>
                     	<tbody>
@@ -35,16 +35,18 @@
 	                    			<td><fmt:formatDate value ="${vo.reviewDate }" pattern="yyyy-MM-dd"></fmt:formatDate></td>
 	                    			<td>${vo.reviewLikeCnt }</td>
 	                    		</tr>
-	                    		<tr><th colspan="6">사진첨부</th></tr>
-	                    			<td colspan="6">
+	                    		<tr><th colspan="3">사진첨부</th>
+	                    		<th colspan="3">내용</th>
+	                    		</tr>
+	                    			<tr>
+	                    				<td colspan="3">
 	                    				<c:choose>
 	                    					<c:when test="${vo.reviewImage eq null }"><p style="color:gray;">사진을 첨부하지 않았습니다<p></c:when>
-	                    					<c:otherwise>${vo.reviewImage }</c:otherwise>
+	                    					<c:otherwise><img style="width:50%" src="reviewImage/${vo.reviewImage }"></c:otherwise>
 	                    				</c:choose>
-	                    			</td>
-	                    		<tr><th colspan="6">내용</th></tr>
-	                    			<td colspan="6">${fn:substring(vo.content,0,10)}···</td>
-	                    		
+	                    				</td>
+	                    				<td colspan="3">${fn:substring(vo.content,0,10)}···</td>
+	                    			</tr>
 	                    		<hr>
 	                    		<br>
                     		</c:forEach>

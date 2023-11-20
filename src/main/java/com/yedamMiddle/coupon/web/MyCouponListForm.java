@@ -19,6 +19,14 @@ public class MyCouponListForm implements Command {
 		HttpSession session = req.getSession();
 		CouponService svc = new CouponServiceImpl();
 		
+		if(session.getAttribute("uno") == null) {
+			try {
+				resp.sendRedirect("loginForm.do");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else {
+		
 		int uno = (int) session.getAttribute("uno");
 		List<CouponVO> list=svc.userCouponSelect(uno);
 		req.setAttribute("list", list);
@@ -28,6 +36,7 @@ public class MyCouponListForm implements Command {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
 	}
 
 }

@@ -261,7 +261,7 @@
 		}
 		</script>
 		<button onclick="location.href='#'" id="btn-back-to-top" title="위로 가기">▲</button>
-</a>
+
 	</div>
 </section>
 <!-- Related items section-->
