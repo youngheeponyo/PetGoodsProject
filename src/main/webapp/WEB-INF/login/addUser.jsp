@@ -199,12 +199,13 @@
 									 var spe = upw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
 
 									 if(upw.length < 8 || upw.length > 20){
-										//document.getElementById('alert').style="display:block";
-									  //alert("8자리 ~ 20자리 이내로 입력해주세요.");
+										 alert('비밀번호 조건을 확인하세요');
 									  return false;
 									 }else if(upw.search(/\s/) != -1){
+										 alert('비밀번호 조건을 확인하세요');
 									  return false;
 									 }else if(num < 0 || eng < 0 || spe < 0 ){
+										 alert('비밀번호 조건을 확인하세요');
 									  return false;
 									 }else {
 										 document.getElementById('alert').style="display:none";

@@ -24,4 +24,16 @@
 	<select id="idCheck" resultType="com.yedamMiddle.common.service.UserVO" parameterType="String">
 		select user_id from user_tbl where user_id=#{userId}
 	</select>
+	<!-- 아이디 찾기 -->
+	<select id="findId" resultType="com.yedamMiddle.common.service.UserVO">
+		select user_id from user_tbl where nickname=#{nickName} and user_phone=#{userPhone}
+	</select>
+	<!-- 비밀번호 찾기 -->
+	<select id="findPw" resultType="com.yedamMiddle.common.service.UserVO">
+		select * from user_tbl where user_id=#{userId} and user_phone=#{userPhone}
+	</select>
+	
+	<update id="updatePw">
+		update user_tbl set user_pw=#{userPw} where user_id=#{userId}
+	</update>
 </mapper>
