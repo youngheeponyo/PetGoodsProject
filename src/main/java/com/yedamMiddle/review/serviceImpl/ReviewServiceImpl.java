@@ -17,7 +17,7 @@ public class ReviewServiceImpl implements ReviewService {
 	
 	@Override
 	public List<ReviewVO> selectMyReview(int userNo) {
-		return mapper.selectProductReview(userNo);
+		return mapper.selectMyReview(userNo);
 	}
 
 	@Override
