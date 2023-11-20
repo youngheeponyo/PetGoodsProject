@@ -14,10 +14,11 @@ import com.yedamMiddle.cart.serviceImpl.MyCartServiceImpl;
 import com.yedamMiddle.common.Command;
 import com.yedamMiddle.common.service.CartJoinVO;
 import com.yedamMiddle.common.service.UserVO;
+import com.yedamMiddle.coupon.service.CouponService;
+import com.yedamMiddle.coupon.service.CouponVO;
+import com.yedamMiddle.coupon.serviceImpl.CouponServiceImpl;
 import com.yedamMiddle.login.service.LoginService;
 import com.yedamMiddle.login.serviceImpl.LoginServiceImpl;
-import com.yedamMiddle.product.service.ProductService;
-import com.yedamMiddle.product.serviceImpl.ProductServiceImpl;
 
 public class PaymentFormControl implements Command {
 
@@ -79,10 +80,14 @@ public class PaymentFormControl implements Command {
 			req.setAttribute("addrFee", "1");		
 		}
 		
+		CouponService cSvc = new CouponServiceImpl();
+		List<CouponVO> couponList = cSvc.getNotUseCoupon(userNo);
+		
 		req.setAttribute("cartList", list);
 		req.setAttribute("sumPrice", sumPrice);
 		req.setAttribute("userInfo", userVO);
 		req.setAttribute("allAmount", allAmount);
+		req.setAttribute("couponList", couponList);
 		try {
 			req.getRequestDispatcher("payment/paymentForm.tiles").forward(req, resp);
 		} catch (ServletException e) {

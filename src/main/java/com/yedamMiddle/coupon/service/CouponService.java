@@ -18,4 +18,6 @@ public interface CouponService {
 	
 	//결제창에서 쿠폰 사용시 쿠폰사용완료
 	public int userUseCoupon(CouponVO vo);
+	
+	public List<CouponVO> getNotUseCoupon(int userNo);
 }

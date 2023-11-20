@@ -3,11 +3,9 @@ package com.yedamMiddle.product.web;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.IntStream;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,6 +23,9 @@ import com.yedamMiddle.common.Command;
 import com.yedamMiddle.common.IamPort;
 import com.yedamMiddle.common.service.CartJoinVO;
 import com.yedamMiddle.common.service.UserVO;
+import com.yedamMiddle.coupon.service.CouponService;
+import com.yedamMiddle.coupon.service.CouponVO;
+import com.yedamMiddle.coupon.serviceImpl.CouponServiceImpl;
 import com.yedamMiddle.login.service.LoginService;
 import com.yedamMiddle.login.serviceImpl.LoginServiceImpl;
 import com.yedamMiddle.product.service.ProductOrderVO;
@@ -116,6 +117,12 @@ public class PaymentCompleteControl implements Command {
 
 		String fee = req.getParameter("fee");
 		String deliveryReq = req.getParameter("deliveryReq");
+		String coupon = req.getParameter("couponNo");
+		
+		int couponNo = -1;
+		if(coupon != null) {
+			couponNo = Integer.parseInt(coupon);
+		}
 
 		int[] productNos = Arrays.stream(proNos).mapToInt(Integer::parseInt).toArray();
 		ProductService svc = new ProductServiceImpl();
@@ -150,6 +157,30 @@ public class PaymentCompleteControl implements Command {
 		int addrFee = 0;
 		if (fee != null) {
 			addrFee = Integer.parseInt(fee);
+		}
+		
+		// 할인된 금액 적용.
+		if(couponNo >= 0 ) {
+			CouponService cSvc = new CouponServiceImpl();
+			List<CouponVO> couponList = cSvc.userCouponSelect(userInfo.getUserNo());
+			CouponVO findCoupon = null;
+			for(CouponVO vo : couponList) {
+				if(couponNo == vo.getCouponNo()) {
+					findCoupon = vo;
+					break;
+				}
+			}
+			
+			if(findCoupon == null || !findCoupon.getCouponState().equals("미사용")) {
+				System.out.println("쿠폰데이터가 없거나, 이미 사용한 쿠폰");
+				return null;
+			}
+			
+			int discount = (int)((realAllProductPrice) * ((double)findCoupon.getDiscountPct() / 100));
+			System.out.println("할인금액 : " + discount);
+			realAllProductPrice -= discount;
+			
+			int a = cSvc.userUseCoupon(findCoupon);
 		}
 
 		realAllProductPrice += addrFee; // 배송비 추가.
