@@ -6,7 +6,8 @@
 	<select id="selectMyReview" resultType="com.yedamMiddle.review.service.ReviewVO"
 								parameterType="int">
 		SELECT r.review_no, r.mer_uid, r.content, r.star_cnt, r.review_date, r.review_like_cnt,
-		 		r.product_no, r.user_no, r.review_image, p.product_name, u.nickname
+		 		r.review_image, r.product_no, r.user_no, r.review_image,
+		 		 p.product_name, u.nickname
         from review r 
         left Join user_tbl u
         on r.user_no = u.user_no

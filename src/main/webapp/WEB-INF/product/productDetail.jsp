@@ -78,10 +78,47 @@
 				<img style="width: 50%;" src="productDetailImage/${petType }/${pno.productImage }" alt="" />
 			</div>
 		<hr>
+	<!--리뷰게시판 건들인 부분 -->
 		<div id="review">
 			<h2 style="font: bolder; font-size: 30px; text-align: left">구매
 				후기</h2>
-			
+			<table class = "table" style= text-align:center>
+                    	<thead >
+                    		<tr style=text-align:center>
+                    			<th>리뷰번호</th>
+                    			<th>별점</th>
+                    			<th>작성자</th>
+                    			<th>등록날짜</th>
+                    			<th id="heart"><button type="submit" value="">좋아요</button></th>
+                    		</tr>
+                    	</thead>
+                    	<tbody>
+                    		<c:forEach items="${list }" var="vo">
+                    			<c:set var="i" value="${i+1 }"/>
+	                    		<tr>
+	                    			<td>${i }</td>
+	                    			<td>${vo.starCnt }</td>
+	                    			<td>${vo.nickName }</td>
+	                    			<td><fmt:formatDate value ="${vo.reviewDate }" pattern="yyyy-MM-dd"></fmt:formatDate></td>
+	                    			<td>${vo.reviewLikeCnt }</td>
+	                    		</tr>
+	                    		<tr><th colspan="6">사진첨부</th></tr>
+	                    			<td colspan="6">
+	                    				<c:choose>
+	                    					<c:when test="${vo.reviewImage eq null }"><p style="color:gray;">사진을 첨부하지 않았습니다<p></c:when>
+	                    					<c:otherwise>${vo.reviewImage }</c:otherwise>
+	                    				</c:choose>
+	                    			</td>
+	                    		<tr><th colspan="6">내용</th></tr>
+	                    			<td colspan="6">${fn:substring(vo.content,0,10)}···</td>
+	                    		
+	                    		<hr>
+	                    		<br>
+                    		</c:forEach>
+                    		
+                    	</tbody>
+                    </table>
+		<!--여기까지 -->
 		</div>
 		<hr>
 		
@@ -288,5 +325,9 @@ function passCheck(password, qnaNo){
     	}
     }
 }
+
+document.getElementById("heart").addEventListener("click", function(e){
+	
+})
 	
 </script>
