@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <section class="pt-2 pb-4">
 	<div class="container px-4 px-lg-5 mt-3">
 		<div class="container-fluid px-4">
-
 			<div id="layoutSidenav">
 				<!-- menu attribute-->
 				<div id="layoutSidenav_nav" style="z-index: 0">
@@ -37,24 +37,68 @@
 				<div id="layoutSidenav_content">
 					<main>
 						<div class="container-fluid px-4">
-							<table class="table">
-								<thead>
+							<div class="d-flex justify-content-center">
+								<table class="table w-75">
 									<tr>
-										<th>만료예정쿠폰</th>
+										<th>보유중인 쿠폰</th>
 									</tr>
 									<tr>
-										<td>일주일이하인쿠폰</td>
+										<th>쿠폰명</th>
+										<th>할인률</th>
+										<th>만료일</th>
+										<th>쿠폰사용여부</th>
 									</tr>
 									<tr>
-										<th>현재 보유중인 쿠폰</th>
-									</tr>
-									<tr>
-										<td>{}장</td>
+										<c:forEach items="${list }" var="list">
+											<tr>
+												<td>${list.couponName }</td>
+												<td>${list.discountPct }</td>
+												<td><fmt:formatDate value="${list.endDate}"
+														pattern="yyyy-MM-dd"></fmt:formatDate></td>
+												<td>${list.couponState }</td>
+											</tr>
+										</c:forEach>
 									</tr>
 
-								</thead>
-							</table>
+								</table>
+							</div>
+							<c:set var="curPage" value="${pagination.currentPage }" />
+							<c:set var="start" value="${pagination.startPage }" />
+							<c:set var="end" value="${pagination.endPage }" />
+
+							<nav aria-label="Page navigation example">
+								<ul class="pagination justify-content-center">
+									<c:if test="${pagination.prev }">
+										<li class="page-item"><a class="page-link"
+											href="couponDetailForm.do?page=${curPage - 1}"
+											aria-label="Next"> <span aria-hidden="true">&laquo;</span>
+												<span class="sr-only">Previous</span>
+										</a></li>
+									</c:if>
+									<c:forEach var="idx" begin="${start }" end="${end }" step="1">
+										<c:choose>
+											<c:when test="${idx == curPage}">
+												<li class="page-item active"><a class="page-link"
+													href="couponDetailForm.do?page=${idx}">${idx}</a></li>
+											</c:when>
+											<c:otherwise>
+												<li class="page-item"><a class="page-link"
+													href="couponDetailForm.do?page=${idx}">${idx}</a></li>
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
+									<c:if test="${pagination.next}">
+										<li class="page-item"><a class="page-link"
+											href="couponDetailForm.do?page=${curPage + 1}"
+											aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+												<span class="sr-only">Next</span>
+										</a></li>
+									</c:if>
+								</ul>
+							</nav>
+
 						</div>
+
 					</main>
 				</div>
 			</div>

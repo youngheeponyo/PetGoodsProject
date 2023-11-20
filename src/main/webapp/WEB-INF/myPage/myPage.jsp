@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <section class="pt-2 pb-4">
 	<div class="container px-4 px-lg-5 mt-3">
@@ -31,7 +32,26 @@
 							</button>
 						</div>
 						<div class="card-body">
-							<h3>만료일가까운순</h3>
+							<div class="d-flex justify-content-center">
+							<table class="table w-75">
+								<tr>
+									<th colspan="4">만료예정쿠폰</th>
+								</tr>
+								<tr>
+									<th>쿠폰명</th>
+									<th>할인률</th>
+									<th>만료일</th>
+								</tr>
+								<c:forEach items="${endList }" var="end">
+									<tr>
+										<td>${end.couponName }</td>
+										<td>${end.discountPct }</td>
+										<td><fmt:formatDate value="${end.endDate}"
+												pattern="yyyy-MM-dd"></fmt:formatDate></td>
+									</tr>
+								</c:forEach>
+							</table>
+							</div>
 						</div>
 					</div>
 				</div>
