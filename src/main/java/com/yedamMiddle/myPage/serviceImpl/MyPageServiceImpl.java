@@ -8,6 +8,7 @@ import com.yedamMiddle.common.Mybatis;
 import com.yedamMiddle.coupon.service.CouponVO;
 import com.yedamMiddle.myPage.mapper.MyPageMapper;
 import com.yedamMiddle.myPage.service.MyPageService;
+import com.yedamMiddle.userQna.service.UserQnaVO;
 
 public class MyPageServiceImpl implements MyPageService{
 	SqlSession sql = Mybatis.getInstance().openSession(true);
@@ -22,6 +23,16 @@ public class MyPageServiceImpl implements MyPageService{
 	@Override
 	public List<CouponVO> couponList(int userNo) {
 		return mapper.couponList(userNo);
+	}
+
+	@Override
+	public List<UserQnaVO> recentQnaList(int userNo) {
+		return mapper.recentQnaList(userNo);
+	}
+
+	@Override
+	public List<UserQnaVO> qnaList(int userNo) {
+		return mapper.qnaList(userNo);
 	}
 
 }

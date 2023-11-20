@@ -32,7 +32,8 @@
 						<td>${nno.noticeView }</td>
 					</tr>
 					<tr>
-						<td colspan="4" align="center"><c:choose>
+						<td colspan="4" align="center">
+							<c:choose>
 								<c:when test="${uno == 0 && permission == 0}">
 									<input type="submit" value="수정" class="btn btn-primary">
 									<input type="button" value="삭제"

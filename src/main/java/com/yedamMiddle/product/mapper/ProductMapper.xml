@@ -195,7 +195,7 @@
 	</select>
 	
 	<select id="categoryList" resultType="com.yedamMiddle.product.service.ProductVO">
-		SELECT * FROM PRODUCT WHERE CATEGORY_NO=#{categoryNo} AND NOT PRODUCT_NO IN #{productNo}
+		SELECT * FROM PRODUCT WHERE CATEGORY_NO=#{categoryNo} AND NOT PRODUCT_NO IN #{productNo} and pet_type=#{petType}
 	</select>
 
 </mapper>

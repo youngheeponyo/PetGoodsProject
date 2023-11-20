@@ -173,10 +173,7 @@
 			border: none;
 		}
 	</style>
-
-
 </head>
-
 <body>
 	<section class="cart">
 		<div class="cart__information">
@@ -213,9 +210,17 @@
 											value=${vo.productPrice*vo.selCnt } onclick="checkfunction()"></td>
 									<td><input type="checkbox" id="pno" name="pno" value=${vo.productNo }
 											style="display:none"></td>
-									<td><a href="detailProduct.do?pno=${vo.productNo }"><img
-												src="productImage/dog/${vo.productName }.png" alt=""></a></td>
-									<td><a href="detailProduct.do?pno=${vo.productNo }">${vo.productName }</a><span
+									<td><a href="detailProduct.do?pno=${vo.productNo }&cno=${vo.categoryNo}&type=${vo.petType}">
+										<c:choose>
+											<c:when test="${vo.petType==0}">
+													<img src="productImage/dog/${vo.productName }.png" alt="">
+											</c:when>
+											<c:otherwise>	
+													<img src="productImage/cat/${vo.productName }.png" alt="">
+											</c:otherwise>
+										</c:choose>
+									</a></td>
+									<td><a href="detailProduct.do?pno=${vo.productNo }&cno=${vo.categoryNo}&type=${vo.petType}">${vo.productName }</a><span
 											class="cart__list__smartstore"> 스마트스토어</span>
 										<br>
 										<span class="price">${vo.productPrice }원</span>
