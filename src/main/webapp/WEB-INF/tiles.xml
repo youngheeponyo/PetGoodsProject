@@ -143,5 +143,19 @@
   <definition name="WILDCARD:coupon/*" extends="CouponPage">
   	<put-attribute name="commonGridBody" value="/WEB-INF/coupon/{1}.jsp" />
   </definition>
+  
+  <definition name="ReviewPage" template="/WEB-INF/commonLayout/commonTemplate.jsp">
+    <put-attribute name="title" value="나의쿠폰" />
+    <put-attribute name="commonHeader" value="/WEB-INF/commonLayout/commonHeader.jsp" />
+    <put-attribute name="commonBanner" value="/WEB-INF/commonLayout/commonBanner.jsp" />
+    <put-attribute name="commonMenu" value="/WEB-INF/commonLayout/commonMenu.jsp" />
+    <put-attribute name="commonGridBody" value="/WEB-INF/commonLayout/commonGridBody.jsp" />
+    <put-attribute name="commonFooter" value="/WEB-INF/commonLayout/commonFooter.jsp" />
+  </definition>
+  
+  <definition name="WILDCARD:review/*" extends="ReviewPage">
+  	<put-attribute name="commonGridBody" value="/WEB-INF/review/{1}.jsp" />
+  </definition>
+  
 
 </tiles-definitions>

@@ -12,5 +12,7 @@ public class ReviewVO {
 	private int productNo;
 	private int UserNo;
 	private String reviewImage;
+	private String nickName;
+	private String productName;
 	
 }
