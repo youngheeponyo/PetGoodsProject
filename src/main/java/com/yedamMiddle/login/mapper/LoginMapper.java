@@ -15,4 +15,7 @@ public interface LoginMapper {
 	public List<UserVO> list();
 	public UserVO getUser(int userNo);
 	public UserVO idCheck(String userId);
+	public UserVO findId(@Param("nickName") String nickName, @Param("userPhone")String userPhone);
+	public UserVO findPw(@Param("userId") String userId, @Param("userPhone")String userPhone);
+	public int updatePw(@Param("userPw")String userPw,@Param("userId") String userId);
 }

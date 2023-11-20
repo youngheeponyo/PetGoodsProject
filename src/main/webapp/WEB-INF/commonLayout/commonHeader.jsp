@@ -13,11 +13,11 @@
                 
                 <c:choose>
                 	<c:when test="${curShowPetType eq '0'}">
-                		<a class="navbar-brand mr-0" href="main.do">마이디어 독</a>
+                		<a class="navbar-brand mr-0" href="main.do" style="font-family: 'Single Day', cursive;font-size:28px;font-weight:bold;color:#f0768b">디어마이 독</a>
                 		<img class ="mr-3" src="commonResource/image/mainIcon/dogIcon.png" alt="dog" style="width:40px;height:40px;">
                 	</c:when>
                 	<c:otherwise>
-                		<a class="navbar-brand mr-0" href="main.do">마이디어 캣</a>
+                		<a class="navbar-brand mr-0" href="main.do" style="font-family: 'Single Day', cursive;font-size:28px;font-weight:bold;color:#f0768b">디어마이 캣</a>
                 		<img class ="mr-3" src="commonResource/image/mainIcon/catIcon.png" alt="cat" style="width:40px;height:40px;">
                 	</c:otherwise>
                 </c:choose>
@@ -94,11 +94,10 @@
                                 </c:forEach>
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link" aria-current="page" href="showNewProduct.do">신상품</a></li>
+                        	<li class="nav-item"><a class="nav-link" aria-current="page" href="showNewProduct.do">신상품</a></li>
 	                        <li class="nav-item"><a class="nav-link" href="showBestProduct.do">베스트상품</a></li>
 	                        <li class="nav-item"><a class="nav-link" href="showRecommendProduct.do">추천상품</a></li>
                     </ul>
-                
                 <ul class="navbar-nav">
                 	<li class="nav-item"><a class="nav-link" href="myCouponList.do">나의쿠폰(임시)</a></li>
                 	<li class="nav-item"><a class="nav-link" aria-current="page" href="noticeList.do">공지사항</a></li>

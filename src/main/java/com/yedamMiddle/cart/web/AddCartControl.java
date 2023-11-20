@@ -30,14 +30,10 @@ public class AddCartControl implements Command {
 		vo.setProductNo(Integer.parseInt(pno));
 		vo.setSelectCnt(Integer.parseInt(cnt));
 		
-		//String result = "{\"retCode\":\"OK\"}";
 		String result = "";
 		if(svc.addCart(vo)) {
-			//req.setAttribute("retCode", "OK");
-			//req.setAttribute("vo", vo);
 			result = "{\"retCode\":\"OK\"}";
 		}else {
-			//req.setAttribute("retCode", "NG");
 			result = "{\"retCode\":\"NG\"}";
 		}
 		

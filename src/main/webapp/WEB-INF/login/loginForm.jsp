@@ -46,7 +46,7 @@
 		<div class="container">
 			<div class="input-form-backgroud row">
 				<div class="input-form col-md-12 mx-auto">
-					<h4 class="mb-3" style="text-align: center;font-size:50px;color:pink">My Dear Pet</h4>
+					<h4 class="mb-3" style="text-align: center;font-size:50px;color:pink">Dear My Pet</h4>
 						<div class="row">
 							<div class="mb-3">
 								<label for="name">아이디</label> <input type="text"
@@ -64,11 +64,12 @@
 							<input class="btn btn-primary btn-lg btn-block" type="submit" value="로그인" style="background-color:pink;border:1px white;width:200px;margin:auto;">
 							<input class="btn btn-primary btn-lg btn-block" type="button" value="회원가입" style="background-color:pink;border:1px white;width:200px;margin:auto" onclick="location.href='addUserForm.do'">
 							<a id="kakao-login-btn"><img src="https://developers.kakao.com/tool/resource/static/img/button/login/full/ko/kakao_login_medium_narrow.png" style="width:200px;height:46px;margin:20px auto;text-align:center;"></a>
+							<div style="text-align:center">
+								<a style="font-size:14px;color:black;" href="findIdForm.do">아이디 찾기</a>
+								<a style="font-size:14px;color:black;" href="findPwForm.do">/ 비밀번호 찾기</a>
+							</div>
 						</div>
 					<!-- 카카오로그인 -->
-
-						
-
 	            	<script src = "https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 	            	<script type='text/javascript'>
 	            	console.log(${list})

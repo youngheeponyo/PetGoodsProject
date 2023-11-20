@@ -1,8 +1,6 @@
 package com.yedamMiddle.common;
 
 import java.io.IOException;
-
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,16 +26,21 @@ import com.yedamMiddle.cart.web.CartCheckControl;
 import com.yedamMiddle.cart.web.MyCartControl;
 import com.yedamMiddle.cart.web.UpdateCartControl;
 import com.yedamMiddle.cart.web.deleteCartControl;
-import com.yedamMiddle.cart.web.productStockControl;
 import com.yedamMiddle.coupon.web.MyCouponListForm;
 import com.yedamMiddle.login.web.AddUserControl;
 import com.yedamMiddle.login.web.AddUserFormControl;
 import com.yedamMiddle.login.web.DelUserControl;
 import com.yedamMiddle.login.web.DelUserFormControl;
+import com.yedamMiddle.login.web.FindControl;
+import com.yedamMiddle.login.web.FindIdControl;
+import com.yedamMiddle.login.web.FindIdFormControl;
+import com.yedamMiddle.login.web.FindPwControl;
+import com.yedamMiddle.login.web.FindPwFormControl;
 import com.yedamMiddle.login.web.IdCheckControl;
 import com.yedamMiddle.login.web.LoginControl;
 import com.yedamMiddle.login.web.LoginFormControl;
 import com.yedamMiddle.login.web.LogoutControl;
+import com.yedamMiddle.login.web.updatePwControl;
 import com.yedamMiddle.myPage.web.CouponDetailFormControl;
 import com.yedamMiddle.myPage.web.MyPageControl;
 import com.yedamMiddle.myPage.web.OrderDetailFormControl;
@@ -55,6 +58,13 @@ import com.yedamMiddle.product.web.ProductSearchControl;
 import com.yedamMiddle.product.web.ShowBestProductControl;
 import com.yedamMiddle.product.web.ShowNewProductControl;
 import com.yedamMiddle.product.web.ShowRecommendProductControl;
+import com.yedamMiddle.review.web.AddReviewControl;
+import com.yedamMiddle.review.web.AddReviewFormControl;
+import com.yedamMiddle.review.web.DeleteReviewControl;
+import com.yedamMiddle.review.web.ModifyReviewControl;
+import com.yedamMiddle.review.web.ModifyReviewFormControl;
+import com.yedamMiddle.review.web.MyReviewListControl;
+import com.yedamMiddle.review.web.ProductReviewListControl;
 import com.yedamMiddle.userQna.web.AddQnaControl;
 import com.yedamMiddle.userQna.web.AddQnaFormControl;
 import com.yedamMiddle.userQna.web.DeleteUserQnaControl;
@@ -82,17 +92,25 @@ public class FrontController extends HttpServlet {
       commandByURL.put("/getUserQnaAllList.do", new GetQnaAllListControl());//Qna목록
       commandByURL.put("/getUserQnaList.do", new GetQnaListControl()); //Qna조회
       commandByURL.put("/qnaReply.do", new QnaReplyControl());//Qna관리자 답글달기(수정은 보류)
-      
       commandByURL.put("/addUserQnaForm.do", new AddQnaFormControl());
       commandByURL.put("/getCategoryNoToProductName.do", new getCategoryNoToProductNameContorl());//상품번호로 상품이름 찾기
-      commandByURL.put("/addUserQna.do", new AddQnaControl());//등록보류
-      
+      commandByURL.put("/addUserQna.do", new AddQnaControl());//Qna등록
       commandByURL.put("/modifyUserQnaForm.do", new ModifyUserQnaFormControl());//Qna수정
       commandByURL.put("/modifyUserQna.do", new ModifyUserQnaControl());//Qna수정
       commandByURL.put("/deleteUserQna.do", new DeleteUserQnaControl()); //Qna삭제 
       
       //나의쿠폰확인창
       commandByURL.put("/myCouponList.do", new MyCouponListForm()); //내 쿠폰 전체보기
+      
+      //리뷰
+      commandByURL.put("/myReviewList.do", new MyReviewListControl());//나의리뷰목록
+      commandByURL.put("/productReviewList.do", new ProductReviewListControl());//해당상품리뷰목록
+      commandByURL.put("/addReviewForm.do", new AddReviewFormControl());//리뷰등록폼
+      commandByURL.put("/addReview.do", new AddReviewControl());//리뷰등록
+      commandByURL.put("/modifyReviewForm.do", new ModifyReviewFormControl());//리뷰수정폼
+      commandByURL.put("/modifyReview.do", new ModifyReviewControl());//리뷰수정
+      commandByURL.put("/deleteReview.do", new DeleteReviewControl());//리뷰삭제
+      
       
       
       // 김준성
@@ -151,6 +169,12 @@ public class FrontController extends HttpServlet {
       commandByURL.put("/cartCheck.do", new CartCheckControl());
       //물건 재고량 구하기
       //commandByURL.put("/productStock.do", new productStockControl());
+      //아이디 비밀번호 찾기
+      commandByURL.put("/findIdForm.do", new FindIdFormControl());
+      commandByURL.put("/findId.do", new FindIdControl());
+      commandByURL.put("/findPwForm.do", new FindPwFormControl());
+      commandByURL.put("/findPw.do", new FindPwControl());
+      commandByURL.put("/updatePw.do", new updatePwControl());
       
       // 전민교
       commandByURL.put("/main.do", new MainPageControl()); // 메인페이지

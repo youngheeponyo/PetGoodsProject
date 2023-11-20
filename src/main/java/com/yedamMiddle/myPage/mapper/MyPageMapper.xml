@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "mybatis-3-mapper.dtd">
+<mapper namespace="com.yedamMiddle.myPage.mapper.MyPageMapper">
+
+	<select id="endCouponList" resultType="com.yedamMiddle.coupon.service.CouponVO">
+		<![CDATA[
+		select * from coupon 
+		where user_no=#{userNo} and end_date-sysdate<=7 and coupon_state='사용전'
+		]]>
+	</select>
+	
+	<select id="couponList" parameterType="int" resultType="com.yedamMiddle.coupon.service.CouponVO">
+		select * from coupon where user_no=#{userNo} order by end_date, coupon_state
+	</select>
+
+
+</mapper>
