@@ -121,32 +121,37 @@
                        <thead >
                           <tr style=text-align:center>
                              <th>리뷰번호</th>
+                             <th>상품이름</th>
                              <th>별점</th>
                              <th>작성자</th>
                              <th>등록날짜</th>
-                             <th id="heart"><button type="submit" value="">좋아요</button></th>
+                             <th>좋아요</th>
                           </tr>
                        </thead>
                        <tbody>
-                          <c:forEach items="${list }" var="vo">
+                          <c:forEach items="${Rlist }" var="review">
                              <c:set var="i" value="${i+1 }"/>
                              <tr>
                                 <td>${i }</td>
-                                <td>${vo.starCnt }</td>
-                                <td>${vo.nickName }</td>
-                                <td><fmt:formatDate value ="${vo.reviewDate }" pattern="yyyy-MM-dd"></fmt:formatDate></td>
-                                <td>${vo.reviewLikeCnt }</td>
+                                <td>${review.productName }</td>
+                                <td>${review.starCnt }</td>
+                                <td>${review.nickName }</td>
+                                <td><fmt:formatDate value ="${review.reviewDate }" pattern="yyyy-MM-dd"></fmt:formatDate></td>
+                                <td><input class="heart"type="button" data-reviewNo="${review.reviewNo }" 
+                                	data-userNo="${review.userNo }" data-reviewLikeCnt="${review.reviewLikeCnt}" value="${review.reviewLikeCnt }">❤</td>
                              </tr>
-                             <tr><th colspan="6">사진첨부</th></tr>
-                                <td colspan="6">
-                                   <c:choose>
-                                      <c:when test="${vo.reviewImage eq null }"><p style="color:gray;">사진을 첨부하지 않았습니다<p></c:when>
-                                      <c:otherwise>${vo.reviewImage }</c:otherwise>
-                                   </c:choose>
-                                </td>
-                             <tr><th colspan="6">내용</th></tr>
-                                <td colspan="6">${fn:substring(vo.content,0,10)}···</td>
-                             
+                             <tr><th colspan="3">사진첨부</th>
+	                    		<th colspan="3">내용</th>
+	                    		</tr>
+	                    			<tr>
+	                    				<td colspan="3">
+	                    				<c:choose>
+	                    					<c:when test="${review.reviewImage eq null }"><p style="color:gray;">사진을 첨부하지 않았습니다<p></c:when>
+	                    					<c:otherwise><img style="width:50%" src="reviewImage/${review.reviewImage }"></c:otherwise>
+	                    				</c:choose>
+	                    				</td>
+	                    				<td colspan="3">${fn:substring(review.content,0,10)}···</td>
+	                    			</tr>
                              <hr>
                              <br>
                           </c:forEach>
@@ -392,9 +397,20 @@ function passCheck(password, qnaNo){
 }
 
 //리뷰
-document.getElementById("heart").addEventListener("click", function(e){
-	   
+//클래스가 heart인 애들을 다 찾아서 각 클릭이벤트를 넣어주겠다.
+document.querySelectorAll(".heart").forEach(item => {
+	item.addEventListener("click", function(e){
+		console.log("this : ", this.dataset['reviewno'], this.dataset['userno'])
+		console.log("this data-reviewLikeCnt : ", this.dataset['reviewLikeCnt'])
+		fetch("modifyreviewLikeCnt.do?reviewno="+this.dataset['reviewno']+"&userno="+this.dataset['userno'] + "&reviewLikeCnt=" + this.dataset['reviewLikeCnt'])
+		   .then(resolve => resolve.json())
+		   .then(result =>{
+			   console.log(result);
+		   })
+	})
 })
+	   
+
 
 
 window.addEventListener('scroll', () => {

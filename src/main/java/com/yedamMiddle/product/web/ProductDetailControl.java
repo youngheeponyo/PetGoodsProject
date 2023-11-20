@@ -47,8 +47,13 @@ public class ProductDetailControl implements Command {
 		List<ProductVO> clist = svc.categoryList(Integer.parseInt(cno),Integer.parseInt(pno),type);
 		req.setAttribute("clist", clist);
 		
+		//리뷰자료
 		ReviewService rvc = new ReviewServiceImpl();
-//		List<ReviewVO> Rlist = rvc.selectProductReview();
+		List<ReviewVO> Rlist = rvc.selectProductReview(Integer.parseInt(pno));
+		req.setAttribute("Rlist", Rlist);
+		System.out.println("Rlist ="+ Rlist);
+		System.out.println("pno ="+ pno);
+
 		
 		MyCartService csv = new MyCartServiceImpl();
 		HttpSession session = req.getSession();

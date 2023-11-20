@@ -40,4 +40,9 @@ public class ReviewServiceImpl implements ReviewService {
 		return mapper.deleteReview(vo);
 	}
 
+	@Override
+	public int updateReviewLikeCnt(ReviewVO vo) {
+		return mapper.updateReviewLikeCnt(vo);
+	}
+
 }

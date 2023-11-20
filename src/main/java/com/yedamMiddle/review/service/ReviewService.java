@@ -18,5 +18,8 @@ public interface ReviewService {
 	
 	//리뷰삭제
 	public int deleteReview(ReviewVO vo);
+	
+	//좋아요 수 증가
+	public int updateReviewLikeCnt(ReviewVO vo);
 
 }
