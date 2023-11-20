@@ -39,6 +39,10 @@ public class ProductDetailControl implements Command {
 		List<ProductVO> list = svc.productList();
 		req.setAttribute("list", list);
 		
+		String cno = req.getParameter("cno");
+		List<ProductVO> clist = svc.categoryList(Integer.parseInt(cno),Integer.parseInt(pno));
+		req.setAttribute("clist", clist);
+		
 		MyCartService csv = new MyCartServiceImpl();
 		HttpSession session = req.getSession();
 		Object userNo = session.getAttribute("uno");

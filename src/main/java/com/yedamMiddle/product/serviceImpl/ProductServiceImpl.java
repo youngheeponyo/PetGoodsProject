@@ -131,4 +131,9 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		return mapper.selectHighStarProductFromTab(petType);
 	}
+	
+	@Override
+	public List<ProductVO> categoryList(int categoryNo,int productNo) {
+		return mapper.categoryList(categoryNo,productNo);
+	}
 }

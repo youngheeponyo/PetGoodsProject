@@ -29,6 +29,7 @@ import com.yedamMiddle.cart.web.MyCartControl;
 import com.yedamMiddle.cart.web.UpdateCartControl;
 import com.yedamMiddle.cart.web.deleteCartControl;
 import com.yedamMiddle.cart.web.productStockControl;
+import com.yedamMiddle.coupon.web.MyCouponListForm;
 import com.yedamMiddle.login.web.AddUserControl;
 import com.yedamMiddle.login.web.AddUserFormControl;
 import com.yedamMiddle.login.web.DelUserControl;
@@ -77,6 +78,7 @@ public class FrontController extends HttpServlet {
       // map에 command추가할 때 옆에 기능 주석적어주세요.
       
       // 김은별
+	  //문의게시판
       commandByURL.put("/getUserQnaAllList.do", new GetQnaAllListControl());//Qna목록
       commandByURL.put("/getUserQnaList.do", new GetQnaListControl()); //Qna조회
       commandByURL.put("/qnaReply.do", new QnaReplyControl());//Qna관리자 답글달기(수정은 보류)
@@ -87,7 +89,11 @@ public class FrontController extends HttpServlet {
       
       commandByURL.put("/modifyUserQnaForm.do", new ModifyUserQnaFormControl());//Qna수정
       commandByURL.put("/modifyUserQna.do", new ModifyUserQnaControl());//Qna수정
-      commandByURL.put("/deleteUserQna.do", new DeleteUserQnaControl()); //Qna삭제      
+      commandByURL.put("/deleteUserQna.do", new DeleteUserQnaControl()); //Qna삭제 
+      
+      //나의쿠폰확인창
+      commandByURL.put("/myCouponList", new MyCouponListForm()); //내 쿠폰 전체보기
+      
       
       // 김준성
       //공지사항 게시판

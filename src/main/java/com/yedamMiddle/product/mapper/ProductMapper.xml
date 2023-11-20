@@ -159,7 +159,7 @@
             		GROUP BY A.MER_UID, B.PRODUCT_NAME, B.PRODUCT_NO, A.ORDER_DATE, B.PRODUCT_PRICE
             		ORDER BY A.ORDER_DATE DESC
     			) A
-    			LEFT JOIN REVIEW B ON A.MER_UID = B.PRODUCT_ORDER_NO AND A.PRODUCT_NO = B.PRODUCT_NO
+    			LEFT JOIN REVIEW B ON A.MER_UID = B.MER_UID AND A.PRODUCT_NO = B.PRODUCT_NO
     			ORDER BY A.ORDER_DATE DESC
   			]]>
 	</select>
@@ -192,6 +192,10 @@
     		JOIN PRODUCT B ON A.PRODUCT_NO = B.PRODUCT_NO
     		WHERE B.PET_TYPE = #{petType}
     		ORDER BY AVG_STAR DESC
+	</select>
+	
+	<select id="categoryList" resultType="com.yedamMiddle.product.service.ProductVO">
+		SELECT * FROM PRODUCT WHERE CATEGORY_NO=#{categoryNo} AND NOT PRODUCT_NO IN #{productNo}
 	</select>
 
 </mapper>
