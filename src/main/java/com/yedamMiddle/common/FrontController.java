@@ -38,6 +38,7 @@ import com.yedamMiddle.login.web.IdCheckControl;
 import com.yedamMiddle.login.web.LoginControl;
 import com.yedamMiddle.login.web.LoginFormControl;
 import com.yedamMiddle.login.web.LogoutControl;
+import com.yedamMiddle.myPage.web.CouponDetailFormControl;
 import com.yedamMiddle.myPage.web.MyPageControl;
 import com.yedamMiddle.myPage.web.OrderDetailFormControl;
 import com.yedamMiddle.notice.web.AddNoticeControl;
@@ -91,7 +92,7 @@ public class FrontController extends HttpServlet {
       commandByURL.put("/deleteUserQna.do", new DeleteUserQnaControl()); //Qna삭제 
       
       //나의쿠폰확인창
-      commandByURL.put("/myCouponList", new MyCouponListForm()); //내 쿠폰 전체보기
+      commandByURL.put("/myCouponList.do", new MyCouponListForm()); //내 쿠폰 전체보기
       
       
       // 김준성
@@ -119,6 +120,7 @@ public class FrontController extends HttpServlet {
       commandByURL.put("/addSubCategory.do", new AddSubCategoryControl()); //서브카테고리추가
       //마이페이지
       commandByURL.put("/myPage.do", new MyPageControl()); //마이페이지
+      commandByURL.put("/couponDetailForm.do", new CouponDetailFormControl()); //내 쿠폰
       
       
       

@@ -29,8 +29,8 @@ public class CouponServiceImpl implements CouponService {
 	}
 
 	@Override
-	public List<CouponVO> userCouponSelect(CouponVO vo) {
-		return mapper.userCouponSelect(vo);
+	public List<CouponVO> userCouponSelect(int userNo) {
+		return mapper.userCouponSelect(userNo);
 	}
 
 	@Override
