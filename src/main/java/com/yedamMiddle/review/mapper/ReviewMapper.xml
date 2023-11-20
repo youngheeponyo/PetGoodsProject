@@ -12,6 +12,7 @@
         on r.user_no = u.user_no
         left join product p on r.product_no = p.product_no
         where r.user_no=#{userNo}
+        
 	</select>
 	
 	<!-- 해당상품의 리뷰 가져오기(제품 상세페이지) -->
