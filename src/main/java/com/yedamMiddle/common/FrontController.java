@@ -40,6 +40,7 @@ import com.yedamMiddle.login.web.LoginFormControl;
 import com.yedamMiddle.login.web.LogoutControl;
 import com.yedamMiddle.myPage.web.CouponDetailFormControl;
 import com.yedamMiddle.myPage.web.MyPageControl;
+import com.yedamMiddle.myPage.web.MyProdQnaDetailFormControl;
 import com.yedamMiddle.myPage.web.OrderDetailFormControl;
 import com.yedamMiddle.notice.web.AddNoticeControl;
 import com.yedamMiddle.notice.web.GetNoticeControl;
@@ -121,6 +122,7 @@ public class FrontController extends HttpServlet {
       //마이페이지
       commandByURL.put("/myPage.do", new MyPageControl()); //마이페이지
       commandByURL.put("/couponDetailForm.do", new CouponDetailFormControl()); //내 쿠폰
+      commandByURL.put("/myProdQnaDetailForm.do", new MyProdQnaDetailFormControl()); //내 Q&A
       
       
       

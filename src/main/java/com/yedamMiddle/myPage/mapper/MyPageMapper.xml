@@ -2,15 +2,33 @@
 <!DOCTYPE mapper SYSTEM "mybatis-3-mapper.dtd">
 <mapper namespace="com.yedamMiddle.myPage.mapper.MyPageMapper">
 
-	<select id="endCouponList" resultType="com.yedamMiddle.coupon.service.CouponVO">
+	<select id="endCouponList" parameterType="int" resultType="com.yedamMiddle.coupon.service.CouponVO">
 		<![CDATA[
-		select * from coupon 
-		where user_no=#{userNo} and end_date-sysdate<=7 and coupon_state='사용전'
+		SELECT * FROM (SELECT * FROM COUPON 
+                   	WHERE USER_NO=#{userNo} AND 
+                    END_DATE-SYSDATE<=7 AND 
+                    COUPON_STATE='사용전' 
+                    ORDER BY END_DATE, COUPON_STATE)
+		WHERE ROWNUM <=3
 		]]>
 	</select>
 	
 	<select id="couponList" parameterType="int" resultType="com.yedamMiddle.coupon.service.CouponVO">
-		select * from coupon where user_no=#{userNo} order by end_date, coupon_state
+		SELECT * FROM COUPON WHERE USER_NO=#{userNo} ORDER BY END_DATE, COUPON_STATE
+	</select>
+	
+	<select id="recentQnaList" parameterType="int" resultType="com.yedamMiddle.userQna.service.UserQnaVO">
+		<![CDATA[
+		select * from (select * from userqna 
+                    where user_no=0 
+                    and qna_state = 0
+                    order by regist_date)
+		where rownum <=3
+		]]>
+	</select>
+	
+	<select id="qnaList" parameterType="int" resultType="com.yedamMiddle.userQna.service.UserQnaVO">
+		SELECT * FROM USERQNA WHERE USER_NO=#{userNo} ORDER BY REGIST_DATE DESC
 	</select>
 
 

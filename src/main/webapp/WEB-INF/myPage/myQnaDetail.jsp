@@ -13,7 +13,6 @@
 						id="sidenavAccordion">
 						<div class="sb-sidenav-menu">
 							<div class="nav">
-								
 								<a class="nav-link" href="orderDetailForm.do">
 									<div class="sb-nav-link-icon">
 										<i class="fas fa-tachometer-alt"></i>
@@ -22,7 +21,7 @@
 									<div class="sb-nav-link-icon">
 										<i class="fas fa-chart-area"></i>
 									</div> 내 쿠폰
-								</a> <a class="nav-link" href="tables.html">
+								</a> <a class="nav-link" href="myProdQnaDetailForm.do">
 									<div class="sb-nav-link-icon">
 										<i class="fas fa-table"></i>
 									</div> 상품문의
@@ -41,25 +40,42 @@
 							<div class="d-flex justify-content-center">
 								<table class="table w-85">
 									<tr>
-										<th>보유중인 쿠폰</th>
+										<th>QNA 내역</th>
 									</tr>
-									<tr>
-										<th>쿠폰명</th>
-										<th>할인률</th>
-										<th>만료일</th>
-										<th>쿠폰사용여부</th>
-									</tr>
-									<tr>
-										<c:forEach items="${list }" var="list">
+									<c:choose>
+										<c:when test="${!empty list }">
 											<tr>
-												<td>${list.couponName }</td>
-												<td>${list.discountPct }</td>
-												<td><fmt:formatDate value="${list.endDate}"
-														pattern="yyyy-MM-dd"></fmt:formatDate></td>
-												<td>${list.couponState }</td>
+												<th>문의타입</th>
+												<th>상품번호</th>
+												<th>제목</th>
+												<th>작성일</th>
+												<th>답변상태</th>
 											</tr>
-										</c:forEach>
-									</tr>
+											<tr>
+												<c:forEach items="${list }" var="list">
+													<tr>
+														<td>${list.qnaType }</td>
+														<td>${list.productNo }</td>
+														<td>${list.title }</td>
+														<td><fmt:formatDate value="${list.registDate}"
+																pattern="yyyy-MM-dd"></fmt:formatDate></td>
+														<c:choose>
+															<c:when test="${list.qnaState == 0 }">
+																<td>답변대기</td>
+															</c:when>
+															<c:otherwise>
+																<td>답변완료</td>
+															</c:otherwise>
+														</c:choose>
+													</tr>
+												</c:forEach>
+											</tr>
+										</c:when>
+										
+										<c:otherwise>
+											<td>작성한 문의가 없습니다</td>
+										</c:otherwise>
+									</c:choose>
 
 								</table>
 							</div>
@@ -71,7 +87,7 @@
 								<ul class="pagination justify-content-center">
 									<c:if test="${pagination.prev }">
 										<li class="page-item"><a class="page-link"
-											href="couponDetailForm.do?page=${curPage - 1}"
+											href="myProdQnaDetailForm.do?page=${curPage - 1}"
 											aria-label="Next"> <span aria-hidden="true">&laquo;</span>
 												<span class="sr-only">Previous</span>
 										</a></li>
@@ -80,17 +96,17 @@
 										<c:choose>
 											<c:when test="${idx == curPage}">
 												<li class="page-item active"><a class="page-link"
-													href="couponDetailForm.do?page=${idx}">${idx}</a></li>
+													href="myProdQnaDetailForm.do?page=${idx}">${idx}</a></li>
 											</c:when>
 											<c:otherwise>
 												<li class="page-item"><a class="page-link"
-													href="couponDetailForm.do?page=${idx}">${idx}</a></li>
+													href="myProdQnaDetailForm.do?page=${idx}">${idx}</a></li>
 											</c:otherwise>
 										</c:choose>
 									</c:forEach>
 									<c:if test="${pagination.next}">
 										<li class="page-item"><a class="page-link"
-											href="couponDetailForm.do?page=${curPage + 1}"
+											href="myProdQnaDetailForm.do?page=${curPage + 1}"
 											aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 												<span class="sr-only">Next</span>
 										</a></li>

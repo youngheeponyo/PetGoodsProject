@@ -28,29 +28,30 @@
 							<i class="bi bi-ticket-perforated"></i> 보유중인쿠폰
 							<button type="button" class="btn btn-outline-secondary"
 								style="float: right;">
-								<a href="couponDetailForm.do" style="color: gray;">더보기</a>
+								<a href="couponDetailForm.do" style="color: black;">더보기</a>
 							</button>
 						</div>
 						<div class="card-body">
 							<div class="d-flex justify-content-center">
-							<table class="table w-75">
-								<tr>
-									<th colspan="4">만료예정쿠폰</th>
-								</tr>
-								<tr>
-									<th>쿠폰명</th>
-									<th>할인률</th>
-									<th>만료일</th>
-								</tr>
-								<c:forEach items="${endList }" var="end">
-									<tr>
-										<td>${end.couponName }</td>
-										<td>${end.discountPct }</td>
-										<td><fmt:formatDate value="${end.endDate}"
-												pattern="yyyy-MM-dd"></fmt:formatDate></td>
-									</tr>
-								</c:forEach>
-							</table>
+								<table class="table w-85">
+									<c:choose>
+								<c:when test="${!empty endList}">
+									<c:forEach items="${endList }" var="end">
+										<tr>
+											<td>${end.couponName }</td>
+											<td>${end.discountPct }</td>
+											<td style="text-align:center;"><fmt:formatDate value="${end.endDate}"
+													pattern="yyyy-MM-dd  "></fmt:formatDate></td>
+											<td style="text-align:center; color:red; font-weight:bold;">만료예정</td>
+										</tr>
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+								<tr><td>만료예정인 쿠폰이 없습니다.</td></tr>
+								<tr><td>더보기를 눌러 보유쿠폰을 확인해주세요</td></tr>
+								</c:otherwise>
+							</c:choose>
+								</table>
 							</div>
 						</div>
 					</div>
@@ -62,10 +63,43 @@
 						<div class="card-header">
 							<i class="bi bi-box-seam"></i> 상품문의
 							<button type="button" class="btn btn-outline-secondary"
-								style="float: right;">더보기</button>
+								style="float: right;">
+								<a href="myProdQnaDetailForm.do" style="color: black;">더보기</a>
+							</button>
 						</div>
 						<div class="card-body">
-							<h3>최근상품문의내역</h3>
+							<div class="d-flex justify-content-center">
+								<table class="table w-85">
+									<c:choose>
+										<c:when test="${!empty qnaList}">
+											<tr>
+												<c:forEach items="${qnaList }" var="qnaList">
+													<tr>
+														<td>${qnaList.qnaType }</td>
+														<td>${qnaList.productNo }</td>
+														<td>${qnaList.title }</td>
+														<td><fmt:formatDate value="${qnaList.registDate}"
+																pattern="yyyy-MM-dd"></fmt:formatDate></td>
+														<c:choose>
+															<c:when test="${qnaList.qnaState == 0 }">
+																<td>답변대기</td>
+															</c:when>
+															<c:otherwise>
+																<td>답변완료</td>
+															</c:otherwise>
+														</c:choose>
+													</tr>
+												</c:forEach>
+											</tr>
+										</c:when>
+										<c:otherwise>
+											<tr>
+												<th>최근 작성한 문의글이 없습니다.</th>
+											</tr>
+										</c:otherwise>
+									</c:choose>
+								</table>
+							</div>
 						</div>
 					</div>
 				</div>
