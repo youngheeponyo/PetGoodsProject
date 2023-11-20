@@ -12,8 +12,8 @@
                     <h3 class="mt-4" style= text-align:center>문의사항</h3>
                     <br>
                     <hr>
-<!--                     <table class = "table" style= text-align:center> -->
-                    <table id="datatablesSimple" style=text-align:center>
+                    <table class = "table" style= text-align:center>
+<!--                     <table id="datatablesSimple" style=text-align:center> -->
                     	<thead >
                     		<tr style=text-align:center>
                     			<th>공개여부</th>
