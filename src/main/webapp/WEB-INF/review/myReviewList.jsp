@@ -16,7 +16,7 @@
 <!--                     <table id="datatablesSimple" style=text-align:center> -->
                     	<thead >
                     		<tr style=text-align:center>
-                    			<th>리뷰번호<th>
+                    			<th>리뷰번호</th>
                     			<th>상품이름</th>
                     			<th>별점</th>
                     			<th>내용</th>

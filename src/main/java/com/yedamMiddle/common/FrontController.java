@@ -104,7 +104,6 @@ public class FrontController extends HttpServlet {
       
       //리뷰
       commandByURL.put("/myReviewList.do", new MyReviewListControl());//나의리뷰목록
-      commandByURL.put("/productReviewList.do", new ProductReviewListControl());//해당상품리뷰목록
       commandByURL.put("/addReviewForm.do", new AddReviewFormControl());//리뷰등록폼
       commandByURL.put("/addReview.do", new AddReviewControl());//리뷰등록
       commandByURL.put("/modifyReviewForm.do", new ModifyReviewFormControl());//리뷰수정폼
@@ -156,7 +155,7 @@ public class FrontController extends HttpServlet {
       commandByURL.put("/delUser.do", new DelUserControl());
       //아이디 중복 체크
       commandByURL.put("/idCheck.do", new IdCheckControl());
-      //상세페이지 보기
+      //상세페이지 보기+문의게시판+상품별리뷰게시판
       commandByURL.put("/detailProduct.do", new ProductDetailControl());
       //장바구니 추가
       commandByURL.put("/addCart.do", new AddCartControl());
