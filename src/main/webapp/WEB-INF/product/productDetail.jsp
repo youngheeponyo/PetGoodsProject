@@ -255,6 +255,8 @@
 					</tr>
 				</thead>
 				<tbody>
+				<c:choose>
+		          <c:when test="${not empty Rlist }">
 					<c:forEach items="${qlist }" var="qvo">
 						<tr>
 							<td>
@@ -292,6 +294,11 @@
                     			</td>
 						</tr>
 					</c:forEach>
+				</c:when>
+				<c:otherwise>
+					<tr><td style=color:gray; colspan="7">아직 작성된 문의가 없습니다.</td></tr>
+				</c:otherwise>
+				</c:choose>
 				</tbody>
 			</table>
 			 <p><input type="submit" value="문의글 작성" >
