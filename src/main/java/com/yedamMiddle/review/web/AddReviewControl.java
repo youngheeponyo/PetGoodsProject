@@ -41,6 +41,7 @@ public class AddReviewControl implements Command {
 		String nickName= mr.getParameter("nickName");//작성자
 		String img=mr.getFilesystemName("img");//사진
 		String content= mr.getParameter("content");//내용
+		String merUid = mr.getParameter("merUid");//구매번호
 		
 		
 		System.out.println("productNo = "+ productNo);
@@ -50,6 +51,7 @@ public class AddReviewControl implements Command {
 		System.out.println("nickName = "+ nickName);
 		System.out.println("img = "+ img);
 		System.out.println("content = "+ content);
+		System.out.println("merUid = "+ merUid);
 		
 		ReviewVO reviewVo = new ReviewVO();
 		
@@ -60,11 +62,12 @@ public class AddReviewControl implements Command {
 		reviewVo.setProductName(productName);
 		reviewVo.setUserNo(Integer.parseInt(userNo));
 		reviewVo.setProductNo(Integer.parseInt(productNo));
+		reviewVo.setMerUid(Long.parseLong(merUid));
 		
 		ReviewService svc = new ReviewServiceImpl();
 		if(svc.insertReview(reviewVo) == 1) {
 			try {
-				resp.sendRedirect("myReviewList.do");
+				resp.sendRedirect("myReviewDetailForm.do");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
