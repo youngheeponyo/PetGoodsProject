@@ -19,7 +19,7 @@
 	<!-- 해당상품의 리뷰 가져오기(제품 상세페이지) -->
 	<select id="selectProductReview" resultType="com.yedamMiddle.review.service.ReviewVO"
 								parameterType="int">
-		SELECT r.review_no, r.mer_uid, r.content, r.star_cnt, r.review_date, r.review_like_cnt,
+		SELECT r.review_no, r.mer_uid, r.content, r.star_cnt, r.review_date,r.review_like_cnt,
 		 		r.review_image, r.product_no, r.user_no,
 		 		 p.product_name, u.nickname
         from review r 

@@ -20,27 +20,55 @@
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                 <c:forEach items="${searchList }" var="product">
-					<div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Product image-->
-                            <div class="hoverImg">
-                            	<img class="card-img-top" src="productImage/${petType }/${product.productImage}" alt="..." style="object-fit: cover; height: 268px;" />
-                            </div>
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">${product.productName }</h5>
-                                    <!-- Product price-->
-                                    ${product.productPrice }원
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="detailProduct.do?pno=${product.productNo }&cno=${product.categoryNo}&type=${product.petType}">상세보기</a></div>
-                            </div>
-                        </div>
-                    </div>
+                <c:choose>
+                	<c:when test="${product.productStock==0 }">
+                		<div class="col mb-5">
+	                        <div class="card h-100">
+	                            <!-- Product image-->
+	                            <div class="hoverImg">
+	                            	<img class="card-img-top" src="productImage/${petType }/${product.productImage}" alt="..." style="object-fit: cover; height: 268px;opacity:0.5;" />
+	                            	<h3 style="color:red;position:absolute;top:30%;left:50%;transform: translate(-50%, -50%);">품절</h3>
+	                            </div>
+	                            <!-- Product details-->
+	                            <div class="card-body p-4">
+	                                <div class="text-center">
+	                                    <!-- Product name-->
+	                                    <h5 class="fw-bolder">${product.productName }</h5>
+	                                    <!-- Product price-->
+	                                    ${product.productPrice }원
+	                                </div>
+	                            </div>
+	                            <!-- Product actions-->
+	                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+	                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="detailProduct.do?pno=${product.productNo }&cno=${product.categoryNo}&type=${product.petType}">상세보기</a></div>
+	                            </div>
+	                        </div>
+	                    </div>
+                	</c:when>
+                	<c:otherwise>
+						<div class="col mb-5">
+	                        <div class="card h-100">
+	                            <!-- Product image-->
+	                            <div class="hoverImg">
+	                            	<img class="card-img-top" src="productImage/${petType }/${product.productImage}" alt="..." style="object-fit: cover; height: 268px;" />
+	                            </div>
+	                            <!-- Product details-->
+	                            <div class="card-body p-4">
+	                                <div class="text-center">
+	                                    <!-- Product name-->
+	                                    <h5 class="fw-bolder">${product.productName }</h5>
+	                                    <!-- Product price-->
+	                                    ${product.productPrice }원
+	                                </div>
+	                            </div>
+	                            <!-- Product actions-->
+	                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+	                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="detailProduct.do?pno=${product.productNo }&cno=${product.categoryNo}&type=${product.petType}">상세보기</a></div>
+	                            </div>
+	                        </div>
+	                    </div>
+                	</c:otherwise>
+                </c:choose>
 				</c:forEach>
                 </div>
             </div>
