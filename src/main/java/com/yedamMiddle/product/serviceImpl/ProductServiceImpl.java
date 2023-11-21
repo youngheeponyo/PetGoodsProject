@@ -7,12 +7,12 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.yedamMiddle.common.ApiInfoVO;
 import com.yedamMiddle.common.Mybatis;
-import com.yedamMiddle.common.service.CartJoinVO;
 import com.yedamMiddle.common.service.CategoryJoinVO;
 import com.yedamMiddle.common.service.CategoryVO;
 import com.yedamMiddle.product.mapper.ProductMapper;
 import com.yedamMiddle.product.service.ProductOrderJoinVO;
 import com.yedamMiddle.product.service.ProductOrderVO;
+import com.yedamMiddle.product.service.ProductReviewJoinVO;
 import com.yedamMiddle.product.service.ProductService;
 import com.yedamMiddle.product.service.ProductVO;
 
@@ -24,12 +24,12 @@ public class ProductServiceImpl implements ProductService {
 		return mapper.getCategoryList();
 	}
 	@Override
-	public List<ProductVO> searchProductList(String query, String type, int page) {
+	public List<ProductReviewJoinVO> searchProductList(String query, String type, int page) {
 		// TODO Auto-generated method stub
 		return mapper.searchProductList(query, type, page);
 	}
 	@Override
-	public List<ProductVO> searchCategory(int categoryNo, String type, int page) {
+	public List<ProductReviewJoinVO> searchCategory(int categoryNo, String type, int page) {
 		// TODO Auto-generated method stub
 		return mapper.searchCategory(categoryNo, type, page);
 	}
@@ -92,17 +92,17 @@ public class ProductServiceImpl implements ProductService {
 		return mapper.selectProductOrder(productNos, merUid, userNo);
 	}
 	@Override
-	public List<ProductVO> searchRegistDateDescFromMain(String petType) {
+	public List<ProductReviewJoinVO> searchRegistDateDescFromMain(String petType) {
 		// TODO Auto-generated method stub
 		return mapper.selectRegistDateDescFromMain(petType);
 	}
 	@Override
-	public List<ProductVO> searchReviewDescFromMain(String petType) {
+	public List<ProductReviewJoinVO> searchReviewDescFromMain(String petType) {
 		// TODO Auto-generated method stub
 		return mapper.selectReviewDescFromMain(petType);
 	}
 	@Override
-	public List<ProductVO> searchStarCntDescFromMain(String petType) {
+	public List<ProductReviewJoinVO> searchStarCntDescFromMain(String petType) {
 		// TODO Auto-generated method stub
 		return mapper.selectStarCntDescFromMain(petType);
 	}
@@ -117,17 +117,17 @@ public class ProductServiceImpl implements ProductService {
 		return mapper.selectAllMyProductOrderList(userNo);
 	}
 	@Override
-	public List<ProductVO> searchRegistDateDescFromTab(String petType) {
+	public List<ProductReviewJoinVO> searchRegistDateDescFromTab(String petType) {
 		// TODO Auto-generated method stub
 		return mapper.selectRegistDateDescFromTab(petType);
 	}
 	@Override
-	public List<ProductVO> searchBestSellProductFromTab(String petType) {
+	public List<ProductReviewJoinVO> searchBestSellProductFromTab(String petType) {
 		// TODO Auto-generated method stub
 		return mapper.selectBestSellProductFromTab(petType);
 	}
 	@Override
-	public List<ProductVO> searchHighStarProductFromTab(String petType) {
+	public List<ProductReviewJoinVO> searchHighStarProductFromTab(String petType) {
 		// TODO Auto-generated method stub
 		return mapper.selectHighStarProductFromTab(petType);
 	}

@@ -44,9 +44,16 @@ public class ProductDetailControl implements Command {
 		
 		String cno = req.getParameter("cno");
 		String type = req.getParameter("type");
-		List<ProductVO> clist = svc.categoryList(Integer.parseInt(cno),Integer.parseInt(pno),type);
-		req.setAttribute("clist", clist);
 		
+		List<ProductVO> clist = null;
+		if(cno != null) {
+			clist = svc.categoryList(Integer.parseInt(cno),Integer.parseInt(pno),type);
+		}
+		else {
+			clist = svc.categoryList(vo.getCategoryNo(), Integer.parseInt(pno), type);
+		}
+			
+		req.setAttribute("clist", clist);
 		//리뷰자료
 		ReviewService rvc = new ReviewServiceImpl();
 		List<ReviewVO> Rlist = rvc.selectProductReview(Integer.parseInt(pno));

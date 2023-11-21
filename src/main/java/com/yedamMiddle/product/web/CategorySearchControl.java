@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedamMiddle.common.Command;
 import com.yedamMiddle.common.PageDTO;
 import com.yedamMiddle.common.service.CategoryVO;
+import com.yedamMiddle.product.service.ProductReviewJoinVO;
 import com.yedamMiddle.product.service.ProductService;
-import com.yedamMiddle.product.service.ProductVO;
 import com.yedamMiddle.product.serviceImpl.ProductServiceImpl;
 
 public class CategorySearchControl implements Command {
@@ -29,7 +29,7 @@ public class CategorySearchControl implements Command {
 			return;
 		
 		ProductService svc = new ProductServiceImpl();
-		List<ProductVO> productList = svc.searchCategory(categoryNo, petType, pageNo);
+		List<ProductReviewJoinVO> productList = svc.searchCategory(categoryNo, petType, pageNo);
 		
 		CategoryVO cateVO =  svc.getCategoryInfo(categoryNo);
 		if(cateVO == null) {
