@@ -85,7 +85,7 @@
 				<c:forEach items="${Rlist }" var="clist" varStatus="status">
 					<c:set var="sum" value="${sum + clist.starCnt/RlistSize }"></c:set>
 				</c:forEach>
-				<c:out value="★(${sum })"/>
+				<c:out value="★${Math.ceil(sum) }"/>
 				<div class="fs-5 mb-5">
 					<span style="font-size: 30px">₩ ${pno.productPrice }</span><br>
 				</div>
@@ -99,7 +99,21 @@
 					date = new Date();
 					day = date.getDate();
 					month = date.getMonth();
-					document.getElementById('today').innerHTML= '오늘 주문시 '+month+'월 ' + (day+1)+'일에 출발'
+					document.getElementById('today').innerHTML= '오늘 주문시 '+month+'월 ' + (day+1)+'일에 출발';
+					
+					window.addEventListener('scroll', () => {
+						  // 스크롤 위치가 100px 이상일 때 위로 가기 버튼을 보이게 함
+						  if (
+						    document.body.scrollTop > 100 ||
+						    document.documentElement.scrollTop > 20
+						  ) {
+						    document.getElementById('btn-back-to-top').style.display = 'block';
+						  } else {
+						    document.getElementById('btn-back-to-top').style.display = 'none';
+						  }
+						});
+
+
 				</script>
 				<p class="lead">${pno.productDesc }</p>
 				<br>
@@ -152,6 +166,22 @@
 				<button id="close" type="button" onclick="closefunction()">상품 상세 닫기 ▲</button>
 			</div>
 		<hr>
+		<script type="text/javascript">
+
+		function morefunction(){
+			document.getElementById('detail').style.height="100%";
+			document.getElementById('inlineimg').style.height="100%";
+			document.getElementById('more').style.display="none";
+			document.getElementById('close').style.display="inline-block";
+		}
+
+		function closefunction(){
+			document.getElementById('detail').style.height="1500px";
+			document.getElementById('inlineimg').style.height="7000px";
+			document.getElementById('more').style.display="inline-block";
+			document.getElementById('close').style.display="none";
+		}
+		</script>
 		 <!--리뷰게시판 건드린 부분 -->
       <div id="review">
          <h2 style="font: bolder; font-size: 30px; text-align: left">구매
@@ -292,9 +322,9 @@
 				<li>교환/반품 요청 기간이 지난 경우, 주문제작 상품으로 재판매가 불가능한 경우 교환/반품이 불가능합니다</li>
 			</ul>
 			<a id="btn" type="button" onclick="openDiv()">더보기</a>
-			<a id="close" type="button" onclick="openDiv()" style="display:none;">닫기</a>
+			<a id="close" type="button" onclick="openDiv()" style="display:none">닫기</a>
 		</div>
-		<script type="text/javascript">
+		<script>
 		function openDiv() {
 			if(document.getElementById('list').style.display==='none'){
 				document.getElementById('btn').style.display='none'
@@ -383,6 +413,7 @@
 <input type="hidden" value="${uno }" id="userSessionNo">
 <input type="hidden" value="${permission }" id="permission">
 <script>
+
 function functionCart() {
 	let pno = ${pno.productNo};
 	let stock = ${pno.productStock};
@@ -473,33 +504,6 @@ document.querySelectorAll(".heart").forEach(item => {
 })
 	   
 
-
-
-window.addEventListener('scroll', () => {
-	  // 스크롤 위치가 100px 이상일 때 위로 가기 버튼을 보이게 함
-	  if (
-	    document.body.scrollTop > 100 ||
-	    document.documentElement.scrollTop > 20
-	  ) {
-	    document.getElementById('btn-back-to-top').style.display = 'block';
-	  } else {
-	    document.getElementById('btn-back-to-top').style.display = 'none';
-	  }
-	});
-
-function morefunction(){
-	document.getElementById('detail').style.height="100%";
-	document.getElementById('inlineimg').style.height="100%";
-	document.getElementById('more').style.display="none";
-	document.getElementById('close').style.display="inline-block";
-}
-
-function closefunction(){
-	document.getElementById('detail').style.height="1500px";
-	document.getElementById('inlineimg').style.height="7000px";
-	document.getElementById('more').style.display="inline-block";
-	document.getElementById('close').style.display="none";
-}
 
 	
 </script>
