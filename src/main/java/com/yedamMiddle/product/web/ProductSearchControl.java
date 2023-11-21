@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedamMiddle.common.Command;
 import com.yedamMiddle.common.PageDTO;
+import com.yedamMiddle.product.service.ProductReviewJoinVO;
 import com.yedamMiddle.product.service.ProductService;
-import com.yedamMiddle.product.service.ProductVO;
 import com.yedamMiddle.product.serviceImpl.ProductServiceImpl;
 
 public class ProductSearchControl implements Command {
@@ -26,7 +26,7 @@ public class ProductSearchControl implements Command {
 		int pageNo = Integer.parseInt(page);
 		
 		ProductService svc = new ProductServiceImpl();
-		List<ProductVO> list = svc.searchProductList(query, petType, pageNo);
+		List<ProductReviewJoinVO> list = svc.searchProductList(query, petType, pageNo);
 		
 		int totalProductCnt = svc.searchProductListCount(query, petType);
 		PageDTO pageDto = new PageDTO(0, totalProductCnt, pageNo, 8);
