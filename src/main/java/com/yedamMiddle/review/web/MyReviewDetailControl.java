@@ -1,6 +1,7 @@
 package com.yedamMiddle.review.web;
 
 
+import javax.servlet.DispatcherType;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,10 +14,18 @@ public class MyReviewDetailControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
+		String reviewNo;
+		if (req.getDispatcherType() == DispatcherType.FORWARD) {
+		    reviewNo = (String) req.getAttribute("rNo");
+		  
+		} else {
+			reviewNo = req.getParameter("rNo");
+		
+		}
 		String path="review/myReviewDetail.tiles";
 		ReviewService svc = new ReviewServiceImpl();
-		String reviewNo = req.getParameter("rNo");
-//		System.out.println("reviewNo ="+reviewNo);
+
+		System.out.println("reviewNo ="+reviewNo);
 		ReviewVO reviewVo = svc.selectDetailReview(Integer.parseInt(reviewNo));
 		req.setAttribute("reviewVo", reviewVo);
 		System.out.println("reviewVo=" + reviewVo);

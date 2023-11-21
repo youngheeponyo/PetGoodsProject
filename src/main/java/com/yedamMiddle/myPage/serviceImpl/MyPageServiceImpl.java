@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.yedamMiddle.common.Mybatis;
+import com.yedamMiddle.common.service.PetVO;
 import com.yedamMiddle.common.service.UserVO;
 import com.yedamMiddle.coupon.service.CouponVO;
 import com.yedamMiddle.myPage.mapper.MyPageMapper;
@@ -55,6 +56,20 @@ public class MyPageServiceImpl implements MyPageService{
 	@Override
 	public List<ReviewVO> reviewList(int userNo) {
 		return mapper.reviewList(userNo);
+	}
+
+	@Override
+	public List<PetVO> petInfo(int userNo) {
+		return mapper.myPetInfo(userNo);
+	}
+
+	@Override
+	public boolean addMyPet(PetVO vo) {
+		return mapper.insertMyPet(vo) == 1;
+	}
+	@Override
+	public boolean updatePw(String newPw, String userId, String userPw) {
+		return mapper.updatePw(newPw, userId, userPw)==1;
 	}
 
 }

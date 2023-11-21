@@ -1,16 +1,19 @@
-package com.yedamMiddle.login.web;
+package com.yedamMiddle.myPage.web;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedamMiddle.common.Command;
 
-public class FindControl implements Command {
+public class MyPetFormControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
-
+		try {
+			req.getRequestDispatcher("/myPage/myPetForm.tiles").forward(req, resp);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

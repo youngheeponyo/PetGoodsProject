@@ -42,7 +42,6 @@
 				<input type="hidden" name="userNo" value="${reviewVo.userNo }">
 				<input type="hidden" name="productNo" value="${reviewVo.productNo }">
 				<h3>리뷰 등록</h3>
-				${reviewVo}
 				<br><hr>
 				<table class = "table" style= text-align:center>
 <!--                     <table id="datatablesSimple" style=text-align:center> -->
@@ -57,7 +56,7 @@
 							<tr>
                     			<td colspan="2">${reviewVo.productName }</td>
                     			<td colspan="2">
-                    				<select name="score" onchange="score(this.value)">
+                    				<select name="score">
                     					<option value=1>1점</option>
                     					<option value=2>2점</option>
                     					<option value=3 selected>3점</option>

@@ -34,10 +34,11 @@
 <section class="py-5">
 	<div class="container px-4 px-lg-5 mt-5">
 		<div class="container-fluid">
-		
+		${reviewVo }
 			<form action="modifyReviewForm.do" name="myReviewDetail" method="post" style=text-align:center;>
 				<input type="hidden" name="reviewNo" value="${reviewVo.reviewNo }">
 				<h3>나의 리뷰</h3>
+				${reviewVo.reviewNo }
 				<br><hr>
 				<table class = "table" style= text-align:center>
 <!--                     <table id="datatablesSimple" style=text-align:center> -->
@@ -100,9 +101,9 @@
 	document.querySelector("input[type=button]").addEventListener('click', function(e){
 		if(confirm("정말 삭제하시겠습니까?")==true){
 			console.log("삭제버튼 눌렸음");
-			 
-			document.forms.userQnaDetailForm.action="deleteUserQna.do";
-			document.forms.userQnaDetailForm.submit();
+			let reviewNo = document.querySelector("input[name=reviewNo]").value
+			document.forms.myReviewDetail.action="deleteReview.do?reviewNo=" + reviewNo;
+			document.forms.myReviewDetail.submit();
 		}
 		
 	})

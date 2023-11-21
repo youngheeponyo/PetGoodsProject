@@ -40,15 +40,20 @@ import com.yedamMiddle.login.web.LoginControl;
 import com.yedamMiddle.login.web.LoginFormControl;
 import com.yedamMiddle.login.web.LogoutControl;
 import com.yedamMiddle.login.web.updatePwControl;
+import com.yedamMiddle.myPage.web.AddMyPetControl;
 import com.yedamMiddle.myPage.web.CouponDetailFormControl;
 import com.yedamMiddle.myPage.web.IdpwCheckControl;
 import com.yedamMiddle.myPage.web.IdpwCheckFormControl;
 import com.yedamMiddle.myPage.web.MyPageControl;
+import com.yedamMiddle.myPage.web.MyPetFormControl;
+import com.yedamMiddle.myPage.web.MyPetInfoControl;
 import com.yedamMiddle.myPage.web.MyProdQnaDetailFormControl;
 import com.yedamMiddle.myPage.web.MyReviewDetailFormControl;
 import com.yedamMiddle.myPage.web.OrderDetailFormControl;
 import com.yedamMiddle.myPage.web.UpdateInfoControl;
 import com.yedamMiddle.myPage.web.UpdateInfoFormControl;
+import com.yedamMiddle.myPage.web.UpdatePw2Control;
+import com.yedamMiddle.myPage.web.UpdatePwFormControl;
 import com.yedamMiddle.notice.web.AddNoticeControl;
 import com.yedamMiddle.notice.web.GetNoticeControl;
 import com.yedamMiddle.notice.web.NoticeFormControl;
@@ -70,6 +75,7 @@ import com.yedamMiddle.review.web.ModifyReviewFormControl;
 import com.yedamMiddle.review.web.ModifyreviewLikeCntControl;
 import com.yedamMiddle.review.web.MyReviewDetailControl;
 import com.yedamMiddle.review.web.MyReviewListControl;
+import com.yedamMiddle.review.web.deleteReviewControl;
 import com.yedamMiddle.userQna.web.AddQnaControl;
 import com.yedamMiddle.userQna.web.AddQnaFormControl;
 import com.yedamMiddle.userQna.web.DeleteUserQnaControl;
@@ -115,7 +121,8 @@ public class FrontController extends HttpServlet {
       commandByURL.put("/addReview.do", new AddReviewControl());//리뷰등록
       commandByURL.put("/modifyReviewForm.do", new ModifyReviewFormControl());//리뷰수정폼
       commandByURL.put("/modifyReview.do", new ModifyReviewControl());//리뷰수정
-      
+      commandByURL.put("/deleteReview.do", new deleteReviewControl());//리뷰삭제
+     
       
       
       // 김준성
@@ -146,6 +153,9 @@ public class FrontController extends HttpServlet {
       commandByURL.put("/couponDetailForm.do", new CouponDetailFormControl()); //내 쿠폰
       commandByURL.put("/myProdQnaDetailForm.do", new MyProdQnaDetailFormControl()); //내 Q&A
       commandByURL.put("/myReviewDetailForm.do", new MyReviewDetailFormControl()); //내 Q&A
+      commandByURL.put("/myPetInfo.do", new MyPetInfoControl()); //내 반려동물정보
+      commandByURL.put("/myPetForm.do", new MyPetFormControl()); //반려동물 등록화면
+      commandByURL.put("/addMyPet.do", new AddMyPetControl()); //반려동물 등록
       
       
       
@@ -187,6 +197,8 @@ public class FrontController extends HttpServlet {
       commandByURL.put("/idpwCheckForm.do", new IdpwCheckFormControl());
       commandByURL.put("/updateInfoForm.do", new UpdateInfoFormControl());
       commandByURL.put("/updateInfo.do", new UpdateInfoControl());
+      commandByURL.put("/updatePwForm.do", new UpdatePwFormControl());
+      commandByURL.put("/updatePw2.do", new UpdatePw2Control());
       
       // 전민교
       commandByURL.put("/main.do", new MainPageControl()); // 메인페이지

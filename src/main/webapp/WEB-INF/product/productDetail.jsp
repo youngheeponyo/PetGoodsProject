@@ -69,7 +69,49 @@
 		background: #f4f4f4;
 		color:grey;
 	}
+	
+	.reviewNoneToggle{
+		display: none;
+	}
 
+	.off-screen {
+   display: none;
+}
+
+#pagebtn {
+   width: 500px;
+   text-align: center;
+   margin: 0 auto;
+   height: 50px;
+   line-height: 60px;
+}
+
+#pagebtn a {
+   all: initial;
+   display: inline-block;
+   margin-right: 10px;
+   border-radius: 3px;
+   border: none;
+   font-family: Tahoma;
+   background: #f9fafe;
+   color: #000;
+   text-decoration: none;
+   height: 40px;
+   width: 40px;
+   text-align: center;
+   line-height: 40px;
+   transition: all .5s;
+}
+
+#pagebtn a:hover {
+   background-color: #6553C1;
+}
+
+#pagebtn a.active {
+   background: #6553C1;
+   color: #fff;
+}
+   
 </style>
 </head>
 <section class="py-5" id="top">
@@ -83,9 +125,10 @@
 				<h1 class="display-5 fw-bolder">${pno.productName }</h1>
 				<c:set var="sum" value="0.0"/>				
 				<c:forEach items="${Rlist }" var="clist" varStatus="status">
-					<c:set var="sum" value="${sum + clist.starCnt/RlistSize }"></c:set>
+					<c:set var="sum" value="${sum + Math.round(clist.starCnt/RlistSize*10) }"></c:set>
 				</c:forEach>
 				<c:out value="★${Math.round(sum) }"/>
+				<c:out value="★${sum/10}"/>
 				<div class="fs-5 mb-5">
 					<span style="font-size: 30px">₩ ${pno.productPrice }</span><br>
 				</div>
@@ -183,7 +226,7 @@
 		}
 		</script>
 		 <!--리뷰게시판 건드린 부분 -->
-      <div id="review">
+      <div id="review" class="reviewTable">
          <h2 style="font: bolder; font-size: 30px; text-align: left">구매
             후기</h2>
          <table class = "table" style= text-align:center>
@@ -202,19 +245,24 @@
 		                    <c:when test="${not empty Rlist }">
 		                          <c:forEach items="${Rlist }" var="review">
 		                             <c:set var="i" value="${i+1 }"/>
-		                             <tr>
+		                             <tr class="reviewTr">
 		                                <td>${i }</td>
-		                                <td>${review.productName }</td>
-		                                <td>${review.starCnt }/5</td>
+		                                <td onclick="reviewDetailShow('${i}')">${review.productName }</td>
+		                                
+		                                <td>
+		                                	<c:forEach begin="1" end="${review.starCnt }"  var="l">
+		                                			⭐
+		                                	</c:forEach>
+		                                </td>
 		                                <td>${review.nickName }</td>
 		                                <td><fmt:formatDate value ="${review.reviewDate}" pattern="yyyy-MM-dd"></fmt:formatDate></td>
 		                                <td><input class="heart"type="button" data-reviewNo="${review.reviewNo }" 
 		                                	data-userNo="${review.userNo }" value="${review.reviewLikeCnt}">❤</td>
 		                             </tr>
-		                             <tr><th colspan="3">사진첨부</th>
+		                             <tr class="reviewDetail${i } reviewNoneToggle"><th colspan="3">사진첨부</th>
 			                    		<th colspan="3">내용</th>
 			                    		</tr>
-			                    			<tr>
+			                    			<tr class="reviewDetail${i } reviewNoneToggle">
 			                    				<td colspan="3">
 			                    				<c:choose>
 			                    					<c:when test="${review.reviewImage eq null }"><p style="color:gray;">사진을 첨부하지 않았습니다<p></c:when>
@@ -239,7 +287,7 @@
 		
 		<!-- 문의게시판 건드린 부분 -->
 		<form action=addUserQnaForm.do name=productDetail method="post">
-		<div id="qna">
+		<div id="qna" class="qnaTable">
 			<h2 style="font: bolder; font-size: 30px; text-align: left">문의
 				게시판</h2>
 			<table class="table" style="text-align: center">
@@ -255,11 +303,13 @@
 					</tr>
 				</thead>
 				<tbody>
+				<c:choose>
+		          <c:when test="${not empty Rlist }">
 					<c:forEach items="${qlist }" var="qvo">
-						<tr>
+						<tr class="qnaTr">
 							<td>
 							<c:choose>
-                  				<c:when test="${qvo.password==0 }">
+                  				<c:when test="${empty qvo.password }">
                   					전체공개
                   				</c:when>
                   				<c:otherwise>
@@ -292,6 +342,11 @@
                     			</td>
 						</tr>
 					</c:forEach>
+				</c:when>
+				<c:otherwise>
+					<tr><td style=color:gray; colspan="7">아직 작성된 문의가 없습니다.</td></tr>
+				</c:otherwise>
+				</c:choose>
 				</tbody>
 			</table>
 			 <p><input type="submit" value="문의글 작성" >
@@ -321,25 +376,19 @@
 				<li>'발송준비중, 발송처리완료' 단계에서는 상품 수령 후 교환 또는 반품만 가능합니다.</li>
 				<li>교환/반품 요청 기간이 지난 경우, 주문제작 상품으로 재판매가 불가능한 경우 교환/반품이 불가능합니다</li>
 			</ul>
-			<a id="btn" type="button" onclick="openDiv()">더보기</a>
-			<a id="close" type="button" onclick="openDiv()" style="display:none">닫기</a>
 		</div>
 		<script>
 		function openDiv() {
 			if(document.getElementById('list').style.display==='none'){
-				document.getElementById('btn').style.display='none'
-				document.getElementById('close').style.display='block'
 				document.getElementById('list').style.display='block'
 				document.getElementById('arrow').style.transform='rotate(-135deg)'
 			}else{
-				document.getElementById('btn').style.display='block'
-				document.getElementById('close').style.display='none'
 				document.getElementById('list').style.display='none'
 				document.getElementById('arrow').style.transform='rotate(45deg)'
 			}
 		}
 		</script>
-		<button onclick="location.href='#'" id="btn-back-to-top" title="위로 가기">▲</button>
+		<button onclick="location.href='#top'" id="btn-back-to-top" title="위로 가기">▲</button>
 
 	</div>
 </section>
@@ -469,7 +518,7 @@ function passCheck(password, qnaNo){
 	}		
 
 	console.log("password :", password,"   qnaNo: ", qnaNo)
-    if(password == "0" || permission == "0"){//패스워드가 없거나 관리자일때
+    if(password == "" || permission == "0"){//패스워드가 없거나 관리자일때
     	
     	window.location.href="getUserQnaList.do?qnaNo="+qnaNo;
     	return;
@@ -502,8 +551,137 @@ document.querySelectorAll(".heart").forEach(item => {
 		   })
 	})
 })
-	   
+	function reviewDetailShow(i){
+		console.log(document.querySelectorAll(".reviewDetail"+i))
+		document.querySelectorAll(".reviewDetail"+i).forEach(item =>{
+			console.log("item", item);
+			item.classList.toggle("reviewNoneToggle");
+		})
+	console.log(i);
+}
+
+//페이징----------------------------------------------------------------------------------------------
+var pageNumber = 5;   
+var pageCount = 5;
+var currentPage = 1;
+//문의 페이징
+var qnaTable = document.querySelector('.qnaTable');
+var qnaTr = document.querySelectorAll('.qnaTr')
+
+//리뷰 페이징
+var reviewTable = document.querySelector(".reviewTable")
+var reviewTr = document.querySelectorAll(".reviewTr");
+
+page(pageNumber, pageCount, currentPage, qnaTr, qnaTable);
+page(pageNumber, pageCount, currentPage, reviewTr, reviewTable);
 
 
-	
+function page(pageNumber, pageCount, currentPage, pagingTr, pagingTable) {
+ 
+ var table = pagingTable
+ var tr = pagingTr;
+ var trTotal = tr.length;   
+ if (trTotal == 0)
+    return;
+
+ var pageTotal = Math.ceil(trTotal / pageNumber);
+ var pageGroup = Math.ceil(currentPage / pageCount);
+ var last = pageGroup * pageCount;
+ if (last > pageTotal) {
+    last = pageTotal;
+ }
+ var first;
+ if (last % pageCount == 0) {
+    first = last - (pageCount - 1);
+ } else {
+    first = last + 1 - last % pageCount
+ }
+
+ var next = last + 1;
+ var prev = first - 1;
+
+ let prevPagebtn = pagingTable.querySelector('#pagebtn')
+ if (prevPagebtn) {
+    prevPagebtn.remove();
+ }
+
+ var pageBtn = document.createElement("div");
+
+ pageBtn.setAttribute("id", "pagebtn");
+ table.append(pageBtn);
+ 
+
+ if (prev > 0) {
+    let aTage = document.createElement("a")
+    aTage.setAttribute("href", "#")
+    aTage.dataset.value = "prev";
+    aTage.innerHTML = "<"
+    pageBtn.append(aTage)
+ }
+
+ for (let i = first; i <= last; i++) {
+    let aTage = document.createElement("a")
+    aTage.setAttribute("href", "#")
+    aTage.dataset.value = i;
+    aTage.innerHTML = i;
+    pageBtn.append(aTage)
+ }
+ if (last < pageTotal) {
+    let aTage = document.createElement("a")
+    aTage.setAttribute("href", "#")
+    aTage.dataset.value = "next"
+    aTage.innerHTML = ">"
+    pageBtn.append(aTage)
+ }
+ var paginglink = pageBtn.querySelectorAll('a')
+ paginglink.forEach(link => {
+  // 각 <a> 태그의 class 리스트에서 'active' 클래스를 제거
+     link.classList.remove('active');
+ });
+ 
+
+ var element = pagingTable.querySelector('[data-value="' + currentPage + '"]');
+ 
+ if (element) {
+    element.classList.add("active");
+ }
+ var startval = (currentPage - 1) * pageNumber;
+ var endval = startval + pageNumber;
+
+
+
+
+ for (var i = 0; i < tr.length; i++) {
+    
+    if (i >= startval && i < endval) {
+       // opacity와 클래스 설정
+       // off-screen 클래스를 제거하고
+       tr[i].classList.remove('off-screen');
+       tr[i].style.opacity = '1';
+    }else{
+       tr[i].style.opacity = '0.0';
+       tr[i].classList.add('off-screen');
+       
+    }
+ }
+
+ for (let i = 0; i < paginglink.length; i++) {
+    paginglink[i].addEventListener('click', function(e) {
+       e.preventDefault();
+       var thisVal = this;
+       var data = thisVal.dataset.value;
+       var selectedPage = thisVal.innerText;
+
+       if (data === "next") {
+          selectedPage = next;
+       }
+
+       if (data === "prev") {
+          selectedPage = prev;
+       }
+       page(pageNumber, pageCount, selectedPage, tr, table)
+    });
+ }
+}
+//---------------------------------------------------------------------------------------------------
 </script>

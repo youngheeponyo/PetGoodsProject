@@ -69,5 +69,16 @@
     	ORDER BY R.REVIEW_DATE DESC
 	</select>
 	
+	<select id="myPetInfo" parameterType="int" resultType="com.yedamMiddle.common.service.PetVO">
+		SELECT * FROM PET WHERE USER_NO=#{userNo}
+	</select>
+	
+	<insert id="insertMyPet" parameterType="com.yedamMiddle.common.service.PetVO">
+		INSERT INTO PET VALUES(SEQ_PETNO.NEXTVAL, #{petName}, #{petType}, #{petBirth}, #{petGender}, #{userNo})
+	</insert>
+	
+	<update id="updatePw">
+		update user_tbl set user_pw=#{userPw} where user_id=#{userId} and user_pw=#{userPw}
+	</update>
 
 </mapper>
