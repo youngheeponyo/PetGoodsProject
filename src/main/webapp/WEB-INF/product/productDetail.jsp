@@ -69,7 +69,49 @@
 		background: #f4f4f4;
 		color:grey;
 	}
+	
+	.reviewNoneToggle{
+		display: none;
+	}
 
+	.off-screen {
+   display: none;
+}
+
+#pagebtn {
+   width: 500px;
+   text-align: center;
+   margin: 0 auto;
+   height: 50px;
+   line-height: 60px;
+}
+
+#pagebtn a {
+   all: initial;
+   display: inline-block;
+   margin-right: 10px;
+   border-radius: 3px;
+   border: none;
+   font-family: Tahoma;
+   background: #f9fafe;
+   color: #000;
+   text-decoration: none;
+   height: 40px;
+   width: 40px;
+   text-align: center;
+   line-height: 40px;
+   transition: all .5s;
+}
+
+#pagebtn a:hover {
+   background-color: #6553C1;
+}
+
+#pagebtn a.active {
+   background: #6553C1;
+   color: #fff;
+}
+   
 </style>
 </head>
 <section class="py-5" id="top">
@@ -183,7 +225,7 @@
 		}
 		</script>
 		 <!--리뷰게시판 건드린 부분 -->
-      <div id="review">
+      <div id="review" class="reviewTable">
          <h2 style="font: bolder; font-size: 30px; text-align: left">구매
             후기</h2>
          <table class = "table" style= text-align:center>
@@ -202,19 +244,19 @@
 		                    <c:when test="${not empty Rlist }">
 		                          <c:forEach items="${Rlist }" var="review">
 		                             <c:set var="i" value="${i+1 }"/>
-		                             <tr>
+		                             <tr class="pagingTr">
 		                                <td>${i }</td>
-		                                <td>${review.productName }</td>
+		                                <td onclick="reviewDetailShow('${i}')">${review.productName }</td>
 		                                <td>${review.starCnt }/5</td>
 		                                <td>${review.nickName }</td>
 		                                <td><fmt:formatDate value ="${review.reviewDate}" pattern="yyyy-MM-dd"></fmt:formatDate></td>
 		                                <td><input class="heart"type="button" data-reviewNo="${review.reviewNo }" 
 		                                	data-userNo="${review.userNo }" value="${review.reviewLikeCnt}">❤</td>
 		                             </tr>
-		                             <tr><th colspan="3">사진첨부</th>
+		                             <tr class="reviewDetail${i } reviewNoneToggle"><th colspan="3">사진첨부</th>
 			                    		<th colspan="3">내용</th>
 			                    		</tr>
-			                    			<tr>
+			                    			<tr class="reviewDetail${i } reviewNoneToggle">
 			                    				<td colspan="3">
 			                    				<c:choose>
 			                    					<c:when test="${review.reviewImage eq null }"><p style="color:gray;">사진을 첨부하지 않았습니다<p></c:when>
@@ -503,8 +545,129 @@ document.querySelectorAll(".heart").forEach(item => {
 		   })
 	})
 })
-	   
+	function reviewDetailShow(i){
+		document.querySelectorAll(".reviewDetail"+i).forEach(item =>{
+			console.log("item", item);
+			item.classList.toggle("reviewNoneToggle");
+		})
+	console.log(i);
+}
+
+//페이징----------------------------------------------------------------------------------------------
+var pageNumber = 5;   
+var pageCount = 5;
+var currentPage = 1;
+page(pageNumber, pageCount, currentPage);
+function page(pageNumber, pageCount, currentPage) {
+   
+   var reviewTableDiv = document.querySelector(".reviewTable")
+   var tr = document.querySelectorAll(".pagingTr");
+   var trTotal = tr.length;   
+   console.log("tr.length : ",trTotal)
+   if (trTotal == 0)
+      return;
+
+   var pageTotal = Math.ceil(trTotal / pageNumber);
+   var pageGroup = Math.ceil(currentPage / pageCount);
+   var last = pageGroup * pageCount;
+   if (last > pageTotal) {
+      last = pageTotal;
+   }
+   var first;
+   if (last % pageCount == 0) {
+      first = last - (pageCount - 1);
+   } else {
+      first = last + 1 - last % pageCount
+   }
+
+   var next = last + 1;
+   var prev = first - 1;
+
+   let prevPagebtn = document.querySelector('#pagebtn')
+   if (prevPagebtn) {
+      prevPagebtn.remove();
+   }
+
+   var pageBtn = document.createElement("div");
+
+   pageBtn.setAttribute("id", "pagebtn");
+   reviewTableDiv.append(pageBtn);
+   
+
+   if (prev > 0) {
+      let aTage = document.createElement("a")
+      aTage.setAttribute("href", "#")
+      aTage.dataset.value = "prev";
+      aTage.innerHTML = "<"
+      pageBtn.append(aTage)
+   }
+
+   for (let i = first; i <= last; i++) {
+      let aTage = document.createElement("a")
+      aTage.setAttribute("href", "#")
+      aTage.dataset.value = i;
+      aTage.innerHTML = i;
+      pageBtn.append(aTage)
+   }
+   if (last < pageTotal) {
+      let aTage = document.createElement("a")
+      aTage.setAttribute("href", "#")
+      aTage.dataset.value = "next"
+      aTage.innerHTML = ">"
+      pageBtn.append(aTage)
+   }
+   var paginglink = pageBtn.querySelectorAll('a')
+   paginglink.forEach(link => {
+    // 각 <a> 태그의 class 리스트에서 'active' 클래스를 제거
+       link.classList.remove('active');
+   });
+   
+
+   var element = document.querySelector('[data-value="' + currentPage + '"]');
+   
+   if (element) {
+      element.classList.add("active");
+   }
+   var startval = (currentPage - 1) * pageNumber;
+   var endval = startval + pageNumber;
 
 
+
+
+   for (var i = 0; i < tr.length; i++) {
+      
+      if (i >= startval && i < endval) {
+         // opacity와 클래스 설정
+         // off-screen 클래스를 제거하고
+         tr[i].classList.remove('off-screen');
+         tr[i].style.opacity = '1';
+      }else{
+         tr[i].style.opacity = '0.0';
+         tr[i].classList.add('off-screen');
+         
+      }
+   }
+   
+   console.log("paginglink : ", paginglink)
+   for (let i = 0; i < paginglink.length; i++) {
+      paginglink[i].addEventListener('click', function(e) {
+         e.preventDefault();
+         var thisVal = this;
+         var data = thisVal.dataset.value;
+         var selectedPage = thisVal.innerText;
+
+         if (data === "next") {
+            selectedPage = next;
+         }
+
+         if (data === "prev") {
+            selectedPage = prev;
+         }
+
+         page(pageNumber, pageCount, selectedPage);
+      });
+   }
+}
+//---------------------------------------------------------------------------------------------------
 	
 </script>
