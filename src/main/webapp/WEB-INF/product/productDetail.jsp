@@ -129,33 +129,39 @@
                           </tr>
                        </thead>
                        <tbody>
-                          <c:forEach items="${Rlist }" var="review">
-                             <c:set var="i" value="${i+1 }"/>
-                             <tr>
-                                <td>${i }</td>
-                                <td>${review.productName }</td>
-                                <td>${review.starCnt }</td>
-                                <td>${review.nickName }</td>
-                                <td><fmt:formatDate value ="${review.reviewDate }" pattern="yyyy-MM-dd"></fmt:formatDate></td>
-                                <td><input class="heart"type="button" data-reviewNo="${review.reviewNo }" 
-                                	data-userNo="${review.userNo }" data-reviewLikeCnt="${review.reviewLikeCnt}" value="${review.reviewLikeCnt }">❤</td>
-                             </tr>
-                             <tr><th colspan="3">사진첨부</th>
-	                    		<th colspan="3">내용</th>
-	                    		</tr>
-	                    			<tr>
-	                    				<td colspan="3">
-	                    				<c:choose>
-	                    					<c:when test="${review.reviewImage eq null }"><p style="color:gray;">사진을 첨부하지 않았습니다<p></c:when>
-	                    					<c:otherwise><img style="width:50%" src="reviewImage/${review.reviewImage }"></c:otherwise>
-	                    				</c:choose>
-	                    				</td>
-	                    				<td colspan="3">${fn:substring(review.content,0,10)}···</td>
-	                    			</tr>
-                             <hr>
-                             <br>
-                          </c:forEach>
-                          
+                       <c:choose>
+		                    <c:when test="${not empty Rlist }">
+		                          <c:forEach items="${Rlist }" var="review">
+		                             <c:set var="i" value="${i+1 }"/>
+		                             <tr>
+		                                <td>${i }</td>
+		                                <td>${review.productName }</td>
+		                                <td>${review.starCnt }</td>
+		                                <td>${review.nickName }</td>
+		                                <td><fmt:formatDate value ="${review.reviewDate }" pattern="yyyy-MM-dd"></fmt:formatDate></td>
+		                                <td><input class="heart"type="button" data-reviewNo="${review.reviewNo }" 
+		                                	data-userNo="${review.userNo }" data-reviewLikeCnt="${review.reviewLikeCnt}" value="${review.reviewLikeCnt }">❤</td>
+		                             </tr>
+		                             <tr><th colspan="3">사진첨부</th>
+			                    		<th colspan="3">내용</th>
+			                    		</tr>
+			                    			<tr>
+			                    				<td colspan="3">
+			                    				<c:choose>
+			                    					<c:when test="${review.reviewImage eq null }"><p style="color:gray;">사진을 첨부하지 않았습니다<p></c:when>
+			                    					<c:otherwise><img style="width:50%" src="reviewImage/${review.reviewImage }"></c:otherwise>
+			                    				</c:choose>
+			                    				</td>
+			                    				<td colspan="3">${fn:substring(review.content,0,10)}···</td>
+			                    			</tr>
+		                             <hr>
+		                             <br>
+		                          </c:forEach>
+	                          </c:when>
+	                    		<c:otherwise>
+	                    			<tr><td style=color:gray; colspan="6">아직 작성된 리뷰가 없습니다.</td></tr>
+	                    		</c:otherwise>
+	                    </c:choose>
                        </tbody>
                     </table>
       <!--여기까지 -->
