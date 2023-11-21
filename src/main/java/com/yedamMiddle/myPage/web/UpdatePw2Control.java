@@ -10,7 +10,7 @@ import com.yedamMiddle.login.service.Pwsha256;
 import com.yedamMiddle.myPage.service.MyPageService;
 import com.yedamMiddle.myPage.serviceImpl.MyPageServiceImpl;
 
-public class UpdatePwControl implements Command {
+public class UpdatePw2Control implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {

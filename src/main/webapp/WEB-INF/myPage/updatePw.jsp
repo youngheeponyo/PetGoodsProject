@@ -61,7 +61,7 @@
 </body>
 <script type="text/javascript">
 	function checkfunction(upw,newPw){
-			fetch('updatePw.do',{
+			fetch('updatePw2.do',{
 				method:'post',
 				headers:{'Content-Type':'application/x-www-form-urlencoded'},
 				body:'uid=${uid}&upw='+upw+'&newPw='+newPw
