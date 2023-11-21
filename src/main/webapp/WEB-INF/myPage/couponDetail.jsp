@@ -46,30 +46,45 @@
 				<div id="layoutSidenav_content">
 					<main>
 						<div class="container-fluid px-4">
+						<h3 class="mt-4" style= text-align:center>나의쿠폰</h3>
+	                    <br>
+	                    <hr>
 							<div class="d-flex justify-content-center">
-								<table class="table w-85">
-									<tr>
-										<th>보유중인 쿠폰</th>
-									</tr>
-									<tr>
-										<th>쿠폰명</th>
-										<th>할인률</th>
-										<th>만료일</th>
-										<th>쿠폰사용여부</th>
-									</tr>
-									<tr>
-										<c:forEach items="${list }" var="list">
-											<tr>
-												<td>${list.couponName }</td>
-												<td>${list.discountPct }</td>
-												<td><fmt:formatDate value="${list.endDate}"
-														pattern="yyyy-MM-dd"></fmt:formatDate></td>
-												<td>${list.couponState }</td>
-											</tr>
-										</c:forEach>
-									</tr>
-
-								</table>
+								<table class="table w-85" style=text-align:center> 
+									<thead >
+                    		<tr style=text-align:center>
+                    			<th>쿠폰이름</th>
+	                    		<th>할인률</th>
+	                    		<th>쿠폰만료일</th>
+	                    		<th>쿠폰상태</th>
+                    		</tr>
+                    	</thead>
+                    	<tbody>
+                    		<c:if test="${empty list}">
+                    			<td colspan="4" style=" color:gray;">아직 발급받은 쿠폰이 없습니다.</td>
+                    		</c:if>
+                    		<c:forEach items="${list }" var="vo">
+                    		<c:choose>
+                    			<c:when test="${vo.couponState eq '사용완료'|| vo.couponState eq '기간만료'}">
+                    				<tr style="background-color: lightgray;">
+		                    			<td style=" color:gray;">${vo.couponName }</td>
+		                    			<td style=" color:gray;">${vo.discountPct }%</td>
+		                    			<td style=" color:gray;"><fmt:formatDate value="${vo.endDate }" pattern="yyyy년 MM월 dd일까지"></fmt:formatDate></td>
+		                    			<td style=" color:gray;">${vo.couponState }</td>
+                    				</tr>
+                    			</c:when>
+                    			<c:otherwise>
+	                    			<tr>
+		                    			<td>${vo.couponName }</td>
+		                    			<td>${vo.discountPct }%</td>
+		                    			<td><fmt:formatDate value="${vo.endDate }" pattern="yyyy년 MM월 dd일까지"></fmt:formatDate></td>
+		                    			<td style="color:blue">${vo.couponState }</td>
+	                    			</tr>
+                    			</c:otherwise>
+                    		</c:choose>
+                    		</c:forEach>
+                    	</tbody>
+                    </table>
 							</div>
 							<c:set var="curPage" value="${pagination.currentPage }" />
 							<c:set var="start" value="${pagination.startPage }" />

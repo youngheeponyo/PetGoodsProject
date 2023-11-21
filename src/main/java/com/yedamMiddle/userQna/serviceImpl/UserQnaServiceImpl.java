@@ -25,6 +25,11 @@ public class UserQnaServiceImpl implements UserQnaService {
 	}
 
 	@Override
+	public List<UserQnaVO> userQnaAllListByUserNo(int userNo) {
+		return mapper.userQnaAllListByUserNo(userNo);
+	}
+
+	@Override
 	public UserQnaVO userQnaSelect(UserQnaVO vo) {
 		return mapper.userQnaSelect(vo);
 	}
@@ -94,6 +99,7 @@ public class UserQnaServiceImpl implements UserQnaService {
 	public List<UserQnaVO> userQnaAllListByProductNo(int pno) {
 		return mapper.userQnaAllListByProductNo(pno);
 	}
+
 
 
 
