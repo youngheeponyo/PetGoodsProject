@@ -46,9 +46,6 @@
 		                		<button class="btn" type="button" onclick="location.href='myPage.do'">
                              		<i class="far fa-user fa-2x"></i>
                         		</button>
-                        		<button class="btn" type="button" onclick="location.href='logout.do'">
-                             		<i class="far fa-user fa-2x">로그아웃</i>
-                        		</button>
 		                		<button class="btn" type="button" onclick="location.href='myCart.do?uno=${uno }'">
                             		<i class="bi-cart-fill me-1"></i>
                             		<span class="badge bg-dark text-white ms-1 rounded-pill" id="cartCnt">
@@ -62,7 +59,7 @@
 		                	</c:when>
 		                	<c:otherwise>
 		                		<button class="btn" type="button" onclick="location.href='loginForm.do'">
-                             		<i class="far fa-user fa-2x"></i>
+                             		<i class="far fa-user fa-2x"></i>비회원입니다
                         		</button>
 		                		<button class="btn" type="button" onclick="location.href='loginForm.do'">
                             		<i class="bi-cart-fill me-1"></i>
@@ -99,15 +96,21 @@
 	                        <li class="nav-item"><a class="nav-link" href="showRecommendProduct.do">추천상품</a></li>
                     </ul>
                 <ul class="navbar-nav">
-                	<li class="nav-item"><a class="nav-link" href="myReviewList.do">나의리뷰(임시)</a></li>
-                	<li class="nav-item"><a class="nav-link" href="myCouponList.do">나의쿠폰(임시)</a></li>
                 	<li class="nav-item"><a class="nav-link" aria-current="page" href="noticeList.do">공지사항</a></li>
                     <li class="nav-item"><a class="nav-link" href="getUserQnaAllList.do">고객센터</a></li>
                     <c:choose>
 						<c:when test="${uno == 0 && permission == 0}">
 							<li class="nav-item"><a class="nav-link" aria-current="page" href="adminPage.do">관리자페이지</a></li>
 						</c:when>
-				</c:choose>
+					</c:choose>
+					<c:choose>
+						<c:when test="${!empty uno }">
+							<li class="nav-item"><a class="nav-link" href="logout.do">로그아웃</a></li>
+						</c:when>
+						<c:otherwise>
+							<li class="nav-item"><a class="nav-link" href="loginForm.do">로그인</a></li>
+						</c:otherwise>
+					</c:choose>
                 </ul>
             </div>
         </nav>
