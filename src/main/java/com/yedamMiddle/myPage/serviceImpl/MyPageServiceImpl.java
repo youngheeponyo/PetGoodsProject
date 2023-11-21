@@ -5,9 +5,12 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.yedamMiddle.common.Mybatis;
+import com.yedamMiddle.common.service.UserVO;
 import com.yedamMiddle.coupon.service.CouponVO;
 import com.yedamMiddle.myPage.mapper.MyPageMapper;
 import com.yedamMiddle.myPage.service.MyPageService;
+import com.yedamMiddle.product.service.ProductOrderJoinVO;
+import com.yedamMiddle.review.service.ReviewVO;
 import com.yedamMiddle.userQna.service.UserQnaVO;
 
 public class MyPageServiceImpl implements MyPageService{
@@ -33,6 +36,25 @@ public class MyPageServiceImpl implements MyPageService{
 	@Override
 	public List<UserQnaVO> qnaList(int userNo) {
 		return mapper.qnaList(userNo);
+	}
+	@Override
+	public boolean updateUser(UserVO vo) {
+		return mapper.updateUser(vo)==1;
+	}
+
+	@Override
+	public List<ProductOrderJoinVO> orderList(int userNo) {
+		return mapper.orderList(userNo);
+	}
+
+	@Override
+	public List<ReviewVO> recentReviewList(int userNo) {
+		return mapper.recentReviewList(userNo);
+	}
+
+	@Override
+	public List<ReviewVO> reviewList(int userNo) {
+		return mapper.reviewList(userNo);
 	}
 
 }

@@ -30,6 +30,7 @@ public class LoginControl implements Command {
 			HttpSession session = req.getSession();
 			session.setAttribute("uno", vo.getUserNo());	//로그인한 회원번호 기억 후 사용
 			session.setAttribute("permission", vo.getUserPermission());	//사용자 계정으로 로그인했는지 구분하기 위함
+			session.setAttribute("nickName", vo.getNickName());	//현재 사용자가 누구인지 구문
 			try {
 				//로그인 시 날짜가 지난 쿠폰 만료적용
 				CouponService csv = new CouponServiceImpl();

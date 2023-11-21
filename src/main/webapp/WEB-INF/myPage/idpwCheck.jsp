@@ -20,8 +20,6 @@
 	crossorigin="anonymous">
 
 <style>
-
-
 .input-form {
 	max-width: 500px;
 	padding: 32px;
@@ -40,27 +38,38 @@
 
 
 <body>
-<form action="findPw.do" method="post">
 <div id="box">
 		<div class="input-form-backgroud row">
 			<div class="input-form col-md-12 mx-auto">
-				<h4 class="mb-3" style="text-align:center">가입하신 정보를 입력하세요</h4>
+				<h4 class="mb-3" style="text-align:center">서비스 이용시 아이디/비밀번호를 다시 입력하여 본인인증을 해주세요</h4>
 				<div class="row">
 					<div class="mb-3">
 						<label for="name">아이디</label> <input type="text" class="form-control" id="uid" name="uid" value="" required>
 					</div>
 					<div class="mb-3">
-						<label for="name">전화번호</label> <input type="text" class="form-control" id="phone" name="phone" placeholder="010-1234-1234"
-						value="" required>
+						<label for="name">비밀번호</label> <input type="password" class="form-control" id="upw" name="upw" value="" required>
 					</div>
 					<div class="mb-4"></div>
-					<input class="btn btn-primary btn-lg btn-block" type="submit" value="비밀번호 찾기"
+					<input class="btn btn-primary btn-lg btn-block" type="button" value="본인인증" onclick="checkfunction(uid.value,upw.value)"
 					style="background-color:pink;border:1px white;width:200px;margin:auto;">
 				</div>
 				<footer class="my-3 text-center text-small"> </footer>
 			</div>
 		</div>
 </div>
-</form>
 </body>
+<script type="text/javascript">
+	function checkfunction(uid,upw){
+		fetch('idpwCheck.do?uid='+uid+'&upw='+upw)
+		.then(resolve=>resolve.json())
+		.then(result=>{
+			if(result.retCode=='OK'){
+				alert('확인되었습니다!');
+				location.href="updateInfoForm.do?uid="+uid+"&upw="+upw;
+			}else{
+				alert('아이디/비밀번호가 일치하지 않습니다')
+			}
+		})
+	}
+</script>
 </html>
