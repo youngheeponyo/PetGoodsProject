@@ -75,6 +75,7 @@ import com.yedamMiddle.review.web.ModifyReviewFormControl;
 import com.yedamMiddle.review.web.ModifyreviewLikeCntControl;
 import com.yedamMiddle.review.web.MyReviewDetailControl;
 import com.yedamMiddle.review.web.MyReviewListControl;
+import com.yedamMiddle.review.web.deleteReviewControl;
 import com.yedamMiddle.userQna.web.AddQnaControl;
 import com.yedamMiddle.userQna.web.AddQnaFormControl;
 import com.yedamMiddle.userQna.web.DeleteUserQnaControl;
@@ -120,7 +121,8 @@ public class FrontController extends HttpServlet {
       commandByURL.put("/addReview.do", new AddReviewControl());//리뷰등록
       commandByURL.put("/modifyReviewForm.do", new ModifyReviewFormControl());//리뷰수정폼
       commandByURL.put("/modifyReview.do", new ModifyReviewControl());//리뷰수정
-      
+      commandByURL.put("/deleteReview.do", new deleteReviewControl());//리뷰삭제
+     
       
       
       // 김준성

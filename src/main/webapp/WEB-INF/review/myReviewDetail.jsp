@@ -102,7 +102,7 @@
 		if(confirm("정말 삭제하시겠습니까?")==true){
 			console.log("삭제버튼 눌렸음");
 			let reviewNo = document.querySelector("input[name=reviewNo]").value
-			document.forms.myReviewDetail.action="deleteUserQna.do?reviewNo=" + reviewNo;
+			document.forms.myReviewDetail.action="deleteReview.do?reviewNo=" + reviewNo;
 			document.forms.myReviewDetail.submit();
 		}
 		

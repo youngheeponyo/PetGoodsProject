@@ -64,10 +64,9 @@
 	</update>
 	
 	<!-- 리뷰삭제 -->
-	<delete  id="deleteReview" parameterType="com.yedamMiddle.review.service.ReviewVO">>
-		DELETE * FROM review WHERE mer_uid=#{merUid} and user_no=#{UserNo}
+	<delete id="deleteReview" parameterType="com.yedamMiddle.review.service.ReviewVO">
+		DELETE FROM REVIEW WHERE REVIEW_NO = #{reviewNo}
 	</delete>
-	
 	<!-- 좋아요 수 증가 -->
 	<update id="updateReviewLikeCnt" parameterType="com.yedamMiddle.review.service.ReviewVO">
 		UPDATE review SET review_like_cnt=#{reviewLikeCnt}+1
