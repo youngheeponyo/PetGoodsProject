@@ -36,7 +36,7 @@ public void execute(HttpServletRequest req, HttpServletResponse resp) {
 	
 	
 	UserQnaService usc = new UserQnaServiceImpl();
-	List<UserQnaVO> qlist = usc.userQnaAllList();
+	List<UserQnaVO> qlist = usc.userQnaAllListByProductNo(Integer.parseInt(pno));
 	req.setAttribute("qlist", qlist);
 	
 	List<ProductVO> list = svc.productList();
