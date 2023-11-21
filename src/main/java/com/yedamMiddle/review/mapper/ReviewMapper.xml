@@ -30,6 +30,27 @@
 								
 	</select>
 	
+<!-- 	나의 리뷰번호에 따른 상세리뷰 가져오기 -->
+	<select id="selectDetailReview"  resultType="com.yedamMiddle.review.service.ReviewVO"
+								parameterType="int">
+		SELECT r.review_no, r.mer_uid, r.content, r.star_cnt, r.review_date,r.review_like_cnt,
+		 		r.review_image, r.product_no, r.user_no,
+		 		 p.product_name, u.nickname
+        from review r 
+        left Join user_tbl u
+        on r.user_no = u.user_no
+        left join product p on r.product_no = p.product_no
+        where r.review_no=#{reviewNo}							
+	</select>
+	
+<!-- 	주문번호와 상품번호로 구매정보가져오기 -->
+	<select id="selectDetailReviewByProductNo" resultType="com.yedamMiddle.review.service.ReviewVO">
+		SELECT u.nickname, p.product_name, o.mer_uid
+		from product_order o left join user_tbl u on o.user_no = u.user_no
+		left join product p on o.product_no = p.product_no
+		where o.mer_uid=#{mUid} and  p.product_no=#{pNo}
+	</select>
+	
 	<!-- 리뷰작성 -->
 	<insert id="insertReview" parameterType="com.yedamMiddle.review.service.ReviewVO">
 		INSERT INTO review  VALUES(seq_review.nextval, #{merUid}, #{content},#{starCnt}

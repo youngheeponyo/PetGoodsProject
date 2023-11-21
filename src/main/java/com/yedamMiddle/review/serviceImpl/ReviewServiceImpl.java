@@ -24,6 +24,18 @@ public class ReviewServiceImpl implements ReviewService {
 	public List<ReviewVO> selectProductReview(int productNo) {
 		return mapper.selectProductReview(productNo);
 	}
+	
+	@Override
+	public ReviewVO selectDetailReview(int reviewNo) {
+		return mapper.selectDetailReview(reviewNo);
+	}
+	
+
+	@Override
+	public ReviewVO selectDetailReviewByProductNo(long merUid, int productNo) {
+		return mapper.selectDetailReviewByProductNo(merUid, productNo);
+	}
+	
 
 	@Override
 	public int insertReview(ReviewVO vo) {
@@ -44,5 +56,8 @@ public class ReviewServiceImpl implements ReviewService {
 	public int updateReviewLikeCnt(ReviewVO vo) {
 		return mapper.updateReviewLikeCnt(vo);
 	}
+
+
+
 
 }

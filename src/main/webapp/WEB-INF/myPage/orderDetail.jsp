@@ -13,22 +13,31 @@
 						id="sidenavAccordion">
 						<div class="sb-sidenav-menu">
 							<div class="nav">
+								<div class="sb-sidenav-menu-heading">${nickName }님 환영합니다</div>
 								<a class="nav-link" href="orderDetailForm.do">
 									<div class="sb-nav-link-icon">
-										<i class="fas fa-tachometer-alt"></i>
+										<i class="bi bi-basket3-fill"></i>
 									</div> 주문내역
 								</a> <a class="nav-link" href="couponDetailForm.do">
 									<div class="sb-nav-link-icon">
-										<i class="fas fa-chart-area"></i>
+										<i class="bi bi-upc-scan"></i>
 									</div> 내 쿠폰
-								</a> <a class="nav-link" href="tables.html">
+								</a> <a class="nav-link" href="myProdQnaDetailForm.do">
 									<div class="sb-nav-link-icon">
-										<i class="fas fa-table"></i>
+										<i class="bi bi-box-seam"></i>
 									</div> 상품문의
-								</a> </a> <a class="nav-link" href="tables.html">
+								</a> <a class="nav-link" href="myReviewDetailForm.do">
 									<div class="sb-nav-link-icon">
-										<i class="fas fa-table"></i>
+										<i class="bi bi-chat-left-text"></i>
 									</div> 내 리뷰보기
+								</a><a class="nav-link" href="myInfo.do">
+									<div class="sb-nav-link-icon">
+										<i class="bi bi-person"></i>
+									</div> 내정보관리
+								</a><a class="nav-link" href="myPetInfo.do">
+									<div class="sb-nav-link-icon">
+										<i class="bi bi-reddit"></i>
+									</div> 내반려동물정보
 								</a>
 							</div>
 						</div>
@@ -66,7 +75,7 @@
 													<c:when test="${item.reviewNo <= 0 }">
 														<%--<c:if test=""></c:if> 리뷰작성할 떄 mer_uid,product_no넘겨서 작성하도록. --%>
 														<td><a
-															href="main.do?mUid=${item.merUid }&pNo=${item.productNo}">리뷰작성</a></td>
+															href="addReviewForm.do?mUid=${item.merUid }&pNo=${item.productNo}">리뷰작성</a></td>
 													</c:when>
 													<c:otherwise>
 														<td><a href="myReviewList.do?rNo=${item.reviewNo }">리뷰보기</a></td>
