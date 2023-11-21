@@ -51,8 +51,6 @@ public class ProductDetailControl implements Command {
 		ReviewService rvc = new ReviewServiceImpl();
 		List<ReviewVO> Rlist = rvc.selectProductReview(Integer.parseInt(pno));
 		req.setAttribute("Rlist", Rlist);
-		System.out.println("Rlist ="+ Rlist);
-		System.out.println("pno ="+ pno);
 
 		
 		MyCartService csv = new MyCartServiceImpl();

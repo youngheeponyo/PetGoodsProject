@@ -46,14 +46,15 @@
 	#btn-back-to-top:hover {
 	  background-color: #333;
 	}
+
 </style>
 </head>
 <section class="py-5" id="top">
 
 	<div class="container px-4 px-lg-5 my-5">
 		<div class="row gx-4 gx-lg-5 align-items-center">
-			<div class="col-md-6">
-				<img class="card-img-top mb-5 mb-md-0" src="productImage/${petType }/${pno.productImage }" alt="..."/>
+			<div class="col-md-6" id="img">
+				<img class="card-img-top mb-5 mb-md-0" id="inlineimg" src="productImage/${petType }/${pno.productImage }" alt="..."/>
 			</div>
 			<div class="col-md-6">
 				<h1 class="display-5 fw-bolder">${pno.productName }</h1>
@@ -76,18 +77,25 @@
 				<p class="lead">${pno.productDesc }</p>
 				<br>
 				<div class="d-flex">
-					<input id="inputQuantity" type="number" pattern="[0-9]*"
-						style="margin: 5px; padding: 5px; border-radius: 5px;"
-						data-hook="number-input-spinner-input" aria-label="Quantity"
-						max="99" min="1" value="1" name="cnt">
 					<c:choose>
-						<c:when test="${empty uno }">
-							<button class="btn btn-outline-dark flex-shrink-0" type="button" onclick="location.href='loginForm.do'">
-							<i class="bi-cart-fill me-1"></i> Add to cart</button>
+						<c:when test="${pno.productStock==0 }">
+							<p style="color:red">품절되었습니다</p>
 						</c:when>
 						<c:otherwise>
-							<button class="btn btn-outline-dark flex-shrink-0" onclick="functionCart()">
-							<i class="bi-cart-fill me-1"></i> Add to cart</button>
+							<input id="inputQuantity" type="number" pattern="[0-9]*"
+								style="margin: 5px; padding: 5px; border-radius: 5px;"
+								data-hook="number-input-spinner-input" aria-label="Quantity"
+								max="99" min="1" value="1" name="cnt">
+							<c:choose>
+								<c:when test="${empty uno }">
+									<button class="btn btn-outline-dark flex-shrink-0" type="button" onclick="location.href='loginForm.do'">
+									<i class="bi-cart-fill me-1"></i> Add to cart</button>
+								</c:when>
+								<c:otherwise>
+									<button class="btn btn-outline-dark flex-shrink-0" onclick="functionCart()">
+									<i class="bi-cart-fill me-1"></i> Add to cart</button>
+								</c:otherwise>
+							</c:choose>
 						</c:otherwise>
 					</c:choose>
 				</div>
