@@ -17,6 +17,8 @@ public interface UserQnaService {
 	public int replyUpdate(UserQnaVO vo);
 	//상품별 문의 보기
 	public List<UserQnaVO> userQnaAllListByProductNo(int pno);
+	//유저별 문의 보기
+	public List<UserQnaVO> userQnaAllListByUserNo(int userNo);
 	
 	//유저 게시글 등록, 수정, 삭제
 	public int userQnaInsert(UserQnaVO vo);

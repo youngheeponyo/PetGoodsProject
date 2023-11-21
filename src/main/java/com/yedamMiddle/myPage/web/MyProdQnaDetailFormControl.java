@@ -37,7 +37,7 @@ public class MyProdQnaDetailFormControl implements Command {
 		int pageNo = Integer.parseInt(page);
 		
 		UserQnaService uvc = new UserQnaServiceImpl();
-		List<UserQnaVO> list = uvc.userQnaAllList();
+		List<UserQnaVO> list = uvc.userQnaAllListByUserNo(userNo);
 		
 		int startIdx = (pageNo - 1) * 10;
 		int endIdx = (pageNo) * 10;

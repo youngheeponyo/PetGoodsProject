@@ -12,8 +12,16 @@
 	<select id="userQnaAllListByProductNo" resultType ="com.yedamMiddle.userQna.service.UserQnaVO"
 											parameterType="int"> 
 		SELECT U.NICKNAME, Q.QNA_NO, Q.USER_NO, Q.PRODUCT_ORDER_NO, Q.PRODUCT_NO, Q.TITLE, Q.CONTENTS, Q.REGIST_DATE, Q.PASSWORD, Q.QNA_REPLY, Q.QNA_STATE, Q.QNA_TYPE
- FROM USER_TBL U RIGHT JOIN USERQNA Q ON U.USER_NO=Q.USER_NO where Q.product_no=#{productNo}  ORDER BY Q.QNA_NO							
+ 		FROM USER_TBL U RIGHT JOIN USERQNA Q ON U.USER_NO=Q.USER_NO where Q.product_no=#{productNo}  ORDER BY Q.QNA_NO							
 	</select>
+	
+	<!-- 유저별 문의 조회 -->
+	<select id="userQnaAllListByUserNo" resultType ="com.yedamMiddle.userQna.service.UserQnaVO"
+											parameterType="int"> 
+		SELECT U.NICKNAME, Q.QNA_NO, Q.USER_NO, Q.PRODUCT_ORDER_NO, Q.PRODUCT_NO, Q.TITLE, Q.CONTENTS, Q.REGIST_DATE, Q.PASSWORD, Q.QNA_REPLY, Q.QNA_STATE, Q.QNA_TYPE
+ 		FROM USER_TBL U RIGHT JOIN USERQNA Q ON U.USER_NO=Q.USER_NO where Q.USER_NO=#{userNo} ORDER BY Q.QNA_NO							
+	</select>
+	
 	
 	<!-- 상세문의조회 -->
 	<select id="userQnaSelect" resultType="com.yedamMiddle.userQna.service.UserQnaVO"
