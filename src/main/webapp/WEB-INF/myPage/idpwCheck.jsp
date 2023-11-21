@@ -41,10 +41,10 @@
 <div id="box">
 		<div class="input-form-backgroud row">
 			<div class="input-form col-md-12 mx-auto">
-				<h4 class="mb-3" style="text-align:center">서비스 이용시 아이디/비밀번호를 다시 입력하여 본인인증을 해주세요</h4>
+				<h4 class="mb-3" style="text-align:center">서비스 이용시 비밀번호를 다시 입력하여 본인인증을 해주세요</h4>
 				<div class="row">
 					<div class="mb-3">
-						<label for="name">아이디</label> <input type="text" class="form-control" id="uid" name="uid" value="" required>
+						<input type="hidden" class="form-control" id="uid" name="uid" value="${uid }" required>
 					</div>
 					<div class="mb-3">
 						<label for="name">비밀번호</label> <input type="password" class="form-control" id="upw" name="upw" value="" required>
@@ -71,11 +71,15 @@
 										fetch('idpwCheck.do?uid='+kakaoId+'&upw='+kakaoPw)
 										.then(resolve=>resolve.json())
 										.then(result=>{
-											if(result.retCode=='OK'){
-												alert('확인되었습니다!');
-												location.href="updateInfoForm.do?uid="+kakaoId+"&upw="+kakaoPw;
+											if(${uid==kakaoId}){
+												if(result.retCode=='OK'){
+													alert('확인되었습니다!');
+													location.href="updateInfoForm.do?uid="+kakaoId+"&upw="+kakaoPw;
+												}else{
+													alert('아이디/비밀번호가 일치하지 않습니다')
+												}
 											}else{
-												alert('아이디/비밀번호가 일치하지 않습니다')
+												alert('카카오 사용자가 아닙니다')
 											}
 										})
 						        }
@@ -98,12 +102,16 @@
 </body>
 <script type="text/javascript">
 	function checkfunction(userid,upw){
-			fetch('idpwCheck.do?uid='+userid+'&upw='+upw)
+			fetch('idpwCheck.do',{
+				method:'post',
+				headers:{'Content-Type':'application/x-www-form-urlencoded'},
+				body:'uid='+userid+'&upw='+upw
+			})
 			.then(resolve=>resolve.json())
 			.then(result=>{
 				if(result.retCode=='OK'){
 						alert('확인되었습니다!');
-						location.href="updateInfoForm.do?uid="+userid+"&upw="+upw;
+						location.href="updateInfoForm.do?uid="+userid;
 				}else{
 					alert('아이디/비밀번호가 일치하지 않습니다')
 				}
