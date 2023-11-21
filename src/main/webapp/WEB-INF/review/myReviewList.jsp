@@ -64,6 +64,7 @@
                     </table>
                     <div style= text-ailgn:right>
                     <hr>
+                    	<p style=color:gray>*내 주문내역에서 리뷰 작성이 가능합니다*</p>
                     </div>
                 </div>
          </div>
