@@ -33,7 +33,7 @@
 							</div>
 							<!-- Product details-->
 							<div class="card-body p-4">
-								<div class="text-center" style="height:80px;">
+								<div class="text-center" style="height:120px;">
 									<!-- Product name-->
 									<h5 class="fw-bolder">${vo.productName }</h5>
 									<!-- Product price-->
@@ -64,7 +64,7 @@
 							</div>
 							<!-- Product details-->
 							<div class="card-body p-4">
-								<div class="text-center" style="height:80px;">
+								<div class="text-center" style="height:120px;">
 									<!-- Product name-->
 									<h5 class="fw-bolder">${vo.productName }</h5>
 									<!-- Product price-->
@@ -111,7 +111,7 @@
 							</div>
 							<!-- Product details-->
 							<div class="card-body p-4">
-								<div class="text-center" style="height:80px;">
+								<div class="text-center" style="height:120px;">
 									<!-- Product name-->
 									<h5 class="fw-bolder">${vo.productName }</h5>
 									<!-- Product price-->
@@ -142,7 +142,7 @@
 							</div>
 							<!-- Product details-->
 							<div class="card-body p-4">
-								<div class="text-center" style="height:80px;">
+								<div class="text-center" style="height:120px;">
 									<!-- Product name-->
 									<h5 class="fw-bolder">${vo.productName }</h5>
 									<!-- Product price-->
@@ -189,7 +189,7 @@
 							</div>
 							<!-- Product details-->
 							<div class="card-body p-4">
-								<div class="text-center" style="height:80px;">
+								<div class="text-center" style="height:120px;">
 									<!-- Product name-->
 									<h5 class="fw-bolder">${vo.productName }</h5>
 									<!-- Product price-->
@@ -220,13 +220,13 @@
 							</div>
 							<!-- Product details-->
 							<div class="card-body p-4">
-								<div class="text-center" style="height:80px;">
+								<div class="text-center" style="height:120px;">
 									<!-- Product name-->
 									<h5 class="fw-bolder">${vo.productName }</h5>
 									<!-- Product price-->
 									₩ ${vo.productPrice }
 								</div>
-								<div class="text-center pt-4">
+								<div class="text-center my-2">
 									<p style="color:#848BA0;">★${vo.avgStar }</p>
 								</div>
 							</div>
