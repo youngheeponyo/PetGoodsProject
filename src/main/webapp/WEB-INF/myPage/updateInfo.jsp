@@ -48,12 +48,6 @@
 								<div class="col-md-6 mb-3">
 									<input type="hidden" class="form-control" id="names" name="uid" value="${vo.userId }">
 								</div>
-								<hr>
-								<div class="col-md-6 mb-3">
-									<input type="hidden" class="form-control" id="pw" name="upw" placeholder="비밀번호를 입력하세요" value="${vo.userPw }" required>
-									<div class="invalid-feedback">비밀번호를 입력해주세요.</div>
-								</div>
-								<hr>
 							<div class="col-md-6 mb-3">
 								<input type="hidden" class="form-control" id="nickname" name="nick" value="${vo.nickName }">
 							</div>
@@ -140,32 +134,33 @@
 								
 								
 							}
-								function chkfunction(uid){
-									console.log(uid)
-									fetch('idCheck.do?uid='+uid)
-										.then(resolve=>resolve.json())
-										.then(result=>{
-											console.log(result)
-											if(result.retCode=='NG'){
-												console.log(result)
-												alert(uid+"는 사용 가능한 아이디입니다!");
-												document.getElementById('submit').disabled=false;
-											}else{
-												alert(uid+"는 이미 사용 중인 아이디입니다");
-												document.getElementById('names').value=null;
-											}
-										})
-								}
-								
 						</script>
 						<div class="mb-4"></div>
-						<button class="btn btn-primary btn-lg btn-block" id="submit" type="submit" style="background-color:pink;border:none;">수정완료</button>
+						<button class="btn btn-primary btn-lg btn-block" id="submit" type="button" onclick="updatefunction(uid,nick,mail,ubirth,phone)" style="background-color:pink;border:none;">수정완료</button>
 				</div>
 			</div>
 		</div>
 	<footer class="my-3 text-center text-small"> </footer>
 </form>
 </body>
-
+<script type="text/javascript">
+	function updatefunction(uid,nick,mail,ubirth,phone){
+		fetch('updateInfo.do',{
+			method:'post',
+			headers:{'Content-Type':'application/x-www-form-urlencoded'},
+			body:'uid='+uid.value+'&nick='+nick.value+'&mail='+mail.value+'&ubirth='+ubirth.value+'&phone='+phone.value
+		})
+		.then(resolve=>resolve.json())
+		.then(result=>{
+			if(result.retCode='OK'){
+				alert('수정이 완료되었습니다!');
+				location.href="myPage.do";
+			}else{
+				alert('수정 실패')
+			}
+		})
+	
+	}
+</script>
 </html>
 

@@ -49,9 +49,47 @@
 					<div class="mb-3">
 						<label for="name">비밀번호</label> <input type="password" class="form-control" id="upw" name="upw" value="" required>
 					</div>
-					<div class="mb-4"></div>
+					<div class="mb-4">
 					<input class="btn btn-primary btn-lg btn-block" type="button" value="본인인증" onclick="checkfunction(uid.value,upw.value)"
-					style="background-color:pink;border:1px white;width:200px;margin:auto;">
+					style="background-color:pink;border:1px white;width:200px;margin:auto"></div>
+					<div><a id="kakao-login-btn"><input class="btn btn-primary btn-lg btn-block" type="button" value="카카오인증" style="background-color:pink;border:1px white;width:200px;margin:auto"></a></div>
+					<script src = "https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+	            	<script type='text/javascript'>
+						Kakao.init('d462b7d737c1a7561172e7cffc4ef53b');
+						$("#kakao-login-btn").on("click", function(){
+						    //1. 로그인 시도
+						    Kakao.Auth.login({
+						    	scope:'profile_nickname',
+						        success: function(authObj) {
+						          //2. 로그인 성공시, API 호출
+						          Kakao.API.request({
+						            url: '/v2/user/me',
+						            success: function(res) {
+						              const kakaoId = res.id;
+						              const kakaoPw = "kakao" + res.id;
+									  scope : 'account_email';
+										fetch('idpwCheck.do?uid='+kakaoId+'&upw='+kakaoPw)
+										.then(resolve=>resolve.json())
+										.then(result=>{
+											if(result.retCode=='OK'){
+												alert('확인되었습니다!');
+												location.href="updateInfoForm.do?uid="+kakaoId+"&upw="+kakaoPw;
+											}else{
+												alert('아이디/비밀번호가 일치하지 않습니다')
+											}
+										})
+						        }
+						          })
+						          var token = authObj.access_token;
+						        },
+						        fail: function(err) {
+						          alert(JSON.stringify(err));
+						        }
+						      });
+						        
+						})
+					</script>
+					<a id="kakao-login-btn"></a>
 				</div>
 				<footer class="my-3 text-center text-small"> </footer>
 			</div>
@@ -59,17 +97,17 @@
 </div>
 </body>
 <script type="text/javascript">
-	function checkfunction(uid,upw){
-		fetch('idpwCheck.do?uid='+uid+'&upw='+upw)
-		.then(resolve=>resolve.json())
-		.then(result=>{
-			if(result.retCode=='OK'){
-				alert('확인되었습니다!');
-				location.href="updateInfoForm.do?uid="+uid+"&upw="+upw;
-			}else{
-				alert('아이디/비밀번호가 일치하지 않습니다')
-			}
-		})
+	function checkfunction(userid,upw){
+			fetch('idpwCheck.do?uid='+userid+'&upw='+upw)
+			.then(resolve=>resolve.json())
+			.then(result=>{
+				if(result.retCode=='OK'){
+						alert('확인되었습니다!');
+						location.href="updateInfoForm.do?uid="+userid+"&upw="+upw;
+				}else{
+					alert('아이디/비밀번호가 일치하지 않습니다')
+				}
+			})
 	}
 </script>
 </html>
