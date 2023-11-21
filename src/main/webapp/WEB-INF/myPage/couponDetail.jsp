@@ -13,7 +13,7 @@
 						id="sidenavAccordion">
 						<div class="sb-sidenav-menu">
 							<div class="nav">
-								
+								<div class="sb-sidenav-menu-heading">${nickName }님 환영합니다</div>
 								<a class="nav-link" href="orderDetailForm.do">
 									<div class="sb-nav-link-icon">
 										<i class="bi bi-basket3-fill"></i>
@@ -34,6 +34,10 @@
 									<div class="sb-nav-link-icon">
 										<i class="bi bi-person"></i>
 									</div> 내정보관리
+								</a><a class="nav-link" href="myPetInfo.do">
+									<div class="sb-nav-link-icon">
+										<i class="bi bi-reddit"></i>
+									</div> 내반려동물정보
 								</a>
 							</div>
 						</div>
