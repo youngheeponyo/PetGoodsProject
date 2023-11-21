@@ -45,22 +45,26 @@
 							<div class="d-flex justify-content-center">
 								<table class="table w-85">
 									<tr>
-										<th>보유중인 쿠폰</th>
+										<th>작성한 리뷰</th>
 									</tr>
 									<tr>
-										<th>쿠폰명</th>
-										<th>할인률</th>
-										<th>만료일</th>
-										<th>쿠폰사용여부</th>
+										<th>상품명</th>
+										<th>주문번호</th>
+										<th>리뷰</th>
+										<th>평점</th>
+										<th>작성일</th>
+										<th>이미지</th>
 									</tr>
 									<tr>
-										<c:forEach items="${list }" var="list">
+										<c:forEach items="${reviewList }" var="list">
 											<tr>
-												<td>${list.couponName }</td>
-												<td>${list.discountPct }</td>
-												<td><fmt:formatDate value="${list.endDate}"
+												<td>${list.productName }</td>
+												<td>${list.merUid }</td>
+												<td>${list.content }</td>
+												<td>${list.starCnt }</td>
+												<td><fmt:formatDate value="${list.reviewDate}"
 														pattern="yyyy-MM-dd"></fmt:formatDate></td>
-												<td>${list.couponState }</td>
+												<td>${list.reviewImage }</td>
 											</tr>
 										</c:forEach>
 									</tr>

@@ -31,5 +31,39 @@
 		SELECT * FROM USERQNA WHERE USER_NO=#{userNo} ORDER BY REGIST_DATE DESC
 	</select>
 
+	<select id="orderList" parameterType="int" resultType="com.yedamMiddle.product.service.ProductOrderJoinVO">
+		<![CDATA[
+		SELECT A.*, B.REVIEW_NO
+    			FROM (
+        			SELECT A.MER_UID, B.PRODUCT_NAME,B.PRODUCT_PRICE, COUNT(*) AS BUY_CNT, B.PRODUCT_NO, A.ORDER_DATE
+            		FROM product_order A
+            		JOIN PRODUCT B ON A.PRODUCT_NO = B.PRODUCT_NO
+            		WHERE A.USER_NO = #{userNo}
+            		GROUP BY A.MER_UID, B.PRODUCT_NAME, B.PRODUCT_NO, A.ORDER_DATE, B.PRODUCT_PRICE
+            		ORDER BY A.ORDER_DATE DESC
+    			) A
+    			LEFT JOIN REVIEW B ON A.MER_UID = B.MER_UID AND A.PRODUCT_NO = B.PRODUCT_NO
+    			where rownum<=3
+                ORDER BY A.ORDER_DATE DESC
+        ]]>
+	</select> 
+	
+	<select id="recentReviewList" parameterType="int" resultType="com.yedamMiddle.review.service.ReviewVO">
+		<![CDATA[
+		SELECT P.PRODUCT_NAME, R.* 
+   		FROM (SELECT * FROM REVIEW WHERE USER_NO=#{userNo}) R
+    	JOIN PRODUCT P ON P.PRODUCT_NO = R.PRODUCT_NO
+    	WHERE ROWNUM <=3
+    	ORDER BY R.REVIEW_DATE DESC
+		]]>
+	</select>
+	
+	<select id="reviewList" parameterType="int" resultType="com.yedamMiddle.review.service.ReviewVO">
+		SELECT P.PRODUCT_NAME, R.* 
+   		FROM (SELECT * FROM REVIEW WHERE USER_NO=#{userNo}) R
+    	JOIN PRODUCT P ON P.PRODUCT_NO = R.PRODUCT_NO
+    	ORDER BY R.REVIEW_DATE DESC
+	</select>
+	
 
 </mapper>
