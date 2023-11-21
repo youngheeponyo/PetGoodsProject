@@ -205,7 +205,7 @@
 		                             <tr>
 		                                <td>${i }</td>
 		                                <td>${review.productName }</td>
-		                                <td>${review.starCnt }</td>
+		                                <td>${review.starCnt }/5</td>
 		                                <td>${review.nickName }</td>
 		                                <td><fmt:formatDate value ="${review.reviewDate}" pattern="yyyy-MM-dd"></fmt:formatDate></td>
 		                                <td><input class="heart"type="button" data-reviewNo="${review.reviewNo }" 

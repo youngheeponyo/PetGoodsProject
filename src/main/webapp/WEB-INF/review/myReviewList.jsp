@@ -23,6 +23,7 @@
                     			<th>등록날짜</th>
                     			<th>좋아요</th>
                     		</tr>
+                    		
                     	</thead>
                     	<tbody>
                     		<c:choose>
@@ -32,7 +33,7 @@
 			                    		<tr>
 			                    			<td>${i}</td>
 			                    			<td onclick="next('${vo.reviewNo }')"><a href=#>${vo.productName }</a></td>
-			                    			<td>${vo.starCnt }</td>
+			                    			<td>${vo.starCnt }/5</td>
 			                    			<td>${vo.nickName }</td>
 			                    			<td><fmt:formatDate value ="${vo.reviewDate }" pattern="yyyy-MM-dd"></fmt:formatDate></td>
 			                    			<td>${vo.reviewLikeCnt }</td>

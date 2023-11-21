@@ -90,6 +90,11 @@ public class UserQnaServiceImpl implements UserQnaService {
 		return mapper.getCategoryNoToProductName(vo);
 	}
 
+	@Override
+	public List<UserQnaVO> userQnaAllListByProductNo(int pno) {
+		return mapper.userQnaAllListByProductNo(pno);
+	}
+
 
 
 
