@@ -22,10 +22,10 @@ public class ModifyreviewLikeCntControl implements Command {
 		HttpSession session = req.getSession();
 		
 		
-		String reviewno = req.getParameter("reviewno");
-		String userno = req.getParameter("userno");
+		String reviewno = req.getParameter("reviewNo");
+		String userno = req.getParameter("userNo");
 		String reviewLikeCnt = req.getParameter("reviewLikeCnt");
-		System.out.println("reviewLikeCnt L "+reviewLikeCnt);
+		System.out.println("reviewLikeCnt = "+reviewLikeCnt);
 		ReviewVO reviewVo = new ReviewVO();
 		reviewVo.setReviewNo(Integer.parseInt(reviewno));
 		reviewVo.setUserNo(Integer.parseInt(userno));

@@ -46,11 +46,11 @@
 			                    					<c:when test="${vo.reviewImage eq null }"><p style="color:gray;">사진을 첨부하지 않았습니다<p></c:when>
 			                    					<c:otherwise><img style="width:50%" src="reviewImage/${vo.reviewImage }"></c:otherwise>
 			                    				</c:choose>
+			                    				<br><br>
 			                    				</td>
 			                    				<td colspan="3">${fn:substring(vo.content,0,10)}···</td>
 			                    			</tr>
-			                    		<hr>
-			                    		<br>
+			                    			
 		                    		</c:forEach>
 	                    		</c:when>
 	                    		<c:otherwise>
