@@ -30,27 +30,14 @@
 		                    		<c:forEach items="${list }" var="vo">
 		                    			<c:set var="i" value="${i+1 }"/>
 			                    		<tr>
-			                    			<td>${i }</td>
-			                    			<td>${vo.productName }</td>
+			                    			<td>${i}</td>
+			                    			<td onclick="next('${vo.reviewNo }')"><a href=#>${vo.productName }</a></td>
 			                    			<td>${vo.starCnt }</td>
 			                    			<td>${vo.nickName }</td>
 			                    			<td><fmt:formatDate value ="${vo.reviewDate }" pattern="yyyy-MM-dd"></fmt:formatDate></td>
 			                    			<td>${vo.reviewLikeCnt }</td>
-			                    		</tr>
-			                    		<tr><th colspan="3">사진첨부</th>
-			                    		<th colspan="3">내용</th>
-			                    		</tr>
-			                    			<tr>
-			                    				<td colspan="3">
-			                    				<c:choose>
-			                    					<c:when test="${vo.reviewImage eq null }"><p style="color:gray;">사진을 첨부하지 않았습니다<p></c:when>
-			                    					<c:otherwise><img style="width:50%" src="reviewImage/${vo.reviewImage }"></c:otherwise>
-			                    				</c:choose>
-			                    				<br><br>
-			                    				</td>
-			                    				<td colspan="3">${fn:substring(vo.content,0,10)}···</td>
-			                    			</tr>
 			                    			
+			                    		</tr>
 		                    		</c:forEach>
 	                    		</c:when>
 	                    		<c:otherwise>
@@ -71,6 +58,12 @@
 </section>
 </body>
 
+<script>
+	function next(reviewNo){
+		window.location.href="myReviewDetail.do?rNo="+reviewNo;
+		return;
+	}
+</script>
 
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
