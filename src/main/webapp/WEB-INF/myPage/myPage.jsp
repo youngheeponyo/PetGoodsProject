@@ -38,6 +38,10 @@
 									<div class="sb-nav-link-icon">
 										<i class="bi bi-person"></i>
 									</div> 내정보수정
+								</a><a class="nav-link" href="updatePwForm.do">
+									<div class="sb-nav-link-icon">
+										<i class="bi bi-person"></i>
+									</div> 비밀번호 변경
 								</a><a class="nav-link" href="myPetInfo.do">
 									<div class="sb-nav-link-icon">
 										<i class="bi bi-reddit"></i>

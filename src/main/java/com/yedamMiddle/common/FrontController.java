@@ -52,6 +52,8 @@ import com.yedamMiddle.myPage.web.MyReviewDetailFormControl;
 import com.yedamMiddle.myPage.web.OrderDetailFormControl;
 import com.yedamMiddle.myPage.web.UpdateInfoControl;
 import com.yedamMiddle.myPage.web.UpdateInfoFormControl;
+import com.yedamMiddle.myPage.web.UpdatePwControl;
+import com.yedamMiddle.myPage.web.UpdatePwFormControl;
 import com.yedamMiddle.notice.web.AddNoticeControl;
 import com.yedamMiddle.notice.web.GetNoticeControl;
 import com.yedamMiddle.notice.web.NoticeFormControl;
@@ -193,6 +195,8 @@ public class FrontController extends HttpServlet {
       commandByURL.put("/idpwCheckForm.do", new IdpwCheckFormControl());
       commandByURL.put("/updateInfoForm.do", new UpdateInfoFormControl());
       commandByURL.put("/updateInfo.do", new UpdateInfoControl());
+      commandByURL.put("/updatePwForm.do", new UpdatePwFormControl());
+      commandByURL.put("/updatePw.do", new UpdatePwControl());
       
       // 전민교
       commandByURL.put("/main.do", new MainPageControl()); // 메인페이지

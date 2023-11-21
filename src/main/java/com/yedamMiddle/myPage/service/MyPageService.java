@@ -20,4 +20,5 @@ public interface MyPageService {
 	public List<PetVO> petInfo(int userNo);
 	public boolean addMyPet(PetVO vo);
 	public boolean updateUser(UserVO vo);
+	public boolean updatePw(String newPw,String userId,String userPw);
 }
