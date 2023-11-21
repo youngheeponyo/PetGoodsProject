@@ -40,7 +40,7 @@
 
 
 <body>
-<form action="findId.do" method="get">
+<form action="findId.do" method="post">
 <div id="box">
 		<div class="input-form-backgroud row">
 			<div class="input-form col-md-12 mx-auto">

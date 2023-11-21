@@ -30,6 +30,10 @@
 	<select id="qnaList" parameterType="int" resultType="com.yedamMiddle.userQna.service.UserQnaVO">
 		SELECT * FROM USERQNA WHERE USER_NO=#{userNo} ORDER BY REGIST_DATE DESC
 	</select>
+	
+	<update id="updateUser" parameterType="com.yedamMiddle.common.service.UserVO">
+		update user_tbl set user_pw=#{userPw}, user_birth=#{userBirth}, user_mail = #{userMail}, user_phone= #{userPhone}, user_addr= #{userAddr} where user_id=#{userId}
+	</update>
 
 	<select id="orderList" parameterType="int" resultType="com.yedamMiddle.product.service.ProductOrderJoinVO">
 		<![CDATA[

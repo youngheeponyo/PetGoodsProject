@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.yedamMiddle.common.Mybatis;
+import com.yedamMiddle.common.service.UserVO;
 import com.yedamMiddle.coupon.service.CouponVO;
 import com.yedamMiddle.myPage.mapper.MyPageMapper;
 import com.yedamMiddle.myPage.service.MyPageService;
@@ -35,6 +36,10 @@ public class MyPageServiceImpl implements MyPageService{
 	@Override
 	public List<UserQnaVO> qnaList(int userNo) {
 		return mapper.qnaList(userNo);
+	}
+	@Override
+	public boolean updateUser(UserVO vo) {
+		return mapper.updateUser(vo)==1;
 	}
 
 	@Override

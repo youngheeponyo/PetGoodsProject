@@ -41,10 +41,14 @@ import com.yedamMiddle.login.web.LoginFormControl;
 import com.yedamMiddle.login.web.LogoutControl;
 import com.yedamMiddle.login.web.updatePwControl;
 import com.yedamMiddle.myPage.web.CouponDetailFormControl;
+import com.yedamMiddle.myPage.web.IdpwCheckControl;
+import com.yedamMiddle.myPage.web.IdpwCheckFormControl;
 import com.yedamMiddle.myPage.web.MyPageControl;
 import com.yedamMiddle.myPage.web.MyProdQnaDetailFormControl;
 import com.yedamMiddle.myPage.web.MyReviewDetailFormControl;
 import com.yedamMiddle.myPage.web.OrderDetailFormControl;
+import com.yedamMiddle.myPage.web.UpdateInfoControl;
+import com.yedamMiddle.myPage.web.UpdateInfoFormControl;
 import com.yedamMiddle.notice.web.AddNoticeControl;
 import com.yedamMiddle.notice.web.GetNoticeControl;
 import com.yedamMiddle.notice.web.NoticeFormControl;
@@ -178,6 +182,11 @@ public class FrontController extends HttpServlet {
       commandByURL.put("/findPwForm.do", new FindPwFormControl());
       commandByURL.put("/findPw.do", new FindPwControl());
       commandByURL.put("/updatePw.do", new updatePwControl());
+      //회원정보 수정
+      commandByURL.put("/idpwCheck.do", new IdpwCheckControl());
+      commandByURL.put("/idpwCheckForm.do", new IdpwCheckFormControl());
+      commandByURL.put("/updateInfoForm.do", new UpdateInfoFormControl());
+      commandByURL.put("/updateInfo.do", new UpdateInfoControl());
       
       // 전민교
       commandByURL.put("/main.do", new MainPageControl()); // 메인페이지
