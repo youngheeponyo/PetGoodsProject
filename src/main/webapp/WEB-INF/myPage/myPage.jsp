@@ -38,14 +38,21 @@
 									<div class="sb-nav-link-icon">
 										<i class="bi bi-person"></i>
 									</div> 내정보수정
-								</a><a class="nav-link" href="updatePwForm.do">
-									<div class="sb-nav-link-icon">
-										<i class="bi bi-person"></i>
-									</div> 비밀번호 변경
-								</a><a class="nav-link" href="myPetInfo.do">
+								</a>
+								<c:if test="${uid != '3160394043' }">
+									<a class="nav-link" href="updatePwForm.do">
+										<div class="sb-nav-link-icon">
+											<i class="bi bi-person"></i>
+									</div> 비밀번호 변경</a>
+								</c:if>
+									<a class="nav-link" href="myPetInfo.do">
 									<div class="sb-nav-link-icon">
 										<i class="bi bi-reddit"></i>
 									</div> 내반려동물정보
+								</a><a class="nav-link" href="delUserForm.do">
+									<div class="sb-nav-link-icon">
+										<i class="bi bi-person"></i>
+									</div> 회원 탈퇴
 								</a>
 							</div>
 						</div>

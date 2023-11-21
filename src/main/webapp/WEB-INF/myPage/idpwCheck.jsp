@@ -71,9 +71,9 @@
 										fetch('idpwCheck.do?uid='+kakaoId+'&upw='+kakaoPw)
 										.then(resolve=>resolve.json())
 										.then(result=>{
-											if(${uid==kakaoId}){
+											if(${uid}==kakaoId){
 												if(result.retCode=='OK'){
-													alert('확인되었습니다!');
+													alert('인증되었습니다!');
 													location.href="updateInfoForm.do?uid="+kakaoId+"&upw="+kakaoPw;
 												}else{
 													alert('아이디/비밀번호가 일치하지 않습니다')
@@ -110,7 +110,7 @@
 			.then(resolve=>resolve.json())
 			.then(result=>{
 				if(result.retCode=='OK'){
-						alert('확인되었습니다!');
+						alert('인증되었습니다!');
 						location.href="updateInfoForm.do?uid="+userid;
 				}else{
 					alert('아이디/비밀번호가 일치하지 않습니다')
