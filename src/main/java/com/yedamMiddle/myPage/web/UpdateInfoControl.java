@@ -1,6 +1,7 @@
 package com.yedamMiddle.myPage.web;
 
 import java.io.IOException;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -9,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedamMiddle.common.Command;
 import com.yedamMiddle.common.service.UserVO;
-import com.yedamMiddle.login.service.Pwsha256;
 import com.yedamMiddle.myPage.service.MyPageService;
 import com.yedamMiddle.myPage.serviceImpl.MyPageServiceImpl;
 
@@ -39,22 +39,20 @@ public class UpdateInfoControl implements Command {
 		vo.setUserPhone(phone);
 		vo.setUserAddr(addr+" "+detailAddr);
 		
-		resp.setCharacterEncoding("utf-8");
-		resp.setContentType("text/html;charset=utf-8");
+		String result = "";
 		if(svc.updateUser(vo)) {
-			try {
-				resp.getWriter().print("<script>alert('수정완료')</script>");
-				resp.sendRedirect("main.do");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			result = "{\"retCode\":\"OK\"}";
 		}else {
-			try {
-				resp.getWriter().print("<script>alert('수정실패')</script>");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			result = "{\"retCode\":\"NG\"}";
 		}
+		
+
+		try {
+			resp.getWriter().print(result);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 		
 	}
 

@@ -25,66 +25,65 @@ import com.yedamMiddle.userQna.serviceImpl.UserQnaServiceImpl;
 
 public class ProductDetailControl implements Command {
 
-	@Override
-	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		String path = "product/productDetail.tiles";
-		
-		String pno = req.getParameter("pno");
-		ProductService svc = new ProductServiceImpl();
-		ProductVO vo = svc.productDetail(Integer.parseInt(pno));
-		req.setAttribute("pno", vo);
-		
-		//문의게시판
-		UserQnaService usc = new UserQnaServiceImpl();
-		List<UserQnaVO> qlist = usc.userQnaAllListByProductNo(Integer.parseInt(pno));
-		req.setAttribute("qlist", qlist);
-		//리뷰자료
-		ReviewService rvc = new ReviewServiceImpl();
-		List<ReviewVO> Rlist = rvc.selectProductReview(Integer.parseInt(pno));
-		req.setAttribute("Rlist", Rlist);
-		
-		
-		List<ProductVO> list = svc.productList();
-		req.setAttribute("list", list);
-		
-		String cno = req.getParameter("cno");
-		String type = req.getParameter("type");
-		
-		List<ProductVO> clist = null;
-		if(cno != null) {
-			clist = svc.categoryList(Integer.parseInt(cno),Integer.parseInt(pno),type);
-		}
-		else {
-			clist = svc.categoryList(vo.getCategoryNo(), Integer.parseInt(pno), type);
-		}
-			
-		req.setAttribute("clist", clist);
-		
-
-		
-		MyCartService csv = new MyCartServiceImpl();
-		HttpSession session = req.getSession();
-		Object userNo = session.getAttribute("uno");
-		
-		if(userNo==null) {
-			System.out.println("null임"+userNo);
-		}else {
-			int uNo = (Integer)userNo;
-			List<CartJoinVO> cl = csv.getCart(uNo);
-			session.setAttribute("cl", cl);
-			MyCartVO mvo = csv.cntInCart(Integer.parseInt(pno), uNo);
-			req.setAttribute("mvo", mvo);
-
-		}
-		
-		try {
-			req.getRequestDispatcher(path).forward(req, resp);
-		} catch (ServletException | IOException e) {
-			e.printStackTrace();
-		}
-		
-		
-		
+@Override
+public void execute(HttpServletRequest req, HttpServletResponse resp) {
+	String path = "product/productDetail.tiles";
+	
+	String pno = req.getParameter("pno");
+	ProductService svc = new ProductServiceImpl();
+	ProductVO vo = svc.productDetail(Integer.parseInt(pno));
+	req.setAttribute("pno", vo);
+	
+	
+	UserQnaService usc = new UserQnaServiceImpl();
+	List<UserQnaVO> qlist = usc.userQnaAllList();
+	req.setAttribute("qlist", qlist);
+	
+	List<ProductVO> list = svc.productList();
+	req.setAttribute("list", list);
+	
+	String cno = req.getParameter("cno");
+	String type = req.getParameter("type");
+	
+	List<ProductVO> clist = null;
+	if(cno != null) {
+		clist = svc.categoryList(Integer.parseInt(cno),Integer.parseInt(pno),type);
 	}
+	else {
+		clist = svc.categoryList(vo.getCategoryNo(), Integer.parseInt(pno), type);
+	}
+		
+	req.setAttribute("clist", clist);
+	//리뷰자료
+	ReviewService rvc = new ReviewServiceImpl();
+	List<ReviewVO> Rlist = rvc.selectProductReview(Integer.parseInt(pno));
+	req.setAttribute("Rlist", Rlist);
+	req.setAttribute("RlistSize", Rlist.size());
+	
 
+	
+	MyCartService csv = new MyCartServiceImpl();
+	HttpSession session = req.getSession();
+	Object userNo = session.getAttribute("uno");
+	
+	if(userNo==null) {
+		System.out.println("null임"+userNo);
+	}else {
+		int uNo = (Integer)userNo;
+		List<CartJoinVO> cl = csv.getCart(uNo);
+		session.setAttribute("cl", cl);
+		MyCartVO mvo = csv.cntInCart(Integer.parseInt(pno), uNo);
+		req.setAttribute("mvo", mvo);
+
+	}
+	
+	try {
+		req.getRequestDispatcher(path).forward(req, resp);
+	} catch (ServletException | IOException e) {
+		e.printStackTrace();
+	}
+	
+	
+	
+}
 }
