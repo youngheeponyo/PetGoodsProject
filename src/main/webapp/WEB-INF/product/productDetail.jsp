@@ -321,25 +321,19 @@
 				<li>'발송준비중, 발송처리완료' 단계에서는 상품 수령 후 교환 또는 반품만 가능합니다.</li>
 				<li>교환/반품 요청 기간이 지난 경우, 주문제작 상품으로 재판매가 불가능한 경우 교환/반품이 불가능합니다</li>
 			</ul>
-			<a id="btn" type="button" onclick="openDiv()">더보기</a>
-			<a id="close" type="button" onclick="openDiv()" style="display:none">닫기</a>
 		</div>
 		<script>
 		function openDiv() {
 			if(document.getElementById('list').style.display==='none'){
-				document.getElementById('btn').style.display='none'
-				document.getElementById('close').style.display='block'
 				document.getElementById('list').style.display='block'
 				document.getElementById('arrow').style.transform='rotate(-135deg)'
 			}else{
-				document.getElementById('btn').style.display='block'
-				document.getElementById('close').style.display='none'
 				document.getElementById('list').style.display='none'
 				document.getElementById('arrow').style.transform='rotate(45deg)'
 			}
 		}
 		</script>
-		<button onclick="location.href='#'" id="btn-back-to-top" title="위로 가기">▲</button>
+		<button onclick="location.href='#top'" id="btn-back-to-top" title="위로 가기">▲</button>
 
 	</div>
 </section>
