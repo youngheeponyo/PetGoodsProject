@@ -40,8 +40,11 @@ import com.yedamMiddle.login.web.LoginControl;
 import com.yedamMiddle.login.web.LoginFormControl;
 import com.yedamMiddle.login.web.LogoutControl;
 import com.yedamMiddle.login.web.updatePwControl;
+import com.yedamMiddle.myPage.web.AddMyPetControl;
 import com.yedamMiddle.myPage.web.CouponDetailFormControl;
 import com.yedamMiddle.myPage.web.MyPageControl;
+import com.yedamMiddle.myPage.web.MyPetFormControl;
+import com.yedamMiddle.myPage.web.MyPetInfoControl;
 import com.yedamMiddle.myPage.web.MyProdQnaDetailFormControl;
 import com.yedamMiddle.myPage.web.MyReviewDetailFormControl;
 import com.yedamMiddle.myPage.web.OrderDetailFormControl;
@@ -142,6 +145,9 @@ public class FrontController extends HttpServlet {
       commandByURL.put("/couponDetailForm.do", new CouponDetailFormControl()); //내 쿠폰
       commandByURL.put("/myProdQnaDetailForm.do", new MyProdQnaDetailFormControl()); //내 Q&A
       commandByURL.put("/myReviewDetailForm.do", new MyReviewDetailFormControl()); //내 Q&A
+      commandByURL.put("/myPetInfo.do", new MyPetInfoControl()); //내 반려동물정보
+      commandByURL.put("/myPetForm.do", new MyPetFormControl()); //반려동물 등록화면
+      commandByURL.put("/addMyPet.do", new AddMyPetControl()); //반려동물 등록
       
       
       

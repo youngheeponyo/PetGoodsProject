@@ -2,6 +2,7 @@ package com.yedamMiddle.myPage.mapper;
 
 import java.util.List;
 
+import com.yedamMiddle.common.service.PetVO;
 import com.yedamMiddle.coupon.service.CouponVO;
 import com.yedamMiddle.product.service.ProductOrderJoinVO;
 import com.yedamMiddle.review.service.ReviewVO;
@@ -15,4 +16,6 @@ public interface MyPageMapper {
 	List<ProductOrderJoinVO> orderList(int userNo);
 	List<ReviewVO> recentReviewList(int userNo);
 	List<ReviewVO> reviewList(int userNo);
+	List<PetVO> myPetInfo(int userNo);
+	public int insertMyPet(PetVO vo);
 }
