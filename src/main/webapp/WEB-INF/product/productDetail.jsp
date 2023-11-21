@@ -127,7 +127,6 @@
 				<c:forEach items="${Rlist }" var="clist" varStatus="status">
 					<c:set var="sum" value="${sum + Math.round(clist.starCnt/RlistSize*10) }"></c:set>
 				</c:forEach>
-				<c:out value="★${Math.round(sum) }"/>
 				<c:out value="★${sum/10}"/>
 				<div class="fs-5 mb-5">
 					<span style="font-size: 30px">₩ ${pno.productPrice }</span><br>
