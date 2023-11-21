@@ -82,8 +82,17 @@ public class ReviewVO {
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-
 	
+	
+	@Override
+	public String toString() {
+		return "ReviewVO [reviewNo=" + reviewNo + ", merUid=" + merUid + ", content=" + content + ", starCnt=" + starCnt
+				+ ", reviewDate=" + reviewDate + ", reviewLikeCnt=" + reviewLikeCnt + ", productNo=" + productNo
+				+ ", UserNo=" + UserNo + ", reviewImage=" + reviewImage + ", nickName=" + nickName + ", productName="
+				+ productName + "]";
+	}
+
+
 	
 	
 }

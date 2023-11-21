@@ -66,7 +66,7 @@
 													<c:when test="${item.reviewNo <= 0 }">
 														<%--<c:if test=""></c:if> 리뷰작성할 떄 mer_uid,product_no넘겨서 작성하도록. --%>
 														<td><a
-															href="main.do?mUid=${item.merUid }&pNo=${item.productNo}">리뷰작성</a></td>
+															href="addReviewForm.do?mUid=${item.merUid }&pNo=${item.productNo}">리뷰작성</a></td>
 													</c:when>
 													<c:otherwise>
 														<td><a href="myReviewList.do?rNo=${item.reviewNo }">리뷰보기</a></td>
