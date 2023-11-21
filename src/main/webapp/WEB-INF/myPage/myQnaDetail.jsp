@@ -15,20 +15,24 @@
 							<div class="nav">
 								<a class="nav-link" href="orderDetailForm.do">
 									<div class="sb-nav-link-icon">
-										<i class="fas fa-tachometer-alt"></i>
+										<i class="bi bi-basket3-fill"></i>
 									</div> 주문내역
 								</a> <a class="nav-link" href="couponDetailForm.do">
 									<div class="sb-nav-link-icon">
-										<i class="fas fa-chart-area"></i>
+										<i class="bi bi-upc-scan"></i>
 									</div> 내 쿠폰
 								</a> <a class="nav-link" href="myProdQnaDetailForm.do">
 									<div class="sb-nav-link-icon">
-										<i class="fas fa-table"></i>
+										<i class="bi bi-box-seam"></i>
 									</div> 상품문의
-								</a> </a> <a class="nav-link" href="tables.html">
+								</a> <a class="nav-link" href="myReviewDetailForm.do">
 									<div class="sb-nav-link-icon">
-										<i class="fas fa-table"></i>
+										<i class="bi bi-chat-left-text"></i>
 									</div> 내 리뷰보기
+								</a><a class="nav-link" href="myInfo.do">
+									<div class="sb-nav-link-icon">
+										<i class="bi bi-person"></i>
+									</div> 내정보관리
 								</a>
 							</div>
 						</div>

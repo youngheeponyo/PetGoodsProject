@@ -46,6 +46,29 @@
 	#btn-back-to-top:hover {
 	  background-color: #333;
 	}
+	#detail{
+		overflow:hidden;
+		height:1500px;
+		margin:0px;
+	}
+	#inlineimg{
+		height:7000px;
+	}
+	#more{
+		border:none;
+		width:45%;
+		height:50px;
+		background: #f4f4f4;
+		color:grey;
+	}
+	#close{
+		display:none;
+		border:none;
+		width:45%;
+		height:50px;
+		background: #f4f4f4;
+		color:grey;
+	}
 
 </style>
 </head>
@@ -53,8 +76,8 @@
 
 	<div class="container px-4 px-lg-5 my-5">
 		<div class="row gx-4 gx-lg-5 align-items-center">
-			<div class="col-md-6" id="img">
-				<img class="card-img-top mb-5 mb-md-0" id="inlineimg" src="productImage/${petType }/${pno.productImage }" alt="..."/>
+			<div class="col-md-6">
+				<img class="card-img-top mb-5 mb-md-0" src="productImage/${petType }/${pno.productImage }" alt="..."/>
 			</div>
 			<div class="col-md-6">
 				<h1 class="display-5 fw-bolder">${pno.productName }</h1>
@@ -104,7 +127,7 @@
 				</c:if>
 			</div>
 		</div>
-		<div class="container px-4 px-lg-5 my-5" style="text-align: center">
+		<div class="container px-4 px-lg-5 my-5" style="text-align:center;">
 			<a
 				style="border: none; padding: 10px 50px; color: black; font-size: 18px"
 				href="#detail">상품 정보</a> <a
@@ -116,9 +139,13 @@
 				href="#order">취소/교환/반품 안내</a>
 			<hr>
 		</div>
-			<div class="container px-4 px-lg-5 my-5" style="text-align: center " id="detail">
+			<div class="container px-4 px-lg-5 my-5" style="text-align:center;" id="detail">
 				<h2 style="font: bolder; font-size: 30px; text-align: left">상품 정보</h2>
-				<img style="width: 50%;" src="productDetailImage/${petType }/${pno.productImage }" alt=""/>
+				<img id="inlineimg" style="width: 50%;" src="productDetailImage/${petType }/${pno.productImage }" alt=""/>
+			</div>
+			<div style="text-align:center">	
+				<button id="more" type="button" onclick="morefunction()">상품 상세 더 보기 ▼</button>
+				<button id="close" type="button" onclick="closefunction()">상품 상세 닫기 ▲</button>
 			</div>
 		<hr>
 		 <!--리뷰게시판 건드린 부분 -->
@@ -299,11 +326,26 @@
 							<div class="card h-100">
 								<!-- Product image-->
 								<c:choose>
-									<c:when test="${cvo.petType==0 }">
-										<img class="card-img-top" src="productImage/dog/${cvo.productImage }" alt="..." />
+									<c:when test="${cvo.productStock==0 }">
+										<c:choose>
+											<c:when test="${cvo.petType==0 }">
+												<img style="opacity:0.5;" class="card-img-top" src="productImage/dog/${cvo.productImage }" alt="..." />
+												<h3 style="color:red;position:absolute;top:30%;left:50%;transform: translate(-50%, -50%);">품절</h3>
+											</c:when>
+											<c:otherwise>
+												<img class="card-img-top" src="productImage/cat/${cvo.productImage }" alt="..." />
+											</c:otherwise>
+										</c:choose>
 									</c:when>
 									<c:otherwise>
-										<img class="card-img-top" src="productImage/cat/${cvo.productImage }" alt="..." />
+										<c:choose>
+											<c:when test="${cvo.petType==0 }">
+												<img class="card-img-top" src="productImage/dog/${cvo.productImage }" alt="..." />
+											</c:when>
+											<c:otherwise>
+												<img class="card-img-top" src="productImage/cat/${cvo.productImage }" alt="..." />
+											</c:otherwise>
+										</c:choose>
 									</c:otherwise>
 								</c:choose>
 								<!-- Product details-->
@@ -323,7 +365,7 @@
 								<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 									<div class="text-center">
 										<a class="btn btn-outline-dark mt-auto"
-											href="detailProduct.do?pno=${cvo.productNo }">자세히 보기</a>
+											href="detailProduct.do?pno=${cvo.productNo }&cno=${cvo.categoryNo}&type=${cvo.petType}">자세히 보기</a>
 									</div>
 								</div>
 							</div>
@@ -440,6 +482,20 @@ window.addEventListener('scroll', () => {
 	    document.getElementById('btn-back-to-top').style.display = 'none';
 	  }
 	});
+
+function morefunction(){
+	document.getElementById('detail').style.height="100%";
+	document.getElementById('inlineimg').style.height="100%";
+	document.getElementById('more').style.display="none";
+	document.getElementById('close').style.display="inline-block";
+}
+
+function closefunction(){
+	document.getElementById('detail').style.height="1500px";
+	document.getElementById('inlineimg').style.height="7000px";
+	document.getElementById('more').style.display="inline-block";
+	document.getElementById('close').style.display="none";
+}
 
 	
 </script>
