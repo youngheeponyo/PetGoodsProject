@@ -1,5 +1,8 @@
 package com.yedamMiddle.review.web;
 
+import java.io.IOException;
+
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,8 +23,16 @@ public class AddReviewFormControl implements Command {
 		System.out.println("productNo =" + productNo);
 		
 		
-		ReviewVO reviewVo = svc.selectDetailReviewByProductNo(Integer.parseInt(merUid), Integer.parseInt(productNo));
+		ReviewVO reviewVo = svc.selectDetailReviewByProductNo(Long.parseLong(merUid), Integer.parseInt(productNo));
 		System.out.println("reviewVo =" + reviewVo);
+		
+		req.setAttribute("reviewVo", reviewVo);
+		
+		try {
+			req.getRequestDispatcher(path).forward(req, resp);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

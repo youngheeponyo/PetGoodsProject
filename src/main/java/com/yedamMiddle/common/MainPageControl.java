@@ -1,7 +1,6 @@
 package com.yedamMiddle.common;
 
 import java.util.List;
-
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -13,9 +12,8 @@ import com.yedamMiddle.cart.service.MyCartService;
 import com.yedamMiddle.cart.serviceImpl.MyCartServiceImpl;
 import com.yedamMiddle.common.service.CartJoinVO;
 import com.yedamMiddle.common.service.CategoryJoinVO;
-import com.yedamMiddle.common.service.UserVO;
+import com.yedamMiddle.product.service.ProductReviewJoinVO;
 import com.yedamMiddle.product.service.ProductService;
-import com.yedamMiddle.product.service.ProductVO;
 import com.yedamMiddle.product.serviceImpl.ProductServiceImpl;
 
 public class MainPageControl implements Command {
@@ -39,9 +37,9 @@ public class MainPageControl implements Command {
 			petType = "0"; //ㅋㅋ
 		}
 		
-		List<ProductVO> productRegistDesc = svc.searchRegistDateDescFromMain(petType);
-		List<ProductVO> productReviewDesc = svc.searchReviewDescFromMain(petType);
-		List<ProductVO> productStarCntDesc = svc.searchStarCntDescFromMain(petType);
+		List<ProductReviewJoinVO> productRegistDesc = svc.searchRegistDateDescFromMain(petType);
+		List<ProductReviewJoinVO> productReviewDesc = svc.searchReviewDescFromMain(petType);
+		List<ProductReviewJoinVO> productStarCntDesc = svc.searchStarCntDescFromMain(petType);
 		
 		req.setAttribute("registDesc", productRegistDesc);
 		req.setAttribute("reviewDesc", productReviewDesc);

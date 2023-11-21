@@ -46,47 +46,69 @@
 				<div id="layoutSidenav_content">
 					<main>
 						<div class="container-fluid px-4">
+						<h3 class="mt-4" style= text-align:center>문의사항</h3>
+	                    <br>
+	                    <hr>
 							<div class="d-flex justify-content-center">
-								<table class="table w-85">
-									<tr>
-										<th>QNA 내역</th>
-									</tr>
-									<c:choose>
-										<c:when test="${!empty list }">
-											<tr>
-												<th>문의타입</th>
-												<th>상품번호</th>
-												<th>제목</th>
-												<th>작성일</th>
-												<th>답변상태</th>
-											</tr>
-											<tr>
-												<c:forEach items="${list }" var="list">
-													<tr>
-														<td>${list.qnaType }</td>
-														<td>${list.productNo }</td>
-														<td>${list.title }</td>
-														<td><fmt:formatDate value="${list.registDate}"
-																pattern="yyyy-MM-dd"></fmt:formatDate></td>
-														<c:choose>
-															<c:when test="${list.qnaState == 0 }">
-																<td>답변대기</td>
-															</c:when>
-															<c:otherwise>
-																<td>답변완료</td>
-															</c:otherwise>
-														</c:choose>
-													</tr>
-												</c:forEach>
-											</tr>
-										</c:when>
-										
-										<c:otherwise>
-											<td>작성한 문의가 없습니다</td>
-										</c:otherwise>
-									</c:choose>
-
-								</table>
+					<table class="table w-85">
+						<thead >
+                    		<tr style=text-align:center>
+                    			<th>공개여부</th>
+	                    		<th>글번호</th>
+	                    		<th>문의정보</th>
+	                    		<th>제목</th>
+	                    		<th>작성자</th>
+	                    		<th>작성일</th>
+	                    		<th>문의상태</th>
+                    		</tr>
+                    	</thead>
+                    	<tbody>
+                    		<c:forEach items="${list }" var="vo">
+                    		<tr>
+                    			<td> 
+                    				<c:choose>
+	                    				<c:when test="${vo.password==0 }">
+	                    					전체공개
+	                    				</c:when>
+	                    				<c:otherwise>
+	                    					비밀글
+	                    				</c:otherwise>
+                    				</c:choose>
+                    			</td>
+                    					
+                    			<td class="qnaNocheck">${vo.qnaNo}</td>
+                    			<td>${vo.qnaType }</td>
+                    			
+                    			<td class="passcheck" onclick="passCheck('${vo.qnaNo }')">
+                    				<a href=#>${vo.title }</a>
+                    			</td>
+                    			<!-- 클릭이벤트 : 제목을 클릭하면 비밀번호를 비교하고 만약 맞다면 getUserQnaList.do?이 주소로 넘겨줌 -->
+                    			
+                    			
+                    			<td>${vo.nickName }</td>
+                    			<td><fmt:formatDate value ="${vo.registDate }" pattern="yyyy-MM-dd"></fmt:formatDate></td>
+                    			<td>
+                    			<c:if test="${not empty vo.qnaNo}">
+	                    				<c:choose>
+	                    					<c:when test="${vo.qnaState==1 }" >
+	                    						<p style="color: blue;"><b>답변완료</b></p>
+	                    					</c:when>
+	                    					<c:otherwise>
+	                    						<p style="color: red;"><b>문의대기중</b></p>
+	                    					</c:otherwise>
+	                    				</c:choose>
+                    				</c:if>
+                    			</td>
+                    		</tr>
+                    		</c:forEach>
+                    	</tbody>
+                    	
+                    </table>
+                    
+                    </div>
+                     <div style= text-ailgn:left>
+                    <hr>
+                     	 <p><a href="addUserQnaForm.do">문의글 작성</a></p>
 							</div>
 							<c:set var="curPage" value="${pagination.currentPage }" />
 							<c:set var="start" value="${pagination.startPage }" />
@@ -131,3 +153,10 @@
 		</div>
 	</div>
 </section>
+
+<script>
+	function passCheck(qnaNo){
+		window.location.href="getUserQnaList.do?qnaNo="+qnaNo;
+		return;
+	}
+</script>

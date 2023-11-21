@@ -81,7 +81,11 @@
 			</div>
 			<div class="col-md-6">
 				<h1 class="display-5 fw-bolder">${pno.productName }</h1>
-				<p>별점자리입니다</p>
+				<c:set var="sum" value="0.0"/>				
+				<c:forEach items="${Rlist }" var="clist" varStatus="status">
+					<c:set var="sum" value="${sum + clist.starCnt/RlistSize }"></c:set>
+				</c:forEach>
+				<c:out value="★(${sum })"/>
 				<div class="fs-5 mb-5">
 					<span style="font-size: 30px">₩ ${pno.productPrice }</span><br>
 				</div>
@@ -132,7 +136,7 @@
 				style="border: none; padding: 10px 50px; color: black; font-size: 18px"
 				href="#detail">상품 정보</a> <a
 				style="border: none; padding: 10px 50px; color: black; font-size: 18px"
-				href="#review">구매 후기</a> <a
+				href="#review">구매 후기(${RlistSize })</a> <a
 				style="border: none; padding: 10px 50px; color: black; font-size: 18px"
 				href="#qna">문의 게시판</a> <a
 				style="border: none; padding: 10px 50px; color: black; font-size: 18px"
@@ -171,7 +175,7 @@
 		                             <tr>
 		                                <td>${i }</td>
 		                                <td>${review.productName }</td>
-		                                <td>${review.starCnt }</td>
+		                                <td>${review.starCnt }/5</td>
 		                                <td>${review.nickName }</td>
 		                                <td><fmt:formatDate value ="${review.reviewDate}" pattern="yyyy-MM-dd"></fmt:formatDate></td>
 		                                <td><input class="heart"type="button" data-reviewNo="${review.reviewNo }" 

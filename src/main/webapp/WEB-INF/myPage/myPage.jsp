@@ -34,6 +34,10 @@
 									<div class="sb-nav-link-icon">
 										<i class="bi bi-person"></i>
 									</div> 내정보관리
+								</a><a class="nav-link" href="idpwCheckForm.do">
+									<div class="sb-nav-link-icon">
+										<i class="bi bi-person"></i>
+									</div> 내정보수정
 								</a><a class="nav-link" href="myPetInfo.do">
 									<div class="sb-nav-link-icon">
 										<i class="bi bi-reddit"></i>

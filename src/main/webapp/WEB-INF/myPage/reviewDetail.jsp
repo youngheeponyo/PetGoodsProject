@@ -46,34 +46,48 @@
 				<div id="layoutSidenav_content">
 					<main>
 						<div class="container-fluid px-4">
+						<h3 class="mt-4" style= text-align:center>나의리뷰</h3>
+		                    <br>
+		                    <hr>
 							<div class="d-flex justify-content-center">
-								<table class="table w-85">
-									<tr>
-										<th>작성한 리뷰</th>
-									</tr>
-									<tr>
-										<th>상품명</th>
-										<th>주문번호</th>
-										<th>리뷰</th>
-										<th>평점</th>
-										<th>작성일</th>
-										<th>이미지</th>
-									</tr>
-									<tr>
-										<c:forEach items="${reviewList }" var="list">
-											<tr>
-												<td>${list.productName }</td>
-												<td>${list.merUid }</td>
-												<td>${list.content }</td>
-												<td>${list.starCnt }</td>
-												<td><fmt:formatDate value="${list.reviewDate}"
-														pattern="yyyy-MM-dd"></fmt:formatDate></td>
-												<td>${list.reviewImage }</td>
-											</tr>
-										</c:forEach>
-									</tr>
-
-								</table>
+							
+					<table class="table w-85" style= text-align:center>
+						<thead >
+                    		<tr style=text-align:center>
+                    			<th>리뷰번호</th>
+                    			<th>상품이름</th>
+                    			<th>별점</th>
+                    			<th>작성자</th>
+                    			<th>등록날짜</th>
+                    			<th>좋아요</th>
+                    		</tr>
+                    		
+                    	</thead>
+                    	<tbody>
+                    		<c:choose>
+	                    		<c:when test="${not empty reviewList  }">
+		                    		<c:forEach items="${reviewList  }" var="vo">
+		                    			<c:set var="i" value="${i+1 }"/>
+			                    		<tr>
+			                    			<td>${i}</td>
+			                    			<td onclick="next('${vo.reviewNo }')"><a href=#>${vo.productName }</a></td>
+			                    			<td>${vo.starCnt }/5</td>
+			                    			<td>${nickName }</td>
+			                    			<td><fmt:formatDate value ="${vo.reviewDate }" pattern="yyyy-MM-dd"></fmt:formatDate></td>
+			                    			<td>${vo.reviewLikeCnt }</td>
+			                    			
+			                    		</tr>
+		                    		</c:forEach>
+	                    		</c:when>
+	                    		<c:otherwise>
+	                    			<tr><td style=color:gray; colspan="6">아직 작성된 리뷰가 없습니다.</td></tr>
+	                    		</c:otherwise>
+                    		</c:choose>
+                    		
+                    		
+                    		
+                    	</tbody>
+                    </table>
 							</div>
 							<c:set var="curPage" value="${pagination.currentPage }" />
 							<c:set var="start" value="${pagination.startPage }" />
@@ -111,10 +125,20 @@
 							</nav>
 
 						</div>
-
+						<div style= text-ailgn:right>
+		                    <hr>
+		                    <p style=color:gray>*내 주문내역에서 리뷰 작성이 가능합니다*</p>
+                    </div>
 					</main>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
+
+<script>
+	function next(reviewNo){
+		window.location.href="myReviewDetail.do?rNo="+reviewNo;
+		return;
+	}
+</script>

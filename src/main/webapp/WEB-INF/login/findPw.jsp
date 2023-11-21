@@ -40,7 +40,7 @@
 
 
 <body>
-<form action="findPw.do" method="get">
+<form action="findPw.do" method="post">
 <div id="box">
 		<div class="input-form-backgroud row">
 			<div class="input-form col-md-12 mx-auto">

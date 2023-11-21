@@ -33,11 +33,14 @@
 							</div>
 							<!-- Product details-->
 							<div class="card-body p-4">
-								<div class="text-center">
+								<div class="text-center" style="height:120px;">
 									<!-- Product name-->
 									<h5 class="fw-bolder">${vo.productName }</h5>
 									<!-- Product price-->
 									₩ ${vo.productPrice }
+								</div>
+								<div class="text-center">
+									<p style="color:#848BA0;">★${vo.avgStar }</p>
 								</div>
 							</div>
 							<!-- Product actions-->
@@ -61,11 +64,14 @@
 							</div>
 							<!-- Product details-->
 							<div class="card-body p-4">
-								<div class="text-center">
+								<div class="text-center" style="height:120px;">
 									<!-- Product name-->
 									<h5 class="fw-bolder">${vo.productName }</h5>
 									<!-- Product price-->
 									₩ ${vo.productPrice }
+								</div>
+								<div class="text-center pt-4">
+									<p style="color:#848BA0;">★${vo.avgStar }</p>
 								</div>
 							</div>
 							<!-- Product actions-->
@@ -105,11 +111,14 @@
 							</div>
 							<!-- Product details-->
 							<div class="card-body p-4">
-								<div class="text-center">
+								<div class="text-center" style="height:120px;">
 									<!-- Product name-->
 									<h5 class="fw-bolder">${vo.productName }</h5>
 									<!-- Product price-->
 									₩ ${vo.productPrice }
+								</div>
+								<div class="text-center pt-4">
+									<p style="color:#848BA0;">★${vo.avgStar }</p>
 								</div>
 							</div>
 							<!-- Product actions-->
@@ -133,11 +142,14 @@
 							</div>
 							<!-- Product details-->
 							<div class="card-body p-4">
-								<div class="text-center">
+								<div class="text-center" style="height:120px;">
 									<!-- Product name-->
 									<h5 class="fw-bolder">${vo.productName }</h5>
 									<!-- Product price-->
 									₩ ${vo.productPrice }
+								</div>
+								<div class="text-center pt-4">
+									<p style="color:#848BA0;">★${vo.avgStar }</p>
 								</div>
 							</div>
 							<!-- Product actions-->
@@ -177,11 +189,14 @@
 							</div>
 							<!-- Product details-->
 							<div class="card-body p-4">
-								<div class="text-center">
+								<div class="text-center" style="height:120px;">
 									<!-- Product name-->
 									<h5 class="fw-bolder">${vo.productName }</h5>
 									<!-- Product price-->
 									₩ ${vo.productPrice }
+								</div>
+								<div class="text-center pt-4">
+									<p style="color:#848BA0;">★${vo.avgStar }</p>
 								</div>
 							</div>
 							<!-- Product actions-->
@@ -205,11 +220,14 @@
 							</div>
 							<!-- Product details-->
 							<div class="card-body p-4">
-								<div class="text-center">
+								<div class="text-center" style="height:120px;">
 									<!-- Product name-->
 									<h5 class="fw-bolder">${vo.productName }</h5>
 									<!-- Product price-->
 									₩ ${vo.productPrice }
+								</div>
+								<div class="text-center my-2">
+									<p style="color:#848BA0;">★${vo.avgStar }</p>
 								</div>
 							</div>
 							<!-- Product actions-->

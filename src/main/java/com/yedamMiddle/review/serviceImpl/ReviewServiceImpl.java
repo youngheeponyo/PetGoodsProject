@@ -32,7 +32,7 @@ public class ReviewServiceImpl implements ReviewService {
 	
 
 	@Override
-	public ReviewVO selectDetailReviewByProductNo(int merUid, int productNo) {
+	public ReviewVO selectDetailReviewByProductNo(long merUid, int productNo) {
 		return mapper.selectDetailReviewByProductNo(merUid, productNo);
 	}
 	

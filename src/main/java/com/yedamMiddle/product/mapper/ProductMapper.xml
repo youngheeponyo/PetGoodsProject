@@ -11,16 +11,22 @@
 			FROM CATEGORY
 			WHERE CATEGORY_NO = #{categoryNo}
 	</select>
-	<select id="searchProductList" resultType="com.yedamMiddle.product.service.ProductVO">
-		<![CDATA[  
-    		SELECT *
-    			FROM (
-        			SELECT /*+ INDEX(P PK_PRODUCTNO) */ rownum rn, P.*
-        			FROM PRODUCT P
-        			WHERE PET_TYPE = #{type} AND PRODUCT_NAME LIKE '%' || #{query} || '%'
-    			) a
-    			WHERE a.rn > (#{page} - 1) * 8 
-    			AND a.rn <= (#{page}) * 8
+	<select id="searchProductList" resultType="com.yedamMiddle.product.service.ProductReviewJoinVO">
+		    SELECT * FROM (
+        		SELECT /*+ INDEX(P PK_PRODUCTNO) */ ROWNUM rn, T.* FROM (
+                	SELECT B.*, A.AVG_STAR 
+                    	FROM (
+                        	SELECT P.PRODUCT_NO, NVL2(TRUNC(AVG(STAR_CNT),1),TRUNC(AVG(STAR_CNT),1),0.0) AS AVG_STAR
+                            	FROM PRODUCT P
+                            	LEFT JOIN REVIEW D ON P.PRODUCT_NO = D.PRODUCT_NO
+                            	GROUP BY P.PRODUCT_NO
+                    	) A
+                    	JOIN PRODUCT B ON A.PRODUCT_NO = B.PRODUCT_NO
+                	) T
+                	WHERE T.PET_TYPE = #{type} AND T.PRODUCT_NAME LIKE '%' || #{query} || '%'
+            	) A
+            <![CDATA[ 
+            	WHERE RN > (#{page}-1) * 8 AND RN <= (#{page}) * 8
   			]]>
 	</select>
 	
@@ -31,16 +37,22 @@
 		SELECT * FROM PRODUCT
 	</select>
 
-	<select id="searchCategory" resultType="com.yedamMiddle.product.service.ProductVO">
-		<![CDATA[  
-    		SELECT *
-    			FROM (
-        			SELECT /*+ INDEX(P PK_PRODUCTNO) */ rownum rn, P.*
-        			FROM PRODUCT P
-        			WHERE P.CATEGORY_NO = #{categoryNo} AND PET_TYPE = #{type}
-    			) a
-    			WHERE a.rn > (#{page} - 1) * 8 
-    			AND a.rn <= (#{page}) * 8
+	<select id="searchCategory" resultType="com.yedamMiddle.product.service.ProductReviewJoinVO">
+		<![CDATA[
+			SELECT A.* FROM (
+        		SELECT /*+ INDEX(P PK_PRODUCTNO) */ ROWNUM rn, T.* FROM (
+                	SELECT B.*, A.AVG_STAR 
+                    	FROM (
+                        	SELECT P.PRODUCT_NO, NVL2(TRUNC(AVG(STAR_CNT),1),TRUNC(AVG(STAR_CNT),1),0.0) AS AVG_STAR
+                            	FROM PRODUCT P
+                            	LEFT JOIN REVIEW D ON P.PRODUCT_NO = D.PRODUCT_NO
+                            	GROUP BY P.PRODUCT_NO
+                    	) A
+                    	JOIN PRODUCT B ON A.PRODUCT_NO = B.PRODUCT_NO
+                	) T
+                	WHERE T.PET_TYPE = #{type} AND T.CATEGORY_NO = #{categoryNo}
+            	) A
+            	WHERE RN > (#{page}-1) * 8 AND RN <= (#{page}) * 8
   			]]>
 	</select>
 	
@@ -95,26 +107,29 @@
 		AND USER_NO = #{uNo}
     </select>
     
-    <select id="selectRegistDateDescFromMain" resultType="com.yedamMiddle.product.service.ProductVO" parameterType="String">
+    <select id="selectRegistDateDescFromMain" resultType="com.yedamMiddle.product.service.ProductReviewJoinVO" parameterType="String">
 		<![CDATA[  
-    		SELECT *
+            SELECT B.*, AVG_STAR
        			FROM 
            		(
-               		SELECT *
-               		FROM PRODUCT
-               		WHERE PET_TYPE = #{petType}
-               		ORDER BY PRODUCT_REGIST_DATE DESC
-           		)
+               		SELECT A.PRODUCT_NO, NVL2(TRUNC(AVG(STAR_CNT),1),TRUNC(AVG(STAR_CNT),1),0.0) AS AVG_STAR
+                        FROM PRODUCT A
+                        LEFT JOIN REVIEW B ON A.PRODUCT_NO = B.PRODUCT_NO
+                        WHERE PET_TYPE = #{petType}
+                        GROUP BY A.PRODUCT_NO, A.PRODUCT_REGIST_DATE
+                        ORDER BY A.PRODUCT_REGIST_DATE DESC
+           		) A
+                JOIN PRODUCT B ON A.PRODUCT_NO = B.PRODUCT_NO
           		WHERE ROWNUM <= 4
   			]]>
 	</select>
 	
 	<!-- 리뷰많은순 -->
-	<select id="selectReviewDescFromMain" resultType="com.yedamMiddle.product.service.ProductVO" parameterType="String">
+	<select id="selectReviewDescFromMain" resultType="com.yedamMiddle.product.service.ProductReviewJoinVO" parameterType="String">
 		<![CDATA[  
-    		SELECT B.*
+    		SELECT B.*, AVG_STAR
     			FROM (
-        		SELECT A.PRODUCT_NO, COUNT(*) AS CNT
+        		SELECT A.PRODUCT_NO, COUNT(*) AS CNT, NVL2(TRUNC(AVG(STAR_CNT),1),TRUNC(AVG(STAR_CNT),1),0.0) AS AVG_STAR
         			FROM PRODUCT A
         			JOIN REVIEW B ON A.PRODUCT_NO = B.PRODUCT_NO
         			WHERE A.PET_TYPE = #{petType}
@@ -127,11 +142,11 @@
 	</select>
 	
 	<!-- 별점 높은순 -->
-	<select id="selectStarCntDescFromMain" resultType="com.yedamMiddle.product.service.ProductVO" parameterType="String">
+	<select id="selectStarCntDescFromMain" resultType="com.yedamMiddle.product.service.ProductReviewJoinVO" parameterType="String">
 		<![CDATA[  
-    		SELECT B.*
+    	   SELECT B.*, AVG_STAR
     			FROM (
-        			SELECT A.PRODUCT_NO
+        			SELECT A.PRODUCT_NO, NVL2(TRUNC(AVG(STAR_CNT),1),TRUNC(AVG(STAR_CNT),1),0.0) AS AVG_STAR
             		FROM PRODUCT A
             		JOIN REVIEW B ON A.PRODUCT_NO = B.PRODUCT_NO
             		WHERE A.PET_TYPE = #{petType}
@@ -164,30 +179,36 @@
   			]]>
 	</select>
 	
-	<select id="selectRegistDateDescFromTab" resultType="com.yedamMiddle.product.service.ProductVO" parameterType="String">
-		SELECT *
-               FROM PRODUCT
-               WHERE PET_TYPE = #{petType}
-               ORDER BY PRODUCT_REGIST_DATE DESC
+	<select id="selectRegistDateDescFromTab" resultType="com.yedamMiddle.product.service.ProductReviewJoinVO" parameterType="String">
+		SELECT B.*, NVL2(AVG_STAR, AVG_STAR, 0.0) AS AVG_STAR
+    		FROM (
+        		SELECT PRODUCT_NO , TRUNC(AVG(STAR_CNT),1) AS AVG_STAR
+        		FROM REVIEW
+        		GROUP BY PRODUCT_NO 
+    		) A
+    		RIGHT JOIN PRODUCT B ON A.PRODUCT_NO = B.PRODUCT_NO
+    		WHERE B.PET_TYPE = #{petType}
+    		ORDER BY B.PRODUCT_REGIST_DATE
 	</select>
-	<select id="selectBestSellProductFromTab" resultType="com.yedamMiddle.product.service.ProductVO" parameterType="String">
-	SELECT B.*
-    	FROM (
-        	SELECT PRODUCT_NO, COUNT(*) AS CNT
-            	FROM PRODUCT_ORDER
-            	GROUP BY PRODUCT_NO
+	<select id="selectBestSellProductFromTab" resultType="com.yedamMiddle.product.service.ProductReviewJoinVO" parameterType="String">
+	SELECT B.*, AVG_STAR
+   	FROM (
+       	SELECT C.PRODUCT_NO, COUNT(*) AS CNT, NVL2(TRUNC(AVG(STAR_CNT),1),TRUNC(AVG(STAR_CNT),1),0.0) AS AVG_STAR
+           	FROM PRODUCT_ORDER C
+            LEFT JOIN REVIEW D ON C.PRODUCT_NO = D.PRODUCT_NO
+           	GROUP BY C.PRODUCT_NO
     	) A
     	JOIN PRODUCT B ON A.PRODUCT_NO = B.PRODUCT_NO
     	WHERE B.PET_TYPE = #{petType}
     	ORDER BY A.CNT DESC
 	</select>
 	
-	<select id="selectHighStarProductFromTab" resultType="com.yedamMiddle.product.service.ProductVO" parameterType="String">
-		SELECT B.*
+	<select id="selectHighStarProductFromTab" resultType="com.yedamMiddle.product.service.ProductReviewJoinVO" parameterType="String">
+		SELECT B.*, AVG_STAR
     		FROM (
-        		SELECT PRODUCT_NO, AVG(STAR_CNT) AS AVG_STAR
+        		SELECT PRODUCT_NO, NVL2(TRUNC(AVG(STAR_CNT),1),TRUNC(AVG(STAR_CNT),1),0.0) AS AVG_STAR
             	FROM REVIEW
-            	GROUP BY PRODUCT_NO, STAR_CNT
+            	GROUP BY PRODUCT_NO
     		) A
     		JOIN PRODUCT B ON A.PRODUCT_NO = B.PRODUCT_NO
     		WHERE B.PET_TYPE = #{petType}

@@ -3,6 +3,7 @@ package com.yedamMiddle.myPage.service;
 import java.util.List;
 
 import com.yedamMiddle.common.service.PetVO;
+import com.yedamMiddle.common.service.UserVO;
 import com.yedamMiddle.coupon.service.CouponVO;
 import com.yedamMiddle.product.service.ProductOrderJoinVO;
 import com.yedamMiddle.review.service.ReviewVO;
@@ -18,4 +19,5 @@ public interface MyPageService {
 	public List<ReviewVO> reviewList(int userNo);
 	public List<PetVO> petInfo(int userNo);
 	public boolean addMyPet(PetVO vo);
+	public boolean updateUser(UserVO vo);
 }

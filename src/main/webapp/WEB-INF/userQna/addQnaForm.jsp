@@ -211,10 +211,6 @@
       }
       
       
-      
-//       if(title.length!=0 &&contents.length!=0 && qnaType.length!=0)){
-//          this.submit();//전송기능
-//       }
 
    })
 

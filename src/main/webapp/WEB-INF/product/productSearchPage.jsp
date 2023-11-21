@@ -31,12 +31,15 @@
 	                            </div>
 	                            <!-- Product details-->
 	                            <div class="card-body p-4">
-	                                <div class="text-center">
+	                                <div class="text-center" style="height:120px;">
 	                                    <!-- Product name-->
 	                                    <h5 class="fw-bolder">${product.productName }</h5>
 	                                    <!-- Product price-->
 	                                    ${product.productPrice }원
 	                                </div>
+	                                <div class="text-center">
+										<p style="color:#848BA0;">★${product.avgStar }</p>
+									</div>
 	                            </div>
 	                            <!-- Product actions-->
 	                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
@@ -54,12 +57,15 @@
 	                            </div>
 	                            <!-- Product details-->
 	                            <div class="card-body p-4">
-	                                <div class="text-center">
+	                                <div class="text-center" style="height:120px;">
 	                                    <!-- Product name-->
 	                                    <h5 class="fw-bolder">${product.productName }</h5>
 	                                    <!-- Product price-->
 	                                    ${product.productPrice }원
 	                                </div>
+	                                <div class="text-center">
+										<p style="color:#848BA0;">★${product.avgStar }</p>
+									</div>
 	                            </div>
 	                            <!-- Product actions-->
 	                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">

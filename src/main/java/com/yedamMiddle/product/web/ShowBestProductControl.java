@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedamMiddle.common.Command;
 import com.yedamMiddle.common.PageDTO;
+import com.yedamMiddle.product.service.ProductReviewJoinVO;
 import com.yedamMiddle.product.service.ProductService;
-import com.yedamMiddle.product.service.ProductVO;
 import com.yedamMiddle.product.serviceImpl.ProductServiceImpl;
 
 public class ShowBestProductControl implements Command {
@@ -34,13 +34,13 @@ public class ShowBestProductControl implements Command {
 		
 		int pageNo = Integer.parseInt(page);
 		ProductService svc = new ProductServiceImpl();
-		List<ProductVO> productBestSell = svc.searchBestSellProductFromTab(petType);
+		List<ProductReviewJoinVO> productBestSell = svc.searchBestSellProductFromTab(petType);
 		String query = "베스트상품";
 		
 		int startIdx = (pageNo - 1) * 8;
 		int endIdx = (pageNo) * 8;
 		
-		List<ProductVO> showList = new ArrayList<>(8);
+		List<ProductReviewJoinVO> showList = new ArrayList<>(8);
 		for(int sIdx = startIdx; sIdx < endIdx; ++sIdx) {
 			if(sIdx >= productBestSell.size())
 				break;
