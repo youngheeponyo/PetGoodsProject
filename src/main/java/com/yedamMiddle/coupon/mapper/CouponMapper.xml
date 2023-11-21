@@ -26,8 +26,14 @@
 
 <!-- 마이페이지에서 현재 가지고 있는 쿠폰 보기 -->
 <select id="userCouponSelect" resultType="com.yedamMiddle.coupon.service.CouponVO"
-								parameterType="com.yedamMiddle.coupon.service.CouponVO">
+								parameterType="int">
 	SELECT * from COUPON where USER_NO=#{userNo}				
+</select>
+
+<!-- 마이페이지에서 현재 가지고 있는 쿠폰 보기 -->
+<select id="selectNotUseCoupon" resultType="com.yedamMiddle.coupon.service.CouponVO"
+								parameterType="int">
+	SELECT * from COUPON where USER_NO=#{userNo} AND COUPON_STATE = '미사용'				
 </select>
 
 

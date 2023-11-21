@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "mybatis-3-mapper.dtd">
+<mapper namespace="com.yedamMiddle.review.mapper.ReviewMapper">
+
+	<!-- 나의 리뷰 가져오기 -->
+	<select id="selectMyReview" resultType="com.yedamMiddle.review.service.ReviewVO"
+								parameterType="int">
+		SELECT r.review_no, r.mer_uid, r.content, r.star_cnt, r.review_date, r.review_like_cnt,
+		 		r.review_image, r.product_no, r.user_no,
+		 		 p.product_name, u.nickname
+        from review r 
+        left Join user_tbl u
+        on r.user_no = u.user_no
+        left join product p on r.product_no = p.product_no
+        where r.user_no=#{userNo}
+        
+	</select>
+	
+	<!-- 해당상품의 리뷰 가져오기(제품 상세페이지) -->
+	<select id="selectProductReview" resultType="com.yedamMiddle.review.service.ReviewVO"
+								parameterType="int">
+		SELECT r.review_no, r.mer_uid, r.content, r.star_cnt, r.review_date,r.review_like_cnt,
+		 		r.review_image, r.product_no, r.user_no,
+		 		 p.product_name, u.nickname
+        from review r 
+        left Join user_tbl u
+        on r.user_no = u.user_no
+        left join product p on r.product_no = p.product_no
+        where r.product_no=#{productNo}				
+								
+	</select>
+	
+<!-- 	나의 리뷰번호에 따른 상세리뷰 가져오기 -->
+	<select id="selectDetailReview"  resultType="com.yedamMiddle.review.service.ReviewVO"
+								parameterType="int">
+		SELECT r.review_no, r.mer_uid, r.content, r.star_cnt, r.review_date,r.review_like_cnt,
+		 		r.review_image, r.product_no, r.user_no,
+		 		 p.product_name, u.nickname
+        from review r 
+        left Join user_tbl u
+        on r.user_no = u.user_no
+        left join product p on r.product_no = p.product_no
+        where r.review_no=#{reviewNo}							
+	</select>
+	
+<!-- 	주문번호와 상품번호로 구매정보가져오기 -->
+	<select id="selectDetailReviewByProductNo" resultType="com.yedamMiddle.review.service.ReviewVO">
+		SELECT u.nickname, p.product_name, o.mer_uid, p.product_no, u.user_no
+		from product_order o left join user_tbl u on o.user_no = u.user_no
+		left join product p on o.product_no = p.product_no
+		where o.mer_uid=#{mUid} and  p.product_no=#{pNo}
+	</select>
+	
+	<!-- 리뷰작성 -->
+	<insert id="insertReview" parameterType="com.yedamMiddle.review.service.ReviewVO">
+		INSERT INTO review  VALUES(seq_review.nextval, #{merUid}, #{content},#{starCnt}
+		,SYSDATE,0,#{productNo},#{UserNo},#{reviewImage})
+	</insert>
+	
+	<!-- 리뷰수정 -->
+	<update id="updateReview" parameterType="com.yedamMiddle.review.service.ReviewVO">
+		UPDATE review SET content=#{content}, star_cnt=#{starCnt}, review_image=#{reviewImage}
+		WHERE mer_uid=#{merUid} and user_no=#{UserNo}
+	</update>
+	
+	<!-- 리뷰삭제 -->
+	<delete  id="deleteReview" parameterType="com.yedamMiddle.review.service.ReviewVO">>
+		DELETE * FROM review WHERE mer_uid=#{merUid} and user_no=#{UserNo}
+	</delete>
+	
+	<!-- 좋아요 수 증가 -->
+	<update id="updateReviewLikeCnt" parameterType="com.yedamMiddle.review.service.ReviewVO">
+		UPDATE review SET review_like_cnt=#{reviewLikeCnt}+1
+		WHERE review_no=#{reviewNo} and user_no=#{UserNo}
+	</update>
+	
+</mapper>

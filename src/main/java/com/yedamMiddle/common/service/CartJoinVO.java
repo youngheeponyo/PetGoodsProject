@@ -8,6 +8,8 @@ public class CartJoinVO implements Cloneable {
 	private int selCnt;
 	private int productNo;
 	private int productStock;
+	private int categoryNo;
+	private String petType;
 	
 	public int getProductNo() {
 		return productNo;
@@ -37,7 +39,7 @@ public class CartJoinVO implements Cloneable {
 	@Override
 	public String toString() {
 		return "CartJoinVO [cartNo=" + cartNo + ", productName=" + productName + ", productPrice=" + productPrice
-				+ ", selCnt=" + selCnt + ", productNo=" + productNo + "]";
+				+ ", selCnt=" + selCnt + ", productNo=" + productNo + ",petType="+petType+",categoryNo="+categoryNo+"]";
 	}
 	public int getProductPrice() {
 		return productPrice;
@@ -52,9 +54,20 @@ public class CartJoinVO implements Cloneable {
 		this.productStock = productStock;
 	}
 	
+	 public int getCategoryNo() {
+		return categoryNo;
+	}
+	public void setCategoryNo(int categoryNo) {
+		this.categoryNo = categoryNo;
+	}
 	
-	
-	 @Override
+	public String getPetType() {
+		return petType;
+	}
+	public void setPetType(String petType) {
+		this.petType = petType;
+	}
+	@Override
 	 public CartJoinVO clone() {
 		 CartJoinVO newVO = new CartJoinVO();
 		 newVO.cartNo = this.cartNo;

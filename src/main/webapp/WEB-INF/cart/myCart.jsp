@@ -173,9 +173,7 @@
 			border: none;
 		}
 	</style>
-
 </head>
-
 <body>
 	<section class="cart">
 		<div class="cart__information">
@@ -208,13 +206,31 @@
 						<tbody>
 							<c:forEach items="${list }" var="vo">
 								<tr class="cart__list__detail">
-									<td><input type="checkbox" class="chk" name="product"
-											value=${vo.productPrice*vo.selCnt } onclick="checkfunction()"></td>
-									<td><input type="checkbox" id="pno" name="pno" value=${vo.productNo }
+								<c:choose>
+									<c:when test="${vo.productStock==0 }">
+										<td><input type="button" class="chk" name="product"
+											value="품절" disabled style="color:red"></td>
+										<td><input type="checkbox" id="pno" name="pno" value=${vo.productNo }
 											style="display:none"></td>
-									<td><a href="detailProduct.do?pno=${vo.productNo }"><img
-												src="productImage/dog/${vo.productName }.png" alt=""></a></td>
-									<td><a href="detailProduct.do?pno=${vo.productNo }">${vo.productName }</a><span
+									</c:when>
+									<c:otherwise>
+										<td><input type="checkbox" class="chk" name="product"
+												value=${vo.productPrice*vo.selCnt } onclick="checkfunction()"></td>
+										<td><input type="checkbox" id="pno" name="pno" value=${vo.productNo }
+												style="display:none"></td>
+									</c:otherwise>
+								</c:choose>
+									<td><a href="detailProduct.do?pno=${vo.productNo }&cno=${vo.categoryNo}&type=${vo.petType}">
+										<c:choose>
+											<c:when test="${vo.petType==0}">
+													<img src="productImage/dog/${vo.productName }.png" alt="">
+											</c:when>
+											<c:otherwise>	
+													<img src="productImage/cat/${vo.productName }.png" alt="">
+											</c:otherwise>
+										</c:choose>
+									</a></td>
+									<td><a href="detailProduct.do?pno=${vo.productNo }&cno=${vo.categoryNo}&type=${vo.petType}">${vo.productName }</a><span
 											class="cart__list__smartstore"> 스마트스토어</span>
 										<br>
 										<span class="price">${vo.productPrice }원</span>

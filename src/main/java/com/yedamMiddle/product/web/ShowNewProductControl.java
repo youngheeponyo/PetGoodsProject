@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedamMiddle.common.Command;
 import com.yedamMiddle.common.PageDTO;
-import com.yedamMiddle.product.service.ProductOrderJoinVO;
+import com.yedamMiddle.product.service.ProductReviewJoinVO;
 import com.yedamMiddle.product.service.ProductService;
 import com.yedamMiddle.product.service.ProductVO;
 import com.yedamMiddle.product.serviceImpl.ProductServiceImpl;
@@ -35,13 +35,13 @@ public class ShowNewProductControl implements Command {
 		
 		int pageNo = Integer.parseInt(page);
 		ProductService svc = new ProductServiceImpl();
-		List<ProductVO> productRegistDesc = svc.searchRegistDateDescFromTab(petType);
+		List<ProductReviewJoinVO> productRegistDesc = svc.searchRegistDateDescFromTab(petType);
 		String query = "신상품";
 		
 		int startIdx = (pageNo - 1) * 8;
 		int endIdx = (pageNo) * 8;
 		
-		List<ProductVO> showList = new ArrayList<>(8);
+		List<ProductReviewJoinVO> showList = new ArrayList<>(8);
 		for(int sIdx = startIdx; sIdx < endIdx; ++sIdx) {
 			if(sIdx >= productRegistDesc.size())
 				break;

@@ -12,11 +12,11 @@ import com.yedamMiddle.common.service.CategoryVO;
 public interface ProductService {
 	public CategoryVO getCategoryInfo(int categoryNo);
 	public List<CategoryJoinVO> getCategoryList();
-	public List<ProductVO> searchProductList(String query, String type, int page);
+	public List<ProductReviewJoinVO> searchProductList(String query, String type, int page);
 	public ProductVO productDetail(int productNo);
 	
 	public List<ProductVO> productList();
-	public List<ProductVO> searchCategory(int categoryNo, String type, int page);
+	public List<ProductReviewJoinVO> searchCategory(int categoryNo, String type, int page);
 	
 	public int searchCategoryCount(int categoryNo, String type);
 	public int searchProductListCount(String query, String type);
@@ -26,13 +26,15 @@ public interface ProductService {
 	public List<ProductVO> getProductPrice(int[] productNos);
 	public List<ProductOrderVO> getProductOrder(int[] productNos, long merUid, int userNo);
 	
-	public List<ProductVO> searchRegistDateDescFromMain(String petType);
-	public List<ProductVO> searchReviewDescFromMain(String petType);
-	public List<ProductVO> searchStarCntDescFromMain(String petType);
+	public List<ProductReviewJoinVO> searchRegistDateDescFromMain(String petType);
+	public List<ProductReviewJoinVO> searchReviewDescFromMain(String petType);
+	public List<ProductReviewJoinVO> searchStarCntDescFromMain(String petType);
 	public int reduceProductStock(int cnt, int productNo);
 	public List<ProductOrderJoinVO> getAllMyProductOrderList(int userNo);
 	
-	public List<ProductVO> searchRegistDateDescFromTab(String petType);
-	public List<ProductVO> searchBestSellProductFromTab(String petType);
-	public List<ProductVO> searchHighStarProductFromTab(String petType);
+	public List<ProductReviewJoinVO> searchRegistDateDescFromTab(String petType);
+	public List<ProductReviewJoinVO> searchBestSellProductFromTab(String petType);
+	public List<ProductReviewJoinVO> searchHighStarProductFromTab(String petType);
+	public List<ProductVO> categoryList(int categoryNo,int productNo,String petType);
+
 }

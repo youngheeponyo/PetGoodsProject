@@ -11,4 +11,8 @@ public interface LoginService {
 	public List<UserVO> list();
 	public UserVO getUserInfo(int userNo);
 	public UserVO idCheck(String userId);
+	public UserVO findId(String nickName,String userPhone);
+	public UserVO findPw(String userId,String userPhone);
+	public boolean updatePw(String userPw, String userId);
 }
+	

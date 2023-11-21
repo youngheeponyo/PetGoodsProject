@@ -17,7 +17,8 @@ public interface UserQnaMapper {
 	public UserVO qnaToSelectUser(UserQnaVO vo);
 	//관리자가 문의답변 추가(내용수정)
 	public int replyUpdate(UserQnaVO vo);
-	
+	//상품별 문의 보기
+	public List<UserQnaVO> userQnaAllListByProductNo(int pno);
 	
 	//게시글 등록, 수정, 삭제
 	public int userQnaInsert(UserQnaVO vo);

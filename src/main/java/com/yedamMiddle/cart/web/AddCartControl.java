@@ -3,9 +3,9 @@ package com.yedamMiddle.cart.web;
 import java.io.IOException;
 
 
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.yedamMiddle.cart.service.MyCartService;
 import com.yedamMiddle.cart.service.MyCartVO;
@@ -30,14 +30,10 @@ public class AddCartControl implements Command {
 		vo.setProductNo(Integer.parseInt(pno));
 		vo.setSelectCnt(Integer.parseInt(cnt));
 		
-		//String result = "{\"retCode\":\"OK\"}";
 		String result = "";
 		if(svc.addCart(vo)) {
-			//req.setAttribute("retCode", "OK");
-			//req.setAttribute("vo", vo);
 			result = "{\"retCode\":\"OK\"}";
 		}else {
-			//req.setAttribute("retCode", "NG");
 			result = "{\"retCode\":\"NG\"}";
 		}
 		
