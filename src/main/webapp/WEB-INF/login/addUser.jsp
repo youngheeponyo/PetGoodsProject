@@ -88,14 +88,12 @@
 								<div class="invalid-feedback">이름을 입력해주세요.</div>
 							</div>
 						</div>
-
-						<div class="mb-3">
-							<label for="email">이메일</label> <input type="email"
+						<div class="mb-3" >
+							<label for="email">이메일</label> <input type="email" style="width:250px"
 								class="form-control" id="email" name="mail"
 								placeholder="you@example.com" required>
 							<div class="invalid-feedback">이메일을 입력해주세요.</div>
 						</div>
-
 						<div class="mb-3">
 							<label for="birth">생년월일</label> <input type="date"
 								class="form-control" id="birth" name="ubirth" placeholder=""
@@ -177,7 +175,6 @@
 								
 							}
 								function chkfunction(uid){
-									console.log(uid)
 									fetch('idCheck.do?uid='+uid)
 										.then(resolve=>resolve.json())
 										.then(result=>{
@@ -185,7 +182,6 @@
 											if(result.retCode=='NG'){
 												console.log(result)
 												alert(uid+"는 사용 가능한 아이디입니다!");
-												document.getElementById('submit').disabled=false;
 											}else{
 												alert(uid+"는 이미 사용 중인 아이디입니다");
 												document.getElementById('names').value=null;
@@ -200,15 +196,17 @@
 
 									 if(upw.length < 8 || upw.length > 20){
 										//document.getElementById('alert').style="display:block";
-									  //alert("8자리 ~ 20자리 이내로 입력해주세요.");
+									  alert("비밀번호 형식을 확인해주세요!");
 									  return false;
 									 }else if(upw.search(/\s/) != -1){
+										 alert("비밀번호 형식을 확인해주세요!");
 									  return false;
 									 }else if(num < 0 || eng < 0 || spe < 0 ){
+										 alert("비밀번호 형식을 확인해주세요!");
 									  return false;
 									 }else {
-										 document.getElementById('alert').style="display:none";
-										console.log("통과"); 
+										document.getElementById('alert').style="display:none";
+										document.getElementById('submit').disabled=false;
 									    return true;
 									 }
 								}
@@ -242,6 +240,10 @@
 	document.forms.coupon.addEventListener('submit', function (e){
 		alert("축하합니다. 회원가입 전용 쿠폰이 발급되었습니다.\n 로그인 후 이용하시기 바랍니다.")
 	})
+	
+	function emailCheck(){
+	}
+
 	</script>
 </body>
 
