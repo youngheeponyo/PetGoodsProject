@@ -206,10 +206,20 @@
 						<tbody>
 							<c:forEach items="${list }" var="vo">
 								<tr class="cart__list__detail">
-									<td><input type="checkbox" class="chk" name="product"
-											value=${vo.productPrice*vo.selCnt } onclick="checkfunction()"></td>
-									<td><input type="checkbox" id="pno" name="pno" value=${vo.productNo }
+								<c:choose>
+									<c:when test="${vo.productStock==0 }">
+										<td><input type="button" class="chk" name="product"
+											value="품절" disabled style="color:red"></td>
+										<td><input type="checkbox" id="pno" name="pno" value=${vo.productNo }
 											style="display:none"></td>
+									</c:when>
+									<c:otherwise>
+										<td><input type="checkbox" class="chk" name="product"
+												value=${vo.productPrice*vo.selCnt } onclick="checkfunction()"></td>
+										<td><input type="checkbox" id="pno" name="pno" value=${vo.productNo }
+												style="display:none"></td>
+									</c:otherwise>
+								</c:choose>
 									<td><a href="detailProduct.do?pno=${vo.productNo }&cno=${vo.categoryNo}&type=${vo.petType}">
 										<c:choose>
 											<c:when test="${vo.petType==0}">
