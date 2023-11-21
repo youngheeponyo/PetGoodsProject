@@ -34,10 +34,15 @@ public class ProductDetailControl implements Command {
 		ProductVO vo = svc.productDetail(Integer.parseInt(pno));
 		req.setAttribute("pno", vo);
 		
-		
+		//문의게시판
 		UserQnaService usc = new UserQnaServiceImpl();
-		List<UserQnaVO> qlist = usc.userQnaAllList();
+		List<UserQnaVO> qlist = usc.userQnaAllListByProductNo(Integer.parseInt(pno));
 		req.setAttribute("qlist", qlist);
+		//리뷰자료
+		ReviewService rvc = new ReviewServiceImpl();
+		List<ReviewVO> Rlist = rvc.selectProductReview(Integer.parseInt(pno));
+		req.setAttribute("Rlist", Rlist);
+		
 		
 		List<ProductVO> list = svc.productList();
 		req.setAttribute("list", list);
@@ -54,10 +59,7 @@ public class ProductDetailControl implements Command {
 		}
 			
 		req.setAttribute("clist", clist);
-		//리뷰자료
-		ReviewService rvc = new ReviewServiceImpl();
-		List<ReviewVO> Rlist = rvc.selectProductReview(Integer.parseInt(pno));
-		req.setAttribute("Rlist", Rlist);
+		
 
 		
 		MyCartService csv = new MyCartServiceImpl();

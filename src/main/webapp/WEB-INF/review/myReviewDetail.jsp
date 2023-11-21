@@ -80,7 +80,7 @@
 					</tbody>
 				</table>
 				<p>
-					<a href="myReviewList.do">리뷰목록으로</a>
+					<a href="myReviewDetailForm.do">리뷰목록으로</a>
 				</p>
 			</form>
 			

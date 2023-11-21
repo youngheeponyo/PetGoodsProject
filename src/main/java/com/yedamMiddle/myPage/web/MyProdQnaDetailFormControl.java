@@ -11,7 +11,9 @@ import com.yedamMiddle.common.Command;
 import com.yedamMiddle.common.PageDTO;
 import com.yedamMiddle.myPage.service.MyPageService;
 import com.yedamMiddle.myPage.serviceImpl.MyPageServiceImpl;
+import com.yedamMiddle.userQna.service.UserQnaService;
 import com.yedamMiddle.userQna.service.UserQnaVO;
+import com.yedamMiddle.userQna.serviceImpl.UserQnaServiceImpl;
 
 public class MyProdQnaDetailFormControl implements Command {
 
@@ -34,7 +36,8 @@ public class MyProdQnaDetailFormControl implements Command {
 			page = "1";
 		int pageNo = Integer.parseInt(page);
 		
-		List<UserQnaVO> list = svc.qnaList(userNo);
+		UserQnaService uvc = new UserQnaServiceImpl();
+		List<UserQnaVO> list = uvc.userQnaAllList();
 		
 		int startIdx = (pageNo - 1) * 10;
 		int endIdx = (pageNo) * 10;
