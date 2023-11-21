@@ -35,7 +35,7 @@
 	<div class="container px-4 px-lg-5 mt-5">
 		<div class="container-fluid">
 		
-			<form action="addReview.do" name="addReviewForm" method="post" style=text-align:center;>
+			<form action="addReview.do" name="addReviewForm" method="post" style=text-align:center; encType = "multipart/form-data">
 				<input type="hidden" name="productName" value="${reviewVo.productName}">
 				<input type="hidden" name="nickNakem" value="${reviewVo.nickName }">
 				<h3>리뷰 등록</h3>
@@ -44,24 +44,24 @@
 <!--                     <table id="datatablesSimple" style=text-align:center> -->
                     	<thead >
                     		<tr style=text-align:center>
-                    			<th>상품이름</th>
-                    			<th>별점</th>
-                    			<th>작성자</th>
+                    			<th colspan="2">상품이름</th>
+                    			<th colspan="2">별점</th>
+                    			<th colspan="2">작성자</th>
                     		</tr>
                     	</thead>
                     	<tbody>
 							<tr>
-                    			<td>${reviewVo.productName }</td>
-                    			<td>
-                    				<select>
+                    			<td colspan="2">${reviewVo.productName }</td>
+                    			<td colspan="2">
+                    				<select name="score" onchange="score(this.value)">
                     					<option value=1>1점</option>
-                    					<option value=1>2점</option>
-                    					<option value=1>3점</option>
-                    					<option value=1>4점</option>
-                    					<option value=1>5점</option>
+                    					<option value=2>2점</option>
+                    					<option value=3>3점</option>
+                    					<option value=4>4점</option>
+                    					<option value=5>5점</option>
                     				</select>
                     			</td>
-                    			<td>${reviewVo.nickName }</td>
+                    			<td colspan="2">${reviewVo.nickName }</td>
                     			
                     		</tr>
                     		
@@ -71,10 +71,12 @@
                     			<tr>
                     				<td colspan="3">
                     				<c:choose>
-                    					<c:when test="${reviewVo.reviewImage eq null }"><p style="color:gray;">사진을 첨부하지 않았습니다<p></c:when>
+                    					<c:when test="${reviewVo.reviewImage eq null }">
+                    					<p style="color:gray;">아직 사진을 첨부하지 않았습니다<p>
+                    					<input type ="file" name="img" class = "form-control">사진첨부하기
+                    					</c:when>
                     					<c:otherwise><input type ="file" name="img" class = "form-control">사진첨부하기</c:otherwise>
                     				</c:choose>
-                    				<br><br>
                     				</td>
                     				<td colspan="3"><textarea cols="40" rows="5" name="content" class = "form-control"></textarea></td>
                     			</tr>

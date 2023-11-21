@@ -16,7 +16,7 @@ public interface ReviewService {
 	public ReviewVO selectDetailReview(int reviewNo);
 	
 	//주문번호와 상품번호로 구매정보가져오기
-	public ReviewVO selectDetailReviewByProductNo(@Param("mUid") int merUid, @Param("pNo")int productNo);
+	public ReviewVO selectDetailReviewByProductNo(@Param("mUid") long merUid, @Param("pNo")int productNo);
 	
 	//리뷰작성
 	public int insertReview(ReviewVO vo);
