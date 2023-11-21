@@ -35,7 +35,7 @@
 	<div class="container px-4 px-lg-5 mt-5">
 		<div class="container-fluid">
 		
-			<form action="addReview.do" name="addReviewForm" method="post" style=text-align:center; encType = "multipart/form-data">
+			<form encType = "multipart/form-data" action="addReview.do" name="addReviewForm" method="post" style=text-align:center; >
 				<input type="hidden" name="productName" value="${reviewVo.productName}">
 				<input type="hidden" name="nickName" value="${reviewVo.nickName }">
 				<input type="hidden" name="merUid" value="${reviewVo.merUid }">
@@ -60,7 +60,7 @@
                     				<select name="score" onchange="score(this.value)">
                     					<option value=1>1점</option>
                     					<option value=2>2점</option>
-                    					<option value=3>3점</option>
+                    					<option value=3 selected>3점</option>
                     					<option value=4>4점</option>
                     					<option value=5>5점</option>
                     				</select>
@@ -80,6 +80,7 @@
                     			</tr>
                     			<tr><td colspan="6">
 										<input type="submit" value="등록하기">
+										<input type="reset" value="초기화">
 								</td></tr>
 					</tbody>
 				</table>
