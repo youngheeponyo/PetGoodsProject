@@ -16,7 +16,7 @@
         		SELECT /*+ INDEX(P PK_PRODUCTNO) */ ROWNUM rn, T.* FROM (
                 	SELECT B.*, A.AVG_STAR 
                     	FROM (
-                        	SELECT P.PRODUCT_NO, AVG(D.STAR_CNT) AS AVG_STAR
+                        	SELECT P.PRODUCT_NO, NVL2(TRUNC(AVG(STAR_CNT),1),TRUNC(AVG(STAR_CNT),1),0.0) AS AVG_STAR
                             	FROM PRODUCT P
                             	LEFT JOIN REVIEW D ON P.PRODUCT_NO = D.PRODUCT_NO
                             	GROUP BY P.PRODUCT_NO
