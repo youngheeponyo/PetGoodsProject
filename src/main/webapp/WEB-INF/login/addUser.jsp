@@ -195,26 +195,14 @@
 									 var spe = upw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
 
 									 if(upw.length < 8 || upw.length > 20){
-<<<<<<< HEAD
 										//document.getElementById('alert').style="display:block";
-									  alert("비밀번호 형식을 확인해주세요!");
-=======
-										 alert('비밀번호 조건을 확인하세요');
->>>>>>> branch 'master' of https://github.com/dev-min2/PetGoodsProject.git
+										  alert("비밀번호 형식을 확인해주세요!");
 									  return false;
 									 }else if(upw.search(/\s/) != -1){
-<<<<<<< HEAD
 										 alert("비밀번호 형식을 확인해주세요!");
-=======
-										 alert('비밀번호 조건을 확인하세요');
->>>>>>> branch 'master' of https://github.com/dev-min2/PetGoodsProject.git
 									  return false;
 									 }else if(num < 0 || eng < 0 || spe < 0 ){
-<<<<<<< HEAD
 										 alert("비밀번호 형식을 확인해주세요!");
-=======
-										 alert('비밀번호 조건을 확인하세요');
->>>>>>> branch 'master' of https://github.com/dev-min2/PetGoodsProject.git
 									  return false;
 									 }else {
 										document.getElementById('alert').style="display:none";

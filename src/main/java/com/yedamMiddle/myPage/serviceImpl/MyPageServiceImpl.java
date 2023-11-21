@@ -67,5 +67,9 @@ public class MyPageServiceImpl implements MyPageService{
 	public boolean addMyPet(PetVO vo) {
 		return mapper.insertMyPet(vo) == 1;
 	}
+	@Override
+	public boolean updatePw(String newPw, String userId, String userPw) {
+		return mapper.updatePw(newPw, userId, userPw)==1;
+	}
 
 }

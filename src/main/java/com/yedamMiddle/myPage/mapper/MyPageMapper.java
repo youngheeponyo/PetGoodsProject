@@ -2,6 +2,8 @@ package com.yedamMiddle.myPage.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.yedamMiddle.common.service.PetVO;
 import com.yedamMiddle.common.service.UserVO;
 import com.yedamMiddle.coupon.service.CouponVO;
@@ -20,4 +22,5 @@ public interface MyPageMapper {
 	List<ReviewVO> reviewList(int userNo);
 	List<PetVO> myPetInfo(int userNo);
 	public int insertMyPet(PetVO vo);
+	public int updatePw(@Param("userPw") String newPw,@Param("userId") String userId,@Param("userPw") String userPw);
 }
