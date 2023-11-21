@@ -30,7 +30,7 @@
                     		<tr>
                     			<td> 
                     				<c:choose>
-	                    				<c:when test="${vo.password==0 }">
+	                    				<c:when test="${empty vo.password}">
 	                    					전체공개
 	                    				</c:when>
 	                    				<c:otherwise>
@@ -53,7 +53,7 @@
                     			<td>
                     			<c:if test="${not empty vo.qnaNo}">
 	                    				<c:choose>
-	                    					<c:when test="${vo.qnaState==1 }" >
+	                    					<c:when test="${vo.qnaState == 1 }" >
 	                    						<p style="color: blue;"><b>답변완료</b></p>
 	                    					</c:when>
 	                    					<c:otherwise>
@@ -90,7 +90,7 @@
 		}		
 
 		console.log("password :", password,"   qnaNo: ", qnaNo)
-	    if(password == "0" || permission == "0"){//패스워드가 없거나 관리자일때
+	    if(password == "" || permission == "0"){//패스워드가 없거나 관리자일때
 	    	
 	    	window.location.href="getUserQnaList.do?qnaNo="+qnaNo;
 	    	return;

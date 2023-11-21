@@ -72,7 +72,7 @@
 	                    		<tr>
 	                    			<td> 
 	                    				<c:choose>
-		                    				<c:when test="${vo.password==0 }">
+		                    				<c:when test="${empty vo.password }">
 		                    					전체공개
 		                    				</c:when>
 		                    				<c:otherwise>

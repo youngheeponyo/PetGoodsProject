@@ -9,7 +9,7 @@
  <section class="pt-2 pb-4">
 		<div class="container px-4 px-lg-5 mt-3">
                 <div class="container-fluid">
-                    <h3 class="mt-4" style= text-align:center>나의리뷰</h3>
+                    <h3 class="mt-4" style= text-align:center>나의리뷰2</h3>
                     <br>
                     <hr>
                     <table class = "table" style= text-align:center>
@@ -28,12 +28,17 @@
                     	<tbody>
                     		<c:choose>
 	                    		<c:when test="${not empty list }">
-		                    		<c:forEach items="${list }" var="vo">
+		                    		<c:forEach items="${list }" var="vo" varStatus="loopStatus">
 		                    			<c:set var="i" value="${i+1 }"/>
 			                    		<tr>
 			                    			<td>${i}</td>
 			                    			<td onclick="next('${vo.reviewNo }')"><a href=#>${vo.productName }</a></td>
-			                    			<td>${vo.starCnt }/5</td>
+			                    			
+			                    			<td>
+			                    				<c:forEach begin="1" end="${vo.starCnt }" var="l">
+			                    					⭐		
+			                    				</c:forEach>		                    					
+			                    			</td>
 			                    			<td>${vo.nickName }</td>
 			                    			<td><fmt:formatDate value ="${vo.reviewDate }" pattern="yyyy-MM-dd"></fmt:formatDate></td>
 			                    			<td>${vo.reviewLikeCnt }</td>

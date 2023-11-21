@@ -59,8 +59,8 @@
 	
 	<!-- 리뷰수정 -->
 	<update id="updateReview" parameterType="com.yedamMiddle.review.service.ReviewVO">
-		UPDATE review SET content=#{content}, star_cnt=#{starCnt}, review_image=#{reviewImage}
-		WHERE mer_uid=#{merUid} and user_no=#{UserNo}
+		UPDATE review SET content=#{content}, star_cnt=#{starCnt}, review_image=#{reviewImage}, review_date=SYSDATE
+		WHERE review_no = #{reviewNo}
 	</update>
 	
 	<!-- 리뷰삭제 -->

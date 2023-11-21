@@ -71,7 +71,11 @@
 			                    		<tr>
 			                    			<td>${i}</td>
 			                    			<td onclick="next('${vo.reviewNo }')"><a href=#>${vo.productName }</a></td>
-			                    			<td>${vo.starCnt }/5</td>
+			                    			
+			                    			<td><c:forEach begin="1" end="${vo.starCnt }" step="1" var="l">
+			                    					⭐
+			                    				</c:forEach>
+			                    			</td>
 			                    			<td>${nickName }</td>
 			                    			<td><fmt:formatDate value ="${vo.reviewDate }" pattern="yyyy-MM-dd"></fmt:formatDate></td>
 			                    			<td>${vo.reviewLikeCnt }</td>
