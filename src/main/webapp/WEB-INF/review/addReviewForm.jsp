@@ -37,8 +37,12 @@
 		
 			<form action="addReview.do" name="addReviewForm" method="post" style=text-align:center; encType = "multipart/form-data">
 				<input type="hidden" name="productName" value="${reviewVo.productName}">
-				<input type="hidden" name="nickNakem" value="${reviewVo.nickName }">
+				<input type="hidden" name="nickName" value="${reviewVo.nickName }">
+				<input type="hidden" name="merUid" value="${reviewVo.merUid }">
+				<input type="hidden" name="userNo" value="${reviewVo.userNo }">
+				<input type="hidden" name="productNo" value="${reviewVo.productNo }">
 				<h3>리뷰 등록</h3>
+				${reviewVo}
 				<br><hr>
 				<table class = "table" style= text-align:center>
 <!--                     <table id="datatablesSimple" style=text-align:center> -->
@@ -70,13 +74,7 @@
                     		</tr>
                     			<tr>
                     				<td colspan="3">
-                    				<c:choose>
-                    					<c:when test="${reviewVo.reviewImage eq null }">
-                    					<p style="color:gray;">아직 사진을 첨부하지 않았습니다<p>
-                    					<input type ="file" name="img" class = "form-control">사진첨부하기
-                    					</c:when>
-                    					<c:otherwise><input type ="file" name="img" class = "form-control">사진첨부하기</c:otherwise>
-                    				</c:choose>
+                    					<input type ="file" name="img" class = "form-control">
                     				</td>
                     				<td colspan="3"><textarea cols="40" rows="5" name="content" class = "form-control"></textarea></td>
                     			</tr>

@@ -45,7 +45,7 @@
 	
 <!-- 	주문번호와 상품번호로 구매정보가져오기 -->
 	<select id="selectDetailReviewByProductNo" resultType="com.yedamMiddle.review.service.ReviewVO">
-		SELECT u.nickname, p.product_name, o.mer_uid
+		SELECT u.nickname, p.product_name, o.mer_uid, p.product_no, u.user_no
 		from product_order o left join user_tbl u on o.user_no = u.user_no
 		left join product p on o.product_no = p.product_no
 		where o.mer_uid=#{mUid} and  p.product_no=#{pNo}
