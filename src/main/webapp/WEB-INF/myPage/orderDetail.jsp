@@ -48,7 +48,6 @@
 						<div class="container-fluid px-4">
 							<div class="px-4 py-1 my-3 text-center">
 								<h2 class="fw-bold mb-3">내 주문내역</h2>
-								${pOrderList }
 							</div>
 							<div class="d-flex justify-content-center">
 								<table class="table w-85">
