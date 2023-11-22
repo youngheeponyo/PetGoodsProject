@@ -114,7 +114,7 @@
 								success : function(res) {
 									const kId = res.id;
 						            const kPw = "kakao" + res.id;
-						            if(${uid}==kId){
+						            if('${uid}'==kId){
 										alert('탈퇴가 완료되었습니다!')
 										 location.href="delUser.do?userId="+kId+"&userPw="+kPw;
 						            }else{

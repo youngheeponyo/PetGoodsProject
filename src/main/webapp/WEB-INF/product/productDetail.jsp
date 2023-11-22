@@ -52,7 +52,7 @@
 		margin:0px;
 	}
 	#inlineimg{
-		height:7000px;
+		height:10000px;
 	}
 	#more{
 		border:none;
@@ -125,7 +125,7 @@
 				<h1 class="display-5 fw-bolder">${pno.productName }</h1>
 				<c:set var="sum" value="0.0"/>				
 				<c:forEach items="${Rlist }" var="clist" varStatus="status">
-					<c:set var="sum" value="${sum + Math.round(clist.starCnt/RlistSize*10) }"></c:set>
+					<c:set var="sum" value="${sum + Math.floor(clist.starCnt/RlistSize*10) }"></c:set>
 				</c:forEach>
 				<c:out value="★${sum/10}"/>
 				<div class="fs-5 mb-5">
