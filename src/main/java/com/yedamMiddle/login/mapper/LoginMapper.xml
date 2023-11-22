@@ -36,4 +36,8 @@
 	<update id="updatePw">
 		update user_tbl set user_pw=#{userPw} where user_id=#{userId}
 	</update>
+	
+	<select id="userInfo" parameterType="String" resultType="com.yedamMiddle.common.service.UserVO">
+		select * from user_tbl where user_id=#{userId}
+	</select>
 </mapper>

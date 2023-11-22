@@ -44,6 +44,7 @@ import com.yedamMiddle.myPage.web.AddMyPetControl;
 import com.yedamMiddle.myPage.web.CouponDetailFormControl;
 import com.yedamMiddle.myPage.web.IdpwCheckControl;
 import com.yedamMiddle.myPage.web.IdpwCheckFormControl;
+import com.yedamMiddle.myPage.web.MyInfoControl;
 import com.yedamMiddle.myPage.web.MyPageControl;
 import com.yedamMiddle.myPage.web.MyPetFormControl;
 import com.yedamMiddle.myPage.web.MyPetInfoControl;
@@ -184,8 +185,6 @@ public class FrontController extends HttpServlet {
       //수량
       commandByURL.put("/updateCart.do", new UpdateCartControl());
       commandByURL.put("/cartCheck.do", new CartCheckControl());
-      //물건 재고량 구하기
-      //commandByURL.put("/productStock.do", new productStockControl());
       //아이디 비밀번호 찾기
       commandByURL.put("/findIdForm.do", new FindIdFormControl());
       commandByURL.put("/findId.do", new FindIdControl());
@@ -199,6 +198,8 @@ public class FrontController extends HttpServlet {
       commandByURL.put("/updateInfo.do", new UpdateInfoControl());
       commandByURL.put("/updatePwForm.do", new UpdatePwFormControl());
       commandByURL.put("/updatePw2.do", new UpdatePw2Control());
+      //회원정보 조회
+      commandByURL.put("/myInfo.do", new MyInfoControl());
       
       // 전민교
       commandByURL.put("/main.do", new MainPageControl()); // 메인페이지

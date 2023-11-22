@@ -59,4 +59,9 @@ public class LoginServiceImpl implements LoginService{
 	public boolean updatePw(String userPw, String userId) {
 		return mapper.updatePw(userPw, userId) == 1;
 	}
+	
+	@Override
+	public UserVO userInfo(String userId) {
+		return mapper.userInfo(userId);
+	}
 }
