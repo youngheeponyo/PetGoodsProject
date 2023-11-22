@@ -38,7 +38,7 @@
 	                                    ${product.productPrice }원
 	                                </div>
 	                                <div class="text-center">
-										<p style="color:#848BA0;">★${product.avgStar }</p>
+										<p style="color:#848BA0;">★${product.avgStar }(${product.reviewCnt})</p>
 									</div>
 	                            </div>
 	                            <!-- Product actions-->
@@ -64,7 +64,7 @@
 	                                    ${product.productPrice }원
 	                                </div>
 	                                <div class="text-center">
-										<p style="color:#848BA0;">★${product.avgStar }</p>
+										<p style="color:#848BA0;">★${product.avgStar }(${product.reviewCnt})</p>
 									</div>
 	                            </div>
 	                            <!-- Product actions-->

@@ -50,67 +50,46 @@
 				<div id="layoutSidenav_content">
 					<main>
 						<div class="container-fluid px-4">
-							<div class="px-4 py-1 my-3 text-center">
-								<h2 class="fw-bold mb-3">내 반려동물 정보</h2>
-							</div>
-							<div class="d-flex justify-content-center">
-								<c:choose>
-									<c:when test="${!empty pet }">
-											<table class="table w-75">
-												<tr>
-													<th>이름</th>
-													<th>반려동물종류</th>
-													<th>반려동물생일</th>
-													<th>성별</th>
-												</tr>
-												<c:forEach items="${pet }" var="pet">
-													<tr>
-														<td>${pet.petName }</td>
-														<td><c:choose>
-															<c:when test="${pet.petType == '0'}">
-																강아지							
-															</c:when>
-															<c:otherwise>
-																고양이
-															</c:otherwise>
-														</c:choose></td>
-														<td><fmt:formatDate value="${pet.petBirth}"
-																pattern="yyyy-MM-dd"></fmt:formatDate></td>
-														<td><c:choose>
-															<c:when test="${pet.petGender == '0'}">
-																수컷							
-															</c:when>
-															<c:otherwise>
-																암컷
-															</c:otherwise>
-														</c:choose></td>
-													</tr>
-												</c:forEach>
-												<tr>
-													<td colspan="4">
-													<div class="d-grid gap-2">
-														<button type="button" class="btn text-white" style="background-color: #9999FF;" 
-														onclick="location.href='myPetForm.do'">내 반려동물 추가등록하기</button>
-													</div>
-													</td>
-												</tr>
-											</table>
-									</c:when>
-									<c:otherwise>
-										<div class="px-4 py-1 my-3 text-center">
-											<h2 class="fw-bold mb-3">아직 등록된 반려동물정보가 없습니다</h2>
-											<button type="button" onclick="location.href='myPetForm.do'">내 반려동물 등록하기</button>
-										</div>
-									</c:otherwise>
-								</c:choose>
-
-							</div>
-
+						<h3 class="mt-4" style= text-align:center>나의 정보</h3>
+		                    <br>
+		                    <hr>
+						<div class="mb-3">
+							<h5>아이디</h5><p class="form-control" id="uid">${vo.userId }</p>
 						</div>
-
-					</main>
-				</div>
+						<div class="mb-3">
+							<h5>이름</h5><p class="form-control">${vo.nickName }</p>
+						</div>
+						<div class="mb-3" >
+							<h5>이메일</h5><p class="form-control">${vo.userMail }</p>
+						</div>
+						<div class="mb-3">
+						<fmt:formatDate value="${vo.userBirth}" pattern="yyyy년 MM월 dd일" var="formatdDate" />
+							<h5>생년월일</h5><p class="form-control" id="ubt">${formatdDate }</p>
+						</div>
+						<div class="mb-3">
+							<h5>전화번호</h5><p class="form-control">${vo.userPhone }</p>
+						</div>
+						<div class="mb-3">
+							<h5>주소</h5><p class="form-control">${vo.userAddr }</p>
+						</div>
+						</div>
+						<div class="mb-4" style="text-align:center;">
+							<button type="button" onclick="location.href='idpwCheckForm.do'" style="margin:10px;padding:8px">내 정보 변경</button>
+							<c:if test="${uid != '3160394043' }">
+								<button type="button" onclick="location.href='updatePwForm.do'" style="margin:10px;padding:8px">비밀번호 변경</button>
+							</c:if>
+							<button type="button" onclick="location.href='myPage.do'" style="margin:10px;padding:8px">돌아가기</button>
+						</div>
+				</main>
 			</div>
 		</div>
-	</div>
+	<footer class="my-3 text-center text-small"> </footer>
+			</div>
+		</div>
 </section>
+
+
+
+
+
+

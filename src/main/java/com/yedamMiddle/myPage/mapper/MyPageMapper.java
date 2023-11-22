@@ -22,5 +22,5 @@ public interface MyPageMapper {
 	List<ReviewVO> reviewList(int userNo);
 	List<PetVO> myPetInfo(int userNo);
 	public int insertMyPet(PetVO vo);
-	public int updatePw(@Param("userPw") String newPw,@Param("userId") String userId,@Param("userPw") String userPw);
+	public int updatePw(@Param("usernewPw") String newPw,@Param("userId") String userId,@Param("userPw") String userPw);
 }
