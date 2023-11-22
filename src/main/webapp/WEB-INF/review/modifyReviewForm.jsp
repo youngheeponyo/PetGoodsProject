@@ -34,7 +34,6 @@
 <section class="py-5">
 	<div class="container px-4 px-lg-5 mt-5">
 		<div class="container-fluid">
-		${reviewVo }
 			<form encType = "multipart/form-data" action="modifyReview.do" name="modifyReviewForm" method="post" style=text-align:center; >
 				<input type="hidden" name="productName" value="${reviewVo.productName}">
 				<input type="hidden" name="nickName" value="${reviewVo.nickName }">

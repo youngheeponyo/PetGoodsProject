@@ -157,7 +157,7 @@
 			
 				</table>
 				<p>
-					<a href="myProdQnaDetailForm.do">목록으로</a>
+					<a href="getUserQnaAllList.do">목록으로</a>
 				</p>
 			</form>
 			
