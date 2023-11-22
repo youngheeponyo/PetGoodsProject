@@ -28,6 +28,8 @@ import com.yedamMiddle.cart.web.MyCartControl;
 import com.yedamMiddle.cart.web.UpdateCartControl;
 import com.yedamMiddle.cart.web.deleteCartControl;
 import com.yedamMiddle.coupon.web.MyCouponListForm;
+import com.yedamMiddle.coupon.web.insertCouponControl;
+import com.yedamMiddle.coupon.web.insertCouponFormControl;
 import com.yedamMiddle.login.web.AddUserControl;
 import com.yedamMiddle.login.web.AddUserFormControl;
 import com.yedamMiddle.login.web.DelUserControl;
@@ -203,6 +205,9 @@ public class FrontController extends HttpServlet {
       commandByURL.put("/myInfo.do", new MyInfoControl());
       //배송리스트 조회
       commandByURL.put("/productOrderList.do", new productOrderListControl());
+      //관리자가 주는 쿠폰
+      commandByURL.put("/insertCouponForm.do", new insertCouponFormControl());
+      commandByURL.put("/insertCoupon.do", new insertCouponControl());
       
       // 전민교
       commandByURL.put("/main.do", new MainPageControl()); // 메인페이지

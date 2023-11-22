@@ -20,4 +20,6 @@ public interface CouponService {
 	public int userUseCoupon(CouponVO vo);
 	
 	public List<CouponVO> getNotUseCoupon(int userNo);
+	
+	public int insertCoupon(CouponVO vo);
 }

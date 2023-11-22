@@ -22,4 +22,6 @@ public interface CouponMapper {
 	public int userUseCoupon(CouponVO vo);
 	
 	public List<CouponVO> selectNotUseCoupon(int userNo);
+	
+	public int insertCoupon(CouponVO vo);
 }

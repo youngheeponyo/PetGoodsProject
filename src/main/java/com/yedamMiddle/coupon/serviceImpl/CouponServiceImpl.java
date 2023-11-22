@@ -44,4 +44,8 @@ public class CouponServiceImpl implements CouponService {
 		return mapper.selectNotUseCoupon(userNo);
 	}
 
+	@Override
+	public int insertCoupon(CouponVO vo) {
+		return mapper.insertCoupon(vo);
+	}
 }

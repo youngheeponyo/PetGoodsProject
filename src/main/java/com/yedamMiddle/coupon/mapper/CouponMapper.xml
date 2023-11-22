@@ -36,6 +36,9 @@
 	SELECT * from COUPON where USER_NO=#{userNo} AND COUPON_STATE = '미사용'				
 </select>
 
+<insert id="insertCoupon" parameterType="com.yedamMiddle.coupon.service.CouponVO">
+	insert into coupon values(seq_coupon.NEXTVAL,#{userNo},#{couponName},#{discountPct},TRUNC(SYSDATE+7),'미사용')
+</insert>
 
 
 </mapper>

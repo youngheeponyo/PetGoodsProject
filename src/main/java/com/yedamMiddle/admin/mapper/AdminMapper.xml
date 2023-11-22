@@ -60,4 +60,5 @@
    	 	GROUP BY PRODUCT_NAME
    	 	ORDER BY SELL_CNT DESC
 	</select>
+
 </mapper>

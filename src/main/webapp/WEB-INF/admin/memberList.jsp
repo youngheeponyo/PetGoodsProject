@@ -72,6 +72,7 @@
 								<th>닉네임</th>
 								<th>연락처</th>
 								<th>배송지</th>
+								<th></th>
 							</tr>
 						</thead>
 						<tfoot>
@@ -91,6 +92,14 @@
 									<td>${user.nickName }</td>
 									<td>${user.userPhone }</td>
 									<td>${user.userAddr }</td>
+									<c:choose>
+										<c:when test="${user.userPermission!=0 }">
+											<td><input type="button" value="쿠폰 생성" onclick="location.href='insertCouponForm.do?uno=${user.userNo }'" style="border:none"></td>
+										</c:when>
+										<c:otherwise>
+											<td></td>
+										</c:otherwise>
+									</c:choose>
 								</tr>
 							</c:forEach>
 						</tbody>
