@@ -6,9 +6,9 @@
 	<script>
 		alert('소중한 반려동물의 생일을 축하드립니다! \n나의 쿠폰함에서 생일축하쿠폰을 확인하세요')
 	</script>
-	<%
-		session.setAttribute("petBirthDay", null);
-	%>
+	<!-- session에 넣은 setAttribute를 무효화 하는 방법-->
+<!-- 	아래처럼 새로 넣어주거나 아니면 꺽쇠%를 사용해서 자바로 바꿔서 적거나 --> -->
+	${petBirthDay = null }
 </c:if>
 	
 
