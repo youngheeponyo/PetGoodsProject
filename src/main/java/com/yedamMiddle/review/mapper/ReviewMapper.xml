@@ -59,8 +59,13 @@
 	
 	<!-- 리뷰수정 -->
 	<update id="updateReview" parameterType="com.yedamMiddle.review.service.ReviewVO">
-		UPDATE review SET content=#{content}, star_cnt=#{starCnt}, review_image=#{reviewImage}, review_date=SYSDATE
+<!-- 		<selectKey keyProperty="reviewImage" resultType="String" order="BEFORE"> -->
+<!-- 			SELECT review_image from review where review_no=#{reviewNo} -->
+		
+<!-- 		</selectKey> -->
+		UPDATE review SET content=#{content}, star_cnt=#{starCnt}, review_image=NVL(#{reviewImage}, review_image), review_date=SYSDATE
 		WHERE review_no = #{reviewNo}
+		
 	</update>
 	
 	<!-- 리뷰삭제 -->

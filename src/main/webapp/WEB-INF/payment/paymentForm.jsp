@@ -220,6 +220,13 @@
 	   allPrice = allPrice.replace('원','');
 	   allPrice = Number(allPrice);
 	   
+	   // 결제실패를 위한 테스트코드!
+	   if(productCnt == 1) {
+		   if(productName == '(테스트)결제실패상품') {
+				allPrice = 10;   
+		   }
+	   }
+	   
 	   let choicePg = "";
 	   if(document.getElementById('credit').checked) {
 		   choicePg = "html5_inicis";
