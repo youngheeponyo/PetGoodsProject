@@ -20,8 +20,7 @@
 	<select id="recentQnaList" parameterType="int" resultType="com.yedamMiddle.userQna.service.UserQnaVO">
 		<![CDATA[
 		select * from (select * from userqna 
-                    where user_no=0 
-                    and qna_state = 0
+                    where user_no=#{userNo}
                     order by regist_date)
 		where rownum <=3
 		]]>

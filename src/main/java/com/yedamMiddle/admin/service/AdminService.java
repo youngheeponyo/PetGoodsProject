@@ -17,4 +17,5 @@ public interface AdminService {
 	List<CategoryJoinVO> getJoinCateList();
 	public boolean addMainCate(String categoryName);
 	public boolean addSubCate(String subName, String preName);
+	List<SalesRateVO> getSalesRate();
 }

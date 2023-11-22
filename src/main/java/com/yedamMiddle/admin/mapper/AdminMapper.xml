@@ -50,4 +50,12 @@
 		INSERT INTO CATEGORY VALUES(seq_category_no.NEXTVAL, #{subName},  (
  		select category_no from category where category_name=#{preName}) )
 	</insert>
+	
+	<select id="getSalesRate" resultType="com.yedamMiddle.admin.service.SalesRateVO">
+		SELECT B.PRODUCT_NAME, COUNT(*) AS SELL_CNT
+    	FROM PRODUCT_ORDER A
+   	 	JOIN PRODUCT B ON A.PRODUCT_NO = B.PRODUCT_NO
+   	 	GROUP BY PRODUCT_NAME
+   	 	ORDER BY SELL_CNT DESC
+	</select>
 </mapper>

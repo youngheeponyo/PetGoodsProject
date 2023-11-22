@@ -84,7 +84,10 @@
 												</c:forEach>
 												<tr>
 													<td colspan="4">
-													<button type="button" onclick="location.href='myPetForm.do'">내 반려동물 추가등록하기</button>
+													<div class="d-grid gap-2">
+														<button type="button" class="btn text-white" style="background-color: #9999FF;" 
+														onclick="location.href='myPetForm.do'">내 반려동물 추가등록하기</button>
+													</div>
 													</td>
 												</tr>
 											</table>
