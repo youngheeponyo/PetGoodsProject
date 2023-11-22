@@ -2,6 +2,7 @@ package com.yedamMiddle.myPage.web;
 
 import java.io.IOException;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -20,11 +21,17 @@ public class MyInfoControl implements Command {
 		HttpSession session = req.getSession();
 		Object userId = session.getAttribute("uid");
 		String uid = (String)userId;
+		
 		LoginService svc = new LoginServiceImpl();
 		UserVO vo = svc.userInfo(uid);
 		
 		if(vo!=null) {
 			req.setAttribute("vo", vo);
+			try {
+				req.getRequestDispatcher(path).forward(req, resp);
+			} catch (ServletException | IOException e) {
+				e.printStackTrace();
+			}
 		}else {
 			try {
 				resp.getWriter().print("<script>alert('다시 시도해주세요')</script>");

@@ -6,10 +6,12 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.yedamMiddle.admin.mapper.AdminMapper;
 import com.yedamMiddle.admin.service.AdminService;
+import com.yedamMiddle.admin.service.SalesRateVO;
 import com.yedamMiddle.common.Mybatis;
 import com.yedamMiddle.common.service.CategoryJoinVO;
 import com.yedamMiddle.common.service.CategoryVO;
 import com.yedamMiddle.common.service.UserVO;
+import com.yedamMiddle.product.service.ProductOrderVO;
 import com.yedamMiddle.product.service.ProductVO;
 
 public class AdminServiceImpl implements AdminService {
@@ -66,7 +68,10 @@ public class AdminServiceImpl implements AdminService {
 		return mapper.subCateInsert(subName, preName) == 1;
 	}
 
-
+	@Override
+	public List<ProductOrderVO> productOrder() {
+		return mapper.productOrder();
+	}
 
 
 	

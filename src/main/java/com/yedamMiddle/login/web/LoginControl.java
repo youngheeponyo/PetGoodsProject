@@ -1,7 +1,6 @@
 package com.yedamMiddle.login.web;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -21,34 +20,33 @@ import com.yedamMiddle.login.serviceImpl.LoginServiceImpl;
 
 public class LoginControl implements Command {
 
-	@Override
-	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		String uid = req.getParameter("userId");
-		String upw = req.getParameter("userPw");
-		String encryPassword = Pwsha256.encrypt(upw);
-		System.out.println(encryPassword);
-
-		LoginService svc = new LoginServiceImpl();
-		UserVO vo = svc.loginUser(uid, encryPassword);
-
-		// 로그인정보가 없으면 loginForm으로 이동.
-		if (vo == null) {
-			try {
-				resp.sendRedirect("loginForm.do");
-				return;
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-
-		HttpSession session = req.getSession();
-		session.setAttribute("uno", vo.getUserNo()); // 로그인한 회원번호 기억 후 사용
-		session.setAttribute("uid", vo.getUserId());
-		session.setAttribute("permission", vo.getUserPermission()); // 사용자 계정으로 로그인했는지 구분하기 위함
-		session.setAttribute("nickName", vo.getNickName()); // 현재 사용자가 누구인지 구문
-
-		CouponService csv = new CouponServiceImpl();
-		csv.userExpireCouponUpdate();
+   @Override
+   public void execute(HttpServletRequest req, HttpServletResponse resp) {
+      String uid = req.getParameter("userId");
+      String upw = req.getParameter("userPw");
+      String encryPassword = Pwsha256.encrypt(upw);
+      System.out.println(encryPassword);
+      
+      LoginService svc = new LoginServiceImpl();
+      UserVO vo = svc.loginUser(uid, encryPassword);
+      String result = "";
+      
+      HttpSession session = req.getSession();
+      if(vo!=null) {
+         session.setAttribute("uno", vo.getUserNo());   //로그인한 회원번호 기억 후 사용
+         session.setAttribute("uid", vo.getUserId());
+         session.setAttribute("permission", vo.getUserPermission());   //사용자 계정으로 로그인했는지 구분하기 위함
+         session.setAttribute("nickName", vo.getNickName());   //현재 사용자가 누구인지 구문
+         result = "{\"retCode\":\"OK\"}";
+         //로그인 시 날짜가 지난 쿠폰 만료적용
+         CouponService csv = new CouponServiceImpl();
+         csv.userExpireCouponUpdate();
+      }else {
+         result = "{\"retCode\":\"NG\"}";
+      }
+      
+      CouponService csv = new CouponServiceImpl();
+	  csv.userExpireCouponUpdate();
 
 		// 유저번호로 펫 정보 찾기
 		PetVO petVo = csv.selectPetByUserNo(vo.getUserNo());
@@ -90,7 +88,7 @@ public class LoginControl implements Command {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-	}
+    
+   }
 
 }

@@ -20,8 +20,7 @@
 	<select id="recentQnaList" parameterType="int" resultType="com.yedamMiddle.userQna.service.UserQnaVO">
 		<![CDATA[
 		select * from (select * from userqna 
-                    where user_no=0 
-                    and qna_state = 0
+                    where user_no=#{userNo}
                     order by regist_date)
 		where rownum <=3
 		]]>
@@ -78,7 +77,7 @@
 	</insert>
 	
 	<update id="updatePw">
-		update user_tbl set user_pw=#{userPw} where user_id=#{userId} and user_pw=#{userPw}
+		update user_tbl set user_pw=#{usernewPw} where user_id=#{userId} and user_pw=#{userPw}
 	</update>
 
 </mapper>

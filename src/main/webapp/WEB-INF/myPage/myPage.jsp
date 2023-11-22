@@ -14,7 +14,11 @@
 						<div class="sb-sidenav-menu">
 							<div class="nav">
 								<div class="sb-sidenav-menu-heading">${nickName }님 환영합니다</div>
-								<a class="nav-link" href="orderDetailForm.do">
+								<a class="nav-link" href="myInfo.do">
+									<div class="sb-nav-link-icon">
+										<i class="bi bi-person"></i>
+									</div> 내정보관리
+								</a><a class="nav-link" href="orderDetailForm.do">
 									<div class="sb-nav-link-icon">
 										<i class="bi bi-basket3-fill"></i>
 									</div> 주문내역
@@ -30,22 +34,7 @@
 									<div class="sb-nav-link-icon">
 										<i class="bi bi-chat-left-text"></i>
 									</div> 내 리뷰보기
-								</a><a class="nav-link" href="myInfo.do">
-									<div class="sb-nav-link-icon">
-										<i class="bi bi-person"></i>
-									</div> 내정보관리
-								</a><a class="nav-link" href="idpwCheckForm.do">
-									<div class="sb-nav-link-icon">
-										<i class="bi bi-person"></i>
-									</div> 내정보수정
-								</a>
-								<c:if test="${uid != '3160394043' }">
-									<a class="nav-link" href="updatePwForm.do">
-										<div class="sb-nav-link-icon">
-											<i class="bi bi-person"></i>
-									</div> 비밀번호 변경</a>
-								</c:if>
-									<a class="nav-link" href="myPetInfo.do">
+								</a><a class="nav-link" href="myPetInfo.do">
 									<div class="sb-nav-link-icon">
 										<i class="bi bi-reddit"></i>
 									</div> 내반려동물정보
@@ -60,7 +49,6 @@
 				</div>
 
 				<div id="layoutSidenav_content">
-					<main>
 						<div class="row">
 							<div class="col-xl-6">
 								<div class="card mb-4">
@@ -74,18 +62,27 @@
 									<div class="card-body" style="height: 170px;">
 										<div class="d-flex justify-content-center">
 											<table class="table w-85" style="table-layout:fixed;">
-												<c:forEach items="${orderList }" var="order">
-													<fmt:formatDate value="${order.orderDate}"
-														pattern="yy/MM/dd" var="formattedDate" />
-													<tr>
-														<td style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${order.merUid }</td>
-														<td style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><a
-															href="detailProduct.do?pno=${order.productNo }">${order.productName }</a></td>
-														<td>${order.productPrice }원</td>
-														<td>${order.buyCnt }개</td>
-														<td>${formattedDate}</td>
-													</tr>
-												</c:forEach>
+												<c:choose>
+													<c:when test="${!empty orderList}">
+														<c:forEach items="${orderList }" var="order">
+															<fmt:formatDate value="${order.orderDate}"
+																pattern="yy/MM/dd" var="formattedDate" />
+															<tr>
+																<td style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${order.merUid }</td>
+																<td style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><a
+																	href="detailProduct.do?pno=${order.productNo }">${order.productName }</a></td>
+																<td>${order.productPrice }원</td>
+																<td>${order.buyCnt }개</td>
+																<td>${formattedDate}</td>
+															</tr>
+														</c:forEach>
+													</c:when>
+													<c:otherwise>
+														<tr>
+															<td>주문하신 상품이 없습니다</td>
+														</tr>
+													</c:otherwise>
+												</c:choose>
 											</table>
 										</div>
 									</div>
@@ -108,7 +105,7 @@
 														<c:forEach items="${endList }" var="end">
 															<tr>
 																<td>${end.couponName }</td>
-																<td>${end.discountPct }</td>
+																<td>${end.discountPct }%할인</td>
 																<td style="text-align: center;"><fmt:formatDate
 																		value="${end.endDate}" pattern="yy/MM/dd  "></fmt:formatDate></td>
 																<td
@@ -130,8 +127,6 @@
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="row">
 							<div class="col-xl-6">
 								<div class="card mb-4">
 									<div class="card-header" style="font-size: 1.5em;">
@@ -143,22 +138,22 @@
 									</div>
 									<div class="card-body" style="height: 170px;">
 										<div class="d-flex justify-content-center">
-											<table class="table w-85">
+											<table class="table w-85" style="table-layout:fixed;">
 												<c:choose>
 													<c:when test="${!empty qnaList}">
 														<tr>
 															<c:forEach items="${qnaList }" var="qnaList">
 																<tr>
-																	<td>${qnaList.qnaType }</td>
-																	<td>${qnaList.productNo }</td>
+																	<td style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${qnaList.qnaType }</td>
+																	<td style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${qnaList.title }</td>
 																	<td><fmt:formatDate value="${qnaList.registDate}"
 																			pattern="yy/MM/dd"></fmt:formatDate></td>
 																	<c:choose>
 																		<c:when test="${qnaList.qnaState == 0 }">
-																			<td>답변대기</td>
+																			<td style="color:gray; font-weight:bold;">답변대기</td>
 																		</c:when>
 																		<c:otherwise>
-																			<td>답변완료</td>
+																			<td style="color:blue; font-weight:bold;">답변완료</td>
 																		</c:otherwise>
 																	</c:choose>
 																</tr>
@@ -214,7 +209,6 @@
 								</div>
 							</div>
 						</div>
-					</main>
 				</div>
 
 			</div>
