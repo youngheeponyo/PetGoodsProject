@@ -14,5 +14,6 @@ public interface LoginService {
 	public UserVO findId(String nickName,String userPhone);
 	public UserVO findPw(String userId,String userPhone);
 	public boolean updatePw(String userPw, String userId);
+	public UserVO userInfo(String userId);
 }
 	
