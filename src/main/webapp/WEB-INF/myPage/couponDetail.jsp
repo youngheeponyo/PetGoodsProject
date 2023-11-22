@@ -14,7 +14,11 @@
 						<div class="sb-sidenav-menu">
 							<div class="nav">
 								<div class="sb-sidenav-menu-heading">${nickName }님 환영합니다</div>
-								<a class="nav-link" href="orderDetailForm.do">
+								<a class="nav-link" href="myInfo.do">
+									<div class="sb-nav-link-icon">
+										<i class="bi bi-person"></i>
+									</div> 내정보관리
+								</a><a class="nav-link" href="orderDetailForm.do">
 									<div class="sb-nav-link-icon">
 										<i class="bi bi-basket3-fill"></i>
 									</div> 주문내역
@@ -30,14 +34,14 @@
 									<div class="sb-nav-link-icon">
 										<i class="bi bi-chat-left-text"></i>
 									</div> 내 리뷰보기
-								</a><a class="nav-link" href="myInfo.do">
-									<div class="sb-nav-link-icon">
-										<i class="bi bi-person"></i>
-									</div> 내정보관리
 								</a><a class="nav-link" href="myPetInfo.do">
 									<div class="sb-nav-link-icon">
 										<i class="bi bi-reddit"></i>
 									</div> 내반려동물정보
+								</a><a class="nav-link" href="delUserForm.do">
+									<div class="sb-nav-link-icon">
+										<i class="bi bi-person"></i>
+									</div> 회원 탈퇴
 								</a>
 							</div>
 						</div>

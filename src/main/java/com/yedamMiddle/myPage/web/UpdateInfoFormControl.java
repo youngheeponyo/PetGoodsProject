@@ -18,11 +18,9 @@ public class UpdateInfoFormControl implements Command {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		String path = "myPage/updateInfo.tiles";
 		String uid = req.getParameter("uid");
-		String upw = req.getParameter("upw");
-		String encryPassword = Pwsha256.encrypt(upw);
 		
 		LoginService svc = new LoginServiceImpl();
-		UserVO vo = svc.loginUser(uid, encryPassword);
+		UserVO vo = svc.userInfo(uid);
 
 		req.setAttribute("vo",vo);
 		

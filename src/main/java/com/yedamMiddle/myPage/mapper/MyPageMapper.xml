@@ -78,7 +78,7 @@
 	</insert>
 	
 	<update id="updatePw">
-		update user_tbl set user_pw=#{userPw} where user_id=#{userId} and user_pw=#{userPw}
+		update user_tbl set user_pw=#{usernewPw} where user_id=#{userId} and user_pw=#{userPw}
 	</update>
 
 </mapper>
