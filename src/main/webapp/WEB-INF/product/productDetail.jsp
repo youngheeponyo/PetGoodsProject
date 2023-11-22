@@ -52,7 +52,7 @@
 		margin:0px;
 	}
 	#inlineimg{
-		height:7000px;
+		height:10000px;
 	}
 	#more{
 		border:none;
@@ -303,7 +303,7 @@
 				</thead>
 				<tbody>
 				<c:choose>
-		          <c:when test="${not empty Rlist }">
+		          <c:when test="${not empty qlist }">
 					<c:forEach items="${qlist }" var="qvo">
 						<tr class="qnaTr">
 							<td>

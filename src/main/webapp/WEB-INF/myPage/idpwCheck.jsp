@@ -71,7 +71,7 @@
 										fetch('idpwCheck.do?uid='+kakaoId+'&upw='+kakaoPw)
 										.then(resolve=>resolve.json())
 										.then(result=>{
-											if(${uid}==kakaoId){
+											if('${uid}'==kakaoId){
 												if(result.retCode=='OK'){
 													alert('인증되었습니다!');
 													location.href="updateInfoForm.do?uid="+kakaoId+"&upw="+kakaoPw;
