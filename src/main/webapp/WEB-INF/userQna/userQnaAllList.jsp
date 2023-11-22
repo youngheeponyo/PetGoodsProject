@@ -37,6 +37,9 @@
    color: #fff;
 }
    
+.off-screen {
+   display: none;
+}
  
  
  </style>   

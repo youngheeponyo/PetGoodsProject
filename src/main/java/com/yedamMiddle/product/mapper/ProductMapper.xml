@@ -14,9 +14,9 @@
 	<select id="searchProductList" resultType="com.yedamMiddle.product.service.ProductReviewJoinVO">
 		    SELECT * FROM (
         		SELECT /*+ INDEX(P PK_PRODUCTNO) */ ROWNUM rn, T.* FROM (
-                	SELECT B.*, A.AVG_STAR 
+                	SELECT B.*, A.AVG_STAR, REVIEW_CNT
                     	FROM (
-                        	SELECT P.PRODUCT_NO, NVL2(TRUNC(AVG(STAR_CNT),1),TRUNC(AVG(STAR_CNT),1),0.0) AS AVG_STAR
+                        	SELECT P.PRODUCT_NO, NVL2(TRUNC(AVG(STAR_CNT),1),TRUNC(AVG(STAR_CNT),1),0.0) AS AVG_STAR, COUNT(STAR_CNT) AS REVIEW_CNT
                             	FROM PRODUCT P
                             	LEFT JOIN REVIEW D ON P.PRODUCT_NO = D.PRODUCT_NO
                             	GROUP BY P.PRODUCT_NO
@@ -41,9 +41,9 @@
 		<![CDATA[
 			SELECT A.* FROM (
         		SELECT /*+ INDEX(P PK_PRODUCTNO) */ ROWNUM rn, T.* FROM (
-                	SELECT B.*, A.AVG_STAR 
+                	SELECT B.*, A.AVG_STAR, REVIEW_CNT
                     	FROM (
-                        	SELECT P.PRODUCT_NO, NVL2(TRUNC(AVG(STAR_CNT),1),TRUNC(AVG(STAR_CNT),1),0.0) AS AVG_STAR
+                        	SELECT P.PRODUCT_NO, NVL2(TRUNC(AVG(STAR_CNT),1),TRUNC(AVG(STAR_CNT),1),0.0) AS AVG_STAR, COUNT(STAR_CNT) AS REVIEW_CNT
                             	FROM PRODUCT P
                             	LEFT JOIN REVIEW D ON P.PRODUCT_NO = D.PRODUCT_NO
                             	GROUP BY P.PRODUCT_NO
@@ -109,10 +109,10 @@
     
     <select id="selectRegistDateDescFromMain" resultType="com.yedamMiddle.product.service.ProductReviewJoinVO" parameterType="String">
 		<![CDATA[  
-            SELECT B.*, AVG_STAR
+            SELECT B.*, AVG_STAR, REVIEW_CNT
        			FROM 
            		(
-               		SELECT A.PRODUCT_NO, NVL2(TRUNC(AVG(STAR_CNT),1),TRUNC(AVG(STAR_CNT),1),0.0) AS AVG_STAR
+               		SELECT A.PRODUCT_NO, NVL2(TRUNC(AVG(STAR_CNT),1),TRUNC(AVG(STAR_CNT),1),0.0) AS AVG_STAR, COUNT(STAR_CNT) AS REVIEW_CNT
                         FROM PRODUCT A
                         LEFT JOIN REVIEW B ON A.PRODUCT_NO = B.PRODUCT_NO
                         WHERE PET_TYPE = #{petType}
@@ -127,9 +127,9 @@
 	<!-- 리뷰많은순 -->
 	<select id="selectReviewDescFromMain" resultType="com.yedamMiddle.product.service.ProductReviewJoinVO" parameterType="String">
 		<![CDATA[  
-    		SELECT B.*, AVG_STAR
+    		SELECT B.*, AVG_STAR, REVIEW_CNT
     			FROM (
-        		SELECT A.PRODUCT_NO, COUNT(*) AS CNT, NVL2(TRUNC(AVG(STAR_CNT),1),TRUNC(AVG(STAR_CNT),1),0.0) AS AVG_STAR
+        		SELECT A.PRODUCT_NO, COUNT(*) AS CNT, NVL2(TRUNC(AVG(STAR_CNT),1),TRUNC(AVG(STAR_CNT),1),0.0) AS AVG_STAR, COUNT(STAR_CNT) AS REVIEW_CNT
         			FROM PRODUCT A
         			JOIN REVIEW B ON A.PRODUCT_NO = B.PRODUCT_NO
         			WHERE A.PET_TYPE = #{petType}
@@ -144,9 +144,9 @@
 	<!-- 별점 높은순 -->
 	<select id="selectStarCntDescFromMain" resultType="com.yedamMiddle.product.service.ProductReviewJoinVO" parameterType="String">
 		<![CDATA[  
-    	   SELECT B.*, AVG_STAR
+    	   SELECT B.*, AVG_STAR, REVIEW_CNT
     			FROM (
-        			SELECT A.PRODUCT_NO, NVL2(TRUNC(AVG(STAR_CNT),1),TRUNC(AVG(STAR_CNT),1),0.0) AS AVG_STAR
+        			SELECT A.PRODUCT_NO, NVL2(TRUNC(AVG(STAR_CNT),1),TRUNC(AVG(STAR_CNT),1),0.0) AS AVG_STAR, COUNT(STAR_CNT) AS REVIEW_CNT
             		FROM PRODUCT A
             		JOIN REVIEW B ON A.PRODUCT_NO = B.PRODUCT_NO
             		WHERE A.PET_TYPE = #{petType}
@@ -180,9 +180,9 @@
 	</select>
 	
 	<select id="selectRegistDateDescFromTab" resultType="com.yedamMiddle.product.service.ProductReviewJoinVO" parameterType="String">
-		SELECT B.*, NVL2(AVG_STAR, AVG_STAR, 0.0) AS AVG_STAR
+		SELECT B.*, NVL2(AVG_STAR, AVG_STAR, 0.0) AS AVG_STAR, REVIEW_CNT
     		FROM (
-        		SELECT PRODUCT_NO , TRUNC(AVG(STAR_CNT),1) AS AVG_STAR
+        		SELECT PRODUCT_NO , TRUNC(AVG(STAR_CNT),1) AS AVG_STAR, COUNT(STAR_CNT) AS REVIEW_CNT
         		FROM REVIEW
         		GROUP BY PRODUCT_NO 
     		) A
@@ -191,9 +191,9 @@
     		ORDER BY B.PRODUCT_REGIST_DATE
 	</select>
 	<select id="selectBestSellProductFromTab" resultType="com.yedamMiddle.product.service.ProductReviewJoinVO" parameterType="String">
-	SELECT B.*, AVG_STAR
+	SELECT B.*, AVG_STAR, REVIEW_CNT
    	FROM (
-       	SELECT C.PRODUCT_NO, COUNT(*) AS CNT, NVL2(TRUNC(AVG(STAR_CNT),1),TRUNC(AVG(STAR_CNT),1),0.0) AS AVG_STAR
+       	SELECT C.PRODUCT_NO, COUNT(*) AS CNT, NVL2(TRUNC(AVG(STAR_CNT),1),TRUNC(AVG(STAR_CNT),1),0.0) AS AVG_STAR, COUNT(STAR_CNT) AS REVIEW_CNT
            	FROM PRODUCT_ORDER C
             LEFT JOIN REVIEW D ON C.PRODUCT_NO = D.PRODUCT_NO
            	GROUP BY C.PRODUCT_NO
@@ -204,9 +204,9 @@
 	</select>
 	
 	<select id="selectHighStarProductFromTab" resultType="com.yedamMiddle.product.service.ProductReviewJoinVO" parameterType="String">
-		SELECT B.*, AVG_STAR
+		SELECT B.*, AVG_STAR, REVIEW_CNT
     		FROM (
-        		SELECT PRODUCT_NO, NVL2(TRUNC(AVG(STAR_CNT),1),TRUNC(AVG(STAR_CNT),1),0.0) AS AVG_STAR
+        		SELECT PRODUCT_NO, NVL2(TRUNC(AVG(STAR_CNT),1),TRUNC(AVG(STAR_CNT),1),0.0) AS AVG_STAR, COUNT(STAR_CNT) AS REVIEW_CNT
             	FROM REVIEW
             	GROUP BY PRODUCT_NO
     		) A

@@ -56,7 +56,6 @@
 							<div class="d-flex justify-content-center">
 								<c:choose>
 									<c:when test="${!empty pet }">
-										<c:forEach items="${pet }" var="pet">
 											<table class="table w-75">
 												<tr>
 													<th>이름</th>
@@ -64,34 +63,35 @@
 													<th>반려동물생일</th>
 													<th>성별</th>
 												</tr>
-												<tr>
-													<td>${pet.petName }</td>
-													<td><c:choose>
-														<c:when test="${pet.petType == '0'}">
-															강아지							
-														</c:when>
-														<c:otherwise>
-															고양이
-														</c:otherwise>
-													</c:choose></td>
-													<td><fmt:formatDate value="${pet.petBirth}"
-															pattern="yyyy-MM-dd"></fmt:formatDate></td>
-													<td><c:choose>
-														<c:when test="${pet.petGender == '0'}">
-															수컷							
-														</c:when>
-														<c:otherwise>
-															암컷
-														</c:otherwise>
-													</c:choose></td>
-												</tr>
+												<c:forEach items="${pet }" var="pet">
+													<tr>
+														<td>${pet.petName }</td>
+														<td><c:choose>
+															<c:when test="${pet.petType == '0'}">
+																강아지							
+															</c:when>
+															<c:otherwise>
+																고양이
+															</c:otherwise>
+														</c:choose></td>
+														<td><fmt:formatDate value="${pet.petBirth}"
+																pattern="yyyy-MM-dd"></fmt:formatDate></td>
+														<td><c:choose>
+															<c:when test="${pet.petGender == '0'}">
+																수컷							
+															</c:when>
+															<c:otherwise>
+																암컷
+															</c:otherwise>
+														</c:choose></td>
+													</tr>
+												</c:forEach>
 												<tr>
 													<td colspan="4">
 													<button type="button" onclick="location.href='myPetForm.do'">내 반려동물 추가등록하기</button>
 													</td>
 												</tr>
 											</table>
-										</c:forEach>
 									</c:when>
 									<c:otherwise>
 										<div class="px-4 py-1 my-3 text-center">
