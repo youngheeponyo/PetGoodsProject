@@ -20,39 +20,38 @@ import com.yedamMiddle.login.serviceImpl.LoginServiceImpl;
 
 public class LoginControl implements Command {
 
-   @Override
-   public void execute(HttpServletRequest req, HttpServletResponse resp) {
-      String uid = req.getParameter("userId");
-      String upw = req.getParameter("userPw");
-      String encryPassword = Pwsha256.encrypt(upw);
-      System.out.println(encryPassword);
-      
-      LoginService svc = new LoginServiceImpl();
-      UserVO vo = svc.loginUser(uid, encryPassword);
-      String result = "";
-      
-      HttpSession session = req.getSession();
-      if(vo!=null) {
-         session.setAttribute("uno", vo.getUserNo());   //로그인한 회원번호 기억 후 사용
-         session.setAttribute("uid", vo.getUserId());
-         session.setAttribute("permission", vo.getUserPermission());   //사용자 계정으로 로그인했는지 구분하기 위함
-         session.setAttribute("nickName", vo.getNickName());   //현재 사용자가 누구인지 구문
-         result = "{\"retCode\":\"OK\"}";
-         //로그인 시 날짜가 지난 쿠폰 만료적용
-         CouponService csv = new CouponServiceImpl();
-         csv.userExpireCouponUpdate();
-      }else {
-         result = "{\"retCode\":\"NG\"}";
-      }
-      
-      CouponService csv = new CouponServiceImpl();
-	  csv.userExpireCouponUpdate();
+	@Override
+	public void execute(HttpServletRequest req, HttpServletResponse resp) {
+		String uid = req.getParameter("userId");
+		String upw = req.getParameter("userPw");
+		String encryPassword = Pwsha256.encrypt(upw);
+		System.out.println(encryPassword);
+
+		LoginService svc = new LoginServiceImpl();
+		UserVO vo = svc.loginUser(uid, encryPassword);
+		String result = "";
+		
+		HttpSession session = req.getSession();
+		if (vo != null) {
+			session.setAttribute("uno", vo.getUserNo()); // 로그인한 회원번호 기억 후 사용
+			session.setAttribute("uid", vo.getUserId());
+			session.setAttribute("permission", vo.getUserPermission()); // 사용자 계정으로 로그인했는지 구분하기 위함
+			session.setAttribute("nickName", vo.getNickName()); // 현재 사용자가 누구인지 구문
+			result = "{\"retCode\":\"OK\"}";
+			// 로그인 시 날짜가 지난 쿠폰 만료적용
+			CouponService csv = new CouponServiceImpl();
+			csv.userExpireCouponUpdate();
+		} else {
+			result = "{\"retCode\":\"NG\"}";
+		}
+
+		CouponService csv = new CouponServiceImpl();
+		csv.userExpireCouponUpdate();
 
 		// 유저번호로 펫 정보 찾기
 		PetVO petVo = csv.selectPetByUserNo(vo.getUserNo());
 		// 유저번호로 생일쿠폰인 쿠폰 정보 찾기
 		CouponVO couponVo = csv.selectCouponByUserNo(vo.getUserNo());
-		
 
 		if (petVo != null && couponVo == null) {
 
@@ -82,13 +81,12 @@ public class LoginControl implements Command {
 
 		}
 
-		try {
-			resp.sendRedirect("main.do");
-			return;
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-    
-   }
+		   try {
+		         resp.getWriter().print(result);
+		      } catch (IOException e) {
+		         e.printStackTrace();
+		      }
+
+	}
 
 }
