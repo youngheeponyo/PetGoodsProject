@@ -1,6 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!-- warning 보여주기. -->
+<c:if test="${!empty petBirthDay }">
+	<script>
+		alert('소중한 반려동물의 생일을 축하드립니다! \n나의 쿠폰함에서 생일축하쿠폰을 확인하세요')
+	</script>
+	<%
+		session.setAttribute("petBirthDay", null);
+	%>
+</c:if>
+	
 
 <c:choose>
 	<c:when test="${curShowPetType eq 0}">
@@ -15,6 +25,7 @@
 	<div class="container px-4 px-lg-5 mt-5">
 		<div>
 			<h2 class="pl-2 py-2">요 상품 어때요?</h2>
+			
 		</div>
 		<div
 			class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
