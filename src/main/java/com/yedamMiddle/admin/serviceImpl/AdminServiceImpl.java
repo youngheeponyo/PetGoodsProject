@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.yedamMiddle.admin.mapper.AdminMapper;
 import com.yedamMiddle.admin.service.AdminService;
+import com.yedamMiddle.admin.service.SalesRateVO;
 import com.yedamMiddle.common.Mybatis;
 import com.yedamMiddle.common.service.CategoryJoinVO;
 import com.yedamMiddle.common.service.CategoryVO;

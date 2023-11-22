@@ -53,4 +53,11 @@
 	<select id="productOrder" parameterType="com.yedamMiddle.product.service.ProductOrderVO">
 		select * from product_order
 	</select>
+	<select id="getSalesRate" resultType="com.yedamMiddle.admin.service.SalesRateVO">
+		SELECT B.PRODUCT_NAME, COUNT(*) AS SELL_CNT
+    	FROM PRODUCT_ORDER A
+   	 	JOIN PRODUCT B ON A.PRODUCT_NO = B.PRODUCT_NO
+   	 	GROUP BY PRODUCT_NAME
+   	 	ORDER BY SELL_CNT DESC
+	</select>
 </mapper>

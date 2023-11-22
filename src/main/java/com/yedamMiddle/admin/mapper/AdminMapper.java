@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.yedamMiddle.admin.service.SalesRateVO;
 import com.yedamMiddle.common.service.CategoryJoinVO;
 import com.yedamMiddle.common.service.UserVO;
 import com.yedamMiddle.product.service.ProductOrderVO;
@@ -21,4 +22,5 @@ public interface AdminMapper {
 	public int mainCateInsert(String categoryName);
 	public int subCateInsert(@Param("subName") String subName, @Param("preName") String preName);
 	List<ProductOrderVO> productOrder();
+	List<SalesRateVO> getSalesRate();
 }
