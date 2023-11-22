@@ -109,7 +109,7 @@
 		<div class="row gx-4 gx-lg-5 align-items-center">
 			<div class="col-md-6">
 			<c:choose>
-				<c:when test="${PetType eq 0}">
+				<c:when test="${type eq 0}">
 					<c:set var="petType" value="dog" />
 				</c:when>
 				<c:otherwise>
