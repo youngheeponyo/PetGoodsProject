@@ -36,7 +36,13 @@ public class LoginControl implements Command {
 				//로그인 시 날짜가 지난 쿠폰 만료적용
 				CouponService csv = new CouponServiceImpl();
 				csv.userExpireCouponUpdate();
+				
+				
+				
+				
+				
 				resp.sendRedirect("main.do");
+				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
