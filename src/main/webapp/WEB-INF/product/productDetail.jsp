@@ -472,51 +472,7 @@
 <input type="hidden" value="${permission }" id="permission">
 <script>
 
-function functionCart() {
-	let pno = ${pno.productNo};
-	let stock = ${pno.productStock};
-	let count = document.getElementById('inputQuantity').value;
-	let cnt = 0;
-	fetch('cartCheck.do?pno='+pno+'&uno='+${uno})
-	.then(resolve=>resolve.json())
-	.then(result=>{
-		if(result.retCode=='OK'){
-			cnt = ${mvo.selectCnt};
-			if(stock<(parseInt(count)+cnt)){
-				alert('남은 재고량이 부족합니다!')
-			}else{
-				fetch('updateCart.do?pno='+pno+'&uno='+${uno}+'&cnt='+count)
-				.then(resolve=>resolve.json())
-				.then(result=>{
-					console.log(result)
-					if(result.retCode=='OK'){
-						alert("장바구니에 추가되었습니다");
-							window.location.href = "myCart.do?uno=" + ${uno};
-					}else{
-						alert("추가 실패");
-					}
-				})
-			}
-		}else{
-			if(stock<parseInt(count)){
-				alert('남은 재고량이 부족합니다!')
-			}else{
-				fetch('addCart.do?pno='+pno+'&uno='+${uno}+'&cnt='+count)
-				.then(resolve=>resolve.json())
-				.then(result=>{
-					console.log(result)
-					if(result.retCode=='OK'){
-						alert("장바구니에 추가되었습니다");
-							window.location.href = "myCart.do?uno=" + ${uno};
-					}else{
-						alert("추가 실패");
-					}
-				})
-			}
-		}
-	})
-}
-
+//상품상세페이지에 있는 문의게시판 비밀글
 function passCheck(password, qnaNo){
 	let userSessionNo = document.querySelector("#userSessionNo").value;
 	let permission = document.querySelector("#permission").value;
@@ -704,4 +660,58 @@ function page(pageNumber, pageCount, currentPage, pagingTr, pagingTable) {
  }
 }
 //---------------------------------------------------------------------------------------------------
+
+</script>
+
+
+
+
+<script>
+
+function functionCart() {
+	let pno = ${pno.productNo};
+	let stock = ${pno.productStock};
+	let count = document.getElementById('inputQuantity').value;
+	let cnt = 0;
+	fetch('cartCheck.do?pno='+pno+'&uno='+${uno})
+	.then(resolve=>resolve.json())
+	.then(result=>{
+		if(result.retCode=='OK'){
+			cnt = ${mvo.selectCnt};
+			if(stock<(parseInt(count)+cnt)){
+				alert('남은 재고량이 부족합니다!')
+			}else{
+				fetch('updateCart.do?pno='+pno+'&uno='+${uno}+'&cnt='+count)
+				.then(resolve=>resolve.json())
+				.then(result=>{
+					console.log(result)
+					if(result.retCode=='OK'){
+						alert("장바구니에 추가되었습니다");
+							window.location.href = "myCart.do?uno=" + ${uno};
+					}else{
+						alert("추가 실패");
+					}
+				})
+			}
+		}else{
+			if(stock<parseInt(count)){
+				alert('남은 재고량이 부족합니다!')
+			}else{
+				fetch('addCart.do?pno='+pno+'&uno='+${uno}+'&cnt='+count)
+				.then(resolve=>resolve.json())
+				.then(result=>{
+					console.log(result)
+					if(result.retCode=='OK'){
+						alert("장바구니에 추가되었습니다");
+							window.location.href = "myCart.do?uno=" + ${uno};
+					}else{
+						alert("추가 실패");
+					}
+				})
+			}
+		}
+	})
+}
+
+
 </script>
