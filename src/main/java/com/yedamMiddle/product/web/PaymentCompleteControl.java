@@ -159,11 +159,12 @@ public class PaymentCompleteControl implements Command {
 			addrFee = Integer.parseInt(fee);
 		}
 		
+		CouponService cSvc = null;
+		CouponVO findCoupon = null;
 		// 할인된 금액 적용.
 		if(couponNo >= 0 ) {
-			CouponService cSvc = new CouponServiceImpl();
+			cSvc = new CouponServiceImpl();
 			List<CouponVO> couponList = cSvc.userCouponSelect(userInfo.getUserNo());
-			CouponVO findCoupon = null;
 			for(CouponVO vo : couponList) {
 				if(couponNo == vo.getCouponNo()) {
 					findCoupon = vo;
@@ -179,8 +180,6 @@ public class PaymentCompleteControl implements Command {
 			int discount = (int)((realAllProductPrice) * ((double)findCoupon.getDiscountPct() / 100));
 			System.out.println("할인금액 : " + discount);
 			realAllProductPrice -= discount;
-			
-			int a = cSvc.userUseCoupon(findCoupon);
 		}
 
 		realAllProductPrice += addrFee; // 배송비 추가.
@@ -190,6 +189,8 @@ public class PaymentCompleteControl implements Command {
 			return null;
 		}
 		
+		if(couponNo >= 0 )
+			cSvc.userUseCoupon(findCoupon);
 		return realProductNo;
 	}
 	
