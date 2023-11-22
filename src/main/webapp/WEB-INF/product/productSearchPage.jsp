@@ -35,7 +35,7 @@
 	                                    <!-- Product name-->
 	                                    <h5 class="fw-bolder">${product.productName }</h5>
 	                                    <!-- Product price-->
-	                                    ${product.productPrice }원
+	                                    ₩ ${product.productPrice }
 	                                </div>
 	                                <div class="text-center">
 										<p style="color:#848BA0;">★${product.avgStar }(${product.reviewCnt})</p>
@@ -61,7 +61,7 @@
 	                                    <!-- Product name-->
 	                                    <h5 class="fw-bolder">${product.productName }</h5>
 	                                    <!-- Product price-->
-	                                    ${product.productPrice }원
+	                                    ₩ ${product.productPrice }
 	                                </div>
 	                                <div class="text-center">
 										<p style="color:#848BA0;">★${product.avgStar }(${product.reviewCnt})</p>
