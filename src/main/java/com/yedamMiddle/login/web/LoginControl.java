@@ -51,7 +51,7 @@ public class LoginControl implements Command {
 
 				// 로그인 시 날짜가 지난 쿠폰 만료적용
 				Date now = new Date();// 오늘날짜
-				SimpleDateFormat format = new SimpleDateFormat("yyyy년 MM월 dd일");// 날짜형식
+				SimpleDateFormat format = new SimpleDateFormat("MM월 dd일");// 날짜형식
 
 				System.out.println("petVo =" + petVo);
 				System.out.println("couponVo =" + couponVo);
