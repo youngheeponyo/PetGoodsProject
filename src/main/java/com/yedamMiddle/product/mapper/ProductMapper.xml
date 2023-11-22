@@ -192,15 +192,19 @@
 	</select>
 	<select id="selectBestSellProductFromTab" resultType="com.yedamMiddle.product.service.ProductReviewJoinVO" parameterType="String">
 	SELECT B.*, AVG_STAR, REVIEW_CNT
-   	FROM (
-       	SELECT C.PRODUCT_NO, COUNT(*) AS CNT, NVL2(TRUNC(AVG(STAR_CNT),1),TRUNC(AVG(STAR_CNT),1),0.0) AS AVG_STAR, COUNT(STAR_CNT) AS REVIEW_CNT
-           	FROM PRODUCT_ORDER C
-            LEFT JOIN REVIEW D ON C.PRODUCT_NO = D.PRODUCT_NO
-           	GROUP BY C.PRODUCT_NO
-    	) A
+    	FROM (
+        	SELECT A.PRODUCT_NO,NVL2(TRUNC(AVG(STAR_CNT),1),TRUNC(AVG(STAR_CNT),1),0.0) AS AVG_STAR, CNT, COUNT(STAR_CNT) AS REVIEW_CNT
+            	FROM (        
+                	SELECT PRODUCT_NO, COUNT(*) AS CNT
+                    	FROM PRODUCT_ORDER 
+                	GROUP BY PRODUCT_NO
+            	) A
+            	LEFT JOIN REVIEW B ON A.PRODUCT_NO = B.PRODUCT_NO
+            	GROUP BY A.PRODUCT_NO, CNT
+    		) A
     	JOIN PRODUCT B ON A.PRODUCT_NO = B.PRODUCT_NO
     	WHERE B.PET_TYPE = #{petType}
-    	ORDER BY A.CNT DESC
+    	ORDER BY CNT DESC
 	</select>
 	
 	<select id="selectHighStarProductFromTab" resultType="com.yedamMiddle.product.service.ProductReviewJoinVO" parameterType="String">
