@@ -54,12 +54,12 @@
 						</div>
 
 						<div class="mb-3">
-							<label for="email">이메일</label> <input type="email" class="form-control" id="email" name="mail" placeholder="${vo.userMail }" value="${vo.userMail }" required>
+							<label for="email">이메일</label> <input type="email" class="form-control" id="mail" name="mail" placeholder="${vo.userMail }" value="${vo.userMail }" required>
 							<div class="invalid-feedback">이메일을 입력해주세요.</div>
 						</div>
 
 						<div class="mb-3">
-							<label for="birth">생년월일</label> <input type="date" class="form-control" id="birth" name="ubirth" value="${vo.userBirth }" required>
+							<label for="birth">생년월일</label> <input type="date" class="form-control" id="ubirth" name="ubirth" value="${vo.userBirth }" required>
 							<div class="invalid-feedback">생년월일을 입력해주세요.</div>
 						</div>
 
@@ -70,9 +70,9 @@
 						
 						<input type="text" id="sample4_postcode" placeholder="우편번호"  style="margin:5px 0" readonly>
 						<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" style="margin:5px 0"><br> 
-						<input type="text" id="sample4_roadAddress" placeholder="도로명주소" name="addr" style="margin:5px 0" readonly> 
+						<input type="text" id="addr" placeholder="도로명주소" name="addr" style="margin:5px 0" readonly> 
 						<span id="guide" style="color: #999; display: none"></span>
-						<input type="text" id="sample4_detailAddress" name="addr_detail" placeholder="상세주소" style="margin:5px 0">
+						<input type="text" id="addr_detail" name="addr_detail" placeholder="상세주소" style="margin:5px 0">
 
 						<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 						<script>
@@ -113,7 +113,7 @@
 												document
 														.getElementById('sample4_postcode').value = data.zonecode;
 												document
-														.getElementById("sample4_roadAddress").value = roadAddr;
+														.getElementById("addr").value = roadAddr;
 
 												var guideTextBox = document
 														.getElementById("guide");
@@ -148,7 +148,7 @@
 		fetch('updateInfo.do',{
 			method:'post',
 			headers:{'Content-Type':'application/x-www-form-urlencoded'},
-			body:'uid='+uid.value+'&nick='+nick.value+'&mail='+mail.value+'&ubirth='+ubirth.value+'&phone='+phone.value+'&addr='+addr+'&addr_detail='+addrdetail
+			body:'uid='+uid.value+'&nick='+nick.value+'&mail='+mail.value+'&ubirth='+ubirth.value+'&phone='+phone.value+'&addr='+addr.value+'&addr_detail='+addrdetail.value
 		})
 		.then(resolve=>resolve.json())
 		.then(result=>{

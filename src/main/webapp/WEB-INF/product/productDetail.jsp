@@ -3,14 +3,6 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<c:choose>
-	<c:when test="${curShowPetType eq 0}">
-		<c:set var="petType" value="dog" />
-	</c:when>
-	<c:otherwise>
-		<c:set var="petType" value="cat" />
-	</c:otherwise>
-</c:choose>
 <head>
 <style>
 	#arrow{
@@ -116,6 +108,14 @@
 	<div class="container px-4 px-lg-5 my-5">
 		<div class="row gx-4 gx-lg-5 align-items-center">
 			<div class="col-md-6">
+			<c:choose>
+				<c:when test="${PetType eq 0}">
+					<c:set var="petType" value="dog" />
+				</c:when>
+				<c:otherwise>
+					<c:set var="petType" value="cat" />
+				</c:otherwise>
+			</c:choose>
 				<img class="card-img-top mb-5 mb-md-0" src="productImage/${petType }/${pno.productImage }" alt="..."/>
 			</div>
 			<div class="col-md-6">
@@ -179,6 +179,52 @@
 						</c:otherwise>
 					</c:choose>
 				</div>
+				<script>
+				function functionCart() {
+					let pno = ${pno.productNo};
+					let stock = ${pno.productStock};
+					let count = document.getElementById('inputQuantity').value;
+					let cnt = ${mvo.selectCnt};
+					
+					if(stock<(parseInt(count)+cnt)){
+						alert('남은 재고량이 부족합니다!')
+					}else{
+					fetch('cartCheck.do?pno='+pno+'&uno='+${uno})
+					.then(resolve=>resolve.json())
+					.then(result=>{
+						if(result.retCode=='OK'){
+								fetch('updateCart.do?pno='+pno+'&uno='+${uno}+'&cnt='+count)
+								.then(resolve=>resolve.json())
+								.then(result=>{
+									console.log(result)
+									if(result.retCode=='OK'){
+										alert("장바구니에 추가되었습니다");
+											window.location.href = "myCart.do?uno=" + ${uno};
+									}else{
+										alert("추가 실패");
+									}
+								})
+						}else{
+							if(stock<parseInt(count)){
+								alert('남은 재고량이 부족합니다!')
+							}else{
+								fetch('addCart.do?pno='+pno+'&uno='+${uno}+'&cnt='+count)
+								.then(resolve=>resolve.json())
+								.then(result=>{
+									console.log(result)
+									if(result.retCode=='OK'){
+										alert("장바구니에 추가되었습니다");
+											window.location.href = "myCart.do?uno=" + ${uno};
+									}else{
+										alert("추가 실패");
+									}
+								})
+							}
+						}
+					})
+					}
+				}
+</script>
 				<c:if test="${pno.productStock <= 5}">
 					<p>(현재 재고량 : ${pno.productStock}개)</p>
 				</c:if>
@@ -645,52 +691,4 @@ function page(pageNumber, pageCount, currentPage, pagingTr, pagingTable) {
 
 
 
-<script>
 
-function functionCart() {
-	let pno = ${pno.productNo};
-	let stock = ${pno.productStock};
-	let count = document.getElementById('inputQuantity').value;
-	let cnt = 0;
-	fetch('cartCheck.do?pno='+pno+'&uno='+${uno})
-	.then(resolve=>resolve.json())
-	.then(result=>{
-		if(result.retCode=='OK'){
-			cnt = ${mvo.selectCnt};
-			if(stock<(parseInt(count)+cnt)){
-				alert('남은 재고량이 부족합니다!')
-			}else{
-				fetch('updateCart.do?pno='+pno+'&uno='+${uno}+'&cnt='+count)
-				.then(resolve=>resolve.json())
-				.then(result=>{
-					console.log(result)
-					if(result.retCode=='OK'){
-						alert("장바구니에 추가되었습니다");
-							window.location.href = "myCart.do?uno=" + ${uno};
-					}else{
-						alert("추가 실패");
-					}
-				})
-			}
-		}else{
-			if(stock<parseInt(count)){
-				alert('남은 재고량이 부족합니다!')
-			}else{
-				fetch('addCart.do?pno='+pno+'&uno='+${uno}+'&cnt='+count)
-				.then(resolve=>resolve.json())
-				.then(result=>{
-					console.log(result)
-					if(result.retCode=='OK'){
-						alert("장바구니에 추가되었습니다");
-							window.location.href = "myCart.do?uno=" + ${uno};
-					}else{
-						alert("추가 실패");
-					}
-				})
-			}
-		}
-	})
-}
-
-
-</script>

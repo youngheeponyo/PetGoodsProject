@@ -387,6 +387,13 @@
 		
 		let divTag = document.getElementById('discount').querySelector('div');
 		divTag.className = "text-danger";
+		let notUseTags = divTag.querySelectorAll('small');
+		if(notUseTags.length > 0) {
+			for(let i = 0; i < notUseTags.length; ++i) {
+				notUseTags[i].remove();
+			}
+		}
+		
 		let spanTag = document.getElementById('discount').querySelector('span');
 		spanTag.className = "text-danger";
 		
@@ -408,7 +415,7 @@
 			fee = 2500;
 		}
 		
-		let disPrice = originalPrice * (discountPercent / 100);
+		let disPrice = Math.floor(originalPrice * (discountPercent / 100));
 		spanTag.innerHTML = disPrice + "원";	
 		
 		let finalPrice = originalPrice - disPrice + fee;

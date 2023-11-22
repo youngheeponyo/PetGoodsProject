@@ -220,7 +220,7 @@
 												style="display:none"></td>
 									</c:otherwise>
 								</c:choose>
-									<td><a href="detailProduct.do?pno=${vo.productNo }&cno=${vo.categoryNo}&type=${vo.petType}">
+									<td>${vo.petType }<a href="detailProduct.do?pno=${vo.productNo }&cno=${vo.categoryNo}&type=${vo.petType}">
 										<c:choose>
 											<c:when test="${vo.petType==0}">
 													<img src="productImage/dog/${vo.productName }.png" alt="">

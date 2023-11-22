@@ -44,6 +44,7 @@ public void execute(HttpServletRequest req, HttpServletResponse resp) {
 	
 	String cno = req.getParameter("cno");
 	String type = req.getParameter("type");
+	req.setAttribute("type", type);
 	
 	List<ProductVO> clist = null;
 	if(cno != null) {
