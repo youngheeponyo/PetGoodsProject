@@ -34,11 +34,9 @@
 <section class="py-5">
 	<div class="container px-4 px-lg-5 mt-5">
 		<div class="container-fluid">
-		${reviewVo }
 			<form action="modifyReviewForm.do" name="myReviewDetail" method="post" style=text-align:center;>
 				<input type="hidden" name="reviewNo" value="${reviewVo.reviewNo }">
 				<h3>나의 리뷰</h3>
-				${reviewVo.reviewNo }
 				<br><hr>
 				<table class = "table" style= text-align:center>
 <!--                     <table id="datatablesSimple" style=text-align:center> -->
