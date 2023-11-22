@@ -255,8 +255,18 @@
 		                                </td>
 		                                <td>${review.nickName }</td>
 		                                <td><fmt:formatDate value ="${review.reviewDate}" pattern="yyyy-MM-dd"></fmt:formatDate></td>
-		                                <td><input class="heart"type="button" data-reviewNo="${review.reviewNo }" 
-		                                	data-userNo="${review.userNo }" value="${review.reviewLikeCnt}">❤</td>
+		                                <td>
+		                                	<c:choose>
+		                                		<c:when test="${not empty uno }">
+				                                	<input class="heart"type="button" data-reviewNo="${review.reviewNo }" 
+				                                	data-userNo="${review.userNo }" value="${review.reviewLikeCnt}">❤
+			                                	</c:when>
+			                                	<c:otherwise>
+			                                		<input class="needLogin"type="button" data-reviewNo="${review.reviewNo }" 
+				                                	data-userNo="${review.userNo }" value="${review.reviewLikeCnt}">❤
+			                                	</c:otherwise>
+		                                	</c:choose>
+		                                </td>
 		                             </tr>
 		                             <tr class="reviewDetail${i } reviewNoneToggle"><th colspan="3">사진첨부</th>
 			                    		<th colspan="3">내용</th>
@@ -269,7 +279,7 @@
 			                    				</c:choose>
 			                    				<br><br>
 			                    				</td>
-			                    				<td colspan="3">${fn:substring(review.content,0,10)}···</td>
+			                    				<td colspan="3">${review.content}</td>
 			                    			</tr>
 		                          </c:forEach>
 	                          </c:when>
@@ -550,6 +560,17 @@ document.querySelectorAll(".heart").forEach(item => {
 		   })
 	})
 })
+
+//로그인 안하고 좋아요 누를 시 로그인하라고 뜨는 창
+document.querySelectorAll(".needLogin").forEach(item => {
+	item.addEventListener("click", function(e){
+		alert("로그인이 필요한 기능입니다.")
+		window.location.href="loginForm.do";
+		return;
+	})
+})
+
+		//내용과 사진을 숨기고 클릭 시 보여주게 만든다
 	function reviewDetailShow(i){
 		console.log(document.querySelectorAll(".reviewDetail"+i))
 		document.querySelectorAll(".reviewDetail"+i).forEach(item =>{
