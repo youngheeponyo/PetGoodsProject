@@ -41,8 +41,6 @@
 
 <body>
 <div id="box">
-
-	<form action="login.do" method="post">
 		<div class="container">
 			<div class="input-form-backgroud row">
 				<div class="input-form col-md-12 mx-auto">
@@ -50,18 +48,18 @@
 						<div class="row">
 							<div class="mb-3">
 								<label for="name">아이디</label> <input type="text"
-									class="form-control" id="name" name="userId" placeholder=""
+									class="form-control" id="userId" name="userId" placeholder=""
 									value="" required>
 								<div class="invalid-feedback">아이디를 입력해주세요.</div>
 							</div>
 							<div class="mb-3">
 								<label for="name">비밀번호</label> <input type="password"
-									class="form-control" id="name" name="userPw" placeholder=""
+									class="form-control" id="userPw" name="userPw" placeholder=""
 									value="" required>
 								<div class="invalid-feedback">비밀번호를 입력해주세요.</div>
 							</div>
 							<div class="mb-4"></div>
-							<input class="btn btn-primary btn-lg btn-block" type="submit" value="로그인" style="background-color:pink;border:1px white;width:200px;margin:auto;">
+							<input class="btn btn-primary btn-lg btn-block" type="button" value="로그인" onclick="loginfunction(userId.value,userPw.value)" style="background-color:pink;border:1px white;width:200px;margin:auto;">
 							<input class="btn btn-primary btn-lg btn-block" type="button" value="회원가입" style="background-color:pink;border:1px white;width:200px;margin:auto" onclick="location.href='addUserForm.do'">
 							<a id="kakao-login-btn"><img src="https://developers.kakao.com/tool/resource/static/img/button/login/full/ko/kakao_login_medium_narrow.png" style="width:200px;height:46px;margin:20px auto;text-align:center;"></a>
 							<div style="text-align:center">
@@ -95,8 +93,20 @@
 												alert("회원가입 후 사용하실 수 있습니다");
 												location.href="addUserForm.do?kId="+kakaoId+"&kPw="+kakaoPw;
 											}else{
-												alert("로그인 완료!");
-												location.href="login.do?userId="+kakaoId+"&userPw="+kakaoPw;
+												fetch('login.do',{
+													method:'post',
+													headers:{'Content-Type':'application/x-www-form-urlencoded'},
+													body:'userId='+kakaoId+'&userPw='+kakaoPw
+												})
+												.then(resolve=>resolve.json())
+												.then(result=>{
+													if(result.retCode=='OK'){
+														alert('로그인 성공!');
+														location.href="main.do";
+													}else{
+														alert('아이디/비밀번호가 일치하지 않습니다')
+													}
+												})
 											}
 										})
 						        }
@@ -109,6 +119,23 @@
 						      });
 						        
 						})
+						
+						function loginfunction(userId,userPw){
+							fetch('login.do',{
+								method:'post',
+								headers:{'Content-Type':'application/x-www-form-urlencoded'},
+								body:'userId='+userId+'&userPw='+userPw
+							})
+							.then(resolve=>resolve.json())
+							.then(result=>{
+								if(result.retCode=='OK'){
+									alert('로그인 성공!');
+									location.href="main.do";
+								}else{
+									alert('아이디/비밀번호가 일치하지 않습니다')
+								}
+							})
+						}
 					</script>
 					<a id="kakao-login-btn"></a>
 	            	
@@ -116,7 +143,6 @@
 				<footer class="my-3 text-center text-small"> </footer>
 			</div>
 		</div>
-	</form>
 	</div>
 </body>
 </html>

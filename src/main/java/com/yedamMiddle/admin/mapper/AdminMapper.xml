@@ -50,4 +50,7 @@
 		INSERT INTO CATEGORY VALUES(seq_category_no.NEXTVAL, #{subName},  (
  		select category_no from category where category_name=#{preName}) )
 	</insert>
+	<select id="productOrder" parameterType="com.yedamMiddle.product.service.ProductOrderVO">
+		select * from product_order
+	</select>
 </mapper>

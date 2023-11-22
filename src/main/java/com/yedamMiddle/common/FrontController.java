@@ -21,6 +21,7 @@ import com.yedamMiddle.admin.web.ModProductFormControl;
 import com.yedamMiddle.admin.web.ProductFormControl;
 import com.yedamMiddle.admin.web.ProductListControl;
 import com.yedamMiddle.admin.web.RemoveProductControl;
+import com.yedamMiddle.admin.web.productOrderListControl;
 import com.yedamMiddle.cart.web.AddCartControl;
 import com.yedamMiddle.cart.web.CartCheckControl;
 import com.yedamMiddle.cart.web.MyCartControl;
@@ -200,6 +201,8 @@ public class FrontController extends HttpServlet {
       commandByURL.put("/updatePw2.do", new UpdatePw2Control());
       //회원정보 조회
       commandByURL.put("/myInfo.do", new MyInfoControl());
+      //배송리스트 조회
+      commandByURL.put("/productOrderList.do", new productOrderListControl());
       
       // 전민교
       commandByURL.put("/main.do", new MainPageControl()); // 메인페이지
