@@ -136,7 +136,7 @@
 							}
 						</script>
 						<div class="mb-4"></div>
-						<button class="btn btn-primary btn-lg btn-block" id="submit" type="button" onclick="updatefunction(uid,nick,mail,ubirth,phone)" style="background-color:pink;border:none;">수정완료</button>
+						<button class="btn btn-primary btn-lg btn-block" id="submit" type="button" onclick="updatefunction(uid,nick,mail,ubirth,phone,addr,addr_detail)" style="background-color:pink;border:none;">수정완료</button>
 				</div>
 			</div>
 		</div>
@@ -144,11 +144,11 @@
 </form>
 </body>
 <script type="text/javascript">
-	function updatefunction(uid,nick,mail,ubirth,phone){
+	function updatefunction(uid,nick,mail,ubirth,phone,addr,addrdetail){
 		fetch('updateInfo.do',{
 			method:'post',
 			headers:{'Content-Type':'application/x-www-form-urlencoded'},
-			body:'uid='+uid.value+'&nick='+nick.value+'&mail='+mail.value+'&ubirth='+ubirth.value+'&phone='+phone.value
+			body:'uid='+uid.value+'&nick='+nick.value+'&mail='+mail.value+'&ubirth='+ubirth.value+'&phone='+phone.value+'&addr='+addr+'&addr_detail='+addrdetail
 		})
 		.then(resolve=>resolve.json())
 		.then(result=>{

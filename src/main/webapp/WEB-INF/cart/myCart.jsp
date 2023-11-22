@@ -387,7 +387,7 @@
 		.then(resolve => resolve.json())
 		.then(result => {
 			console.log(result)
-			if(cnt==1){
+			if(cnt<=1){
 				alert('최소 하나 이상은 구매하셔야 합니다');
 			}else{
 				if (result.retCode == 'OK') {
