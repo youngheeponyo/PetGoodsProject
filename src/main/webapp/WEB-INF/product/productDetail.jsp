@@ -255,8 +255,18 @@
 		                                </td>
 		                                <td>${review.nickName }</td>
 		                                <td><fmt:formatDate value ="${review.reviewDate}" pattern="yyyy-MM-dd"></fmt:formatDate></td>
-		                                <td><input class="heart"type="button" data-reviewNo="${review.reviewNo }" 
-		                                	data-userNo="${review.userNo }" value="${review.reviewLikeCnt}">❤</td>
+		                                <td>
+		                                	<c:choose>
+		                                		<c:when test="${not empty uno }">
+				                                	<input class="heart"type="button" data-reviewNo="${review.reviewNo }" 
+				                                	data-userNo="${review.userNo }" value="${review.reviewLikeCnt}">❤
+			                                	</c:when>
+			                                	<c:otherwise>
+			                                		<input class="needLogin"type="button" data-reviewNo="${review.reviewNo }" 
+				                                	data-userNo="${review.userNo }" value="${review.reviewLikeCnt}">❤
+			                                	</c:otherwise>
+		                                	</c:choose>
+		                                </td>
 		                             </tr>
 		                             <tr class="reviewDetail${i } reviewNoneToggle"><th colspan="3">사진첨부</th>
 			                    		<th colspan="3">내용</th>
@@ -269,7 +279,7 @@
 			                    				</c:choose>
 			                    				<br><br>
 			                    				</td>
-			                    				<td colspan="3">${fn:substring(review.content,0,10)}···</td>
+			                    				<td colspan="3">${review.content}</td>
 			                    			</tr>
 		                          </c:forEach>
 	                          </c:when>
@@ -462,51 +472,7 @@
 <input type="hidden" value="${permission }" id="permission">
 <script>
 
-function functionCart() {
-	let pno = ${pno.productNo};
-	let stock = ${pno.productStock};
-	let count = document.getElementById('inputQuantity').value;
-	let cnt = 0;
-	fetch('cartCheck.do?pno='+pno+'&uno='+${uno})
-	.then(resolve=>resolve.json())
-	.then(result=>{
-		if(result.retCode=='OK'){
-			cnt = ${mvo.selectCnt};
-			if(stock<(parseInt(count)+cnt)){
-				alert('남은 재고량이 부족합니다!')
-			}else{
-				fetch('updateCart.do?pno='+pno+'&uno='+${uno}+'&cnt='+count)
-				.then(resolve=>resolve.json())
-				.then(result=>{
-					console.log(result)
-					if(result.retCode=='OK'){
-						alert("장바구니에 추가되었습니다");
-							window.location.href = "myCart.do?uno=" + ${uno};
-					}else{
-						alert("추가 실패");
-					}
-				})
-			}
-		}else{
-			if(stock<parseInt(count)){
-				alert('남은 재고량이 부족합니다!')
-			}else{
-				fetch('addCart.do?pno='+pno+'&uno='+${uno}+'&cnt='+count)
-				.then(resolve=>resolve.json())
-				.then(result=>{
-					console.log(result)
-					if(result.retCode=='OK'){
-						alert("장바구니에 추가되었습니다");
-							window.location.href = "myCart.do?uno=" + ${uno};
-					}else{
-						alert("추가 실패");
-					}
-				})
-			}
-		}
-	})
-}
-
+//상품상세페이지에 있는 문의게시판 비밀글
 function passCheck(password, qnaNo){
 	let userSessionNo = document.querySelector("#userSessionNo").value;
 	let permission = document.querySelector("#permission").value;
@@ -550,6 +516,17 @@ document.querySelectorAll(".heart").forEach(item => {
 		   })
 	})
 })
+
+//로그인 안하고 좋아요 누를 시 로그인하라고 뜨는 창
+document.querySelectorAll(".needLogin").forEach(item => {
+	item.addEventListener("click", function(e){
+		alert("로그인이 필요한 기능입니다.")
+		window.location.href="loginForm.do";
+		return;
+	})
+})
+
+		//내용과 사진을 숨기고 클릭 시 보여주게 만든다
 	function reviewDetailShow(i){
 		console.log(document.querySelectorAll(".reviewDetail"+i))
 		document.querySelectorAll(".reviewDetail"+i).forEach(item =>{
@@ -683,4 +660,58 @@ function page(pageNumber, pageCount, currentPage, pagingTr, pagingTable) {
  }
 }
 //---------------------------------------------------------------------------------------------------
+
+</script>
+
+
+
+
+<script>
+
+function functionCart() {
+	let pno = ${pno.productNo};
+	let stock = ${pno.productStock};
+	let count = document.getElementById('inputQuantity').value;
+	let cnt = 0;
+	fetch('cartCheck.do?pno='+pno+'&uno='+${uno})
+	.then(resolve=>resolve.json())
+	.then(result=>{
+		if(result.retCode=='OK'){
+			cnt = ${mvo.selectCnt};
+			if(stock<(parseInt(count)+cnt)){
+				alert('남은 재고량이 부족합니다!')
+			}else{
+				fetch('updateCart.do?pno='+pno+'&uno='+${uno}+'&cnt='+count)
+				.then(resolve=>resolve.json())
+				.then(result=>{
+					console.log(result)
+					if(result.retCode=='OK'){
+						alert("장바구니에 추가되었습니다");
+							window.location.href = "myCart.do?uno=" + ${uno};
+					}else{
+						alert("추가 실패");
+					}
+				})
+			}
+		}else{
+			if(stock<parseInt(count)){
+				alert('남은 재고량이 부족합니다!')
+			}else{
+				fetch('addCart.do?pno='+pno+'&uno='+${uno}+'&cnt='+count)
+				.then(resolve=>resolve.json())
+				.then(result=>{
+					console.log(result)
+					if(result.retCode=='OK'){
+						alert("장바구니에 추가되었습니다");
+							window.location.href = "myCart.do?uno=" + ${uno};
+					}else{
+						alert("추가 실패");
+					}
+				})
+			}
+		}
+	})
+}
+
+
 </script>
