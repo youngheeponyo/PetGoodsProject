@@ -11,6 +11,7 @@ import com.yedamMiddle.common.Mybatis;
 import com.yedamMiddle.common.service.CategoryJoinVO;
 import com.yedamMiddle.common.service.CategoryVO;
 import com.yedamMiddle.common.service.UserVO;
+import com.yedamMiddle.product.service.ProductOrderVO;
 import com.yedamMiddle.product.service.ProductVO;
 
 public class AdminServiceImpl implements AdminService {
@@ -68,11 +69,9 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<SalesRateVO> getSalesRate() {
-		return mapper.getSalesRate();
+	public List<ProductOrderVO> productOrder() {
+		return mapper.productOrder();
 	}
-
-
 
 
 	

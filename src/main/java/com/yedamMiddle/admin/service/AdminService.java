@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.yedamMiddle.common.service.CategoryJoinVO;
 import com.yedamMiddle.common.service.UserVO;
+import com.yedamMiddle.product.service.ProductOrderVO;
 import com.yedamMiddle.product.service.ProductVO;
 
 public interface AdminService {
@@ -17,5 +18,6 @@ public interface AdminService {
 	List<CategoryJoinVO> getJoinCateList();
 	public boolean addMainCate(String categoryName);
 	public boolean addSubCate(String subName, String preName);
-	List<SalesRateVO> getSalesRate();
+	List<ProductOrderVO> productOrder();
 }
+

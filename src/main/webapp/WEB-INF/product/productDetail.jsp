@@ -49,10 +49,9 @@
 	#detail{
 		overflow:hidden;
 		height:1500px;
-		margin:0px;
 	}
 	#inlineimg{
-		height:10000px;
+		height:15000px;
 	}
 	#more{
 		border:none;
@@ -132,7 +131,7 @@
 					<span style="font-size: 30px">₩ ${pno.productPrice }</span><br>
 				</div>
 				<div>
-					<img src="commonResource/image/mainIcon/dogIcon.png" alt="dog" style="width:30px;height:30px;">빠른디어배송
+					<img src="commonResource/image/mainIcon/${petType }Icon.png" alt="dog" style="width:30px;height:30px;">빠른디어배송
 					<p style="margin-left:20px;margin-bottom:0;color:black">무료배송 (30,000원 이상 구매 시)</p>
 					<p id="today" style="margin-left:20px;margin-bottom:0;color:black">오늘 주문 시 ${day }출발</p>
 					<br>
@@ -141,7 +140,7 @@
 					date = new Date();
 					day = date.getDate();
 					month = date.getMonth();
-					document.getElementById('today').innerHTML= '오늘 주문시 '+month+'월 ' + (day+1)+'일에 출발';
+					document.getElementById('today').innerHTML= '오늘 주문시 '+(month+1)+'월 ' + (day+1)+'일에 출발';
 					
 					window.addEventListener('scroll', () => {
 						  // 스크롤 위치가 100px 이상일 때 위로 가기 버튼을 보이게 함
@@ -226,8 +225,7 @@
 		</script>
 		 <!--리뷰게시판 건드린 부분 -->
       <div id="review" class="reviewTable">
-         <h2 style="font: bolder; font-size: 30px; text-align: left">구매
-            후기</h2>
+         <h2 style="font: bolder; font-size: 30px; text-align: left">구매 후기</h2>
          <table class = "table" style= text-align:center>
                        <thead >
                           <tr style=text-align:center>
@@ -397,7 +395,7 @@
 			}
 		}
 		</script>
-		<button onclick="location.href='#top'" id="btn-back-to-top" title="위로 가기">▲</button>
+		<button onclick="location.href='#'" id="btn-back-to-top" title="위로 가기">▲</button>
 
 	</div>
 </section>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <body>
 	<section class="pt-2 pb-4">
@@ -61,42 +62,46 @@
 			</div>
 			<div class="card mb-4">
 				<div class="card-header">
-					<i class="fas fa-table me-1"></i> 회원목록
+					<i class="fas fa-table me-1"></i> 배송목록
 				</div>
 				<div class="card-body">
 					<table id="datatablesSimple">
 						<thead>
 							<tr>
+								<th>주문번호</th>
+								<th>상품번호</th>
 								<th>회원번호</th>
-								<th>ID</th>
-								<th>닉네임</th>
-								<th>연락처</th>
-								<th>배송지</th>
+								<th>쿠폰번호</th>
+								<th>주문날짜</th>
 							</tr>
 						</thead>
 						<tfoot>
 							<tr>
+								<th>주문번호</th>
+								<th>상품번호</th>
 								<th>회원번호</th>
-								<th>ID</th>
-								<th>닉네임</th>
-								<th>연락처</th>
-								<th>배송지</th>
+								<th>쿠폰번호</th>
+								<th>주문날짜</th>
 							</tr>
 						</tfoot>
 						<tbody>
-							<c:forEach items="${userlist }" var="user">
+							<c:forEach items="${orderList}" var="od">
+							<fmt:formatDate value="${od.orderDate}" pattern="yyyy년 MM월 dd일" var="formatdDate" />
 								<tr>
-									<td>${user.userNo }</td>
-									<td>${user.userId }</td>
-									<td>${user.nickName }</td>
-									<td>${user.userPhone }</td>
-									<td>${user.userAddr }</td>
+									<td>${od.productOrderNo }</td>
+									<td>${od.productNo }</td>
+									<td>${od.userNo }</td>
+									<td>${od.couponNo }</td>
+									<td>${formatdDate }</td>
 								</tr>
 							</c:forEach>
 						</tbody>
 					</table>
 				</div>
 			</div>
+			<p>
+				<button type="button" onclick="location.href='#'">주문상태 변경</button>
+			</p>
 		</div>
 	</section>
 </body>
