@@ -22,7 +22,7 @@
 						<td colspan="3">${nno.noticeTitle }</td>
 					</tr>
 					<tr>
-						<td colspan="4"><textarea rows="5" cols="40"
+						<td colspan="4"><textarea readonly rows="5" cols="40"
 								class="form-control">${nno.noticeContent }</textarea></td>
 					</tr>
 					<tr>
@@ -31,22 +31,18 @@
 						<th>조회수</th>
 						<td>${nno.noticeView }</td>
 					</tr>
-					<tr>
-						<td colspan="4" align="center">
-							<c:choose>
-								<c:when test="${uno == 0 && permission == 0}">
+					<c:choose>
+						<c:when test="${uno == 0 && permission == 0}">
+							<tr>
+								<td colspan="4" align="center">
 									<input type="submit" value="수정" class="btn btn-primary">
 									<input type="button" value="삭제"
 										onclick="location.href='removeNotice.do?nno=${nno.noticeNo}'"
 										class="btn btn-warning">
-								</c:when>
-								<c:otherwise>
-									<input type="submit" value="수정" disabled>
-									<input type="button" value="삭제" disabled>
-								</c:otherwise>
-							</c:choose>
-						</td>
-					</tr>
+								</td>
+							</tr>
+						</c:when>
+					</c:choose>
 				</table>
 			</form>
 				<p>

@@ -6,7 +6,6 @@
 		<![CDATA[
 		SELECT * FROM (SELECT * FROM COUPON 
                    	WHERE USER_NO=#{userNo} AND 
-                    END_DATE-SYSDATE<=7 AND 
                     COUPON_STATE='사용전' 
                     ORDER BY END_DATE, COUPON_STATE)
 		WHERE ROWNUM <=3

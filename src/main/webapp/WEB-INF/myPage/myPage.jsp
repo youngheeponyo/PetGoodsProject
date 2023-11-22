@@ -91,7 +91,7 @@
 							<div class="col-xl-6">
 								<div class="card mb-4">
 									<div class="card-header" style="font-size: 1.5em;">
-										<i class="bi bi-upc-scan"></i> 만료예정쿠폰
+										<i class="bi bi-upc-scan"></i> 보유중인쿠폰
 										<button type="button" class="btn btn-outline-secondary"
 											style="float: right;">
 											<a href="couponDetailForm.do" style="color: black;">더보기</a>
