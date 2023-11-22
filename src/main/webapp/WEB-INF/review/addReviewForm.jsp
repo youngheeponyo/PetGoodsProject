@@ -36,11 +36,11 @@
 		<div class="container-fluid">
 		
 			<form encType = "multipart/form-data" action="addReview.do" name="addReviewForm" method="post" style=text-align:center; >
-				<input type="hidden" name="productName" value="${reviewVo.productName}">
-				<input type="hidden" name="nickName" value="${reviewVo.nickName }">
-				<input type="hidden" name="merUid" value="${reviewVo.merUid }">
-				<input type="hidden" name="userNo" value="${reviewVo.userNo }">
-				<input type="hidden" name="productNo" value="${reviewVo.productNo }">
+				<input type="hidden" name="productName" value="${productVo.productName}">
+				<input type="hidden" name="nickName" value="${userVo.nickName }">
+				<input type="hidden" name="merUid" value="${merUid }">
+				<input type="hidden" name="userNo" value="${userVo.userNo }">
+				<input type="hidden" name="productNo" value="${productVo.productNo }">
 				<h3>리뷰 등록</h3>
 				<br><hr>
 				<table class = "table" style= text-align:center>
@@ -54,7 +54,7 @@
                     	</thead>
                     	<tbody>
 							<tr>
-                    			<td colspan="2">${reviewVo.productName }</td>
+                    			<td colspan="2">${productVo.productName }</td>
                     			<td colspan="2">
                     				<select name="score">
                     					<option value=1>1점</option>
@@ -64,7 +64,7 @@
                     					<option value=5>5점</option>
                     				</select>
                     			</td>
-                    			<td colspan="2">${reviewVo.nickName }</td>
+                    			<td colspan="2">${userVo.nickName }</td>
                     			
                     		</tr>
                     		
