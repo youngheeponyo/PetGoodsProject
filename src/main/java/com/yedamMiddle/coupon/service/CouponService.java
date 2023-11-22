@@ -2,13 +2,21 @@ package com.yedamMiddle.coupon.service;
 
 import java.util.List;
 
+import com.yedamMiddle.common.service.PetVO;
+
 public interface CouponService {
 	
 	//신규유저 회원가입시 쿠폰 발급
 	public int newUserCouponInsert(int userNo);
 	
+	//해당 유저번호로 유저의 애완동물 정보 찾기
+	public PetVO selectPetByUserNo(int userNo);
+	
+	//해당 유저번호로 가지고 있는 쿠폰 찾기
+	public CouponVO selectCouponByUserNo(int userNo);
+	
 	//기존 유저 애완동물 생일 시 쿠폰 발급//보류
-	public int userBirthCouponInsert(CouponVO vo);
+	public int userBirthCouponInsert(int userNo);
 	
 	//기존 유저 로그인 시 쿠폰만료
 	public int userExpireCouponUpdate();
