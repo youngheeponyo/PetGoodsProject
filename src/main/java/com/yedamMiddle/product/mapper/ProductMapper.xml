@@ -151,7 +151,7 @@
             		JOIN REVIEW B ON A.PRODUCT_NO = B.PRODUCT_NO
             		WHERE A.PET_TYPE = #{petType}
             		GROUP BY A.PRODUCT_NO
-            		ORDER BY AVG(B.STAR_CNT)
+            		ORDER BY AVG(B.STAR_CNT) DESC
     			) A
     			JOIN PRODUCT B ON A.PRODUCT_NO = B.PRODUCT_NO
     			WHERE ROWNUM <= 4
