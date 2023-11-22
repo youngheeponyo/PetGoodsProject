@@ -13,7 +13,14 @@ public class ProductReviewJoinVO {
 	private Date productRegistDate;
 	private int productStock;
 	private double avgStar;
+	private int reviewCnt;
 	
+	public int getReviewCnt() {
+		return reviewCnt;
+	}
+	public void setReviewCnt(int reviewCnt) {
+		this.reviewCnt = reviewCnt;
+	}
 	public int getProductNo() {
 		return productNo;
 	}
@@ -79,7 +86,8 @@ public class ProductReviewJoinVO {
 		return "ProductReviewJoinVO [productNo=" + productNo + ", petType=" + petType + ", categoryNo=" + categoryNo
 				+ ", productName=" + productName + ", productPrice=" + productPrice + ", productDesc=" + productDesc
 				+ ", productImage=" + productImage + ", productRegistDate=" + productRegistDate + ", productStock="
-				+ productStock + ", avgStar=" + avgStar + "]";
+				+ productStock + ", avgStar=" + avgStar + ", reviewCnt=" + reviewCnt + "]";
 	}
+
 	
 }

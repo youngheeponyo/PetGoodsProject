@@ -40,7 +40,7 @@
 									₩ ${vo.productPrice }
 								</div>
 								<div class="text-center">
-									<p style="color:#848BA0;">★${vo.avgStar }</p>
+									<p style="color:#848BA0;">★${vo.avgStar }(${vo.reviewCnt})</p>
 								</div>
 							</div>
 							<!-- Product actions-->
@@ -71,7 +71,7 @@
 									₩ ${vo.productPrice }
 								</div>
 								<div class="text-center pt-4">
-									<p style="color:#848BA0;">★${vo.avgStar }</p>
+									<p style="color:#848BA0;">★${vo.avgStar }(${vo.reviewCnt})</p>
 								</div>
 							</div>
 							<!-- Product actions-->
@@ -118,7 +118,7 @@
 									₩ ${vo.productPrice }
 								</div>
 								<div class="text-center pt-4">
-									<p style="color:#848BA0;">★${vo.avgStar }</p>
+									<p style="color:#848BA0;">★${vo.avgStar }(${vo.reviewCnt})</p>
 								</div>
 							</div>
 							<!-- Product actions-->
@@ -149,7 +149,7 @@
 									₩ ${vo.productPrice }
 								</div>
 								<div class="text-center pt-4">
-									<p style="color:#848BA0;">★${vo.avgStar }</p>
+									<p style="color:#848BA0;">★${vo.avgStar }(${vo.reviewCnt})</p>
 								</div>
 							</div>
 							<!-- Product actions-->
@@ -196,7 +196,7 @@
 									₩ ${vo.productPrice }
 								</div>
 								<div class="text-center pt-4">
-									<p style="color:#848BA0;">★${vo.avgStar }</p>
+									<p style="color:#848BA0;">★${vo.avgStar }(${vo.reviewCnt})</p>
 								</div>
 							</div>
 							<!-- Product actions-->
@@ -227,7 +227,7 @@
 									₩ ${vo.productPrice }
 								</div>
 								<div class="text-center my-2">
-									<p style="color:#848BA0;">★${vo.avgStar }</p>
+									<p style="color:#848BA0;">★${vo.avgStar }(${vo.reviewCnt})</p>
 								</div>
 							</div>
 							<!-- Product actions-->
