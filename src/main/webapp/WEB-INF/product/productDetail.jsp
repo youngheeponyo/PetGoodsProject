@@ -47,12 +47,10 @@
 	  background-color: #333;
 	}
 	#detail{
-		overflow:hidden;
-		height:1500px;
+		overflow:scroll;
+		height:1000px;
 	}
-	#inlineimg{
-		height:15000px;
-	}
+	
 	#more{
 		border:none;
 		width:45%;
@@ -202,27 +200,8 @@
 				<h2 style="font: bolder; font-size: 30px; text-align: left">상품 정보</h2>
 				<img id="inlineimg" style="width: 50%;" src="productDetailImage/${petType }/${pno.productImage }" alt=""/>
 			</div>
-			<div style="text-align:center">	
-				<button id="more" type="button" onclick="morefunction()">상품 상세 더 보기 ▼</button>
-				<button id="close" type="button" onclick="closefunction()">상품 상세 닫기 ▲</button>
-			</div>
 		<hr>
-		<script type="text/javascript">
 
-		function morefunction(){
-			document.getElementById('detail').style.height="100%";
-			document.getElementById('inlineimg').style.height="100%";
-			document.getElementById('more').style.display="none";
-			document.getElementById('close').style.display="inline-block";
-		}
-
-		function closefunction(){
-			document.getElementById('detail').style.height="1500px";
-			document.getElementById('inlineimg').style.height="7000px";
-			document.getElementById('more').style.display="inline-block";
-			document.getElementById('close').style.display="none";
-		}
-		</script>
 		 <!--리뷰게시판 건드린 부분 -->
       <div id="review" class="reviewTable">
          <h2 style="font: bolder; font-size: 30px; text-align: left">구매 후기</h2>

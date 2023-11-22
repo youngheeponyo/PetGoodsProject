@@ -66,7 +66,6 @@ public class LoginControl implements Command {
 				if (petBirthDay.equals(date)) {
 					int birthCoupon = csv.userBirthCouponInsert(vo.getUserNo());// 쿠폰발급
 					if (birthCoupon == 1) { // 발급됨
-						// alert창
 						System.out.println("1쿠폰발급");
 						session.setAttribute("petBirthDay", "Y");
 					}
