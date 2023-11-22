@@ -73,13 +73,13 @@
 									</div>
 									<div class="card-body" style="height: 170px;">
 										<div class="d-flex justify-content-center">
-											<table class="table w-85">
+											<table class="table w-85" style="table-layout:fixed;">
 												<c:forEach items="${orderList }" var="order">
 													<fmt:formatDate value="${order.orderDate}"
-														pattern="yyyy-MM-dd" var="formattedDate" />
+														pattern="yy/MM/dd" var="formattedDate" />
 													<tr>
-														<td>${order.merUid }</td>
-														<td><a
+														<td style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${order.merUid }</td>
+														<td style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><a
 															href="detailProduct.do?pno=${order.productNo }">${order.productName }</a></td>
 														<td>${order.productPrice }원</td>
 														<td>${order.buyCnt }개</td>
@@ -110,7 +110,7 @@
 																<td>${end.couponName }</td>
 																<td>${end.discountPct }</td>
 																<td style="text-align: center;"><fmt:formatDate
-																		value="${end.endDate}" pattern="yyyy-MM-dd  "></fmt:formatDate></td>
+																		value="${end.endDate}" pattern="yy/MM/dd  "></fmt:formatDate></td>
 																<td
 																	style="text-align: center; color: red; font-weight: bold;">만료예정</td>
 															</tr>
@@ -151,9 +151,8 @@
 																<tr>
 																	<td>${qnaList.qnaType }</td>
 																	<td>${qnaList.productNo }</td>
-																	<td>${qnaList.title }</td>
 																	<td><fmt:formatDate value="${qnaList.registDate}"
-																			pattern="yyyy-MM-dd"></fmt:formatDate></td>
+																			pattern="yy/MM/dd"></fmt:formatDate></td>
 																	<c:choose>
 																		<c:when test="${qnaList.qnaState == 0 }">
 																			<td>답변대기</td>
@@ -187,18 +186,17 @@
 										</button>
 									</div>
 									<div class="card-body" style="height: 170px;">
-										<div class="d-flex justify-content-center"
-											style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-											<table class="table w-85">
+										<div class="d-flex justify-content-center">
+											<table class="table w-85" style="table-layout:fixed;">
 												<c:choose>
 													<c:when test="${!empty recentReviewList}">
 														<tr>
 															<c:forEach items="${recentReviewList }" var="rereList">
 																<tr>
-																	<td>${rereList.productName }</td>
-																	<td>${rereList.content }</td>
+																	<td style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${rereList.productName }</td>
+																	<td style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${rereList.content }</td>
 																	<td><fmt:formatDate value="${rereList.reviewDate}"
-																			pattern="yyyy-MM-dd"></fmt:formatDate></td>
+																			pattern="yy/MM/dd"></fmt:formatDate></td>
 
 																</tr>
 															</c:forEach>
