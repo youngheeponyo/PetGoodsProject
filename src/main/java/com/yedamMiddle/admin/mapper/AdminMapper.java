@@ -9,6 +9,7 @@ import com.yedamMiddle.common.service.CategoryJoinVO;
 import com.yedamMiddle.common.service.UserVO;
 import com.yedamMiddle.product.service.ProductOrderVO;
 import com.yedamMiddle.product.service.ProductVO;
+import com.yedamMiddle.review.service.ReviewVO;
 
 public interface AdminMapper {
 	List<UserVO> userList();
@@ -23,4 +24,6 @@ public interface AdminMapper {
 	public int subCateInsert(@Param("subName") String subName, @Param("preName") String preName);
 	List<ProductOrderVO> productOrder();
 	List<SalesRateVO> getSalesRate();
+	List<ReviewVO> selectReviewList();
+	public int reviewDelete(int reviewNo);
 }

@@ -13,6 +13,7 @@ import com.yedamMiddle.common.service.CategoryVO;
 import com.yedamMiddle.common.service.UserVO;
 import com.yedamMiddle.product.service.ProductOrderVO;
 import com.yedamMiddle.product.service.ProductVO;
+import com.yedamMiddle.review.service.ReviewVO;
 
 public class AdminServiceImpl implements AdminService {
 	SqlSession sql = Mybatis.getInstance().openSession(true);
@@ -71,6 +72,16 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<ProductOrderVO> productOrder() {
 		return mapper.productOrder();
+	}
+
+	@Override
+	public List<ReviewVO> getAllReview() {
+		return mapper.selectReviewList();
+	}
+
+	@Override
+	public boolean removeReview(int reviewNo) {
+		return mapper.reviewDelete(reviewNo) == 1;
 	}
 
 

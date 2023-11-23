@@ -6,6 +6,7 @@ import com.yedamMiddle.common.service.CategoryJoinVO;
 import com.yedamMiddle.common.service.UserVO;
 import com.yedamMiddle.product.service.ProductOrderVO;
 import com.yedamMiddle.product.service.ProductVO;
+import com.yedamMiddle.review.service.ReviewVO;
 
 public interface AdminService {
 	List<UserVO> userList();
@@ -19,5 +20,7 @@ public interface AdminService {
 	public boolean addMainCate(String categoryName);
 	public boolean addSubCate(String subName, String preName);
 	List<ProductOrderVO> productOrder();
+	List<ReviewVO> getAllReview();
+	public boolean removeReview(int reviewNo);
 }
 

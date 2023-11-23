@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedamMiddle.admin.web.AddMainCategoryControl;
 import com.yedamMiddle.admin.web.AddProductControl;
 import com.yedamMiddle.admin.web.AddSubCategoryControl;
+import com.yedamMiddle.admin.web.AdminDeleteReviewControl;
 import com.yedamMiddle.admin.web.AdminPageControl;
 import com.yedamMiddle.admin.web.CategoryManageControl;
 import com.yedamMiddle.admin.web.GetProductControl;
@@ -139,6 +140,7 @@ public class FrontController extends HttpServlet {
       
       //관리자페이지
       commandByURL.put("/adminPage.do", new AdminPageControl()); //관리자메인페이지
+      commandByURL.put("/adminDeleteReview.do", new AdminDeleteReviewControl());//리뷰삭제
       //회원목록
       commandByURL.put("/memberList.do", new MemberListControl()); //회원목록
       //상품
