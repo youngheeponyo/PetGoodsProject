@@ -20,7 +20,7 @@ public class CouponServiceImpl implements CouponService {
 	}
 
 	@Override
-	public PetVO selectPetByUserNo(int userNo) {
+	public List<PetVO>selectPetByUserNo(int userNo) {
 		return mapper.selectPetByUserNo(userNo);
 	}
 	

@@ -11,7 +11,7 @@ public interface CouponMapper {
 	public int newUserCouponInsert(int userNo);
 	
 	//해당 유저번호로 유저의 애완동물 정보 찾기
-	public PetVO selectPetByUserNo(int userNo);
+	public List<PetVO> selectPetByUserNo(int userNo);
 	
 	//해당 유저번호로 가지고 있는 쿠폰 찾기
 	public CouponVO selectCouponByUserNo(int userNo);
