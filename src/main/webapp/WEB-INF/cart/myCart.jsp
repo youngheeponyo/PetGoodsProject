@@ -241,6 +241,7 @@
 										<c:when test="${vo.productStock==0 }">
 											<td style="text-align:center;font-size:20px">
 											<p style="color:red;">품절되었습니다</p>
+											<input type="button" class="cart__list__optionbtn" value = "상품 삭제" onclick="delfunction(${vo.productNo})">
 											</td>
 										</c:when>
 										<c:otherwise>

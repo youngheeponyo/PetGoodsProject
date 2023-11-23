@@ -25,7 +25,6 @@ public class MyReviewDetailControl implements Command {
 		String path="review/myReviewDetail.tiles";
 		ReviewService svc = new ReviewServiceImpl();
 
-		System.out.println("reviewNo ="+reviewNo);
 		ReviewVO reviewVo = svc.selectDetailReview(Integer.parseInt(reviewNo));
 		req.setAttribute("reviewVo", reviewVo);
 		System.out.println("reviewVo=" + reviewVo);
