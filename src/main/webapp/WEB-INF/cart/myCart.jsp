@@ -208,7 +208,7 @@
 								<tr class="cart__list__detail">
 								<c:choose>
 									<c:when test="${vo.productStock==0 }">
-										<td><input type="checkbox" class="chk" name="product" disabled style="color:red"></td>
+										<td><input type="checkbox" disabled style="color:red"></td>
 										<td><input type="checkbox" id="pno" name="pno" value=${vo.productNo }
 											style="display:none"></td>
 									</c:when>
