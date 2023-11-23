@@ -384,7 +384,6 @@
 								window.location.href = "myCart.do?uno=" + ${uno};
 							} else {
 								alert("추가 실패");
-								window.location.href = "myCart.do?uno=" + ${uno};
 							}
 						})
 						.catch(error=>console.log(error))
