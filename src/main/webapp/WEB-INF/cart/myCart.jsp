@@ -392,13 +392,14 @@
 	}
 	
 	function downfunction(pno,cnt){
+		if(cnt<=1){
+			alert('최소 하나 이상은 구매하셔야 합니다');
+		}else{
 		fetch('updateCart.do?pno='+pno+'&uno='+${uno}+'&cnt=-1')
 		.then(resolve => resolve.json())
 		.then(result => {
 			console.log(result)
-			if(cnt<=1){
-				alert('최소 하나 이상은 구매하셔야 합니다');
-			}else{
+
 				if (result.retCode == 'OK') {
 					window.location.href = "myCart.do?uno=" + ${uno};
 				} else {
@@ -406,8 +407,9 @@
 					alert("실패");
 					window.location.href = "myCart.do?uno=" + ${uno};
 				}
-			}
+			
 		})
 		.catch(error=>console.log(error))
+		}
 	}
 </script>
