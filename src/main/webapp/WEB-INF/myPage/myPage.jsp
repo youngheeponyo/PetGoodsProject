@@ -69,8 +69,7 @@
 																pattern="yy/MM/dd" var="formattedDate" />
 															<tr>
 																<td style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${order.merUid }</td>
-																<td style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><a
-																	href="detailProduct.do?pno=${order.productNo }">${order.productName }</a></td>
+																<td style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${order.productName }</td>
 																<td>${order.productPrice }원</td>
 																<td>${order.buyCnt }개</td>
 																<td>${formattedDate}</td>
