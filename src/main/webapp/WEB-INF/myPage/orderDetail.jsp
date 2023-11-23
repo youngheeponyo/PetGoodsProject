@@ -71,7 +71,7 @@
 												pattern="yyyy-MM-dd HH:mm:ss" var="formattedDate" />
 											<tr>
 												<td>${item.merUid }</td>
-												<td><a href="detailProduct.do?pno=${item.productNo }">${item.productName }</a></td>
+												<td><a href="detailProduct.do?pno=${item.productNo }&type=${item.petType}">${item.productName }</a></td>
 												<td>${item.productPrice }</td>
 												<td>${item.buyCnt }</td>
 												<td>${formattedDate}</td>

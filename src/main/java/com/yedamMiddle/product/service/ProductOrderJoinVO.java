@@ -9,10 +9,20 @@ public class ProductOrderJoinVO {
 	private int buyCnt;
 	private int productNo;
 	private Date orderDate;
+	private String petType;
 	private int reviewNo;
 	public long getMerUid() {
 		return merUid;
 	}
+	
+	public String getPetType() {
+		return petType;
+	}
+
+	public void setPetType(String petType) {
+		this.petType = petType;
+	}
+
 	public void setMerUid(long merUid) {
 		this.merUid = merUid;
 	}

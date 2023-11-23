@@ -241,6 +241,7 @@
 										<c:when test="${vo.productStock==0 }">
 											<td style="text-align:center;font-size:20px">
 											<p style="color:red;">품절되었습니다</p>
+											<input type="button" class="cart__list__optionbtn" value = "상품 삭제" onclick="delfunction(${vo.productNo})">
 											</td>
 										</c:when>
 										<c:otherwise>
@@ -383,7 +384,6 @@
 								window.location.href = "myCart.do?uno=" + ${uno};
 							} else {
 								alert("추가 실패");
-								window.location.href = "myCart.do?uno=" + ${uno};
 							}
 						})
 						.catch(error=>console.log(error))
@@ -391,13 +391,14 @@
 	}
 	
 	function downfunction(pno,cnt){
+		if(cnt<=1){
+			alert('최소 하나 이상은 구매하셔야 합니다');
+		}else{
 		fetch('updateCart.do?pno='+pno+'&uno='+${uno}+'&cnt=-1')
 		.then(resolve => resolve.json())
 		.then(result => {
 			console.log(result)
-			if(cnt<=1){
-				alert('최소 하나 이상은 구매하셔야 합니다');
-			}else{
+
 				if (result.retCode == 'OK') {
 					window.location.href = "myCart.do?uno=" + ${uno};
 				} else {
@@ -405,8 +406,9 @@
 					alert("실패");
 					window.location.href = "myCart.do?uno=" + ${uno};
 				}
-			}
+			
 		})
 		.catch(error=>console.log(error))
+		}
 	}
 </script>

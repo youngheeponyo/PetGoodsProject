@@ -187,7 +187,7 @@
 					let cnt = ${mvo.selectCnt};
 					
 					if(stock<(parseInt(count)+cnt)){
-						alert('남은 재고량이 부족합니다!')
+						alert('장바구니에 담아놓은 갯수는 '+cnt+'개이며 현재 남은 재고량은 '+stock+'개입니다!')
 					}else{
 					fetch('cartCheck.do?pno='+pno+'&uno='+${uno})
 					.then(resolve=>resolve.json())
@@ -205,9 +205,6 @@
 									}
 								})
 						}else{
-							if(stock<parseInt(count)){
-								alert('남은 재고량이 부족합니다!')
-							}else{
 								fetch('addCart.do?pno='+pno+'&uno='+${uno}+'&cnt='+count)
 								.then(resolve=>resolve.json())
 								.then(result=>{
@@ -219,7 +216,6 @@
 										alert("추가 실패");
 									}
 								})
-							}
 						}
 					})
 					}

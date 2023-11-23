@@ -51,7 +51,7 @@
                     	</thead>
                     	<tbody>
 							<tr>
-                    			<td><a href="detailProduct.do?pno=${reviewVo.productNo }">${reviewVo.productName }</a></td>
+                    			<td><a href="detailProduct.do?pno=${reviewVo.productNo }&type=${reviewVo.petType}">${reviewVo.productName }</a></td>
                     			<td>${reviewVo.starCnt }</td>
                     			<td>${reviewVo.nickName }</td>
                     			<td><fmt:formatDate value ="${reviewVo.reviewDate }" pattern="yyyy-MM-dd"></fmt:formatDate></td>
