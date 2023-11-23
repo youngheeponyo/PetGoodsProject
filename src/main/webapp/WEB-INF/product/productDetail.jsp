@@ -199,7 +199,7 @@
 									console.log(result)
 									if(result.retCode=='OK'){
 										alert("장바구니에 추가되었습니다");
-											window.location.href = "myCart.do?uno=" + ${uno};
+										window.location.href = "detailProduct.do?pno="+${pno.productNo }+"&cno="+${pno.categoryNo}+"&type="+${pno.petType};
 									}else{
 										alert("추가 실패");
 									}
@@ -214,7 +214,7 @@
 									console.log(result)
 									if(result.retCode=='OK'){
 										alert("장바구니에 추가되었습니다");
-											window.location.href = "myCart.do?uno=" + ${uno};
+										window.location.href = "detailProduct.do?pno="+${pno.productNo }+"&cno="+${pno.categoryNo}+"&type="+${pno.petType};
 									}else{
 										alert("추가 실패");
 									}

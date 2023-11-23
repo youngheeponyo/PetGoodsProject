@@ -208,8 +208,7 @@
 								<tr class="cart__list__detail">
 								<c:choose>
 									<c:when test="${vo.productStock==0 }">
-										<td><input type="button" class="chk" name="product"
-											value="품절" disabled style="color:red"></td>
+										<td><input type="checkbox" class="chk" name="product" disabled style="color:red"></td>
 										<td><input type="checkbox" id="pno" name="pno" value=${vo.productNo }
 											style="display:none"></td>
 									</c:when>
@@ -220,7 +219,7 @@
 												style="display:none"></td>
 									</c:otherwise>
 								</c:choose>
-									<td>${vo.petType }<a href="detailProduct.do?pno=${vo.productNo }&cno=${vo.categoryNo}&type=${vo.petType}">
+									<td><a href="detailProduct.do?pno=${vo.productNo }&cno=${vo.categoryNo}&type=${vo.petType}">
 										<c:choose>
 											<c:when test="${vo.petType==0}">
 													<img src="productImage/dog/${vo.productName }.png" alt="">
@@ -238,13 +237,23 @@
 										<p id="stock">(현재 재고량 : ${vo.productStock })</p>
 										</c:if>
 									</td>
-									<td class="cart__list__option">
-										<p>모델명 : ${vo.productName }</p>
-										<p>수량 : ${vo.selCnt }</p>
-										<input type="button" value="▲" class="cart__list__optionbtn" onclick="upfunction(${vo.productNo},${vo.selCnt },${vo.productStock })">
-										<input class="cart__list__optionbtn" value="▼" type="button" onclick="downfunction(${vo.productNo},${vo.selCnt })">
-										<input type="button" class="cart__list__optionbtn" value = "상품 삭제" onclick="delfunction(${vo.productNo})">
-									</td>
+									<c:choose>
+										<c:when test="${vo.productStock==0 }">
+											<td style="text-align:center;font-size:20px">
+											<p style="color:red;">품절되었습니다</p>
+											<input type="button" class="cart__list__optionbtn" value = "상품 삭제" onclick="delfunction(${vo.productNo})">
+											</td>
+										</c:when>
+										<c:otherwise>
+											<td class="cart__list__option">
+												<p>모델명 : ${vo.productName }</p>
+												<p>수량 : ${vo.selCnt }</p>
+												<input type="button" value="▲" class="cart__list__optionbtn" onclick="upfunction(${vo.productNo},${vo.selCnt },${vo.productStock })">
+												<input class="cart__list__optionbtn" value="▼" type="button" onclick="downfunction(${vo.productNo},${vo.selCnt })">
+												<input type="button" class="cart__list__optionbtn" value = "상품 삭제" onclick="delfunction(${vo.productNo})">
+											</td>
+										</c:otherwise>
+									</c:choose>
 									<td><span class="price">${vo.productPrice*vo.selCnt }원</span><br></td>
 									<td>
 										<c:choose>

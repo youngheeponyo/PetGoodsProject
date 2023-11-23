@@ -13,11 +13,11 @@
                 
                 <c:choose>
                 	<c:when test="${curShowPetType eq '0'}">
-                		<a class="navbar-brand mr-0" href="main.do" style="font-family: 'Single Day', cursive;font-size:28px;font-weight:bold;color:#f0768b">디어마이 독</a>
+                		<a class="navbar-brand mr-0" href="main.do" style="font-family: 'Single Day', cursive;font-size:28px;font-weight:bold;color:#f0768b">마이디어 독</a>
                 		<img class ="mr-3" src="commonResource/image/mainIcon/dogIcon.png" alt="dog" style="width:40px;height:40px;">
                 	</c:when>
                 	<c:otherwise>
-                		<a class="navbar-brand mr-0" href="main.do" style="font-family: 'Single Day', cursive;font-size:28px;font-weight:bold;color:#f0768b">디어마이 캣</a>
+                		<a class="navbar-brand mr-0" href="main.do" style="font-family: 'Single Day', cursive;font-size:28px;font-weight:bold;color:#f0768b">마이디어 캣</a>
                 		<img class ="mr-3" src="commonResource/image/mainIcon/catIcon.png" alt="cat" style="width:40px;height:40px;">
                 	</c:otherwise>
                 </c:choose>
