@@ -6,7 +6,7 @@
 		<![CDATA[
 		SELECT * FROM (SELECT * FROM COUPON 
                    	WHERE USER_NO=#{userNo} AND 
-                    COUPON_STATE='사용전' 
+                    COUPON_STATE='미사용' 
                     ORDER BY END_DATE, COUPON_STATE)
 		WHERE ROWNUM <=3
 		]]>

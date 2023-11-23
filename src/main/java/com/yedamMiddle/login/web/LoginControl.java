@@ -3,6 +3,7 @@ package com.yedamMiddle.login.web;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -43,7 +44,7 @@ public class LoginControl implements Command {
 			csv.userExpireCouponUpdate();
 
 			// 유저번호로 펫 정보 찾기
-			PetVO petVo = csv.selectPetByUserNo(vo.getUserNo());
+			List<PetVO> petVo = csv.selectPetByUserNo(vo.getUserNo());
 			// 유저번호로 생일쿠폰인 쿠폰 정보 찾기
 			CouponVO couponVo = csv.selectCouponByUserNo(vo.getUserNo());
 
@@ -53,23 +54,28 @@ public class LoginControl implements Command {
 				Date now = new Date();// 오늘날짜
 				SimpleDateFormat format = new SimpleDateFormat("MM월 dd일");// 날짜형식
 
-				System.out.println("petVo =" + petVo);
-				System.out.println("couponVo =" + couponVo);
-
-				String petBirthDay = format.format(petVo.getPetBirth());
-				String date = format.format(now);
-				System.out.println("petVo.getPetBirth()=" + petBirthDay);
-				System.out.println("now=" + date);
-
-				resp.setContentType("text/html; charset=UTF-8");
-				// 오늘이 펫 생일이면
-				if (petBirthDay.equals(date)) {
-					int birthCoupon = csv.userBirthCouponInsert(vo.getUserNo());// 쿠폰발급
-					if (birthCoupon == 1) { // 발급됨
-						System.out.println("1쿠폰발급");
-						session.setAttribute("petBirthDay", "Y");
+//				System.out.println("petVo =" + petVo);
+//				System.out.println("couponVo =" + couponVo);
+				
+				for(PetVO Birthday : petVo) {
+					 Birthday.getPetBirth(); 
+				
+					String petBirthDay = format.format(Birthday.getPetBirth());
+					
+					String date = format.format(now);
+					System.out.println("petVo.getPetBirth()=" + petBirthDay);
+					System.out.println("now=" + date);
+	
+					resp.setContentType("text/html; charset=UTF-8");
+					// 오늘이 펫 생일이면
+					if (petBirthDay.equals(date)) {
+						int birthCoupon = csv.userBirthCouponInsert(vo.getUserNo());// 쿠폰발급
+						if (birthCoupon == 1) { // 발급됨
+							System.out.println("1쿠폰발급");
+							session.setAttribute("petBirthDay", "Y");
+						}
 					}
-				}				
+				}
 			}
 		} else {
 			result = "{\"retCode\":\"NG\"}";

@@ -13,11 +13,7 @@ public class PetVO {
 	private String petGender;
 	private int userNo;
 	
-	@Override
-	public String toString() {
-		return "PetVO [petNo=" + petNo + ", petName=" + petName + ", petType=" + petType + ", petBirth=" + petBirth
-				+ ", petGender=" + petGender + ", userNo=" + userNo + "]";
-	}
+	
 	public int getPetNo() {
 		return petNo;
 	}
@@ -54,4 +50,13 @@ public class PetVO {
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
 	}
+	
+	@Override
+	public String toString() {
+		return "PetVO [petNo=" + petNo + ", petName=" + petName + ", petType=" + petType + ", petBirth=" + petBirth
+				+ ", petGender=" + petGender + ", userNo=" + userNo + "]";
+	}
+	
+	
+	
 }
