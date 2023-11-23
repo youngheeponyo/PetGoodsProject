@@ -14,8 +14,14 @@ public class ReviewVO {
 	private String reviewImage;
 	private String nickName;
 	private String productName;
+	private String petType;
 	
-	
+	public String getPetType() {
+		return petType;
+	}
+	public void setPetType(String petType) {
+		this.petType = petType;
+	}
 	public int getReviewNo() {
 		return reviewNo;
 	}
@@ -83,14 +89,15 @@ public class ReviewVO {
 		this.productName = productName;
 	}
 	
-	
 	@Override
 	public String toString() {
 		return "ReviewVO [reviewNo=" + reviewNo + ", merUid=" + merUid + ", content=" + content + ", starCnt=" + starCnt
 				+ ", reviewDate=" + reviewDate + ", reviewLikeCnt=" + reviewLikeCnt + ", productNo=" + productNo
 				+ ", UserNo=" + UserNo + ", reviewImage=" + reviewImage + ", nickName=" + nickName + ", productName="
-				+ productName + "]";
+				+ productName + ", petType=" + petType + "]";
 	}
+	
+	
 
 
 	
