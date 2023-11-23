@@ -189,38 +189,38 @@
 					if(stock<(parseInt(count)+cnt)){
 						alert('장바구니에 담아놓은 갯수는 '+cnt+'개이며 현재 남은 재고량은 '+stock+'개입니다!')
 					}else{
-					fetch('cartCheck.do?pno='+pno+'&uno='+${uno})
-					.then(resolve=>resolve.json())
-					.then(result=>{
-						if(result.retCode=='OK'){
-								fetch('updateCart.do?pno='+pno+'&uno='+${uno}+'&cnt='+count)
-								.then(resolve=>resolve.json())
-								.then(result=>{
-									console.log(result)
-									if(result.retCode=='OK'){
-										alert("장바구니에 추가되었습니다");
-										window.location.href = "detailProduct.do?pno="+${pno.productNo }+"&cno="+${pno.categoryNo}+"&type="+${pno.petType};
-									}else{
-										alert("추가 실패");
-									}
-								})
-						}else{
-								fetch('addCart.do?pno='+pno+'&uno='+${uno}+'&cnt='+count)
-								.then(resolve=>resolve.json())
-								.then(result=>{
-									console.log(result)
-									if(result.retCode=='OK'){
-										alert("장바구니에 추가되었습니다");
-										window.location.href = "detailProduct.do?pno="+${pno.productNo }+"&cno="+${pno.categoryNo}+"&type="+${pno.petType};
-									}else{
-										alert("추가 실패");
-									}
-								})
-						}
-					})
+						fetch('cartCheck.do?pno='+pno+'&uno='+${uno})
+						.then(resolve=>resolve.json())
+						.then(result=>{
+							if(result.retCode=='OK'){
+									fetch('updateCart.do?pno='+pno+'&uno='+${uno}+'&cnt='+count)
+									.then(resolve=>resolve.json())
+									.then(result=>{
+										console.log(result)
+										if(result.retCode=='OK'){
+											alert("장바구니에 추가되었습니다");
+											window.location.href = "detailProduct.do?pno="+${pno.productNo }+"&cno="+${pno.categoryNo}+"&type="+${pno.petType};
+										}else{
+											alert("추가 실패");
+										}
+									})
+							}else{
+									fetch('addCart.do?pno='+pno+'&uno='+${uno}+'&cnt='+count)
+									.then(resolve=>resolve.json())
+									.then(result=>{
+										console.log(result)
+										if(result.retCode=='OK'){
+											alert("장바구니에 추가되었습니다");
+											window.location.href = "detailProduct.do?pno="+${pno.productNo }+"&cno="+${pno.categoryNo}+"&type="+${pno.petType};
+										}else{
+											alert("추가 실패");
+										}
+									})
+							}
+						})
 					}
 				}
-</script>
+				</script>
 				<c:if test="${pno.productStock <= 5}">
 					<p>(현재 재고량 : ${pno.productStock}개)</p>
 				</c:if>
@@ -416,7 +416,7 @@
 			}
 		}
 		</script>
-		<button onclick="location.href='#'" id="btn-back-to-top" title="위로 가기">▲</button>
+		<button onclick="location.href='#'" id="btn-back-to-top" title="위로 가기">top</button>
 
 	</div>
 </section>
