@@ -71,7 +71,7 @@
 	            	<script src = "https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 	            	<script type='text/javascript'>
 	            	console.log(${list})
-						Kakao.init('d462b7d737c1a7561172e7cffc4ef53b');
+						Kakao.init('');
 						$("#kakao-login-btn").on("click", function(){
 						    //1. 로그인 시도
 						    Kakao.Auth.login({
